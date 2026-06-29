@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #F4F6FA;
+  --color-foreground: #1A2B45;
+
+  /* TBP Navy palette */
+  --color-navy: #1A2B45;
+  --color-navy-mid: #243659;
+  --color-navy-light: #2E4270;
+
+  /* TBP Gold */
+  --color-gold: #C4992A;
+  --color-gold-pale: rgba(196, 153, 42, 0.12);
+
+  /* Text */
+  --color-t1: #1A2B45;
+  --color-t2: #5A6B7F;
+  --color-t3: #8899AA;
+
+  /* UI */
+  --color-border: #E2E8F0;
+  --color-panel: #FFFFFF;
+
+  /* Status */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-info: #3B82F6;
+  --color-danger: #EF4444;
+  --color-purple: #8B5CF6;
+  --color-pink: #EC4899;
+
+  /* Fonts */
+  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-t1);
+  font-family: var(--font-sans);
+  font-size: 14px;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2s infinite;
+}
+
+/* Custom scrollbar for sidebar */
+.sidebar-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.sidebar-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+/* Kanban drag hover */
+.kanban-col:hover {
+  border-color: rgba(196, 153, 42, 0.4);
+}
