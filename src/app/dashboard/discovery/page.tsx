@@ -14,12 +14,12 @@ const depths = ["Quick", "Standard", "Deep"] as const;
 
 const inputStyle: React.CSSProperties = {
   width: "100%", padding: "9px 12px", borderRadius: 8,
-  border: "1px solid #E2E8F0", fontSize: 13, color: "#1A2B45",
-  background: "#F4F6FA", outline: "none",
+  border: "1px solid rgba(255,255,255,0.12)", fontSize: 13, color: "#E8EFF8",
+  background: "#0A1624", outline: "none",
 };
 
 const labelStyle: React.CSSProperties = {
-  fontSize: 11, fontWeight: 600, color: "#5A6B7F",
+  fontSize: 11, fontWeight: 600, color: "#4A5C70",
   textTransform: "uppercase", letterSpacing: ".8px", marginBottom: 6, display: "block",
 };
 
@@ -53,12 +53,10 @@ export default function DiscoveryPage() {
       <Topbar title="Global Prospect Discovery" subtitle="Search and identify family offices and private capital groups globally" />
       <div style={{ padding: "24px 28px 40px" }}>
 
-        {/* NOTICE */}
-        <div style={{ background: "rgba(59,130,246,0.06)", border: "1px solid rgba(59,130,246,0.2)", borderRadius: 12, padding: "12px 18px", marginBottom: 20, fontSize: 12, color: "#1e40af" }}>
+        <div style={{ background: "rgba(59,130,246,0.1)", border: "1px solid rgba(59,130,246,0.2)", borderRadius: 12, padding: "12px 18px", marginBottom: 20, fontSize: 12, color: "#93C5FD" }}>
           ℹ️ <strong>Mock Discovery Mode.</strong> This search uses structured mock data. In production, connect <code>runProspectDiscovery()</code> to Tavily, Brave Search, SerpAPI or approved internal databases. All results are from publicly sourced and ethically compiled data only.
         </div>
 
-        {/* SEARCH FORM */}
         <Panel title="Discovery Search Parameters" subtitle="Configure your search to identify aligned prospects globally" style={{ marginBottom: 20 }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }}>
             <div>
@@ -111,7 +109,7 @@ export default function DiscoveryPage() {
               onClick={handleSearch}
               disabled={loading}
               style={{
-                background: "#C4992A", color: "#1A2B45",
+                background: "#C4992A", color: "#0C1929",
                 fontWeight: 700, fontSize: 13, padding: "10px 24px",
                 borderRadius: 8, border: "none", cursor: loading ? "not-allowed" : "pointer",
                 opacity: loading ? 0.7 : 1,
@@ -122,9 +120,9 @@ export default function DiscoveryPage() {
             <button
               onClick={handleClear}
               style={{
-                background: "#F4F6FA", color: "#5A6B7F",
+                background: "rgba(255,255,255,0.06)", color: "#7B8EAA",
                 fontWeight: 600, fontSize: 13, padding: "10px 20px",
-                borderRadius: 8, border: "1px solid #E2E8F0", cursor: "pointer",
+                borderRadius: 8, border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer",
               }}
             >
               Clear
@@ -132,9 +130,8 @@ export default function DiscoveryPage() {
           </div>
         </Panel>
 
-        {/* RESULTS */}
         {loading && (
-          <div style={{ textAlign: "center", padding: "40px 0", color: "#5A6B7F", fontSize: 13 }}>
+          <div style={{ textAlign: "center", padding: "40px 0", color: "#7B8EAA", fontSize: 13 }}>
             🔍 Running discovery search across global databases...
           </div>
         )}
@@ -145,7 +142,7 @@ export default function DiscoveryPage() {
             subtitle="Results from mock database. Connect real APIs to expand coverage."
           >
             {results.length === 0 ? (
-              <div style={{ textAlign: "center", padding: "40px 0", color: "#8899AA", fontSize: 13 }}>
+              <div style={{ textAlign: "center", padding: "40px 0", color: "#4A5C70", fontSize: 13 }}>
                 No prospects found matching your search criteria. Try broadening your filters.
               </div>
             ) : (
@@ -153,32 +150,35 @@ export default function DiscoveryPage() {
                 <thead>
                   <tr>
                     {["Prospect", "Country", "Type", "Score", "Classification", "Best Entry Point", "Action"].map((h) => (
-                      <th key={h} style={{ textAlign: "left", fontSize: 10, textTransform: "uppercase", letterSpacing: ".8px", color: "#8899AA", padding: "0 8px 10px 0", borderBottom: "1px solid #E2E8F0" }}>{h}</th>
+                      <th key={h} style={{ textAlign: "left", fontSize: 10, textTransform: "uppercase", letterSpacing: ".8px", color: "#4A5C70", padding: "0 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
                   {results.map((p) => (
-                    <tr key={p.id}>
-                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0" }}>
-                        <div style={{ fontWeight: 600, color: "#1A2B45", fontSize: 13 }}>{p.prospect_name}</div>
-                        <div style={{ fontSize: 11, color: "#8899AA" }}>{p.city}</div>
+                    <tr key={p.id}
+                      onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.04)")}
+                      onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                    >
+                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                        <div style={{ fontWeight: 600, color: "#E8EFF8", fontSize: 13 }}>{p.prospect_name}</div>
+                        <div style={{ fontSize: 11, color: "#4A5C70" }}>{p.city}</div>
                       </td>
-                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0", fontSize: 12, color: "#5A6B7F" }}>{p.country}</td>
-                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0", fontSize: 11, color: "#5A6B7F" }}>
+                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 12, color: "#7B8EAA" }}>{p.country}</td>
+                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 11, color: "#7B8EAA" }}>
                         {p.prospect_type.split("-").slice(0, 2).join(" ")}
                       </td>
-                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0" }}>
+                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
                         <ScoreBadge score={p.suitability_score} />
                       </td>
-                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0" }}>
+                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
                         <ClassificationBadge classification={p.classification} />
                       </td>
-                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0", fontSize: 11, color: "#5A6B7F", maxWidth: 180 }}>
+                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 11, color: "#7B8EAA", maxWidth: 180 }}>
                         {p.best_tbp_entry_point}
                       </td>
-                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0" }}>
-                        <button style={{ padding: "5px 11px", borderRadius: 7, fontSize: 11, fontWeight: 600, cursor: "pointer", border: "1px solid #E2E8F0", background: "#F4F6FA", color: "#5A6B7F" }}>
+                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                        <button style={{ padding: "5px 11px", borderRadius: 7, fontSize: 11, fontWeight: 600, cursor: "pointer", border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.06)", color: "#7B8EAA" }}>
                           Add to Longlist
                         </button>
                       </td>
@@ -191,7 +191,7 @@ export default function DiscoveryPage() {
         )}
 
         {!searched && !loading && (
-          <div style={{ textAlign: "center", padding: "60px 0", color: "#8899AA", fontSize: 13 }}>
+          <div style={{ textAlign: "center", padding: "60px 0", color: "#4A5C70", fontSize: 13 }}>
             Configure your search parameters above and run a discovery search to identify aligned prospects.
           </div>
         )}

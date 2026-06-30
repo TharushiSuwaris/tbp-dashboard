@@ -1,0 +1,118 @@
+"use client";
+
+export function AppHeader() {
+  return (
+    <header
+      style={{
+        background: "#091524",
+        borderBottom: "1px solid rgba(255,255,255,0.06)",
+        height: 64,
+        display: "flex",
+        alignItems: "center",
+        padding: "0 24px 0 0",
+        position: "sticky",
+        top: 0,
+        zIndex: 30,
+        flexShrink: 0,
+      }}
+    >
+      {/* Logo slot — matches sidebar width */}
+      <div
+        style={{
+          width: 200,
+          flexShrink: 0,
+          display: "flex",
+          alignItems: "center",
+          gap: 10,
+          padding: "0 16px",
+          borderRight: "1px solid rgba(255,255,255,0.06)",
+          height: "100%",
+        }}
+      >
+        <div
+          style={{
+            width: 34, height: 34,
+            background: "#C4992A",
+            borderRadius: 8,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            fontWeight: 900, fontSize: 11, color: "#0C1929", flexShrink: 0,
+            letterSpacing: ".5px",
+          }}
+        >
+          TBP
+        </div>
+        <div>
+          <div style={{ fontSize: 10, fontWeight: 700, color: "#E8EFF8", textTransform: "uppercase", letterSpacing: "1px", lineHeight: 1.2 }}>
+            The Borderless
+          </div>
+          <div style={{ fontSize: 9, color: "#4A5C70", letterSpacing: ".5px" }}>Project</div>
+        </div>
+      </div>
+
+      {/* Title */}
+      <div style={{ flex: 1, padding: "0 24px" }}>
+        <div style={{ fontSize: 14, fontWeight: 800, color: "#E8EFF8", letterSpacing: ".3px" }}>
+          TBP CAPITAL ADVISORY &amp; FAMILY OFFICE CIRCLE
+        </div>
+        <div style={{ fontSize: 10, color: "#C4992A", letterSpacing: "1.4px", textTransform: "uppercase", marginTop: 2 }}>
+          Intelligence &amp; Coordination Dashboard
+        </div>
+      </div>
+
+      {/* Right controls */}
+      <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+        {/* Status badge */}
+        <div
+          style={{
+            display: "flex", alignItems: "center", gap: 6,
+            background: "rgba(196,153,42,0.12)",
+            border: "1px solid rgba(196,153,42,0.25)",
+            borderRadius: 20, padding: "5px 12px",
+          }}
+        >
+          <div
+            className="animate-pulse-dot"
+            style={{ width: 6, height: 6, background: "#C4992A", borderRadius: "50%", flexShrink: 0 }}
+          />
+          <span style={{ fontSize: 11, color: "#C4992A", fontWeight: 600, whiteSpace: "nowrap" }}>
+            Protocol Establishment Round
+          </span>
+        </div>
+
+        {/* Notifications */}
+        <div style={{ position: "relative", cursor: "pointer", lineHeight: 1 }}>
+          <span style={{ fontSize: 18 }}>🔔</span>
+          <div
+            style={{
+              position: "absolute", top: -4, right: -6,
+              width: 16, height: 16,
+              background: "#EF4444", borderRadius: "50%",
+              fontSize: 9, fontWeight: 800, color: "#fff",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              border: "2px solid #091524",
+            }}
+          >
+            3
+          </div>
+        </div>
+
+        {/* Avatar */}
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <div
+            style={{
+              width: 36, height: 36, background: "#C4992A", borderRadius: "50%",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontWeight: 900, fontSize: 13, color: "#0C1929", flexShrink: 0,
+            }}
+          >
+            RJ
+          </div>
+          <div>
+            <div style={{ fontSize: 12, fontWeight: 700, color: "#E8EFF8" }}>Ribi Jayasinghe</div>
+            <div style={{ fontSize: 10, color: "#4A5C70" }}>TBP Leadership</div>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}

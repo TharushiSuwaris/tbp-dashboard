@@ -30,24 +30,22 @@ export default function RegionalMappingPage() {
       <Topbar title="Regional Mapping" subtitle="Global prospect distribution across TBP target geographies — 30 prospects tracked" />
       <div style={{ padding: "24px 28px 40px" }}>
 
-        {/* Global summary row */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: 12, marginBottom: 20 }}>
           {[
-            { label: "Total Prospects", value: mockProspects.length, color: "#C4992A" },
-            { label: "Regions Covered", value: REGIONS.filter(r => byRegion(r.key).length > 0).length, color: "#3B82F6" },
+            { label: "Total Prospects",  value: mockProspects.length, color: "#C4992A" },
+            { label: "Regions Covered",  value: REGIONS.filter(r => byRegion(r.key).length > 0).length, color: "#3B82F6" },
             { label: "Priority Prospects", value: mockProspects.filter(p => p.classification === "Priority Founding Steward Prospect").length, color: "#10B981" },
-            { label: "Avg Suitability", value: Math.round(mockProspects.reduce((a, b) => a + b.suitability_score, 0) / mockProspects.length), color: "#8B5CF6" },
-            { label: "Joined Circle", value: mockProspects.filter(p => p.pipeline_stage === "Joined Circle").length, color: "#059669" },
+            { label: "Avg Suitability",  value: Math.round(mockProspects.reduce((a, b) => a + b.suitability_score, 0) / mockProspects.length), color: "#8B5CF6" },
+            { label: "Joined Circle",    value: mockProspects.filter(p => p.pipeline_stage === "Joined Circle").length, color: "#059669" },
           ].map((c, i) => (
-            <div key={i} style={{ background: "#fff", border: "1px solid #E2E8F0", borderRadius: 10, padding: "14px 16px", position: "relative", overflow: "hidden" }}>
+            <div key={i} style={{ background: "#132037", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 10, padding: "14px 16px", position: "relative", overflow: "hidden" }}>
               <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: c.color }} />
-              <div style={{ fontSize: 26, fontWeight: 900, color: "#1A2B45" }}>{c.value}</div>
-              <div style={{ fontSize: 11, color: "#5A6B7F" }}>{c.label}</div>
+              <div style={{ fontSize: 26, fontWeight: 900, color: "#E8EFF8" }}>{c.value}</div>
+              <div style={{ fontSize: 11, color: "#7B8EAA" }}>{c.label}</div>
             </div>
           ))}
         </div>
 
-        {/* Region grid */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 14, marginBottom: 14 }}>
           {REGIONS.map(({ key, label, emoji, color }) => {
             const prospects = byRegion(key);
@@ -61,35 +59,33 @@ export default function RegionalMappingPage() {
                 subtitle={`${prospects.length} prospect${prospects.length !== 1 ? "s" : ""} · Avg score ${avgScore(key)}`}
                 style={{ borderTop: `3px solid ${color}` }}
               >
-                {/* Bar */}
                 <div style={{ marginBottom: 12 }}>
-                  <div style={{ height: 8, background: "#F4F6FA", borderRadius: 4, overflow: "hidden", display: "flex" }}>
+                  <div style={{ height: 8, background: "rgba(255,255,255,0.08)", borderRadius: 4, overflow: "hidden", display: "flex" }}>
                     <div style={{ width: `${(priority.length / prospects.length) * 100}%`, background: "#10B981" }} />
                     <div style={{ width: `${(strong.length / prospects.length) * 100}%`, background: "#F59E0B" }} />
-                    <div style={{ flex: 1, background: "#E2E8F0" }} />
+                    <div style={{ flex: 1, background: "rgba(255,255,255,0.06)" }} />
                   </div>
-                  <div style={{ display: "flex", gap: 12, marginTop: 6, fontSize: 10, color: "#5A6B7F" }}>
-                    <span><span style={{ color: "#10B981", fontWeight: 700 }}>{priority.length}</span> Priority</span>
-                    <span><span style={{ color: "#F59E0B", fontWeight: 700 }}>{strong.length}</span> Strong</span>
-                    <span><span style={{ color: "#8899AA", fontWeight: 700 }}>{prospects.length - priority.length - strong.length}</span> Monitor/Other</span>
+                  <div style={{ display: "flex", gap: 12, marginTop: 6, fontSize: 10, color: "#7B8EAA" }}>
+                    <span><span style={{ color: "#34D399", fontWeight: 700 }}>{priority.length}</span> Priority</span>
+                    <span><span style={{ color: "#FBBF24", fontWeight: 700 }}>{strong.length}</span> Strong</span>
+                    <span><span style={{ color: "#4A5C70", fontWeight: 700 }}>{prospects.length - priority.length - strong.length}</span> Monitor/Other</span>
                   </div>
                 </div>
 
-                {/* Prospect list */}
                 <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                   {prospects.slice(0, 4).map((p) => (
-                    <div key={p.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "6px 10px", background: "#F4F6FA", borderRadius: 6 }}>
+                    <div key={p.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "6px 10px", background: "rgba(255,255,255,0.04)", borderRadius: 6, border: "1px solid rgba(255,255,255,0.05)" }}>
                       <div>
-                        <div style={{ fontSize: 12, fontWeight: 600, color: "#1A2B45" }}>{p.prospect_name}</div>
-                        <div style={{ fontSize: 10, color: "#8899AA" }}>{p.city} · {p.pipeline_stage}</div>
+                        <div style={{ fontSize: 12, fontWeight: 600, color: "#E8EFF8" }}>{p.prospect_name}</div>
+                        <div style={{ fontSize: 10, color: "#4A5C70" }}>{p.city} · {p.pipeline_stage}</div>
                       </div>
-                      <div style={{ fontSize: 13, fontWeight: 900, color: p.suitability_score >= 80 ? "#059669" : p.suitability_score >= 65 ? "#D97706" : "#5A6B7F" }}>
+                      <div style={{ fontSize: 13, fontWeight: 900, color: p.suitability_score >= 80 ? "#34D399" : p.suitability_score >= 65 ? "#FBBF24" : "#7B8EAA" }}>
                         {p.suitability_score}
                       </div>
                     </div>
                   ))}
                   {prospects.length > 4 && (
-                    <div style={{ textAlign: "center", fontSize: 11, color: "#8899AA", padding: "4px 0" }}>
+                    <div style={{ textAlign: "center", fontSize: 11, color: "#4A5C70", padding: "4px 0" }}>
                       +{prospects.length - 4} more
                     </div>
                   )}

@@ -24,8 +24,8 @@ export default function ProspectsPage() {
   }).sort((a, b) => b.suitability_score - a.suitability_score);
 
   const inputStyle: React.CSSProperties = {
-    padding: "8px 12px", borderRadius: 8, border: "1px solid #E2E8F0",
-    fontSize: 12, color: "#1A2B45", background: "#F4F6FA", outline: "none",
+    padding: "8px 12px", borderRadius: 8, border: "1px solid rgba(255,255,255,0.12)",
+    fontSize: 12, color: "#E8EFF8", background: "#0A1624", outline: "none",
   };
 
   return (
@@ -33,7 +33,6 @@ export default function ProspectsPage() {
       <Topbar title="Prospect Longlist" subtitle={`${mockProspects.length} prospects across all regions — sorted by suitability score`} />
       <div style={{ padding: "24px 28px 40px" }}>
 
-        {/* Filters */}
         <div style={{ display: "flex", gap: 10, marginBottom: 20, flexWrap: "wrap" }}>
           <input style={{ ...inputStyle, width: 220 }} placeholder="🔍 Search name or country..." value={search} onChange={(e) => setSearch(e.target.value)} />
           <select style={inputStyle} value={regionFilter} onChange={(e) => setRegionFilter(e.target.value)}>
@@ -53,8 +52,8 @@ export default function ProspectsPage() {
               <option key={s} value={s}>{s}</option>
             ))}
           </select>
-          <div style={{ marginLeft: "auto", fontSize: 12, color: "#5A6B7F", display: "flex", alignItems: "center" }}>
-            Showing <strong style={{ margin: "0 4px" }}>{filtered.length}</strong> of {mockProspects.length} prospects
+          <div style={{ marginLeft: "auto", fontSize: 12, color: "#7B8EAA", display: "flex", alignItems: "center" }}>
+            Showing <strong style={{ margin: "0 4px", color: "#E8EFF8" }}>{filtered.length}</strong> of {mockProspects.length} prospects
           </div>
         </div>
 
@@ -63,42 +62,42 @@ export default function ProspectsPage() {
             <thead>
               <tr>
                 {["#", "Prospect", "Country", "Region", "Type", "Score", "Classification", "Stage", "Owner", "Pack", "Next Action"].map((h) => (
-                  <th key={h} style={{ textAlign: "left", fontSize: 10, textTransform: "uppercase", letterSpacing: ".8px", color: "#8899AA", padding: "0 8px 10px 0", borderBottom: "1px solid #E2E8F0", whiteSpace: "nowrap" }}>{h}</th>
+                  <th key={h} style={{ textAlign: "left", fontSize: 10, textTransform: "uppercase", letterSpacing: ".8px", color: "#4A5C70", padding: "0 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.07)", whiteSpace: "nowrap" }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {filtered.map((p, i) => (
                 <tr key={p.id} style={{ cursor: "pointer" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = "#F4F6FA")}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.04)")}
                   onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
                 >
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0", fontSize: 12, color: "#8899AA" }}>{i + 1}</td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0", minWidth: 200 }}>
-                    <div style={{ fontWeight: 600, color: "#1A2B45", fontSize: 13 }}>{p.prospect_name}</div>
-                    <div style={{ fontSize: 11, color: "#8899AA" }}>{p.city} · {p.sector_interests.slice(0, 2).join(", ")}</div>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 12, color: "#4A5C70" }}>{i + 1}</td>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", minWidth: 200 }}>
+                    <div style={{ fontWeight: 600, color: "#E8EFF8", fontSize: 13 }}>{p.prospect_name}</div>
+                    <div style={{ fontSize: 11, color: "#4A5C70" }}>{p.city} · {p.sector_interests.slice(0, 2).join(", ")}</div>
                   </td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0", fontSize: 12, color: "#5A6B7F", whiteSpace: "nowrap" }}>{p.country}</td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0", fontSize: 11, color: "#8899AA", whiteSpace: "nowrap" }}>{p.region}</td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0", fontSize: 11, color: "#5A6B7F", whiteSpace: "nowrap" }}>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 12, color: "#7B8EAA", whiteSpace: "nowrap" }}>{p.country}</td>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 11, color: "#4A5C70", whiteSpace: "nowrap" }}>{p.region}</td>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 11, color: "#7B8EAA", whiteSpace: "nowrap" }}>
                     {p.prospect_type.split("-").map(w => w[0].toUpperCase()).join("")}
                   </td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0" }}>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
                     <ScoreBadge score={p.suitability_score} />
                   </td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0" }}>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
                     <ClassificationBadge classification={p.classification} />
                   </td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0" }}>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
                     <StageBadge stage={p.pipeline_stage} />
                   </td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0", fontSize: 11, color: "#5A6B7F", whiteSpace: "nowrap" }}>{p.assigned_owner}</td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0" }}>
-                    <span style={{ fontSize: 10, padding: "2px 7px", borderRadius: 6, background: p.briefing_pack_status === "Generated" ? "rgba(16,185,129,0.1)" : "rgba(0,0,0,0.04)", color: p.briefing_pack_status === "Generated" ? "#059669" : "#8899AA" }}>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 11, color: "#7B8EAA", whiteSpace: "nowrap" }}>{p.assigned_owner}</td>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                    <span style={{ fontSize: 10, padding: "2px 7px", borderRadius: 6, background: p.briefing_pack_status === "Generated" ? "rgba(16,185,129,0.18)" : "rgba(255,255,255,0.06)", color: p.briefing_pack_status === "Generated" ? "#34D399" : "#4A5C70" }}>
                       {p.briefing_pack_status}
                     </span>
                   </td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0", fontSize: 11, color: "#5A6B7F", maxWidth: 160, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 11, color: "#7B8EAA", maxWidth: 160, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                     {p.next_action}
                   </td>
                 </tr>

@@ -1,28 +1,27 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #F4F6FA;
-  --color-foreground: #1A2B45;
+  --color-background: #0C1929;
+  --color-foreground: #E8EFF8;
 
-  /* TBP Navy palette */
-  --color-navy: #1A2B45;
-  --color-navy-mid: #243659;
-  --color-navy-light: #2E4270;
+  --color-navy: #0C1929;
+  --color-sidebar: #091524;
+  --color-card: #132037;
+  --color-card-hover: #1A2B40;
 
-  /* TBP Gold */
   --color-gold: #C4992A;
-  --color-gold-pale: rgba(196, 153, 42, 0.12);
+  --color-gold-pale: rgba(196, 153, 42, 0.14);
 
-  /* Text */
-  --color-t1: #1A2B45;
-  --color-t2: #5A6B7F;
-  --color-t3: #8899AA;
+  --color-t1: #E8EFF8;
+  --color-t2: #7B8EAA;
+  --color-t3: #4A5C70;
 
-  /* UI */
-  --color-border: #E2E8F0;
-  --color-panel: #FFFFFF;
+  --color-border: rgba(255, 255, 255, 0.07);
+  --color-border-strong: rgba(255, 255, 255, 0.12);
+  --color-panel: #132037;
+  --color-input: #0A1624;
+  --color-hover: rgba(255, 255, 255, 0.04);
 
-  /* Status */
   --color-success: #10B981;
   --color-warning: #F59E0B;
   --color-info: #3B82F6;
@@ -30,7 +29,6 @@
   --color-purple: #8B5CF6;
   --color-pink: #EC4899;
 
-  /* Fonts */
   --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
@@ -39,10 +37,19 @@
 }
 
 body {
-  background: var(--color-background);
-  color: var(--color-t1);
+  background: #0C1929;
+  color: #E8EFF8;
   font-family: var(--font-sans);
   font-size: 14px;
+}
+
+input, select, textarea {
+  color-scheme: dark;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #4A5C70;
 }
 
 @keyframes pulse-dot {
@@ -54,7 +61,6 @@ body {
   animation: pulse-dot 2s infinite;
 }
 
-/* Custom scrollbar for sidebar */
 .sidebar-scroll::-webkit-scrollbar {
   width: 4px;
 }
@@ -62,11 +68,17 @@ body {
   background: transparent;
 }
 .sidebar-scroll::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 2px;
 }
 
-/* Kanban drag hover */
-.kanban-col:hover {
-  border-color: rgba(196, 153, 42, 0.4);
+.kanban-scroll::-webkit-scrollbar {
+  height: 4px;
+}
+.kanban-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.kanban-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
 }

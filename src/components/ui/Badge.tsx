@@ -7,14 +7,14 @@ interface BadgeProps {
 
 export function Badge({ children, variant = "gray" }: BadgeProps) {
   const styles: Record<string, React.CSSProperties> = {
-    green: { background: "rgba(16,185,129,0.1)", color: "#059669" },
-    amber: { background: "rgba(245,158,11,0.1)", color: "#D97706" },
-    blue: { background: "rgba(59,130,246,0.1)", color: "#2563EB" },
-    purple: { background: "rgba(139,92,246,0.1)", color: "#7C3AED" },
-    pink: { background: "rgba(236,72,153,0.1)", color: "#BE185D" },
-    red: { background: "rgba(239,68,68,0.1)", color: "#DC2626" },
-    gray: { background: "rgba(0,0,0,0.05)", color: "#5A6B7F" },
-    gold: { background: "rgba(196,153,42,0.12)", color: "#92711A" },
+    green:  { background: "rgba(16,185,129,0.18)",  color: "#34D399" },
+    amber:  { background: "rgba(245,158,11,0.18)",  color: "#FBBF24" },
+    blue:   { background: "rgba(59,130,246,0.18)",  color: "#60A5FA" },
+    purple: { background: "rgba(139,92,246,0.18)",  color: "#A78BFA" },
+    pink:   { background: "rgba(236,72,153,0.18)",  color: "#F472B6" },
+    red:    { background: "rgba(239,68,68,0.18)",   color: "#F87171" },
+    gray:   { background: "rgba(255,255,255,0.08)", color: "#9CA3AF" },
+    gold:   { background: "rgba(196,153,42,0.18)",  color: "#D4AA3A" },
   };
 
   return (
@@ -37,10 +37,10 @@ export function Badge({ children, variant = "gray" }: BadgeProps) {
 export function ScoreBadge({ score }: { score: number }) {
   const style: React.CSSProperties =
     score >= 80
-      ? { background: "rgba(16,185,129,0.1)", color: "#059669" }
+      ? { background: "rgba(16,185,129,0.18)",  color: "#34D399" }
       : score >= 65
-      ? { background: "rgba(245,158,11,0.1)", color: "#D97706" }
-      : { background: "rgba(239,68,68,0.1)", color: "#DC2626" };
+      ? { background: "rgba(245,158,11,0.18)",  color: "#FBBF24" }
+      : { background: "rgba(239,68,68,0.18)",   color: "#F87171" };
 
   return (
     <span
@@ -58,11 +58,11 @@ export function ScoreBadge({ score }: { score: number }) {
 
 export function ClassificationBadge({ classification }: { classification: Classification }) {
   if (classification === "Priority Founding Steward Prospect")
-    return <Badge variant="green">Priority ⭐</Badge>;
+    return <Badge variant="gold">Priority ⭐</Badge>;
   if (classification === "Strong Potential Prospect")
-    return <Badge variant="amber">Strong Potential</Badge>;
+    return <Badge variant="blue">Strong Potential</Badge>;
   if (classification === "Monitor / Secondary Prospect")
-    return <Badge variant="blue">Monitor</Badge>;
+    return <Badge variant="gray">Monitor</Badge>;
   return <Badge variant="gray">Not Suitable</Badge>;
 }
 

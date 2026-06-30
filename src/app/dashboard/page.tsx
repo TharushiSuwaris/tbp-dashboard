@@ -6,7 +6,7 @@ import { ScoreBadge, ClassificationBadge, StageBadge } from "@/components/ui/Bad
 import { mockProspects, getKPISummary } from "@/lib/mock-data/prospects";
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
-  PieChart, Pie, Cell, FunnelChart, Funnel, LabelList,
+  PieChart, Pie, Cell,
 } from "recharts";
 
 const kpi = getKPISummary();
@@ -60,6 +60,8 @@ const progressPct = Math.round((kpi.foundingStewardsSecured / kpi.targetFounding
 const circumference = 2 * Math.PI * 56;
 const dashOffset = circumference * (1 - progressPct / 100);
 
+const tooltipStyle = { background: "#1A2B40", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 8, fontSize: 12, color: "#E8EFF8" };
+
 export default function OverviewPage() {
   return (
     <>
@@ -76,6 +78,7 @@ export default function OverviewPage() {
             borderRadius: 16, padding: "28px 32px", marginBottom: 20,
             display: "flex", alignItems: "center", gap: 36,
             position: "relative", overflow: "hidden",
+            border: "1px solid rgba(255,255,255,0.08)",
           }}
         >
           <div style={{ position: "absolute", top: -60, right: 180, width: 300, height: 300, background: "radial-gradient(circle,rgba(196,153,42,0.08) 0%,transparent 70%)", pointerEvents: "none" }} />
@@ -97,14 +100,12 @@ export default function OverviewPage() {
                 { n: kpi.foundingStewardsSecured, l: "Committed", gold: true },
               ].map((s, i) => (
                 <div key={i}>
-                  {i > 0 && <div style={{ width: 1, background: "rgba(255,255,255,0.08)", alignSelf: "stretch", margin: "4px 0" }} />}
                   <div style={{ fontSize: 24, fontWeight: 800, color: s.gold ? "#C4992A" : "#fff", lineHeight: 1 }}>{s.n}</div>
                   <div style={{ fontSize: 10, color: "#5A7590", textTransform: "uppercase", letterSpacing: ".8px", marginTop: 2 }}>{s.l}</div>
                 </div>
               ))}
             </div>
           </div>
-          {/* Ring */}
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
             <div style={{ position: "relative", width: 138, height: 138 }}>
               <svg width="138" height="138" viewBox="0 0 138 138" style={{ transform: "rotate(-90deg)" }}>
@@ -126,28 +127,28 @@ export default function OverviewPage() {
         {/* KPI CARDS */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 14, marginBottom: 14 }}>
           {[
-            { icon: "🏛", value: kpi.totalProspects, label: "Total Prospects Discovered", trend: "↑ Across 10 global regions", color: "#C4992A", trendColor: "#059669" },
-            { icon: "⭐", value: kpi.priorityFoundingSteward, label: "Priority Founding Stewards", trend: `Score 80–100 · Target: ${kpi.targetFoundingStewards}`, color: "#10B981", trendColor: "#059669" },
-            { icon: "🎯", value: kpi.strongPotential, label: "Strong Potential Prospects", trend: "Score 65–79 · Nurture track", color: "#F59E0B", trendColor: "#D97706" },
-            { icon: "📄", value: kpi.briefingPacksGenerated, label: "Briefing Packs Generated", trend: `⚠ ${kpi.priorityFoundingSteward - kpi.briefingPacksGenerated} packs needed`, color: "#EF4444", trendColor: "#DC2626" },
-            { icon: "🔬", value: kpi.profiled, label: "Prospects Profiled", trend: `${kpi.totalProspects - kpi.profiled} pending profiling`, color: "#6366F1", trendColor: "#5A6B7F" },
-            { icon: "📊", value: kpi.scored, label: "Prospects Scored", trend: `${kpi.profiled - kpi.scored} awaiting scoring`, color: "#8B5CF6", trendColor: "#5A6B7F" },
-            { icon: "⚠️", value: kpi.requiresDiligenceReview, label: "Require Diligence Review", trend: "Diligence flags raised", color: "#F59E0B", trendColor: "#D97706" },
-            { icon: "🤝", value: kpi.meetingOpportunities, label: "Meeting Opportunities", trend: "Meetings proposed or scheduled", color: "#3B82F6", trendColor: "#2563EB" },
+            { icon: "🏛", value: kpi.totalProspects, label: "Total Prospects Discovered", trend: "↑ Across 10 global regions", color: "#C4992A", trendColor: "#34D399" },
+            { icon: "⭐", value: kpi.priorityFoundingSteward, label: "Priority Founding Stewards", trend: `Score 80–100 · Target: ${kpi.targetFoundingStewards}`, color: "#10B981", trendColor: "#34D399" },
+            { icon: "🎯", value: kpi.strongPotential, label: "Strong Potential Prospects", trend: "Score 65–79 · Nurture track", color: "#F59E0B", trendColor: "#FBBF24" },
+            { icon: "📄", value: kpi.briefingPacksGenerated, label: "Briefing Packs Generated", trend: `⚠ ${kpi.priorityFoundingSteward - kpi.briefingPacksGenerated} packs needed`, color: "#EF4444", trendColor: "#F87171" },
+            { icon: "🔬", value: kpi.profiled, label: "Prospects Profiled", trend: `${kpi.totalProspects - kpi.profiled} pending profiling`, color: "#6366F1", trendColor: "#7B8EAA" },
+            { icon: "📊", value: kpi.scored, label: "Prospects Scored", trend: `${kpi.profiled - kpi.scored} awaiting scoring`, color: "#8B5CF6", trendColor: "#7B8EAA" },
+            { icon: "⚠️", value: kpi.requiresDiligenceReview, label: "Require Diligence Review", trend: "Diligence flags raised", color: "#F59E0B", trendColor: "#FBBF24" },
+            { icon: "🤝", value: kpi.meetingOpportunities, label: "Meeting Opportunities", trend: "Meetings proposed or scheduled", color: "#3B82F6", trendColor: "#60A5FA" },
           ].map((card, i) => (
             <div
               key={i}
               style={{
-                background: "#fff", border: "1px solid #E2E8F0", borderRadius: 12,
+                background: "#132037", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 12,
                 padding: "18px 20px", position: "relative", overflow: "hidden",
               }}
             >
               <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: card.color }} />
-              <div style={{ width: 38, height: 38, borderRadius: 9, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 17, marginBottom: 12, background: `${card.color}18` }}>
+              <div style={{ width: 38, height: 38, borderRadius: 9, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 17, marginBottom: 12, background: `${card.color}20` }}>
                 {card.icon}
               </div>
-              <div style={{ fontSize: 28, fontWeight: 900, color: "#1A2B45", lineHeight: 1, marginBottom: 3 }}>{card.value}</div>
-              <div style={{ fontSize: 12, color: "#5A6B7F", marginBottom: 8 }}>{card.label}</div>
+              <div style={{ fontSize: 28, fontWeight: 900, color: "#E8EFF8", lineHeight: 1, marginBottom: 3 }}>{card.value}</div>
+              <div style={{ fontSize: 12, color: "#7B8EAA", marginBottom: 8 }}>{card.label}</div>
               <div style={{ fontSize: 11, color: card.trendColor }}>{card.trend}</div>
             </div>
           ))}
@@ -157,22 +158,22 @@ export default function OverviewPage() {
         <div
           style={{
             display: "flex", alignItems: "center", gap: 12,
-            background: "rgba(245,158,11,0.08)", border: "1px solid rgba(245,158,11,0.3)",
+            background: "rgba(245,158,11,0.1)", border: "1px solid rgba(245,158,11,0.25)",
             borderRadius: 12, padding: "14px 18px", marginBottom: 14,
           }}
         >
           <span style={{ fontSize: 20 }}>⚠️</span>
           <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: "#92400E" }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: "#FBBF24" }}>
               Pipeline Bottleneck — {kpi.priorityFoundingSteward} priority prospects scored but only {kpi.briefingPacksGenerated} briefing packs generated
             </div>
-            <div style={{ fontSize: 12, color: "#B45309", marginTop: 2 }}>
+            <div style={{ fontSize: 12, color: "#D97706", marginTop: 2 }}>
               External engagement cannot begin until briefing packs are generated and reviewed. Generate packs for the highest-scoring Priority Founding Steward prospects first.
             </div>
           </div>
           <button
             style={{
-              padding: "7px 14px", background: "#F59E0B", color: "#fff",
+              padding: "7px 14px", background: "#F59E0B", color: "#0C1929",
               border: "none", borderRadius: 8, fontSize: 12, fontWeight: 700,
               cursor: "pointer", whiteSpace: "nowrap",
             }}
@@ -186,12 +187,9 @@ export default function OverviewPage() {
           <Panel title="Prospects by Region" subtitle="All identified prospects across global regions">
             <ResponsiveContainer width="100%" height={220}>
               <BarChart data={regionData} margin={{ top: 0, right: 0, left: -20, bottom: 0 }}>
-                <XAxis dataKey="name" tick={{ fontSize: 11, fill: "#8899AA" }} axisLine={false} tickLine={false} />
-                <YAxis tick={{ fontSize: 11, fill: "#8899AA" }} axisLine={false} tickLine={false} />
-                <Tooltip
-                  contentStyle={{ background: "#fff", border: "1px solid #E2E8F0", borderRadius: 8, fontSize: 12 }}
-                  cursor={{ fill: "rgba(196,153,42,0.06)" }}
-                />
+                <XAxis dataKey="name" tick={{ fontSize: 11, fill: "#4A5C70" }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: "#4A5C70" }} axisLine={false} tickLine={false} />
+                <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "rgba(196,153,42,0.08)" }} />
                 <Bar dataKey="count" fill="#C4992A" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
@@ -203,14 +201,14 @@ export default function OverviewPage() {
                 <Pie data={scoreDistribution} cx="50%" cy="50%" innerRadius={50} outerRadius={80} paddingAngle={3} dataKey="count">
                   {scoreDistribution.map((entry, i) => <Cell key={i} fill={entry.fill} />)}
                 </Pie>
-                <Tooltip contentStyle={{ background: "#fff", border: "1px solid #E2E8F0", borderRadius: 8, fontSize: 12 }} />
+                <Tooltip contentStyle={tooltipStyle} />
               </PieChart>
             </ResponsiveContainer>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 8 }}>
               {scoreDistribution.map((d) => (
                 <div key={d.name} style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 11 }}>
                   <div style={{ width: 8, height: 8, borderRadius: 2, background: d.fill }} />
-                  <span style={{ color: "#5A6B7F" }}>{d.name}: <strong>{d.count}</strong></span>
+                  <span style={{ color: "#7B8EAA" }}>{d.name}: <strong style={{ color: "#E8EFF8" }}>{d.count}</strong></span>
                 </div>
               ))}
             </div>
@@ -223,8 +221,8 @@ export default function OverviewPage() {
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {funnelData.map((stage) => (
                 <div key={stage.name} style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                  <div style={{ width: 90, fontSize: 12, color: "#5A6B7F", flexShrink: 0 }}>{stage.name}</div>
-                  <div style={{ flex: 1, height: 26, background: "#F4F6FA", borderRadius: 6, overflow: "hidden" }}>
+                  <div style={{ width: 90, fontSize: 12, color: "#7B8EAA", flexShrink: 0 }}>{stage.name}</div>
+                  <div style={{ flex: 1, height: 26, background: "rgba(255,255,255,0.05)", borderRadius: 6, overflow: "hidden" }}>
                     <div
                       style={{
                         height: "100%", borderRadius: 6,
@@ -237,7 +235,7 @@ export default function OverviewPage() {
                       {stage.value}
                     </div>
                   </div>
-                  <div style={{ width: 26, textAlign: "right", fontSize: 13, fontWeight: 700, color: "#1A2B45" }}>{stage.value}</div>
+                  <div style={{ width: 26, textAlign: "right", fontSize: 13, fontWeight: 700, color: "#E8EFF8" }}>{stage.value}</div>
                 </div>
               ))}
             </div>
@@ -246,10 +244,10 @@ export default function OverviewPage() {
           <Panel title="Prospects by Sector Focus" subtitle="Top sectors across identified prospects">
             <ResponsiveContainer width="100%" height={220}>
               <BarChart data={sectorData} layout="vertical" margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
-                <XAxis type="number" tick={{ fontSize: 10, fill: "#8899AA" }} axisLine={false} tickLine={false} />
-                <YAxis type="category" dataKey="name" width={90} tick={{ fontSize: 11, fill: "#5A6B7F" }} axisLine={false} tickLine={false} />
-                <Tooltip contentStyle={{ background: "#fff", border: "1px solid #E2E8F0", borderRadius: 8, fontSize: 12 }} cursor={{ fill: "rgba(196,153,42,0.06)" }} />
-                <Bar dataKey="count" fill="#1A2B45" radius={[0, 4, 4, 0]} />
+                <XAxis type="number" tick={{ fontSize: 10, fill: "#4A5C70" }} axisLine={false} tickLine={false} />
+                <YAxis type="category" dataKey="name" width={90} tick={{ fontSize: 11, fill: "#7B8EAA" }} axisLine={false} tickLine={false} />
+                <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "rgba(196,153,42,0.08)" }} />
+                <Bar dataKey="count" fill="#3B82F6" radius={[0, 4, 4, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </Panel>
@@ -263,38 +261,38 @@ export default function OverviewPage() {
             <thead>
               <tr>
                 {["Family Office", "Region", "Type", "Score", "Classification", "Stage", "Pack"].map((h) => (
-                  <th key={h} style={{ textAlign: "left", fontSize: 10, textTransform: "uppercase", letterSpacing: ".8px", color: "#8899AA", padding: "0 8px 10px 0", borderBottom: "1px solid #E2E8F0" }}>{h}</th>
+                  <th key={h} style={{ textAlign: "left", fontSize: 10, textTransform: "uppercase", letterSpacing: ".8px", color: "#4A5C70", padding: "0 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {topProspects.map((p) => (
                 <tr key={p.id}>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0", verticalAlign: "middle" }}>
-                    <div style={{ fontWeight: 600, color: "#1A2B45", fontSize: 13 }}>{p.prospect_name}</div>
-                    <div style={{ fontSize: 11, color: "#8899AA" }}>{p.city}, {p.country}</div>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", verticalAlign: "middle" }}>
+                    <div style={{ fontWeight: 600, color: "#E8EFF8", fontSize: 13 }}>{p.prospect_name}</div>
+                    <div style={{ fontSize: 11, color: "#4A5C70" }}>{p.city}, {p.country}</div>
                   </td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0", fontSize: 12, color: "#5A6B7F" }}>{p.region}</td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0" }}>
-                    <span style={{ background: "rgba(59,130,246,0.1)", color: "#2563EB", padding: "3px 9px", borderRadius: 20, fontSize: 10, fontWeight: 700 }}>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 12, color: "#7B8EAA" }}>{p.region}</td>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                    <span style={{ background: "rgba(59,130,246,0.18)", color: "#60A5FA", padding: "3px 9px", borderRadius: 20, fontSize: 10, fontWeight: 700 }}>
                       {p.prospect_type.split("-").map(w => w[0].toUpperCase() + w.slice(1)).join(" ").slice(0, 12)}
                     </span>
                   </td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0" }}>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
                     <ScoreBadge score={p.suitability_score} />
                   </td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0" }}>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
                     <ClassificationBadge classification={p.classification} />
                   </td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0" }}>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
                     <StageBadge stage={p.pipeline_stage} />
                   </td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid #E2E8F0" }}>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
                     <span style={{
                       display: "inline-flex", alignItems: "center", gap: 4,
-                      fontSize: 11, color: p.briefing_pack_status === "Generated" ? "#059669" : "#8899AA",
-                      background: p.briefing_pack_status === "Generated" ? "rgba(16,185,129,0.08)" : "rgba(0,0,0,0.04)",
-                      border: `1px ${p.briefing_pack_status === "Generated" ? "solid rgba(16,185,129,0.2)" : "dashed #E2E8F0"}`,
+                      fontSize: 11, color: p.briefing_pack_status === "Generated" ? "#34D399" : "#4A5C70",
+                      background: p.briefing_pack_status === "Generated" ? "rgba(16,185,129,0.14)" : "rgba(255,255,255,0.05)",
+                      border: `1px ${p.briefing_pack_status === "Generated" ? "solid rgba(16,185,129,0.25)" : "dashed rgba(255,255,255,0.1)"}`,
                       borderRadius: 6, padding: "2px 8px",
                     }}>
                       {p.briefing_pack_status === "Generated" ? "✅ Generated" : "📄 Needed"}

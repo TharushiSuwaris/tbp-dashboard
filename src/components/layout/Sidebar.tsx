@@ -3,40 +3,20 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const navGroups = [
-  {
-    label: "Intelligence",
-    items: [
-      { href: "/dashboard", icon: "⊞", label: "Executive Overview" },
-      { href: "/dashboard/discovery", icon: "🔍", label: "Global Discovery", badge: null },
-      { href: "/dashboard/prospects", icon: "📋", label: "Prospect Longlist" },
-      { href: "/dashboard/shortlist", icon: "⭐", label: "Scored Shortlist" },
-      { href: "/dashboard/regional-mapping", icon: "🗺️", label: "Regional Mapping" },
-      { href: "/dashboard/corridor-matching", icon: "🔗", label: "Corridor Matching" },
-    ],
-  },
-  {
-    label: "Execution",
-    items: [
-      { href: "/dashboard/briefing-packs", icon: "📄", label: "Briefing Packs" },
-      { href: "/dashboard/pipeline", icon: "📊", label: "Pipeline Tracker" },
-      { href: "/dashboard/documents", icon: "🗂️", label: "Data Room" },
-    ],
-  },
-  {
-    label: "AI Tools",
-    items: [
-      { href: "/dashboard/governance", icon: "🛡️", label: "Language Guard", warn: true },
-      { href: "/dashboard/agents", icon: "🤖", label: "AI Agents" },
-    ],
-  },
-  {
-    label: "Operations",
-    items: [
-      { href: "/dashboard/tasks", icon: "✅", label: "Task Board" },
-      { href: "/dashboard/settings", icon: "⚙️", label: "Settings" },
-    ],
-  },
+const navItems = [
+  { href: "/dashboard", icon: "⊞", label: "Executive Overview" },
+  { href: "/dashboard/prospects", icon: "📋", label: "Prospect Longlist" },
+  { href: "/dashboard/shortlist", icon: "⭐", label: "Scored Shortlist" },
+  { href: "/dashboard/pipeline", icon: "📊", label: "Family Office Pipeline" },
+  { href: "/dashboard/regional-mapping", icon: "🗺️", label: "Regional Mapping" },
+  { href: "/dashboard/corridor-matching", icon: "🔗", label: "Corridor Opportunities" },
+  { href: "/dashboard/discovery", icon: "🔍", label: "Global Discovery" },
+  { href: "/dashboard/briefing-packs", icon: "📄", label: "Briefing Pack Tracker" },
+  { href: "/dashboard/documents", icon: "🗂️", label: "Document Library" },
+  { href: "/dashboard/governance", icon: "🛡️", label: "Governance Language", warn: true },
+  { href: "/dashboard/tasks", icon: "✅", label: "Task Board" },
+  { href: "/dashboard/agents", icon: "🤖", label: "AI Automation" },
+  { href: "/dashboard/settings", icon: "⚙️", label: "Settings" },
 ];
 
 export function Sidebar() {
@@ -51,135 +31,84 @@ export function Sidebar() {
     <aside
       className="sidebar-scroll"
       style={{
-        width: 244,
-        background: "#1A2B45",
+        width: 200,
+        background: "#091524",
         display: "flex",
         flexDirection: "column",
         position: "fixed",
-        top: 0,
+        top: 64,
         left: 0,
-        height: "100vh",
+        height: "calc(100vh - 64px)",
         overflowY: "auto",
         zIndex: 20,
-        flexShrink: 0,
+        borderRight: "1px solid rgba(255,255,255,0.05)",
       }}
     >
-      {/* Brand */}
-      <div style={{ padding: "20px 16px 14px", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
-          <div
-            style={{
-              width: 34, height: 34,
-              background: "#C4992A",
-              borderRadius: 8,
-              display: "flex", alignItems: "center", justifyContent: "center",
-              fontWeight: 800, fontSize: 12, color: "#1A2B45", flexShrink: 0,
-            }}
-          >
-            TBP
-          </div>
-          <div>
-            <div style={{ fontSize: 13, fontWeight: 700, color: "#fff" }}>TBP Capital Advisory</div>
-            <div style={{ fontSize: 10, color: "#C4992A", letterSpacing: "1.2px", textTransform: "uppercase" }}>
-              Family Office Circle
-            </div>
-          </div>
-        </div>
-        <div
-          style={{
-            display: "flex", alignItems: "center", gap: 6,
-            background: "rgba(196,153,42,0.12)",
-            border: "1px solid rgba(196,153,42,0.35)",
-            borderRadius: 20, padding: "5px 10px",
-            fontSize: 10, color: "#C4992A", letterSpacing: ".8px", textTransform: "uppercase",
-          }}
-        >
-          <div
-            className="animate-pulse-dot"
-            style={{ width: 6, height: 6, background: "#C4992A", borderRadius: "50%" }}
-          />
-          Protocol Establishment Round
-        </div>
-      </div>
-
       {/* Nav */}
-      <nav style={{ flex: 1, padding: "12px 10px" }}>
-        {navGroups.map((group) => (
-          <div key={group.label}>
-            <div
+      <nav style={{ flex: 1, padding: "10px 0" }}>
+        {navItems.map((item) => {
+          const active = isActive(item.href);
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
               style={{
-                fontSize: 10, textTransform: "uppercase", letterSpacing: "1.2px",
-                color: "#4A6080", padding: "10px 10px 4px",
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+                padding: "8px 14px",
+                cursor: "pointer",
+                color: active ? "#E8EFF8" : "#6B7F96",
+                background: active ? "rgba(255,255,255,0.06)" : "transparent",
+                borderLeft: active ? "3px solid #C4992A" : "3px solid transparent",
+                fontSize: 12.5,
+                fontWeight: active ? 600 : 400,
+                textDecoration: "none",
+                transition: "all 0.12s",
+                position: "relative",
+              }}
+              onMouseEnter={(e) => {
+                if (!active) {
+                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.04)";
+                  (e.currentTarget as HTMLElement).style.color = "#B0C0D4";
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!active) {
+                  (e.currentTarget as HTMLElement).style.background = "transparent";
+                  (e.currentTarget as HTMLElement).style.color = "#6B7F96";
+                }
               }}
             >
-              {group.label}
-            </div>
-            {group.items.map((item) => {
-              const active = isActive(item.href);
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
+              <span style={{ fontSize: 14, width: 18, textAlign: "center", flexShrink: 0 }}>{item.icon}</span>
+              <span style={{ flex: 1, lineHeight: 1.35 }}>{item.label}</span>
+              {"warn" in item && item.warn && (
+                <span
                   style={{
-                    display: "flex", alignItems: "center", gap: 10,
-                    padding: "9px 12px", borderRadius: 8, cursor: "pointer",
-                    color: active ? "#C4992A" : "#7A99BC",
-                    background: active ? "rgba(196,153,42,0.14)" : "transparent",
-                    fontSize: 13, fontWeight: 500, marginBottom: 2,
-                    textDecoration: "none", transition: "all 0.15s",
-                    border: "none",
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!active) {
-                      (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.06)";
-                      (e.currentTarget as HTMLElement).style.color = "#fff";
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!active) {
-                      (e.currentTarget as HTMLElement).style.background = "transparent";
-                      (e.currentTarget as HTMLElement).style.color = "#7A99BC";
-                    }
+                    background: "#EF4444", color: "#fff",
+                    fontSize: 9, fontWeight: 800, padding: "1px 6px", borderRadius: 10,
                   }}
                 >
-                  <span style={{ fontSize: 15, width: 20, textAlign: "center" }}>{item.icon}</span>
-                  <span style={{ flex: 1 }}>{item.label}</span>
-                  {"warn" in item && item.warn && (
-                    <span
-                      style={{
-                        marginLeft: "auto", background: "#EF4444", color: "#fff",
-                        fontSize: 10, fontWeight: 800, padding: "2px 7px", borderRadius: 10,
-                      }}
-                    >
-                      2
-                    </span>
-                  )}
-                </Link>
-              );
-            })}
-          </div>
-        ))}
+                  2
+                </span>
+              )}
+            </Link>
+          );
+        })}
       </nav>
 
-      {/* Footer */}
+      {/* Mission section */}
       <div
         style={{
-          padding: 14, borderTop: "1px solid rgba(255,255,255,0.07)",
-          display: "flex", alignItems: "center", gap: 10,
+          padding: "14px 16px",
+          borderTop: "1px solid rgba(255,255,255,0.05)",
         }}
       >
-        <div
-          style={{
-            width: 34, height: 34, background: "#C4992A", borderRadius: "50%",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontWeight: 800, fontSize: 12, color: "#1A2B45", flexShrink: 0,
-          }}
-        >
-          RJ
+        <div style={{ fontSize: 9, textTransform: "uppercase", letterSpacing: "1.4px", color: "#3A4E62", marginBottom: 6, fontWeight: 700 }}>
+          TBP Mission
         </div>
-        <div>
-          <div style={{ fontSize: 12, fontWeight: 600, color: "#fff" }}>Ribi Jayasinghe</div>
-          <div style={{ fontSize: 11, color: "#4A6080" }}>TBP Leadership</div>
+        <div style={{ fontSize: 10, color: "#3A4E62", lineHeight: 1.6 }}>
+          To build neutral, borderless trade infrastructure and permanent-capital ecosystems that enable global prosperity, opportunity and inclusion.
         </div>
       </div>
     </aside>
