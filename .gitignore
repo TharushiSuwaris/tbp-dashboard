@@ -27,6 +27,7 @@
 # database
 /data
 /supabase
+/docs
 
 # claude
 CLAUDE.md

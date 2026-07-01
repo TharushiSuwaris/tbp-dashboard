@@ -96,6 +96,8 @@ export interface Prospect {
   public_source_url?: string;
   source_quality: "High" | "Medium" | "Low";
   key_public_contacts?: string;
+  email?: string;
+  address?: string;
   family_or_group_background: string;
   investment_philosophy: string;
   known_investment_themes: string[];

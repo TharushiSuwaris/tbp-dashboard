@@ -66,7 +66,7 @@ export default function ProspectsPage() {
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
               <tr>
-                {["#", "Prospect", "Country", "Region", "Type", "Score", "Classification", "Stage", "Owner", "Pack", "Next Action"].map((h) => (
+                {["#", "Prospect", "Country / Location", "Region", "Type", "Score", "Classification", "Stage", "Owner", "Pack", "Email", "Next Action"].map((h) => (
                   <th key={h} style={{ textAlign: "left", fontSize: 10, textTransform: "uppercase", letterSpacing: ".8px", color: "#4A5C70", padding: "0 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.07)", whiteSpace: "nowrap" }}>{h}</th>
                 ))}
               </tr>
@@ -82,7 +82,10 @@ export default function ProspectsPage() {
                     <div style={{ fontWeight: 600, color: "#E8EFF8", fontSize: 13 }}>{p.prospect_name}</div>
                     <div style={{ fontSize: 11, color: "#4A5C70" }}>{p.city} · {p.sector_interests.slice(0, 2).join(", ")}</div>
                   </td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 12, color: "#7B8EAA", whiteSpace: "nowrap" }}>{p.country}</td>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", minWidth: 120 }}>
+                    <div style={{ fontSize: 12, color: "#7B8EAA" }}>{p.country}</div>
+                    {p.address && <div style={{ fontSize: 10, color: "#4A5C70", marginTop: 2 }}>{p.address}</div>}
+                  </td>
                   <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 11, color: "#4A5C70", whiteSpace: "nowrap" }}>{p.region}</td>
                   <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 11, color: "#7B8EAA", whiteSpace: "nowrap" }}>
                     {p.prospect_type.split("-").map(w => w[0].toUpperCase()).join("")}
@@ -101,6 +104,19 @@ export default function ProspectsPage() {
                     <span style={{ fontSize: 10, padding: "2px 7px", borderRadius: 6, background: p.briefing_pack_status === "Generated" ? "rgba(16,185,129,0.18)" : "rgba(255,255,255,0.06)", color: p.briefing_pack_status === "Generated" ? "#34D399" : "#4A5C70" }}>
                       {p.briefing_pack_status}
                     </span>
+                  </td>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", minWidth: 180 }}>
+                    {p.email ? (
+                      <a href={`mailto:${p.email.split(";")[0].trim()}`}
+                        style={{ fontSize: 11, color: "#7B8EAA", textDecoration: "none", display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", maxWidth: 200 }}
+                        onClick={(e) => e.stopPropagation()}
+                        title={p.email}
+                      >
+                        {p.email.split(";")[0].trim()}
+                      </a>
+                    ) : (
+                      <span style={{ fontSize: 11, color: "#2A3A50" }}>—</span>
+                    )}
                   </td>
                   <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 11, color: "#7B8EAA", maxWidth: 160, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                     {p.next_action}

@@ -28,6 +28,8 @@ function flattenProspect(row: any): Prospect {
     public_source_url:                     source.public_source_url  ?? undefined,
     source_quality:                        source.source_quality     ?? "Medium",
     key_public_contacts:                   source.key_public_contacts ?? undefined,
+    email:                                 source.email              ?? undefined,
+    address:                               source.address            ?? undefined,
     family_or_group_background:            profile.family_or_group_background  ?? "",
     investment_philosophy:                 profile.investment_philosophy       ?? "",
     known_investment_themes:               themes,
