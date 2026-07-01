@@ -3,12 +3,7 @@
 import { Topbar } from "@/components/layout/Topbar";
 import { Panel } from "@/components/ui/Panel";
 import { ScoreBadge, ClassificationBadge } from "@/components/ui/Badge";
-import { mockProspects } from "@/lib/mock-data/prospects";
-
-const shortlist = mockProspects
-  .filter((p) => p.suitability_score >= 65)
-  .sort((a, b) => b.suitability_score - a.suitability_score)
-  .slice(0, 15);
+import { useProspects } from "@/lib/hooks/useSupabaseData";
 
 const dimLabels = ["FO Fit /20", "Perm Cap /20", "Sector /20", "Gov /15", "TBP Adj /15", "Engage /10", "Total /100"];
 
@@ -26,6 +21,17 @@ function DimVal({ v, max }: { v: number; max: number }) {
 }
 
 export default function ShortlistPage() {
+  const { prospects, loading } = useProspects();
+
+  if (loading) return (
+    <div style={{ padding: 28, color: "#7B8EAA", fontSize: 13 }}>Loading shortlist from database...</div>
+  );
+
+  const shortlist = prospects
+    .filter((p) => p.suitability_score >= 65)
+    .sort((a, b) => b.suitability_score - a.suitability_score)
+    .slice(0, 15);
+
   const priorityCount = shortlist.filter((p) => p.classification === "Priority Founding Steward Prospect").length;
   const strongCount = shortlist.filter((p) => p.classification === "Strong Potential Prospect").length;
   const avg = Math.round(shortlist.reduce((s, p) => s + p.suitability_score, 0) / shortlist.length);

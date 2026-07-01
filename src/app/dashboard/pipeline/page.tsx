@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Topbar } from "@/components/layout/Topbar";
 import { ScoreBadge, ClassificationBadge } from "@/components/ui/Badge";
-import { mockProspects } from "@/lib/mock-data/prospects";
+import { useProspects } from "@/lib/hooks/useSupabaseData";
 import type { PipelineStage } from "@/types";
 
 const stages: PipelineStage[] = [
@@ -39,8 +39,12 @@ const kanbanStages: PipelineStage[] = [
 ];
 
 export default function PipelinePage() {
-  const prospects = mockProspects;
+  const { prospects, loading } = useProspects();
   const [view, setView] = useState<"kanban" | "list">("kanban");
+
+  if (loading) return (
+    <div style={{ padding: 28, color: "#7B8EAA", fontSize: 13 }}>Loading pipeline from database...</div>
+  );
 
   const byStage = (stage: PipelineStage) => prospects.filter((p) => p.pipeline_stage === stage);
   const progressCount = prospects.filter((p) => p.pipeline_stage === "Joined Circle").length;

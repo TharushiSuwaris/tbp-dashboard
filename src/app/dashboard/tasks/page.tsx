@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Topbar } from "@/components/layout/Topbar";
-import { mockTasks } from "@/lib/mock-data/tasks";
+import { useTasks } from "@/lib/hooks/useSupabaseData";
 // Panel removed — not used in kanban layout
 import type { Task, TaskStatus } from "@/types";
 
@@ -51,8 +51,12 @@ function TaskCard({ task }: { task: Task }) {
 }
 
 export default function TasksPage() {
-  const [tasks] = useState(mockTasks);
+  const { tasks, loading } = useTasks();
   const [filterOwner, setFilterOwner] = useState("");
+
+  if (loading) return (
+    <div style={{ padding: 28, color: "#7B8EAA", fontSize: 13 }}>Loading tasks from database...</div>
+  );
 
   const owners = Array.from(new Set(tasks.map((t) => t.assignedTo)));
   const filtered = filterOwner ? tasks.filter((t) => t.assignedTo === filterOwner) : tasks;

@@ -4,17 +4,22 @@ import { useState } from "react";
 import { Topbar } from "@/components/layout/Topbar";
 import { Panel } from "@/components/ui/Panel";
 import { ScoreBadge } from "@/components/ui/Badge";
-import { mockProspects } from "@/lib/mock-data/prospects";
+import { useProspects } from "@/lib/hooks/useSupabaseData";
 import { generateBriefingPack } from "@/lib/ai/briefing-pack";
 import type { BriefingPack} from "@/types";
 
 export default function BriefingPacksPage() {
+  const { prospects, loading } = useProspects();
   const [selectedId, setSelectedId] = useState<string>("");
   const [pack, setPack] = useState<BriefingPack | null>(null);
   const [generating, setGenerating] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("backgroundNote");
 
-  const eligible = mockProspects.filter((p) => p.suitability_score >= 65).sort((a, b) => b.suitability_score - a.suitability_score);
+  if (loading) return (
+    <div style={{ padding: 28, color: "#7B8EAA", fontSize: 13 }}>Loading prospects from database...</div>
+  );
+
+  const eligible = prospects.filter((p) => p.suitability_score >= 65).sort((a, b) => b.suitability_score - a.suitability_score);
   const selected = eligible.find((p) => p.id === selectedId);
 
   async function handleGenerate() {

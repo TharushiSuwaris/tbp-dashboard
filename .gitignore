@@ -24,6 +24,10 @@
 .DS_Store
 *.pem
 
+# database
+/data
+/supabase
+
 # claude
 CLAUDE.md
 AGENTS.md

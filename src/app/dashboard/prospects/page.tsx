@@ -4,18 +4,19 @@ import { useState } from "react";
 import { Topbar } from "@/components/layout/Topbar";
 import { Panel } from "@/components/ui/Panel";
 import { ScoreBadge, ClassificationBadge, StageBadge } from "@/components/ui/Badge";
-import { mockProspects } from "@/lib/mock-data/prospects";
+import { useProspects } from "@/lib/hooks/useSupabaseData";
 import type { Region } from "@/types";
 
 const regions: Region[] = ["North America", "United Kingdom & Europe", "Southeast Asia", "South Asia", "Central Asia", "Gulf & Middle East", "Africa", "East Asia", "Latin America"];
 
 export default function ProspectsPage() {
+  const { prospects, loading } = useProspects();
   const [regionFilter, setRegionFilter] = useState("");
   const [classFilter, setClassFilter] = useState("");
   const [stageFilter, setStageFilter] = useState("");
   const [search, setSearch] = useState("");
 
-  const filtered = mockProspects.filter((p) => {
+  const filtered = prospects.filter((p) => {
     if (regionFilter && p.region !== regionFilter) return false;
     if (classFilter && p.classification !== classFilter) return false;
     if (stageFilter && p.pipeline_stage !== stageFilter) return false;
@@ -28,9 +29,13 @@ export default function ProspectsPage() {
     fontSize: 12, color: "#E8EFF8", background: "#0A1624", outline: "none",
   };
 
+  if (loading) return (
+    <div style={{ padding: 28, color: "#7B8EAA", fontSize: 13 }}>Loading prospects from database...</div>
+  );
+
   return (
     <>
-      <Topbar title="Prospect Longlist" subtitle={`${mockProspects.length} prospects across all regions — sorted by suitability score`} />
+      <Topbar title="Prospect Longlist" subtitle={`${prospects.length} prospects across all regions — sorted by suitability score`} />
       <div style={{ padding: "24px 28px 40px" }}>
 
         <div style={{ display: "flex", gap: 10, marginBottom: 20, flexWrap: "wrap" }}>
@@ -53,7 +58,7 @@ export default function ProspectsPage() {
             ))}
           </select>
           <div style={{ marginLeft: "auto", fontSize: 12, color: "#7B8EAA", display: "flex", alignItems: "center" }}>
-            Showing <strong style={{ margin: "0 4px", color: "#E8EFF8" }}>{filtered.length}</strong> of {mockProspects.length} prospects
+            Showing <strong style={{ margin: "0 4px", color: "#E8EFF8" }}>{filtered.length}</strong> of {prospects.length} prospects
           </div>
         </div>
 

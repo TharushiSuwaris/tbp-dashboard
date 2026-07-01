@@ -4,13 +4,18 @@ import { useState } from "react";
 import { Topbar } from "@/components/layout/Topbar";
 import { Panel } from "@/components/ui/Panel";
 import { ScoreBadge } from "@/components/ui/Badge";
-import { mockProspects } from "@/lib/mock-data/prospects";
+import { useProspects } from "@/lib/hooks/useSupabaseData";
 import { matchProspectToCorridor, TBP_CORRIDORS } from "@/lib/ai/corridor-matching";
 
 export default function CorridorMatchingPage() {
+  const { prospects, loading } = useProspects();
   const [selectedCorridor, setSelectedCorridor] = useState<string>("");
 
-  const allMatches = mockProspects
+  if (loading) return (
+    <div style={{ padding: 28, color: "#7B8EAA", fontSize: 13 }}>Loading corridor matches from database...</div>
+  );
+
+  const allMatches = prospects
     .filter((p) => p.suitability_score >= 50)
     .map((p) => ({ prospect: p, result: matchProspectToCorridor(p) }));
 

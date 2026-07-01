@@ -3,13 +3,11 @@
 import { Topbar } from "@/components/layout/Topbar";
 import { Panel } from "@/components/ui/Panel";
 import { ScoreBadge, ClassificationBadge, StageBadge } from "@/components/ui/Badge";
-import { mockProspects, getKPISummary } from "@/lib/mock-data/prospects";
+import { useProspects } from "@/lib/hooks/useSupabaseData";
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell,
 } from "recharts";
-
-const kpi = getKPISummary();
 
 const regionData = [
   { name: "Gulf", count: 5 },
@@ -51,18 +49,39 @@ const scoreDistribution = [
   { name: "Below 50", count: 2, fill: "#EF4444" },
 ];
 
-const topProspects = mockProspects
-  .filter((p) => p.classification === "Priority Founding Steward Prospect")
-  .sort((a, b) => b.suitability_score - a.suitability_score)
-  .slice(0, 5);
-
-const progressPct = Math.round((kpi.foundingStewardsSecured / kpi.targetFoundingStewards) * 100);
 const circumference = 2 * Math.PI * 56;
-const dashOffset = circumference * (1 - progressPct / 100);
-
 const tooltipStyle = { background: "#1A2B40", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 8, fontSize: 12, color: "#E8EFF8" };
 
 export default function OverviewPage() {
+  const { prospects, loading } = useProspects();
+
+  const kpi = {
+    totalProspects:          prospects.length,
+    targetFoundingStewards:  20,
+    foundingStewardsSecured: prospects.filter(p => p.pipeline_stage === "Joined Circle").length,
+    priorityFoundingSteward: prospects.filter(p => p.classification === "Priority Founding Steward Prospect").length,
+    strongPotential:         prospects.filter(p => p.classification === "Strong Potential Prospect").length,
+    profiled:                prospects.filter(p => p.pipeline_stage !== "Identified").length,
+    scored:                  prospects.filter(p => !["Identified", "Profiled"].includes(p.pipeline_stage)).length,
+    briefingPacksGenerated:  prospects.filter(p => ["Generated", "Approved", "Sent"].includes(p.briefing_pack_status)).length,
+    requiresDiligenceReview: prospects.filter(p => p.diligence_flags.length > 0).length,
+    meetingOpportunities:    prospects.filter(p => ["Meeting Proposed", "Meeting Scheduled"].includes(p.pipeline_stage)).length,
+  };
+
+  const topProspects = prospects
+    .filter((p) => p.classification === "Priority Founding Steward Prospect")
+    .sort((a, b) => b.suitability_score - a.suitability_score)
+    .slice(0, 5);
+
+  const progressPct = kpi.targetFoundingStewards
+    ? Math.round((kpi.foundingStewardsSecured / kpi.targetFoundingStewards) * 100)
+    : 0;
+  const dashOffset = circumference * (1 - progressPct / 100);
+
+  if (loading) return (
+    <div style={{ padding: 28, color: "#7B8EAA", fontSize: 13 }}>Loading dashboard data...</div>
+  );
+
   return (
     <>
       <Topbar

@@ -2,7 +2,7 @@
 
 import { Topbar } from "@/components/layout/Topbar";
 import { Panel } from "@/components/ui/Panel";
-import { mockProspects } from "@/lib/mock-data/prospects";
+import { useProspects } from "@/lib/hooks/useSupabaseData";
 import type { Region } from "@/types";
 
 const REGIONS: { key: Region; label: string; emoji: string; color: string }[] = [
@@ -18,7 +18,13 @@ const REGIONS: { key: Region; label: string; emoji: string; color: string }[] = 
 ];
 
 export default function RegionalMappingPage() {
-  const byRegion = (region: Region) => mockProspects.filter((p) => p.region === region);
+  const { prospects, loading } = useProspects();
+
+  if (loading) return (
+    <div style={{ padding: 28, color: "#7B8EAA", fontSize: 13 }}>Loading regional data from database...</div>
+  );
+
+  const byRegion = (region: Region) => prospects.filter((p) => p.region === region);
   const avgScore = (region: Region) => {
     const ps = byRegion(region);
     if (!ps.length) return 0;
@@ -32,11 +38,11 @@ export default function RegionalMappingPage() {
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: 12, marginBottom: 20 }}>
           {[
-            { label: "Total Prospects",  value: mockProspects.length, color: "#C4992A" },
+            { label: "Total Prospects",  value: prospects.length, color: "#C4992A" },
             { label: "Regions Covered",  value: REGIONS.filter(r => byRegion(r.key).length > 0).length, color: "#3B82F6" },
-            { label: "Priority Prospects", value: mockProspects.filter(p => p.classification === "Priority Founding Steward Prospect").length, color: "#10B981" },
-            { label: "Avg Suitability",  value: Math.round(mockProspects.reduce((a, b) => a + b.suitability_score, 0) / mockProspects.length), color: "#8B5CF6" },
-            { label: "Joined Circle",    value: mockProspects.filter(p => p.pipeline_stage === "Joined Circle").length, color: "#059669" },
+            { label: "Priority Prospects", value: prospects.filter(p => p.classification === "Priority Founding Steward Prospect").length, color: "#10B981" },
+            { label: "Avg Suitability",  value: Math.round(prospects.reduce((a, b) => a + b.suitability_score, 0) / prospects.length), color: "#8B5CF6" },
+            { label: "Joined Circle",    value: prospects.filter(p => p.pipeline_stage === "Joined Circle").length, color: "#059669" },
           ].map((c, i) => (
             <div key={i} style={{ background: "#132037", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 10, padding: "14px 16px", position: "relative", overflow: "hidden" }}>
               <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: c.color }} />
