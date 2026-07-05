@@ -25,7 +25,8 @@
 *.pem
 
 # database
-/data
+/data/Backup_master_lists
+/data/database_files
 /supabase
 /docs
 
