@@ -1,0 +1,152 @@
+{
+  "run_metadata": {
+    "country": "Qatar",
+    "sector": null,
+    "category": null,
+    "query": "Identify single-family offices, multi-family offices, family-controlled investment companies, family holding companies, qualified HNWI investment entities, and permanent-capital private investment groups headquartered in or primarily active in Qatar, with exposure to trade, infrastructure, energy, logistics, digital infrastructure, real estate, ports, technology, industrial platforms, or emerging markets. Prioritize entities showing evidence of patient capital, long-horizon stewardship, and governance discipline.",
+    "date": "2026-07-09_0945",
+    "model": "gemini-2.5-flash",
+    "web_search_queries_executed": [
+      "family office Qatar",
+      "private investment groups Qatar infrastructure energy logistics real estate technology",
+      "holding companies Qatar long term investment",
+      "Qatar strategic private capital groups",
+      "Al Faisal Holding contact email",
+      "Al Faisal Holding website",
+      "Al Khor Holding contact email",
+      "Al Khor Holding official website"
+    ]
+  },
+  "prospects": [
+    {
+      "name": "Al Faisal Holding",
+      "brief_description": "Al Faisal Holding is a prominent Qatari family-owned conglomerate and family office, established in 1964. It manages a diversified portfolio across over 50 companies, with a strategic focus on long-term growth and expansion into sectors like technology, manufacturing, healthcare, and energy initiatives.",
+      "sectors": [
+        "Real Estate",
+        "Hospitality",
+        "Trading and Distribution",
+        "Construction",
+        "Education",
+        "Services",
+        "Technology",
+        "Manufacturing",
+        "Healthcare",
+        "Energy",
+        "Digital Infrastructure"
+      ],
+      "geography": "Primarily Qatar, with global real estate portfolio across the U.S., Europe, North Africa, and the GCC. Interested in US investments and partnerships with American firms entering Qatar.",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "City Tower, Floor 20, Omar bin Khatab Street, West Bay, Doha, Qatar",
+      "source_urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH_8_dQcWFQhHxDTOkwO9z7ng8VYBE1_de4NlhxaZb2SUSQ8IO64OF6Fy6stVOp8KwsM-aZk_pBf4qTJfGsrUfI8P8FNgmswXhZlpUO5olpxFlPd0fpA2IgD8MZU9N6GzwmLg7LHmGmaIqq0yZQEjUG158oGUNJ220qb2l4ZOmBEc0qOPUI7x9EXIW3JgM=",
+          "title": null
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF-F0z1LilDBPZ6pT-_MDx59GrCAnT0Nr75WZpPheRl9wbwkwYBmLYsOHd_ig9u-0KlNE1PeS7XnO7jTcyDRXKIw86t-0DiOUmZdaD9kZUeYfshlIxYrU2ZqY8rCBn923WpBUf1mIB7SxUis8TemUT5eQSsBBRuclvbH-NfOwB5Lmjdmhq6vuy7GWA_OBp7QogrghNq9mowirrnNl4esQFTxKDjFXIJ_1ftfSzbxXl6cPnfj8M=",
+          "title": null
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFpwqOWd85mzBWeveXaTZHILIFVQnG8rHBDotIp1M-fxncC5skLYtk-wK_YnE-SKKBumoHui3q_4uin2OyRKt5fUXpptkvpKxEFtuw5GDTUdxI147Ei07SerQ7bLOMqzVf7",
+          "title": "prospeo.io"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHVtZ0UTPeOOR-4T8_lzFVP_JncrMIBnrXL-Wf2F1BoeWVNp2-4JiM4DdW_fMFK521kMSi74ip44hsxxrbi7BFgEw3Ppvkq5mpYwprGu1tYN4N3vHbtvLRH9yWmLa7s11k0CPvb_XuP8oUuURalOtvScjQLSQ==",
+          "title": "gulfleads.ae"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGsP8-U-xE3wcJJZNALYMYJwSCQmy8GL0OdMt3zRxFRGQrJlGaIlplNTf9p7drRKVWT5o2BAOsUH-7B8PknV2ndlTkyBM10gi8LMry94_JtzPeVQRW3WO3bNsPfSLT54TnLVDXa3BAA7wHaQP8PSP6c1Kw1KoI46PLUsbdIfo8RYTZuh2sJgzU=",
+          "title": null
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEoVf8_2EFH5XPBPGm-K_j0hVMZKZvptn2SYfOUuzXmlvEIcWPec2SssgKQlsBv7oGWjEYJWzfLfmPbgtIqETZwy52J81klNrpYkE-TaoyjRbIk8-xIKOLO65FMBMzOavXX_ajj470PjWt6iZkCaHa0k5Ul1kG9Q1cm0MRwoitYVqNLnOy88gkHrb6MTkkGi-9D5R03FgFoQw==",
+          "title": null
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGjiYbVk9xqUHrFrne0ndafbb4EpyBrgrFB7108vIhTHL92emHjVBMr7RtUaOY0QYlV6gNOTL0R7x6g_dhyeq1DQrf4y-4MyokhZUlgG2_G5OhrUSJN6uOiWSMTNoUd0So5Q73PUEKKB3mHBCndURKsLmmarmU2XHmV",
+          "title": "gludo.org"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF8-rlDjFyT5J_grVbtwSHLlC2fSb-etXlWi6euMc1ixA7j49BTz7w8G7uPYxzrthQdBkmx3PMDZR294ZxWTTQkqj-PjgDCgKd7CrgmZ2A2KzVV6KYpplUsPwBe8xSOrIWM4sTtZ1p5jtEE9pUFgRFZib4LtTNKRz3ObA==",
+          "title": "alfaisalholding.com"
+        },
+        {
+          "url": "http://www.alfaisalholding.com/",
+          "title": null
+        }
+      ],
+      "scoring_signals": {
+        "family_office_fit": "Al Faisal Holding operates as a Family Office and is a prominent private investment group in Qatar.",
+        "permanent_capital_orientation": "Focuses on private equity-like capital deployment across strategic investments, aligning with its vision for long-term growth within Qatar's economy and beyond, and prioritizes long-term investments globally.",
+        "sector_alignment": "Engaged in real estate, hospitality, trading and distribution, construction, education, services. Diversifying into technology, manufacturing, healthcare, and opportunities in Qatar's energy initiatives.",
+        "governance_institutional_mindset": "Governance remains firmly in family hands, with a board and general assembly comprising Sheikh Faisal's relatives. Committed to maintaining high standards of corporate governance to enhance transparency and public confidence.",
+        "strategic_adjacency_tbp": "Geographically, the firm's real estate portfolio is already global. Exploring technology (AI, fintech, cloud computing, telecommunications) and Qatar's energy initiatives (TAWTEEN) for private investors.",
+        "engagement_readiness": "Founder, Chairman, and CEO is H.E. Sheikh Faisal Bin Qassim Al Thani. Website: www.alfaisalholding.com. Phone number: +97444223830."
+      }
+    },
+    {
+      "name": "Al Khor Holding W.L.L.",
+      "brief_description": "Al Khor Holding is a Qatari family-owned investment and asset management company, serving as the modern investment arm of the Al Misnad Group, which originated in 1962. It manages a global investment portfolio across various sectors with a mission to achieve long-term financial goals for its stakeholders.",
+      "sectors": [
+        "Real Estate",
+        "Power Generation",
+        "Industrial & Manufacturing",
+        "Hospitality",
+        "Trading & Contracting",
+        "Oil & Gas",
+        "Financial Services"
+      ],
+      "geography": "Headquartered in Doha, Qatar, with a global investment portfolio.",
+      "email": "info@alkhorholding.com",
+      "email_status": "Found",
+      "location": "International Trade and Development Building, Mohammed Bin Thani Road, Bin Omran, P.O. Box: 22565, Doha, Qatar",
+      "source_urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH_8_dQcWFQhHxDTOkwO9z7ng8VYBE1_de4NlhxaZb2SUSQ8IO64OF6Fy6stVOp8KwsM-aZk_pBf4qTJfGsrUfI8P8FNgmswXhZlpUO5olpxFlPd0fpA2IgD8MZU9N6GzwmLg7LHmGmaIqq0yZQEjUG158oGUNJ220qb2l4ZOmBEc0qOPUI7x9EXIW3JgM=",
+          "title": null
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFuHvQzErHRcC-efLXePEFXARFUvccGStirOjuj4tjZZE4XRzRXiblbNifRSA7GDEyLqNrA60qa1E_vouXKIsmYWyvkvJtWBaY5V9g-7uWrwSj3LPB1e3aK4w==",
+          "title": "alkhorholding.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGMxoqwbCbYDuQ_CwAlkzih9fwaiIiZOzN3u62_RldcHxtzlICeu8U-XAn_Yp-9TjTWMmWZKgpQCy7CD4wr1fdwV1fLhTTk32eMbHDR9BxYp_Hb8bM2KEsODVDARSXp-18rFct_ZRLHQxqK9AmPDat1aCGIUrA9Jl8=",
+          "title": "gulfleads.ae"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH0Hn5LFnq6RlLkrvNhgA5kumvgnsD4OeOMsCQOx5MR8TzNAj02lc1awkrHSIzWtcZDbq1K4st1lyAG3Q4RxTuhhMa9S1443XJEZs9UwBdFOBt6juoYuYOnesN7Ndw0SagIwwys",
+          "title": "alkhorholding.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHwHR2kTOFJk7DaxivV6O0iH9RcUVGYmOmqqz6hf9kQXoBVNxRl5C5dvWw_mWvePIPTqkgIPhCrjB2TkiCle96J-kPLOass0ob82DulgztLEoF80k7NUw291wHY0aZL9w==",
+          "title": null
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEKRBVaBe9wLgY6IIx_u7P8QyWcW0osVnhf9K28QzM5ITX0GmO91GDck7BeAm4nf33OA75eCAjkZa06m3QJlj8DqozrOIvdaDRZpcEFOaGJZv8Rei17yafDFgcREyaPumHngNQ=",
+          "title": "alkhorholding.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEVCXn_4vmJ3pEl0eOx5RavBEz1wemiyd6BXi4CgZn_oHwP6CqcwXh2picRv4bVnLSmsBrDlQdKchtcJEVS7vlLVPljwRJX3Tycu9eqZOeHFA6XAp2O_CNjy_ge0eZhYj-l",
+          "title": "alkhorholding.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHy5apUXbM8InuekbdKd1gQu4RKpkNkAdITx6wQJqBml85TFWtMK0v3hc7zlRd04134sxV-goDNm2nt3uN3rAwdMX9X2cAdZXuSMOsVcikEjLXtDnw5XoDZ6vRcguYsrlU=",
+          "title": null
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHeI1Qh2cd5g65kKC0CCL38ZY45ag_ObPVwOE4an84q41WEAD1AcDFGQD2h8AlWuEjjQyi_ROSnRF11w999Ly9IFDvf6ZqCRA7mkgel1yHSldE8GxYTc789VgHCIVyLnjAoiwnIhj_xAfF9Rp1dZeiwCgOFgaaDV2K8mQ==",
+          "title": null
+        }
+      ],
+      "scoring_signals": {
+        "family_office_fit": "Al Khor Holding is a Qatari-based company becoming the active side of an existing family business since 1962 (Al Misnad Group).",
+        "permanent_capital_orientation": "Its mission is to add value with active portfolio management to assist stakeholders reach their long-term financial goals, with a vision for sustainable growth.",
+        "sector_alignment": "Investment portfolio spans real estate, power generation, industrial & manufacturing, hospitality, trading & contracting, oil & gas, and financial services.",
+        "governance_institutional_mindset": "The company focuses on enhancing governance and performance monitoring for the group's diverse operations and employs a disciplined strategy that emphasizes market analysis, risk assessment, and portfolio diversification.",
+        "strategic_adjacency_tbp": "Exposure to power generation, industrial & manufacturing, trading & contracting, and oil & gas aligns with trade, infrastructure, and energy corridors. The investment portfolio extends globally.",
+        "engagement_readiness": "Email: info@alkhorholding.com. Key individuals include Ahmed Hakim (CEO) and Anggelos Skutaris (CIO)."
+      }
+    }
+  ]
+}

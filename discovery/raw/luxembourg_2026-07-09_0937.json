@@ -1,0 +1,291 @@
+{
+  "run_metadata": {
+    "country": "luxembourg",
+    "sector": null,
+    "category": null,
+    "query": "Identify single-family offices, multi-family offices, family-controlled investment companies, family holding companies, qualified HNWI investment entities, and permanent-capital private investment groups headquartered in or primarily active in luxembourg, with exposure to trade, infrastructure, energy, logistics, digital infrastructure, real estate, ports, technology, industrial platforms, or emerging markets. Prioritize entities showing evidence of patient capital, long-horizon stewardship, and governance discipline.",
+    "date": "2026-07-09_0937",
+    "model": "gemini-2.5-flash",
+    "web_search_queries_executed": [
+      "single family office Luxembourg infrastructure energy real estate",
+      "multi family office Luxembourg technology logistics digital infrastructure",
+      "family holding company Luxembourg trade ports industrial platforms",
+      "permanent capital private investment group Luxembourg emerging markets",
+      "family controlled investment companies Luxembourg patient capital",
+      "HNWI investment entities Luxembourg",
+      "Luxembourg private investment groups long-horizon stewardship",
+      "Family office Luxembourg private equity infrastructure",
+      "Investment companies Luxembourg family owned digital infrastructure",
+      "Real estate family office Luxembourg",
+      "Arcus Infrastructure Partners Luxembourg",
+      "Janus Henderson Investors Luxembourg family office services",
+      "Genairgy Luxembourg",
+      "Saphir Capital Partners Luxembourg",
+      "Sofina S.A. Luxembourg activities",
+      "Alter Domus family office services Luxembourg",
+      "Stonehage Fleming Luxembourg",
+      "CFO III Management S.\u00e0 r.l. Luxembourg",
+      "Intertrust Group Luxembourg family office",
+      "DWS Group Luxembourg real estate infrastructure",
+      "Edmond de Rothschild (Europe) family office Luxembourg",
+      "Lombard Odier family services Luxembourg"
+    ]
+  },
+  "prospects": [
+    {
+      "name": "Saphir Capital Partners",
+      "brief_description": "Saphir Capital Partners is a Luxembourg-domiciled private equity manager focused on value preservation and durability. It deploys capital across various control-oriented strategies including buyout, growth, restructuring, and turnaround, targeting mid-market companies in Europe.",
+      "sectors": [
+        "Private Equity",
+        "Buyout",
+        "Growth Capital",
+        "Restructuring",
+        "Turnaround",
+        "Agri & Food",
+        "Financial Services",
+        "Manufacturing Industry",
+        "Marketing",
+        "Proptech",
+        "Industrial Development",
+        "Aviation",
+        "Real Estate",
+        "Technology"
+      ],
+      "geography": "Europe (concentrated in Benelux, DACH, French markets)",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Luxembourg, Strassen",
+      "source_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF_kaAiTLSlSFogqGYodV5M20tylBfAuWRqkqgTPAWrMb6TXC7Mw4qx5_aDgj8bS6Cda0Na6kGaCt39WGIeP3gxEiZ6dmJ5VhUw_Wylgp8NucdwP_QI07b6RZsrxucwpAwjn4spKYXEDEuc6AY=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEwHpGC4vDNQeJXWjMI7ho3UbmGn-u9Vze8p7WTx8_MgFzrdNP-oDtsKXdqHjdY7hr9gY7Ewm1iC6zVtVmjIVRLF9wLF9oHiogpxW2Ylp5dacsd8V3yWMEMvaBmV47QzhFSbdEcKHSWNuUQq9tlUUC8hsQLFij_ooMvgRwINQNkZxDg1fn-ViI1nNT5ZSLMu6J7H6TsAR-WtSzHnWyuKh5_lT4=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHBR9WCHh85TI1E0LcFtj_vEtXXI-CMQGlQW9zoxGXiHyDCbfge5nikhLXYtxLMBcFH2iW3FoFykwldlpc5H4YRAr6tTp3A6xjlNm4GfX-MOVVbAH1QJiRY63IM3J0tpY3egC7VcuXQtRRua8ls9YJkY2L1viw5fGU=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEkpla-s0_30zEpPb2Y6kh6xGAo6jmGr5hLCCC0w3cPyzP3-b9qJRvzH21Qqv-e0BWNExqlNXKPAxV1WjivIQK2Xudvcws_7mCSg6MZr7AVG6J2Q1SE90yjtyuwzIpl-qPcAHwyqjniyLd23syMvD3o0JK9Jz2tIg=="
+      ]
+    },
+    {
+      "name": "Stonehage Fleming",
+      "brief_description": "Stonehage Fleming is a global multi-family office with a notable operation in Luxembourg. The firm assists wealthy and ultra-wealthy individuals and families with family office services, wealth planning, investments across asset classes and industries, and family governance.",
+      "sectors": [
+        "Multi-Family Office Services",
+        "Wealth Planning",
+        "Investments",
+        "Real Estate",
+        "Private Equity"
+      ],
+      "geography": "Global (with Luxembourg office)",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Luxembourg, L-2134 Luxembourg",
+      "source_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGHanUlEBpndCqaOlj8Dv6LbDBb0hwxN7aOwnnuUseQrlK251Vx7o_qz-P0jHuFmJPcOSrkpXjhZlrYbSEp0DwDskyW36wquq0vHFM-42fYZVdrguKzAF3x9Ic3_JUWy1QEh65itPsNoVMmIg-QQ8MGZRkUcXejaRdmCEiTyNRTNEpqaHwtBctPc0_ovgto0ITYzX87TSwLeywfiYBIOBBZKzI=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHtNvOXIsJTYxOeGy1hPJTH5d-52Fi1H9FXul1nuzHKOcY6s8r0MqQyNOc4m358N4cS_9wF8ubf-tiBxAUlIQcOeLspUrkT4-y_w1IJWjdTNfz_d2cf7T5AJthvwRLgnVrs3zHSYSr7R5V9",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEH8A7VPw37MMMHL3qmRdfSdns91geF02mgfJz7LItiYm6L2Ygh_NjVgUSkGQUqz4OYaMbsvjJhr_KqsFk8RUZsutrZfebzWUeU3v19FqPb3ff8DhheuzSZoY0fOxoRveNLOYbMkBIkgUZqYgGj0k6w8DJMGDab",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE3t-AI64YIHHskvbBA9Pp-2bnevnKZAnkecxJMi19j8iVgw0XxItSN73R2K9IP5mcSP_NdTrON-Rtru-V1uF3R3NQv_tw_UTuEZZyx6iZ0TYmcHQSNoK45r79CNcT7EkjhAx_bONF8vxoYrpkrL518B3jag1rMF-rhrmCdFCOmuoVYl4WuNICyTDpR8TyxP-nID5FFnFJXQrQ4CEv60ycF6A="
+      ]
+    },
+    {
+      "name": "RL Private Holding",
+      "brief_description": "RL Private Holding is a privately held global investment holding company based in Luxembourg, managing a diversified portfolio across technology, private equity, and real estate. It provides steady oversight for long-term capital preservation and strategic growth.",
+      "sectors": [
+        "Technology",
+        "Private Equity",
+        "Real Estate",
+        "Green Infrastructure",
+        "Renewable Energy",
+        "Venture Capital"
+      ],
+      "geography": "Global (headquartered in Luxembourg)",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Luxembourg Financial Centre",
+      "source_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEKJdd8DG80v29LApPOz_tJ4XkS7Wd3odlRLIJ4WCKPOQ-WD_QCqeLGHbIouGYNJV0liq5MTvJVh9mOKfvyRvwPCPWcql_e3BAmlfX2BPw6_qcp9-dJGMY3MkEbBoiS0MEO4UVopN5wfzJwxv54VKRRq-qmc-av6Am8bNQMmgjuaUZZYJqzDziZ2RgsF69Pkd-gU3sf",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGCIDNis8DRmL9ALi-CEF2Fygl4NaPEjXvtq7s6P1HRi67K6kLpYNWi31G0uMxEwg4xAY8OpSb5GTtZcWfl5ijFbARjwK-beXwL4lzQU9g1OW43U6w4-4GK5IAd3_b8YjaIIai9sIcWk0bKQNZ1XNPSR3V7AkFNjsN6FnXmjBtd0384pUTD7ACwvQEV2XM6PLSJiwVdtLL3el2OToKyMKdgXn8=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHDeh_j1FKctLdgYMRMeXbT5nO6nUILTbsSofdSvc7dw05emAmvxxKx4LaRjCY_7R1xrIzS0Y_5SuBanqoIqGZamKaIfSQfQjAuB-pCAKlKdkxCMwwxlvEnkIQp6_wCmlevai8z__MYJoyFplCZkBwwAMAp81l8SYayOmQXacNgWJ7rb7RQByZ-1iwMuuCCY726RLuxn4hFo1LZCUmcHEd9oA=="
+      ]
+    },
+    {
+      "name": "Sofina S.A.",
+      "brief_description": "Sofina S.A. is a Belgian family-run global investment holding company with a significant presence in Luxembourg. Anchored by a family-controlled stake, it provides patient capital and strategic advice across various future-oriented sectors.",
+      "sectors": [
+        "Private Equity",
+        "Venture Capital",
+        "Growth Capital",
+        "Digital Transformation",
+        "Consumer & Retail",
+        "Education",
+        "Healthcare",
+        "Life Sciences",
+        "Sustainable Supply Chains",
+        "Energy",
+        "Services",
+        "E-commerce",
+        "Industrial Platforms",
+        "Finance"
+      ],
+      "geography": "Global (with focus on North America, Europe, Asia, emerging markets)",
+      "email": "info@sofinagroup.com",
+      "email_status": "Found",
+      "location": "Brussels, Belgium (headquarters), with office in Luxembourg",
+      "source_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEFB2AbJy4gzQvTdK2mo3nyv_K5pUeONqZk2AO2LG5HXnHfkOQorkzgB8my3Kloj8em1RVuKhTFT0nmB0u7Gdsr1bvLXGpV_wc-54LVoocnjpQBmvONSAb5aMgBSw9JUg=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF-ayX66AlgVKk_Vff5eRFtBCwZmdz42r6OjDCwN60EqBRarafpifiVe1BrnCzNKolj2Od-gFsHu2hE8rkzhh6oTvUyiFndLf8ia_4FXoiAgcFDouGCll4ELfVePGtkN1-nSCSnzLN7BBJrhpTBNjUrh2qrwQ=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH1TrTE4KZp-WX5DfA4UIe4UU3616n2mmb5JeRTvCg0dq6j4ChyfrwMs208Y4rq9NKpAd2kDbh7LQYNKLa_W0eK0ELOZuw6sLBDpOgMsb_YBSwXwj-jI5RrdWjcO8MJDjGDIib9BYvFv-7yQgCvaffxbR7lkZj88WDAS7bAMSD3keRgd9o36WM7E7T2",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHXmMe1hFsvwpXU-gAnTZda5XrRILWQARD182vkHj3l9yrpOHBO0JcBVTEfC5Quv0DvtTBVqip_Ig0ZCa3otoAalimDc7kma1XbJcCctQTIF8hasq932N6NTEcyAXoF1vK_-FLA1fET9hU=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHattNmzW8pqgeYSX9gx_geXoBrjmEiC-q2ZIjSKO7S2sPNLid5IYRenwdfSaUrp7JFCqPHOBvMD-PTZzKPK4qWXrMXM3wFgooxOMyaCVEwAzm5WEVikcHmhaGxgzNl9i_VTUfCGzl7heECSeLJibtF_0VSC3Q="
+      ]
+    },
+    {
+      "name": "Luxempart",
+      "brief_description": "Luxempart is a Luxembourg-based investment company with a portfolio of direct investments and investment funds across various sectors. It functions as a professional shareholder and has a long history, with a significant stake held by Sofina, a family-controlled entity.",
+      "sectors": [
+        "Private Equity",
+        "Buyout",
+        "Growth Capital",
+        "Venture Capital",
+        "Secondaries"
+      ],
+      "geography": "Luxembourg, Germany, France (with investments in European and US funds)",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Luxembourg",
+      "source_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHXmMe1hFsvwpXU-gAnTZda5XrRILWQARD182vkHj3l9yrpOHBO0JcBVTEfC5Quv0DvtTBVqip_Ig0ZCa3otoAalimDc7kma1XbJcCctQTIF8hasq932N6NTEcyAXoF1vK_-FLA1fET9hU="
+      ]
+    },
+    {
+      "name": "Kulczyk Investments",
+      "brief_description": "Kulczyk Investments is a single-family office based in Luxembourg, actively investing in a broad range of sectors including technology, infrastructure, industrials, and real estate. Like other Luxembourg SFOs, it likely operates with a long-term investment horizon and strong governance frameworks.",
+      "sectors": [
+        "AI/ML/Robotics",
+        "Alternative Investments",
+        "Cloud Infrastructure",
+        "Consumer & Retail",
+        "Consumer Products",
+        "Cybersecurity",
+        "Data Analytics",
+        "Financial Services",
+        "Food & Beverage",
+        "Healthcare & Life Sciences",
+        "Industrials & Manufacturing",
+        "Infrastructure & Transportation",
+        "Materials & Chemicals",
+        "Real Estate & Construction",
+        "Technology"
+      ],
+      "geography": "Luxembourg (primary activity is likely global from Luxembourg)",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Luxembourg, Luxembourg",
+      "source_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFP1S1M6OY6mpIcFtgU2Fc-zVjPTBqNKYGu01ZBiQdQhppuJXZSD-x0w-wPOSWWS7kQVZH6no-JaXSexS9bR5A6DZImNuFxCjbR8HxiiGbuzJ5gHvu-V6gIRDTsfIL_BZLm2l4BTnnknDgk96gjkPzG7ghmDDXwtb6IYeULCTas_B_HSAi",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEtml9d59TXpdAUM-ikDei8Ynt5fic3Ux0jNcdBhh-YYL9649e_EV4S9xSUEekN0hvBffptFbg7evuZRvqlG3W_sVM4EsvhBUek9gjPOdNSZZdWd81uuD23uSALQJmOyxlw4xTbXNMVXh7ClDARBU4Ia-U_gvR_lWmljBkAzqkY6bqI="
+      ]
+    },
+    {
+      "name": "La Mancha Holding",
+      "brief_description": "La Mancha Holding is a Luxembourg-based single-family office with an investment focus on alternative investments, financial services, industrials & manufacturing, infrastructure & transportation, and technology. As an SFO in Luxembourg, it prioritizes long-term value creation and robust governance.",
+      "sectors": [
+        "Alternative Investments",
+        "Financial Services",
+        "Industrials & Manufacturing",
+        "Infrastructure & Transportation",
+        "Technology"
+      ],
+      "geography": "Luxembourg (primary activity is likely global from Luxembourg)",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Luxembourg, Luxembourg",
+      "source_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFP1S1M6OY6mpIcFtgU2Fc-zVjPTBqNKYGu01ZBiQdQhppuJXZSD-x0w-wPOSWWS7kQVZH6no-JaXSexS9bR5A6DZImNuFxCjbR8HxiiGbuzJ5gHvu-V6gIRDTsfIL_BZLm2l4BTnnknDgk96gjkPzG7ghmDDXwtb6IYeULCTas_B_HSAi",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEtml9d59TXpdAUM-ikDei8Ynt5fic3Ux0jNcdBhh-YYL9649e_EV4S9xSUEekN0hvBffptFbg7evuZRvqlG3W_sVM4EsvhBUek9gjPOdNSZZdWd81uuD23uSALQJmOyxlw4xTbXNMVXh7ClDARBU4Ia-U_gvR_lWmljBkAzqkY6bqI="
+      ]
+    },
+    {
+      "name": "Orascom TMT Investments",
+      "brief_description": "Orascom TMT Investments is a single-family office headquartered in Luxembourg, focusing on alternative investments, financial services, industrials & manufacturing, infrastructure & transportation, and technology. It aligns with the trend of Luxembourg SFOs adopting institutional-grade practices for long-term wealth management.",
+      "sectors": [
+        "Alternative Investments",
+        "Financial Services",
+        "Industrials & Manufacturing",
+        "Infrastructure & Transportation",
+        "Technology"
+      ],
+      "geography": "Luxembourg (primary activity is likely global from Luxembourg)",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Luxembourg, Luxembourg",
+      "source_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFP1S1M6OY6mpIcFtgU2Fc-zVjPTBqNKYGu01ZBiQdQhppuJXZSD-x0w-wPOSWWS7kQVZH6no-JaXSexS9bR5A6DZImNuFxCjbR8HxiiGbuzJ5gHvu-V6gIRDTsfIL_BZLm2l4BTnnknDgk96gjkPzG7ghmDDXwtb6IYeULCTas_B_HSAi",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEtml9d59TXpdAUM-ikDei8Ynt5fic3Ux0jNcdBhh-YYL9649e_EV4S9xSUEekN0hvBffptFbg7evuZRvqlG3W_sVM4EsvhBUek9gjPOdNSZZdWd81uuD23uSALQJmOyxlw4xTbXNMVXh7ClDARBU4Ia-U_gvR_lWmljBkAzqkY6bqI="
+      ]
+    },
+    {
+      "name": "DELTON Logistics",
+      "brief_description": "DELTON Logistics is a single-family office based in Luxembourg with a primary investment focus on logistics & transportation and industrials & manufacturing. It embodies the patient capital approach characteristic of Luxembourg's family offices for sustainable, long-term investments.",
+      "sectors": [
+        "Logistics & Transportation",
+        "Industrials & Manufacturing"
+      ],
+      "geography": "Luxembourg (primary activity is likely global from Luxembourg)",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Luxembourg",
+      "source_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFP1S1M6OY6mpIcFtgU2Fc-zVjPTBqNKYGu01ZBiQdQhppuJXZSD-x0w-wPOSWWS7kQVZH6no-JaXSexS9bR5A6DZImNuFxCjbR8HxiiGbuzJ5gHvu-V6gIRDTsfIL_BZLm2l4BTnnknDgk96gjkPzG7ghmDDXwtb6IYeULCTas_B_HSAi",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEtml9d59TXpdAUM-ikDei8Ynt5fic3Ux0jNcdBhh-YYL9649e_EV4S9xSUEekN0hvBffptFbg7evuZRvqlG3W_sVM4EsvhBUek9gjPOdNSZZdWd81uuD23uSALQJmOyxlw4xTbXNMVXh7ClDARBU4Ia-U_gvR_lWmljBkAzqkY6bqI="
+      ]
+    },
+    {
+      "name": "Borletti Group",
+      "brief_description": "Borletti Group is a single-family office located in Luxembourg, specializing in investments in the consumer & retail and real estate & construction sectors. As a Luxembourg SFO, it is geared towards long-term asset preservation and strategic growth.",
+      "sectors": [
+        "Consumer & Retail",
+        "Real Estate & Construction"
+      ],
+      "geography": "Luxembourg (primary activity is likely global from Luxembourg)",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Luxembourg, Luxembourg",
+      "source_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFP1S1M6OY6mpIcFtgU2Fc-zVjPTBqNKYGu01ZBiQdQhppuJXZSD-x0w-wPOSWWS7kQVZH6no-JaXSexS9bR5A6DZImNuFxCjbR8HxiiGbuzJ5gHvu-V6gIRDTsfIL_BZLm2l4BTnnknDgk96gjkPzG7ghmDDXwtb6IYeULCTas_B_HSAi",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEtml9d59TXpdAUM-ikDei8Ynt5fic3Ux0jNcdBhh-YYL9649e_EV4S9xSUEekN0hvBffptFbg7evuZRvqlG3W_sVM4EsvhBUek9gjPOdNSZZdWd81uuD23uSALQJmOyxlw4xTbXNMVXh7ClDARBU4Ia-U_gvR_lWmljBkAzqkY6bqI="
+      ]
+    },
+    {
+      "name": "Arvo Investment Holdings",
+      "brief_description": "Arvo Investment Holdings is a single-family office headquartered in Munsbach, Luxembourg, with an investment focus including alternative investments, financial services, and real estate & construction. It operates with a strategic commitment to stability and long-term capital preservation, typical of Luxembourg family offices.",
+      "sectors": [
+        "Alternative Investments",
+        "Financial Services",
+        "Real Estate & Construction"
+      ],
+      "geography": "Munsbach, Luxembourg (primary activity is likely global from Luxembourg)",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Munsbach, Luxembourg",
+      "source_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFP1S1M6OY6mpIcFtgU2Fc-zVjPTBqNKYGu01ZBiQdQhppuJXZSD-x0w-wPOSWWS7kQVZH6no-JaXSexS9bR5A6DZImNuFxCjbR8HxiiGbuzJ5gHvu-V6gIRDTsfIL_BZLm2l4BTnnknDgk96gjkPzG7ghmDDXwtb6IYeULCTas_B_HSAi",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEtml9d59TXpdAUM-ikDei8Ynt5fic3Ux0jNcdBhh-YYL9649e_EV4S9xSUEekN0hvBffptFbg7evuZRvqlG3W_sVM4EsvhBUek9gjPOdNSZZdWd81uuD23uSALQJmOyxlw4xTbXNMVXh7ClDARBU4Ia-U_gvR_lWmljBkAzqkY6bqI="
+      ]
+    },
+    {
+      "name": "Bemberg Capital",
+      "brief_description": "Bemberg Capital is a single-family office located in Luxembourg, with investments in alternative investments, financial services, industrials & manufacturing, and technology. It reflects the growing trend of Luxembourg SFOs engaging in direct private equity and venture capital deals with institutional-grade governance.",
+      "sectors": [
+        "Alternative Investments",
+        "Financial Services",
+        "Industrials & Manufacturing",
+        "Technology"
+      ],
+      "geography": "Luxembourg, Luxembourg (primary activity is likely global from Luxembourg)",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Luxembourg, Luxembourg",
+      "source_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFP1S1M6OY6mpIcFtgU2Fc-zVjPTBqNKYGu01ZBiQdQhppuJXZSD-x0w-wPOSWWS7kQVZH6no-JaXSexS9bR5A6DZImNuFxCjbR8HxiiGbuzJ5gHvu-V6gIRDTsfIL_BZLm2l4BTnnknDgk96gjkPzG7ghmDDXwtb6IYeULCTas_B_HSAi",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEtml9d59TXpdAUM-ikDei8Ynt5fic3Ux0jNcdBhh-YYL9649e_EV4S9xSUEekN0hvBffptFbg7evuZRvqlG3W_sVM4EsvhBUek9gjPOdNSZZdWd81uuD23uSALQJmOyxlw4xTbXNMVXh7ClDARBU4Ia-U_gvR_lWmljBkAzqkY6bqI="
+      ]
+    }
+  ]
+}

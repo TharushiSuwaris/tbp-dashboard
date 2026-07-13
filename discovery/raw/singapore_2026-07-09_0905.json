@@ -1,0 +1,153 @@
+{
+  "run_metadata": {
+    "country": "Singapore",
+    "sector": null,
+    "category": null,
+    "query": "Identify single-family offices, multi-family offices, family-controlled investment companies, family holding companies, qualified HNWI investment entities, and permanent-capital private investment groups headquartered in or primarily active in Singapore, with exposure to trade, infrastructure, energy, logistics, digital infrastructure, real estate, ports, technology, industrial platforms, or emerging markets. Prioritize entities showing evidence of patient capital, long-horizon stewardship, and governance discipline.",
+    "date": "2026-07-09_0905",
+    "model": "gemini-2.5-flash",
+    "web_search_queries_executed": [
+      "Singapore family office infrastructure investment",
+      "Singapore multi-family office technology investment",
+      "Singapore family holding company real estate investment",
+      "Singapore permanent capital private investment group emerging markets",
+      "Singapore UHNWI investment entities logistics",
+      "Singapore family office long-term capital",
+      "Temasek Holdings investment focus",
+      "GIC Private Limited investment focus",
+      "K3 Ventures investment strategy",
+      "Wee Hur Holdings investment",
+      "Pontiac Land Group investment philosophy"
+    ]
+  },
+  "prospects": [
+    {
+      "name": "Temasek Holdings",
+      "brief_description": "A Singaporean state-owned multinational investment firm established in 1974, managing a diversified global portfolio. It focuses on long-term value creation and invests in structural trends like Digitisation, Sustainable Living, Future of Consumption, and Longer Lifespans, demonstrating patient capital and governance discipline.",
+      "sectors": [
+        "Digitisation",
+        "Sustainable Living",
+        "Future of Consumption",
+        "Longer Lifespans",
+        "Consumer",
+        "Media & Technology",
+        "Life Sciences & Agri-Food",
+        "Non-Bank Financial Services",
+        "Infrastructure",
+        "Energy-transition assets",
+        "Digital infrastructure",
+        "AI"
+      ],
+      "geography": "Primarily anchored in Asia, with a global portfolio and significant exposure to developed economies. Investments in China, India, Southeast Asia, US, and Europe.",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Orchard Road, Singapore (Headquarters).",
+      "source_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEgOjQRbOHVXQ7eGpFhnlkTHHWjj_LlEiNuAXSLbQ5Nw4hMYpJug3kJ6DZ1sC8eeRFRqJ_dYjcybSOhrAPxm4R0mklIItNEWmxQQOxP3louIpTyZ1E0GIMex6jSmbjI97ubPHPxOZAgYXY=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEyTpBMid3OEft3IG6oI4NwePDem_TnbC9Rpi5gY3HzucMRbiClF_Wm8I94ynXu6RHlgVduktP0dC6sXO45n5mHqtZnoofnc_w-xIqTSsznHBORHw1WN6F6r1vquxSvDuVWe-oQVsOo39qMJNqSSnwB_Po_XqBHQeQEk9ubIj_OW-gpo7LHcXJnWM69o4z6Rtqbhf8RLOfaNbj0wSkTQIdPw3ZQWpSlf1nATpA=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGOBhO1wT6lk-vn7rRAdLfa7rVtq3vEU2T0EClWyvkXwSD1olc5u0hsomNm-htV_zTEAZfKUQxs096Mk9kHKY_CSXs2nxIAXAcqcRUeaQbl_KrYJ-YPik8Ml5a3eB7AXAu6QqV6XIR22KLxXVlxSm0hpmSl2MsHqFqRYKFrK-i6fASLzIh6tOPGA4HmhkSyIbRhdo3NVFWKGOEi5g==",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQENWY4sHUhLJ32M_k5ZSpKfgS1mk3ajRgDsbZ2DvSJGG6aOFC9V8ORLFBcf3pP9Mu4BWpF9h-nHQ9K3RUghJglExHHMRdAIl2wmHQ0UUUaf947pod5xv_xW7xHMQmCyWs_jlz7vzPMhcEHIXeMJGR8dPQDDSNOjzXihGVVcexb-sLnoPXtQ6i8fCWvYBxAmAPrkuGjWUSB_KtWq36xb",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEt1ttAx4CIpW6MkwKgBy_qMuN2ndZg_vFAbJ65T4VA7wzwjSp48GNfErC7Ace4S9Vl9t5zJCXYgi0VqCrTXeVh2ZBdj4AipQAhHwjStr552WxUyFGo5rg242Chv9dWXhdPYgRDnYb4MPOqIOxV3ken7sxTSJlJQG2ngSAecFTFG16tiHl11q357dp0Lk6cDTvYFXf4QPn8mYNlLe-7_aBgMz5oK7UpAi0Bob5cgKgrhA=="
+      ]
+    },
+    {
+      "name": "GIC Private Limited",
+      "brief_description": "Singaporean sovereign wealth fund established in 1981 to manage the country's foreign reserves. GIC focuses on long-term investments across a wide range of asset classes globally, with a mission to achieve good long-term returns above global inflation over an investment horizon of 20 years, demonstrating patient capital and strong governance.",
+      "sectors": [
+        "Public equity",
+        "Fixed income",
+        "Private equity",
+        "Real estate",
+        "Infrastructure",
+        "Venture capital",
+        "Emerging market equities",
+        "Logistics"
+      ],
+      "geography": "Global, with investments internationally in developed market equities, emerging market equities, and a focus on Asia-Pacific, US, and Europe.",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Singapore (Headquarters).",
+      "source_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFLqCLtMnT6lCQtfjD8rnWyonccdje_bKSTcdIsUle_vQpheeg0G5l5EeY7E0hl16wBilq3zj8HVRFYwBbsibFdGPjHkmolXiabjdJq_FVqh_uYHgn_kyqZEoofATG_eHUAJ8p6lzan3MXbkGo8bPvtWWT9AFP7rB_XGJa-UUQJosE=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGL1_hfYsjPb7WP5OUrjT0FwwpZtCcFNrTKjf-B64NE4qpGTAbg-pRfGUT2yR0ixAS80A697dU_cmhRLtjfBDpwxaS-CET1Y-6EJZ6gp8nCEbzFsHTYo99tAJZ_-ZP6K0gp8tkMnWeCR2kBq-gENVC-NCe8ew=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQErbXgcxEq36dYSN2qyTbyn6OailP3Xc0w1h--uwNFnb6APCar8trXsmXRIeYXIKPvvCGvwdWhEAxUv6aOoKNRkubnmuwo73nLwo_n5oiFsATbefCeiRH4dPADKUR6e47R6jjcjLMQkW7-bKdRiA1_brAIjoMNV0ek1niPAiKHiVcFwQzVfntyXdLZ53A=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGtZfCGVSTVYX6Dr37H-8s1rZF74mqNXZ2BcU8PP9I4aXrRdQc-VtqR5yzWh86Fkc2Rs6TM6ryZ6noaVyK7nD9COmtewFLVwYLGdyqVLyxwrXVWSibuFm9vj_MREeUms19iSn3VSo_ERnsa2GfudTuuhYXzKW9Y7-AfDj7J5D-Zrb_HGBFwRiVP9iHHclxN2-h-3ks=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE7zy-olm-aUhxHGY_9WU_huDOxVXyTCmCUE4kNvKk_HWx7R3RXe3144_Evckbse0MUnn-VKdl_lvkAIXZKaP0McEnS6xHdV23AnuWw0M01YKrsTk_Z0JDgEJWCJ5aoAdUqsOozedxiQ3fkhOb6I1wKlRThL8A=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH97jBw_BoA20AeG3p78959kRsy3cJay2q_oicccVd3rWahC4NMNpa-SZsCLFRXVCUmk2wdBgF_YO2Bm5ehqSeYlf1I5uvLi58nVhcfXiO5AsQpNMxK8Ubikvp9cABS9QJ-zjjg6C8RmajpCavR7_b-X4tNw77Np4yWNYpk8KW7t2a0JGyi1ZyCk7dOXqjYq6RurydGzrKQnav70ZG3XNcyOZh3STQBQCU3YWPMrkoCjPBu_apqmg==",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG1vXPvzxny3EyWhKgOFivVDkUkw1K8R2gyyeKFFDw4GeobNAtnXALGo0zg-mVFGV9mNSzmiW22jnVJJHEaEqyuEHp2A28pQGxQqI9L0jjjROMKravMvHMDEDO-gsDzzJI060Y2dZ9HrxOCDs_VOvtJ7F46BKQOc34G9lO1rdCUmaCjT08sPPv3nuXxKCGZjmk0rPGvjwc3kcqCZAJQ31U6G88TcClgWSlfs1HrsiZ3kFw5YZvFeVWe_qikQFPs4ob53Ibd336LgVIR"
+      ]
+    },
+    {
+      "name": "Wee Investments",
+      "brief_description": "Wee Investments is the principal investment vehicle of the Wee family, founders of United Overseas Bank (UOB). As one of Singapore's largest single-family office operations by AUM, it holds financial services, real estate, and private markets assets across Asia, with a focus on long-duration public equities.",
+      "sectors": [
+        "Financial services",
+        "Real estate",
+        "Private equity",
+        "Public equities"
+      ],
+      "geography": "Southeast Asia (ASEAN) with selective global exposure.",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Singapore.",
+      "source_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEBE-0gtA7BSTl5FKj18PH9lW-jd4e6oICjo9xT3kLQBoh5fyBiuRt0iAg97q5I2-Uxaf8IpWdLhE3NjQPEdoK03S2KAC2Y2AAAdeGOzcExgSj11FzS9URvVgvoLC4piY0AtfeQADbCPBC0zLpp_NQGP6LCdy89b2oTvCbMW-22JvsLlA_K1zTitg16tGH9PNL8a0lehWiC-Rxea1dXWA4=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQERSQTGaNumhX_IvL-nl0eTjhOvz8KJ0QPmPg2J9QDZoe1UwG1beWodG44ihVQtLH-umKVqvqgDpzNnXmCfUi4mtExMN2LpMH5wibDXoeZ3TZOcGn3ugsu6Js-9uwk2G0DG0_kBPUd075Qquqy2dVvVgShXe0y-WaRNRza4pFNQ_WCrV-Do0g=="
+      ]
+    },
+    {
+      "name": "Pontiac Land Group",
+      "brief_description": "A privately held conglomerate founded in 1961 by the Kwee family, specializing in luxury property development, hospitality, and investment properties. Pontiac Land Group takes a long-term view on its real estate developments and investments, prioritizing quality, sustainability, and thoughtful architecture and design.",
+      "sectors": [
+        "Luxury real estate",
+        "Hospitality",
+        "Commercial property",
+        "Retail property",
+        "Residential property",
+        "Medical office properties",
+        "Property development",
+        "Long-term asset management"
+      ],
+      "geography": "Singapore, New York, Sydney, Maldives, with interests in the UK, Japan, and selective Southeast Asian countries.",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Singapore (Headquarters).",
+      "source_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGyeTYebpicNRucyLdBgszUHEP7UiAHt6S_90OKmSTIZ3RhyKdTpd3GsiqBcLl2Oy5tk5Ngo1aJ4YoM3i6vCT8ELoqqR4g3xfQaNYnDhOA46izHNbdOvCP9OPWF7EKKyGAc7EojraXks90_fUDNcHJK02Uyzs8gElTqJ3Ag2VON3DCDokoot2AQL50Pl0X5m9nVn77XdIXxwegNMdXf2V2UKvZiTTANGVMg1rygELIiQMEavTbWGaUBQi69LFDqvgXtwinJ2Z-WfwPETyW9yQ==",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHLoUL_ShVxs8wB88FcBVPV1s-9oIL1ZhrvH6uR__lunZ8pmqz36MD_hCopw5QRwKs_PD1BVbDDuB-AL08SGlk2KEDOYi0SWCeslMqI2tRS7NfGSqoyyrxfi_N-dBo6HbjFEoZGfb2qB9Sx888=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHtExP71QoMavRLd75K1GCwsN0avv4mGkAWIBsrAPEWQ_K9fUpeBaQ8C8Kpe7bw-gUToPjT7VgFEjcsbkIDE-WwpoKGpzm-UfCb4NHWF1WqFum1JNFGyOXki5D8r0IjDxCzo3e7E4UULBDzK6FCCSMXSjHkG-BUcU91Ereps5mJD9YWlC1xF1hAyTWHx1U1Dz7dn-dqqxgzetoQrUrHKDuGMF116AG-dihAiVQuvQ==",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHG_yYL-sOPQOKYk3zFP0A733-iA7DerH2GVAvKMx7N-nLIv5-Ilq-PcHdLr-gPLsErPaImcGwAcnie_KEhcUq66VYfeaBeGZeXI0hBFYAWBhZIasmhhViV0zJSG6vtzxjCTcD1lKAAGZ_n83pSox9ea0Z5slkS",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEPC4eoeUIZk5L6fTjKMSGjfaXaNQNGrtzS-KMjrYSO22UpN6EodB7gC-uz6pIANsqIY0rIldRoTXy5XYiycPCDfYZpN24TiFUg2PYtqsvvsP1bfINhuz9BGc-ppJ_Yg8kpng=="
+      ]
+    },
+    {
+      "name": "K3 Ventures",
+      "brief_description": "K3 Ventures is a Singapore-based venture capital firm founded in 2015 by Kuok Meng Xiong, grandson of tycoon Robert Kuok. It invests in early-stage technology startups across various sectors in Southeast Asia, providing capital, operational support, and mentorship, leveraging a 'bamboo network' for strategic scaling and long-term growth.",
+      "sectors": [
+        "Technology",
+        "Agtech",
+        "Consumer services",
+        "Edtech",
+        "SaaS",
+        "Healthcare",
+        "Fintech",
+        "IoT",
+        "E-commerce",
+        "Enterprise solutions",
+        "Web3",
+        "AI"
+      ],
+      "geography": "Primarily Asia, with a focus on Southeast Asia.",
+      "email": "hr@k3ventures.com",
+      "email_status": "Found",
+      "location": "391B Orchard Road, Ngee Ann City Tower B #14-08, Singapore 238874.",
+      "source_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFotD7OWqbTZYrQF-1uSNZv0XLBD8vE1aBeqlbtY4VLzidm6tWsf6ljJWmndhDiajzWEdtlYGJ7_lgbjV6XdYkO2eC8uSmc-eaymbmX3TGesBYlSYaINqdpGl_08QrLJ21xIhVx9g==",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFF8H9xh4WnxwnQE_0FoFwMRTOHz44BMGwHcDLANHuk7UshDctrHUONE4h_MS07Qe2QOiz1GQ1p5BrtpSvo4qeMBb4ihTq9-9P-WChRIROO_EquLiZLH5bTGcFSEKUsluIU2QGM2g==",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEsX_mHCh1AaFKpTIInduX_ScyMoGsfJEZxA1TsUmAC90-_8aQrZL1uIgjMVE_yUtWJgHpCQViAkVcCCEmxHKdaf_qSTz_VlcMTQYiNLNAp1iAcvcTPNUdckeOmYzjAGYyQD9XOL2Cf",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQExi3MI3ScdKYO_9S2Ior6A20sgxTd9mW0eGhGGnI6tfGavNn3wbE7swBiJFCwzfuNrO9jbBbx0I7M58e6aCcZuXmxvmVuUynYaxglNSBzlMQvqHOYaqmi02IjJY2rsLfoDy_avWOpc28cZPDRaRpk5Cun0",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHzYGWS4WpTHqZumr8i-lZLSIe28_cF9svQ09X3kX4iSbhhIHKwWRvfFSRABO75fpNWgb7FNQ_qS1OuFf3v35fJkuye_-rnsju2dOk-YgqsrnztUtWKcnycJqxvnogglK9YeCo="
+      ]
+    }
+  ]
+}

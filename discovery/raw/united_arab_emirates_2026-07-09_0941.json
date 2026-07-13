@@ -1,0 +1,118 @@
+{
+  "run_metadata": {
+    "country": "United Arab Emirates",
+    "sector": null,
+    "category": null,
+    "query": "Identify single-family offices, multi-family offices, family-controlled investment companies, family holding companies, qualified HNWI investment entities, and permanent-capital private investment groups headquartered in or primarily active in United Arab Emirates, with exposure to trade, infrastructure, energy, logistics, digital infrastructure, real estate, ports, technology, industrial platforms, or emerging markets. Prioritize entities showing evidence of patient capital, long-horizon stewardship, and governance discipline.",
+    "date": "2026-07-09_0941",
+    "model": "gemini-2.5-flash",
+    "web_search_queries_executed": [
+      "UAE family office investment focus infrastructure energy logistics",
+      "Dubai private investment group long term capital technology real estate",
+      "Abu Dhabi family holding company industrial platforms emerging markets",
+      "UAE strategic private capital digital infrastructure ports trade",
+      "prominent family businesses UAE investments",
+      "Al Nowais Investments family office patient capital",
+      "Majid Al Futtaim Holding private equity long term investment",
+      "Abu Dhabi Catalyst Partners family office long term investment strategy",
+      "Al Fardan Group investments infrastructure real estate",
+      "Al Tayer Group investments diversified portfolio"
+    ]
+  },
+  "prospects": [
+    {
+      "name": "AlNowais Investments",
+      "brief_description": "AlNowais Investments is a UAE-based single-family office and investment holding company headquartered in Abu Dhabi. It manages a diversified portfolio of subsidiaries across various sectors in the MENA region and beyond, with a focus on strategic investments in high-growth industries like energy and infrastructure.",
+      "sectors": [
+        "Energy",
+        "Infrastructure",
+        "Engineering and Construction",
+        "Oilfield Services",
+        "Healthcare",
+        "Communication Systems and Technology",
+        "Real Estate",
+        "Hospitality"
+      ],
+      "geography": "Abu Dhabi, UAE (primarily active in MENA region)",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Abu Dhabi, UAE",
+      "source_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHoDGj2x4dTFXZxbYtO6jEkxPt-cKRF5rcDn0BF6ycXvSzEQTRtq9ezFaAK3NezsqvZewRtIdOTvI1eTnSrn3EigDN6WySgAnIjg_b5hhzPnxnn5u63qkxiswpq5wtQij-EFlY5B046HGoM-FuZhZR4q7r3-emOdg==",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEn6mQ3g0KvWiRLW2AIFjExu7nX9aD-K6-F61-Fqrio9bgvrNsE04X6OK3PaEn73hMinZi1HIn2rItim6E0qLPqy4jbjFCqnOp5YmzwkKPSWlhCaiTo6AA7rkWhZQrbqLEWZf4pWvMPNSxB7_fB0t0BPfETsWctKKBx8kfHcASCKekOww==",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGomLgrUY7AiXZygZA8K3Ah4Rzi7y-TWdDAfdmnU6eFOHNXD8poGA9DY6u0dXin_fclpv-G1OXzDBLBaM629-YxBWCHR8mQ0srvR4BSAXvd7yfcrSE=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEudx3ftSBVgui7OesnQlEeb5RXrR5B0Y5-Mpkxct35csex2eo0PvvY0lDgFe6RyitCJKX6LMzHr-Pq5YE3GVs6JHyPBqhGgTivoPo5xHKQXiIkjpKzcwe6ofc=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFWiRpY1S0Uo02C1RYtul-SCHjljMTsZSkC5tgW4yG2fM8iiUlLgWW0eoa3iuhZvMvXXxlKreTfRmURaSQRtAYrfOkqvt0QIA4ipvtqhsV2EF6Fzfv1si66KTO-v2hXsmiwUCydMJyYGFAPHjrq"
+      ],
+      "scoring_signals": {
+        "family_office_fit": "explicitly self-describes as a 'single-family office and investment holding company'",
+        "permanent_capital_orientation": "emphasizes 'long-term value creation through disciplined capital deployment and operational oversight'",
+        "sector_alignment": "focuses on 'energy and infrastructure project development' and 'strategic principal investments in businesses in select industries that exhibit exceptional potential for growth and expansion'",
+        "governance_institutional_mindset": "'adhering to the highest standards in investment' and 'disciplined capital deployment and operational oversight'",
+        "strategic_adjacency_tbp": "headquartered in Abu Dhabi and active in MENA region, with exposure to energy and infrastructure, aligns with global trade and energy corridors",
+        "engagement_readiness": "Hussain Al Nowais (founder) and Ahmed Nasser Al Nowais (CEO of Annex Investments, a hybrid venture SFO) are named individuals; website has 'Contact Us' section"
+      }
+    },
+    {
+      "name": "Al Fardan Holding",
+      "brief_description": "Al Fardan Holding is one of the region's respected family-owned business groups, operating across diverse sectors including Luxury, Energy, Mobility, Real Estate, Technology, and Digital. Its strategic family office arm, Al Fardan Ventures, focuses on direct and co-investments in frontier technology sectors.",
+      "sectors": [
+        "Fintech",
+        "AI",
+        "SpaceTech",
+        "Quantum Computing",
+        "Green Energy",
+        "Real Estate",
+        "Technology",
+        "Digital Infrastructure",
+        "Web3 & Decentralised Finance",
+        "Enterprise SaaS & Infrastructure"
+      ],
+      "geography": "Dubai, UAE (primarily active in MENA region)",
+      "email": "info@alfardan.co",
+      "email_status": "Found",
+      "location": "Dubai, UAE",
+      "source_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGBDwovhTJqMg1ACu5NJ91PeZPnfuuXTbobUsJ_0o4dngRVOZpFM-jPnYEIhWOhDCOedmLT1ndFPcSXU-uJiKoba9bF8ySVVoFae0iDPCAO8CHadxkpfGb_ceIhEQ==",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHEQGowp6LlCTgBYPZKmJuKb5ral48pryoQhH3HJQD8JBogrqZiwc0E1ER50EJ5NIGrCjuDazUFXY85d897vtQirp1deNFV54y9sEsdbw6FqyLToAwoRyGqAUaQuA==",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFXZ0kEiHnnkUO-VQixiGLmRhkE3V7vSmle9sbv0H3q6Y4en3ilvQbK1mtbW_3ixOlQR9tJYBGzHWwENFIrwwJLZCKxqpxaYrBJxfNqA8fzjRSrK1YZdzOjsTuyTKrX12duTwT9ckLdsgKPwA==",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEMB6D47wQVWQ0SGu_krpSEUvDcu44HVOdsess4cnKdUWdjFdMhG-JMp53_XjLPbNnZzek3mDOCSxP8mb69T4ahL8WOR8JybFCv2gSl1IbgStp1xrciC2nqiDkgErpxkmIRlXLD"
+      ],
+      "scoring_signals": {
+        "family_office_fit": "'Al Fardan Holding is one of the region's most respected business groups'; 'Al Fardan Ventures is the strategic family office of Al Fardan Holding'",
+        "permanent_capital_orientation": "'A foundation built on integrity, discipline, and permanent value creation.'; 'We invest with a 10\u201320 year view'; 'Our family office structure enables patient capital deployment without the constraints of traditional fund cycles'",
+        "sector_alignment": "deploy capital 'at the frontier of AI, SpaceTech, and the Digital Economy' and 'Green Energy & CleanTech' and 'Enterprise SaaS & Infrastructure'",
+        "governance_institutional_mindset": "'built on institutional-grade governance and a relentless commitment to excellence'; 'maintaining a strong commitment to governance, integrity, and stakeholder value'",
+        "strategic_adjacency_tbp": "UAE as a strategic launchpad into the MENA region, investing in critical infrastructure for future-ready economies",
+        "engagement_readiness": "Mohamed Al Fardan is a named Managing Director and Chairman of investment entities; contact email 'info@alfardan.co' is provided"
+      }
+    },
+    {
+      "name": "Private Department of Sheikh Mohammed Bin Khalid Al Nahyan",
+      "brief_description": "The Private Department of Sheikh Mohammed Bin Khalid Al Nahyan is a diversified investment and asset management platform of an Abu Dhabi ruling family. It recently made a significant investment in MidOcean Energy, marking its first entry into global liquefied natural gas, and plans to originate energy and infrastructure transactions across the UAE and regional markets.",
+      "sectors": [
+        "Energy (Liquefied Natural Gas)",
+        "Infrastructure",
+        "Real Estate",
+        "Hospitality",
+        "Financial Services"
+      ],
+      "geography": "Abu Dhabi, UAE (with global and regional interests)",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Abu Dhabi, UAE",
+      "source_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG2icrDr_EefBFTZZYlWPK_H8gJ90O_X5jj-dTbdOxbz_QWdF8YKsE6p2BQRnSD3QVxdc_MQN2KEZ3rBEP_nQB_Clm_ZBNqxvH1uK21fauOwIqDAzoNPUWMtAz6a8DtHERS2cmNuEH82wM579WSvVPF0CZhyooWQOrUwjskuIXmlyu86guDTw==",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGQqqqwQtafZSie2035dv9jvYCEoo8BeaTiaNExWBoED85Dgaeam04-56Dqw68vCM2N_Lh9QhBJT8JE-91M8GnBHiWeRcmujIGH9Zwe-sLLJu6E3btDLI88Ri6vVsw-PCYhjB2oIQDHjlPwj8WbZkfHprBrgzLc9NftE-XTiCxrooegd5zWornTlFBMhtXU7zscqMQ3naFI5ItQGMwLkMO6HW5paDcwWe1k2kTx_sMLmZclYfEh4D7VxbpgI-P-bi4i2RqQLyYMlJi9GiYfXJOul_g1aw="
+      ],
+      "scoring_signals": {
+        "family_office_fit": "operates as a 'diversified investment and asset management platform' of an Abu Dhabi ruling family",
+        "permanent_capital_orientation": "LNG investment inside a 'wider long-term capital allocation strategy rather than a single opportunistic trade'",
+        "sector_alignment": "taking its first position in global liquefied natural gas and opening a parallel partnership to originate 'energy and infrastructure transactions'",
+        "governance_institutional_mindset": "the involvement of an Abu Dhabi ruling family department implies a strategic national interest and long-term perspective",
+        "strategic_adjacency_tbp": "focus on global LNG and originating energy and infrastructure transactions across the UAE and selected regional markets, aligning with global energy and trade corridors",
+        "engagement_readiness": "Matar Hamdan Al Ameri, Executive Managing Director of the Private Department, is a named decision-maker"
+      }
+    }
+  ]
+}

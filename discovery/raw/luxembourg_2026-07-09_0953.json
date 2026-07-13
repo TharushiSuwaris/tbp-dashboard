@@ -1,0 +1,170 @@
+{
+  "run_metadata": {
+    "country": "Luxembourg",
+    "sector": null,
+    "category": null,
+    "query": "Identify single-family offices, multi-family offices, family-controlled investment companies, family holding companies, qualified HNWI investment entities, and permanent-capital private investment groups headquartered in or primarily active in Luxembourg, with exposure to trade, infrastructure, energy, logistics, digital infrastructure, real estate, ports, technology, industrial platforms, or emerging markets. Prioritize entities showing evidence of patient capital, long-horizon stewardship, and governance discipline.",
+    "date": "2026-07-09_0953",
+    "model": "gemini-2.5-flash",
+    "web_search_queries_executed": [
+      "family office Luxembourg investment strategy infrastructure technology",
+      "multi-family office Luxembourg long term investment",
+      "Luxembourg permanent capital infrastructure energy logistics",
+      "Luxembourg family holding company real estate digital infrastructure",
+      "Sodero Gestion Luxembourg family office",
+      "Banque de Luxembourg family office services",
+      "L-GAM family office Luxembourg",
+      "Richemont family office Luxembourg",
+      "Cactus Group Luxembourg investments",
+      "ArcelorMittal family office Luxembourg",
+      "CLdN Group investments Luxembourg",
+      "Janus Capital Luxembourg",
+      "Theisen's Luxembourg family office",
+      "IK investment partners Luxembourg",
+      "Luxembourg private capital group patient capital",
+      "European Infrastructure Fund Luxembourg",
+      "Digital Bridge Luxembourg",
+      "Cube Infrastructure Managers Luxembourg",
+      "Arcus Infrastructure Partners Luxembourg"
+    ]
+  },
+  "prospects": [
+    {
+      "name": "Cube Infrastructure Managers",
+      "brief_description": "Cube Infrastructure Managers is a Luxembourg-based independent asset manager specializing in European mid-market infrastructure. The firm manages funds focused on energy transition, telecoms & digital, transport & mobility, environment, and EV charging, aiming for stable yield and long-term capital appreciation by investing in essential infrastructure platforms.",
+      "sectors": [
+        "Energy Transition",
+        "Telecoms & Digital",
+        "Transport & Mobility",
+        "Environment",
+        "EV Charging"
+      ],
+      "geography": "Europe (Western and Northern Europe focus for investments), with funds raised from institutional investors globally.",
+      "email": "info@cubeinfrastructure.com",
+      "email_status": "Found",
+      "location": "28-32, Place de la Gare L-1616 Luxembourg, Grand-Duch\u00e9 de Luxembourg.",
+      "source_urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGQYcfoVqRqUr7QcrQMkST8PIl3qIc8KJt026xBqWN4R6Vy-ApTsd1AiCA9UFIums76XoNDCxNFrQgko0l3BfNvwMAGkWRsLFIK3p78vN3oS7F5iiQbqYUD5i9CtiBT21QsMwcdDUxNKei_rzOqPdv6oMOBvyh9M8F7PV4a1A6poYBKtihzdguZWBacEyZQ",
+          "title": null
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE_HK4xndtXGJgF2q74gtN6U2GH8nCrSnHr9qxpycaSOVPNa70xYv_0qOYGsxP3XhbasRIkfGF9lmNJKY-aPkc0KXh2F5e20DuGva0Gzbv17Wfo2dES5179Q6jTovWCsaIjre8Ij68axjvHO3BXrBdQkiBYLzTxbUCPWWDm",
+          "title": null
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHdYyFDk5MBjssHHfN-klJ7JggTnNSGqmDlz7wlMsTJuzi0561QE1t_uDBXbuv2CAYruCbtZ1ggAF9aQeILv3L1GZNvKvFg7dYtZGdPrx7IbvJ0T6szAzcXD8kEAEPQTiTe6HQ_He2IuunZaw4bLHEqNXII2gXQ",
+          "title": "ippjournal.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFrX5QAt-aWfdyysXbA8xbmNItviL8udfjafkvihOYSfsxJx8miYu0rlJhUYU3xTWFcnHf_hQXXKivuKTPzaBg3hh0svAjCC5hkujUsJEs2n7IXB-ZPmlpiR5xgrBV5awIvOfiA-999R6YE-rxCcSfkj0_dpDCN3-s-5el2Su1DjcLaeBzHF0EhhHjofUU4rh_pedD1ld4_Uld2G1beRYq0Az6mm_X91jq4",
+          "title": "pe-insights.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGJ7r5MKm4PeHaqgNAlIbwXT-IXMLvhkMwOgthLrWIcqrHQ78nEH9BB0EYrSJ6AI3i4zy3QLalzs-C7YQbtYY2dPCBud41j-HCfkQ5by-q5-WJrmv5RSQ0MjCZpklqT",
+          "title": "cubeinfrastructure.com"
+        }
+      ],
+      "scoring_signals": {
+        "family_office_fit": "Independent asset manager, General Partner / Management Company, Independent VC / PE Fund Manager.",
+        "permanent_capital_orientation": "Aims for stable yield and long-term capital appreciation, investing in essential local infrastructure vital for society.",
+        "sector_alignment": "Energy Transition, Telecoms & Digital, Transport & Mobility, Environment, EV Charging.",
+        "governance_institutional_mindset": "Combines deep sector knowledge with operational and financial expertise to invest in, manage and grow essential European infrastructure platforms, creating value for investors and all stakeholders.",
+        "strategic_adjacency_tbp": "Strong alignment with infrastructure, energy, logistics, and digital infrastructure corridors across Europe.",
+        "engagement_readiness": "Renaud de Matharel is the CEO and managing partner."
+      }
+    },
+    {
+      "name": "L-GAM",
+      "brief_description": "L-GAM is a long-term investment firm established in partnership with the Princely Family of Liechtenstein. Its unique investor base consists of leading global entrepreneurial families, and it focuses on growing and building stronger businesses across Western Europe.",
+      "sectors": [
+        "Consumer Goods & Retail",
+        "Computer & Consumer Electronics",
+        "Business & Industrial Products",
+        "Business & Industrial Services",
+        "Consumer Services",
+        "Energy & Environment",
+        "Transportation"
+      ],
+      "geography": "Western Europe.",
+      "email": "info@l-gam.com",
+      "email_status": "Found",
+      "location": "11-13 Boulevard de la Foire, L-1528 Luxembourg, Grand-Duch\u00e9 de Luxembourg.",
+      "source_urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHIOv4GvFiejPeOXNK0QYZ0SaY_PnB5Kb4Ed9E7LSGXm6pn1yOIADOIkndsRJfZwndV_QN111LV3WdNjoG4ycxM___fOL64QZKULjGMSVMH_5JSwJjqwjDSChVCIqpp4D0euWRvA4IH-pSyKUwdoBERgFI=",
+          "title": "lpea.lu"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFTxGjo7r6ttz_k8W6WClIjdAtyZSGd9MDU_Kahy7zpDm8KH9v_0XuBWgoIYG_XuyMnyTLL7NX43OZORS7pPPOvaw6seLPM2oj0mWAvTWJacrOpmaLZ4yIWbybH0uzkehAO8vHBzkF7ODXM1xdiFpeE3eP_rkIC6uIgILY=",
+          "title": "paperjam.lu"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFob4vC_4gLdY1Naiv-YonNXc5kyuUUnNe4krQ92eCsr8qdEDaTgKJcBOW8OFbH6xZoNSqx_oxoi9Qo5xXOiG0iB_SrRidqRcoK6w38QpiBwRe5NSTEBAEUmIE7",
+          "title": "l-gam.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEmxqRjbw9Mu66BlztTuY4iLn3aZn2jNkFCwR6CqsJoJwCPYLWfxXOn1xzl-PnKCXH0mLfoA-0aT02BUnX7oeAyqJ1U1eCuUbYYiN-H_RZhu8hAgfVqscLDPA==",
+          "title": "l-gam.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEzdOdV4U10D4x2SQqahSEbxzmAp3csxGBlBtgLUlWFWl8qfERl145tGusBm3XD_a-3d7DGeOl6zE5qrSIvDob5cdjpiJfHWGRn8vVxOtJ5gmR-XvbvoQ6znJAWX1E=",
+          "title": null
+        }
+      ],
+      "scoring_signals": {
+        "family_office_fit": "Established in partnership with the Princely Family of Liechtenstein and has an investor base composed of leading global entrepreneurial families.",
+        "permanent_capital_orientation": "Described as a 'long-term investment firm' with a shared vision of helping talented management teams grow their business and unlock value through operational and strategic initiatives.",
+        "sector_alignment": "Energy & Environment, Transportation, Business & Industrial Products/Services, Computer & Consumer Electronics.",
+        "governance_institutional_mindset": "Committed to good governance, society, and the environment, and is a signatory to the UN's Principles for Responsible Investment with an ESG policy.",
+        "strategic_adjacency_tbp": "Direct investment in sectors like Energy & Environment and Transportation aligns with global trade and infrastructure corridor thesis.",
+        "engagement_readiness": "A direct email address, info@l-gam.com, is provided for contact."
+      }
+    },
+    {
+      "name": "Arcus Infrastructure Partners",
+      "brief_description": "Arcus Infrastructure Partners is an independent fund manager based in Luxembourg, investing in and managing European infrastructure assets. They provide long-term capital for sustainable development across digital, logistics & industrials, transport, and energy sectors.",
+      "sectors": [
+        "Digital Infrastructure",
+        "Logistics & Industrials",
+        "Transport",
+        "Energy",
+        "Telecoms"
+      ],
+      "geography": "European infrastructure assets.",
+      "email": "investor.relations@arcusip.com",
+      "email_status": "Found",
+      "location": "37A, Avenue J.F. Kennedy L-1855, Luxembourg.",
+      "source_urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHb7O6GOLcw6jYifFV9ALhfJlpwN8oP_Uj37xeNgSBL5fdvwWq00Uwv5nP1OHML0dVZSSe5vg-zaeZRnWBOjMV7DKWF3-EvjiRF0OSGc1RWvLUY8K4AxZcEPdafWA==",
+          "title": "arcusip.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGWVcDBycHW9AiCF3q26ZYf_P65dK1krT3SjNpbvkjJZ7rHbVAHHcgws5gOLd84GZPrOFaZeqHC6Cz_XKvvwNAnpQvCfkT4jfkmvqobvZkXwrmj8cNwu4IE51T9sU5klW60bmrzy_Gn2K6obU3n0jZC",
+          "title": "portusdatacenters.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEkGgVVgR-FJAei1XKpx0E2vUceosiAYXqzKZBMd0OGV9USczahhMH8pxcnUyBo6fh0Af7OpFN5vVUkfY_w1FWGB2SLFxaOfs9E8yLdPrmoJr0Eh4Qb7d7937H9oEDd7bwGRLK9ZSyIUApqCP2tqgoK4YXvMIPr_WOC6bewCWkZFO59L6ZvPHwjeTIjTpurg4g=",
+          "title": null
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG0E67Swl2GtANPLLG-Kvt-QQpTTMlV7k0vcx26RmYOR877IVmo9sCkx3ruDv_R9ss4NUCu0GvxAs7APCa7eEkqrvbfqH3kJ5Cf5742ENfx",
+          "title": "arcusip.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQET0qQRfYsR-__ka2QSwFmiLnciy6F2tt_gRkqXO99XAn6wi8Pox0TzDck9SkVF9CYInP-spq-8vd6VV6C8pgnZut_KVZ3vY7Kt5wA5KELfFA6NpGS1Y6ftqOJypwctlirAqOft1hj4MDqwC_o9kGVeXUj9Jj14XBtV_uyD8MOryMGM6nBjnzY16ZidtCF-rXcneCUQ",
+          "title": "europa.eu"
+        }
+      ],
+      "scoring_signals": {
+        "family_office_fit": "Independent fund manager investing in European infrastructure assets, aligning with a permanent-capital private investment group.",
+        "permanent_capital_orientation": "Provides long-term capital for sustainable development and creates more resilient businesses that help meet future infrastructure needs.",
+        "sector_alignment": "Digital, Logistics & Industrials, Transport, Energy, Telecoms.",
+        "governance_institutional_mindset": "Focuses on sustainability of the environment and prioritizes both strong performance and sustainability for enduring outcomes.",
+        "strategic_adjacency_tbp": "Direct focus on infrastructure, digital, logistics, transport, and energy sectors across Europe strongly aligns with the corridor thesis.",
+        "engagement_readiness": "A dedicated investor relations email, investor.relations@arcusip.com, is provided."
+      }
+    }
+  ]
+}

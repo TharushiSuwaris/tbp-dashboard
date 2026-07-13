@@ -1,0 +1,108 @@
+{
+  "run_metadata": {
+    "country": "Singapore",
+    "sector": null,
+    "category": null,
+    "query": "Identify single-family offices, multi-family offices, family-controlled investment companies, family holding companies, qualified HNWI investment entities, and permanent-capital private investment groups headquartered in or primarily active in Singapore, with exposure to trade, infrastructure, energy, logistics, digital infrastructure, real estate, ports, technology, industrial platforms, or emerging markets. Prioritize entities showing evidence of patient capital, long-horizon stewardship, and governance discipline.",
+    "date": "2026-07-09_0933",
+    "model": "gemini-2.5-flash",
+    "web_search_queries_executed": [
+      "single family office Singapore infrastructure real estate technology",
+      "multi family office Singapore infrastructure real estate technology",
+      "family controlled investment company Singapore infrastructure real estate technology",
+      "family holding company Singapore infrastructure real estate technology",
+      "permanent capital private investment group Singapore infrastructure real estate technology",
+      "Temasek Holdings investment focus",
+      "Pilgrim Partners Asia investment sectors",
+      "K3 Ventures investment focus",
+      "Vertex Holdings investment sectors",
+      "Sea Town Holdings International investment focus",
+      "EDBI investment focus",
+      "Clavela Investment Partners"
+    ]
+  },
+  "prospects": [
+    {
+      "name": "Temasek Holdings",
+      "brief_description": "Temasek Holdings is a Singaporean state-owned multinational investment firm with a net portfolio of S$434 billion as of March 2025. It acts as an active shareholder and investor, guiding its long-term portfolio construction with key structural trends such as Digitisation, Sustainable Living, Future of Consumption, and Longer Lifespans. The firm plans to significantly increase its exposure to AI and core-plus infrastructure, including digital infrastructure and energy-transition assets.",
+      "sectors": [
+        "Digitisation",
+        "Sustainable Living",
+        "Future of Consumption",
+        "Longer Lifespans",
+        "Consumer",
+        "Media & Technology",
+        "Life Sciences & Agri-Food",
+        "Non-Bank Financial Services",
+        "AI",
+        "Infrastructure",
+        "Energy",
+        "Digital Infrastructure",
+        "Private Credit",
+        "Real Estate",
+        "Ports"
+      ],
+      "geography": "Primarily anchored in Asia, with a global portfolio and underlying exposure to developed economies.",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Orchard Road, Singapore",
+      "source_urls": [
+        "https://www.google.com/search?q=Temasek+Holdings+investment+focus",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGz1Ulst0cg71zTXuKS5mrhAchfM7Ww7hZb2CjjG49jgtdYSpCJQNZJkiK9SlSb9M8giLCo33br4cYZvUx23Qz9GMLoA5zpDM1HkKkPI8vLsiawhT2VtpoabSkLvA6LQg6LpF274WwWUTg=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFkT4Td6we5nt3nvO5YPR3kdyBT8BUIEaG2eZIBkstCHofGnH04OOEjjCFQHHnrhGKO6FqI04p9UbWN_8tySXi-SI05CHsPVOZBm8tWRph-maIgJ0JHYucbJ4mwywPRSjDCbh-x9ZfGFXObGiPsLH-vih4Qj7GubOtcuxOVh6K5zB3UnzUFrSe0qUoqRXYgeb3oikCfWASJVcEyWfA8yLWNUU2uMsbNyQKTLVU=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFeXJEGD2umd6CocWywD_OEscqkXUhZUnQF84OOXtKU7_Zrq99Jhi2qFrk1wVPMli5lGuGKaXF0t0BpVALR67KGjqqqD4GlRiBS78pQnNaFax6qTgqQplBuAjwMuZZpQMODnhhx1E62X3g_d20dah6m5xghW6VUygtxqRzzg9PI7DG8AABku_2UaQAN0n5gVgZX-Tsy5Co2RIQYDg=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE76lzYeME221tMNQt5xFe7yq2wJSqPM0ebiF-ujQ1YQbsQClXBOIWSj74vh4J1gaJY3wL1LNMp1OOs95bgZpL0tUJRedfDdffhyN7gxOE_8jDpJQHvt256ugsMoBT4hyDUhi7I0688zmTIJQsVXLlPUV_cU-XVkqlUAHBvlnIfAOmNGhX0zZzam-31pAETyhLmAK2e3NoGBW_7TyeS",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEBLAtyHylr29kXKyt_ejh_JneuGkO9SkwPMhz42SQkiRoyMRMbdP3pQznJ99zW3T2nXubf34c1epDdvJ6riioHeW_HAsuFNFLdV4qQGT2Bg4pyX7gI7XnRGEDcV-K-2OI5cJaMzw_VqZmYGJAmkCqJFj0b_U8YpsqU93gGlKJytso3Q1AlHp6ZHDlJVVc2zaD7VSX_fizRd8XyDdnZFL7u1jveLTfB6BjIqqkDp8ewaQ="
+      ]
+    },
+    {
+      "name": "Tecity Group",
+      "brief_description": "Tecity Group is a Singapore-based single-family office with roots in the 1970s, managing wealth across a balanced public and private markets portfolio. The firm received an EY Family Office Excellence award in 2024 for governance, reflecting its institutional-quality infrastructure and professional investment management. Family governance and multi-generational wealth preservation are core mandates alongside investment return.",
+      "sectors": [
+        "Public Equities",
+        "Private Equity",
+        "Real Estate",
+        "Fixed Income"
+      ],
+      "geography": "Singapore and Southeast Asia emphasis with global diversification.",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Singapore",
+      "source_urls": [
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFShyrmdatoPz9-nwffpLTCy21MZjZ3_d0754jdvOmlbMctpgkHq219ZJpnk6gdif1kUTHV9M-OOAs1cYyNlLtqyEiq_YJyGd1kmLIllXl6BPOJJOHXDcRYXNKRJEo55NH4AfvhW-cxuRtjIKSXbB0bPcyNjH4Ue5amDiIDMuymx_D3XfVFfcIGKvEhwvLjIBVIgFPjwVMk5X3Y9C37jfI=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGtwY8QPyU97uGGDjGtlcZNaezm7JigRQIh7UKuA-ZJdJJzVROFBDe3WN1z_xArHl774HmTec8a-CK5ztmM6tGqZFmQBE87hT7QU2zd0BBIgq-IYYaSPhlgRSAljK03f9uG-vKBbTOJUlRoQj_GHvDALvhITibmV7paMTLXA2pzF40tNewLgA="
+      ]
+    },
+    {
+      "name": "K3 Ventures",
+      "brief_description": "K3 Ventures is a Singapore-based venture capital firm founded in 2015 by Kuok Meng Xiong, grandson of tycoon Robert Kuok. The firm focuses on early-stage technology companies, investing in startups that aim to tackle significant global challenges. K3 Ventures emphasizes collaboration and partnership with founders, providing capital, operational support, and mentorship to help startups grow effectively.",
+      "sectors": [
+        "Technology",
+        "Agtech",
+        "Consumer Products",
+        "Edtech",
+        "SaaS",
+        "Healthcare",
+        "Finance",
+        "Food and Agriculture",
+        "Transportation",
+        "Enterprise Solutions",
+        "Web3",
+        "AI & Deep Tech",
+        "Space Economy"
+      ],
+      "geography": "Primarily invests in Asia, particularly Southeast Asia, with some global investments including the US and UK.",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "391B Orchard Road, Ngee Ann City Tower B #14-08, Singapore 238874",
+      "source_urls": [
+        "https://www.google.com/search?q=K3+Ventures+investment+focus",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE3Ac0T2IDg1OHWLaP8TmUEuNqjnQdQoNIM0mSlhfnQ4XtByWkZhXF9L87W6TvmsrDhGLcB6TJ_FJTv7pCgbzksS39PGcAKASMf6GVFZbFnVgqgAc9exPgKLLu0oWz2mkIRhsb5-g==",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQETqncGzS1vyI8s_KPOhLnKYGWOAojC7w-QG2WltQrsr6P1wJ04M58ELUSr0S8hOUraSvXRe67norr2_x3BsJ6nvYfuInpgQQQQbXaNpY64XMmej6Azcdb2IPbs0SyRKLY0wpuVkQ==",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGuhbqKXNeno6S_rxJoJt44n9CfeOr64jRSHRp-icRK4u8G4uFYOFNMjUhQdlJskiYqDZkhgY8NY0lSUbvQTRBvKi_if3rVlzd5IAm_7G3ViOiZKikaV7fmN3xC2KgoS-EOccHSuYGMb1ti_ZIk7T1VMQ==",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFsylwXP3UwQXwU-7OGvrWYnpS3DIwcbPs4Xd9-2_25zFo6PCZ7dakOJbFgfoh8o3Bilr18sjVuMgXeYUt-LW38UqI2kOJvbIWf4PpDPofyAGrqMuDWoG5Ppir88RYyzjMEQlQ=",
+        "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGXomAPLLuYQq9sbhjQGLZLYFXA_xhjvJitHMHsziYHRYyBleMKZ1oICDodVsK8uT0r2xdmlkNUcmcVu7S--3xu9KnEz5JtetMc3Gnkugp-MAmDZUKqFRr-0WYFqxrq3s-2w7LvoISz0mpx6A="
+      ]
+    }
+  ]
+}
