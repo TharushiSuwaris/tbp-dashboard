@@ -36,6 +36,30 @@ export type Classification =
   | "Monitor / Secondary Prospect"
   | "Not Currently Suitable";
 
+// ── Multi-circle scoring (Family Office, Angel Investor,
+//    Institutional/Sovereign, Strategic Operational Partner,
+//    Capital Advisory/Introducer) ─────────────────────────────
+export interface CategoryScore {
+  categoryName: string;
+  score: number;
+  maxPoints: number;
+  explanation: string;
+}
+
+export interface CircleProspect {
+  id: string;
+  prospect_name: string;
+  circle: string;
+  country: string;
+  totalScore: number;
+  classification: Classification;
+  priority: string;
+  email?: string;
+  address?: string;
+  sectors: string[];
+  categories: CategoryScore[];
+}
+
 export type Region =
   | "North America"
   | "United Kingdom & Europe"

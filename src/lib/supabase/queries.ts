@@ -1,5 +1,10 @@
 import { supabase } from "./client";
-import type { Prospect, Task, Document } from "@/types";
+import type { Prospect, Task, Document, CircleProspect, CategoryScore } from "@/types";
+
+// New multi-circle prospects use these ID prefixes (see push_multi_circle_to_supabase.py).
+// Excluded here so the original Family-Office-only view is completely unaffected by them -
+// they belong on the new /dashboard/circles page instead, which reads the tables meant for them.
+const CIRCLE_ID_PREFIXES = ["fo-", "ang-", "ins-", "sop-", "cai-"];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function flattenProspect(row: any): Prospect {
@@ -84,13 +89,65 @@ const PROSPECT_SELECT = `
 
 // ── PROSPECTS ─────────────────────────────────────────────────
 export async function getProspects(): Promise<Prospect[]> {
-  const { data, error } = await supabase
-    .from("prospects")
-    .select(PROSPECT_SELECT);
+  let query = supabase.from("prospects").select(PROSPECT_SELECT);
+  for (const prefix of CIRCLE_ID_PREFIXES) {
+    query = query.not("id", "like", `${prefix}%`);
+  }
+  const { data, error } = await query;
   if (error) throw new Error(error.message);
   return (data ?? [])
     .map(flattenProspect)
     .sort((a, b) => b.suitability_score - a.suitability_score);
+}
+
+// ── MULTI-CIRCLE PROSPECTS ───────────────────────────────────
+export async function getCircleProspects(): Promise<CircleProspect[]> {
+  const { data: prospectRows, error: prospectError } = await supabase
+    .from("prospects")
+    .select("*, prospect_sources(email, address), prospect_sectors(sector)")
+    .or(CIRCLE_ID_PREFIXES.map((p) => `id.like.${p}%`).join(","));
+  if (prospectError) throw new Error(prospectError.message);
+
+  const { data: circleScoreRows, error: circleScoreError } = await supabase
+    .from("prospect_circle_scores")
+    .select("*");
+  if (circleScoreError) throw new Error(circleScoreError.message);
+
+  const { data: categoryRows, error: categoryError } = await supabase
+    .from("prospect_category_scores")
+    .select("*");
+  if (categoryError) throw new Error(categoryError.message);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (circleScoreRows ?? []).map((cs: any) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const prospect = (prospectRows ?? []).find((p: any) => p.id === cs.prospect_id);
+    const categories: CategoryScore[] = (categoryRows ?? [])
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .filter((c: any) => c.prospect_id === cs.prospect_id && c.circle === cs.circle)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .map((c: any) => ({
+        categoryName: c.category_name,
+        score: c.score,
+        maxPoints: c.max_points,
+        explanation: c.explanation,
+      }));
+
+    return {
+      id: cs.prospect_id,
+      prospect_name: prospect?.prospect_name ?? cs.prospect_id,
+      circle: cs.circle,
+      country: prospect?.country ?? "",
+      totalScore: cs.total_score,
+      classification: cs.classification,
+      priority: cs.priority,
+      email: prospect?.prospect_sources?.email ?? undefined,
+      address: prospect?.prospect_sources?.address ?? undefined,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      sectors: (prospect?.prospect_sectors ?? []).map((s: any) => s.sector),
+      categories,
+    } as CircleProspect;
+  }).sort((a, b) => b.totalScore - a.totalScore);
 }
 
 export async function updateProspectStage(

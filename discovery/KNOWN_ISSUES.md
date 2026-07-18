@@ -125,9 +125,21 @@ Nothing here is blocking current work — this exists so none of it gets forgott
     Worth remembering to close the file before rerunning a scoring script if it's been opened for
     review.
 
+## Database / Supabase push
+
+17. **`push_multi_circle_to_supabase.py`'s new-prospect ID assignment isn't resumable
+    yet.** IDs (`fo-001`, `ang-001`, etc.) are assigned deterministically by sorting
+    (Country, Name) within each circle's current data, which works correctly for a
+    one-time population but doesn't yet track "already-assigned" IDs the way the
+    scoring scripts track "already-scored" prospects. If this script is rerun later
+    after gathering more countries, it needs the same resumability treatment
+    (persist ID assignments, only assign new ones to genuinely new prospects) rather
+    than re-deriving IDs from scratch, which could shift existing prospects' IDs if
+    the sort order changes with new entries mixed in.
+
 ## Not yet handled at all
 
-16. **No Primary/Secondary circle classification.** The original design concept allows one
+18. **No Primary/Secondary circle classification.** The original design concept allows one
     organization to belong to more than one circle (Lombard Odier genuinely fits both Family
     Office and Capital Advisory/Introducer in real gathered data) — nothing in the pipeline
     currently tracks or surfaces this; each circle's discovery/scoring runs completely
