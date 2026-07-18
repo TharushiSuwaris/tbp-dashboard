@@ -1,0 +1,160 @@
+{
+  "run_metadata": {
+    "circle": "Family Office",
+    "circle_key": "family-office",
+    "country": "Switzerland",
+    "sector": null,
+    "category": null,
+    "query": "Identify single-family offices, multi-family offices, family-controlled investment companies, family holding companies, qualified HNWI investment entities, and permanent-capital private investment groups headquartered in or primarily active in Switzerland, with exposure to trade, infrastructure, energy, logistics, digital infrastructure, real estate, ports, technology, industrial platforms, or emerging markets. Prioritize entities showing evidence of patient capital, long-horizon stewardship, and governance discipline.",
+    "date": "2026-07-14_0934",
+    "model": "gemini-2.5-flash",
+    "web_search_queries_executed": [
+      "Swiss single family office infrastructure investment",
+      "Swiss multi family office real estate digital infrastructure",
+      "Swiss family controlled investment company trade logistics",
+      "Lombard Odier family office private equity",
+      "Jacobs Holding AG investment philosophy",
+      "Pictet Group investment strategy",
+      "Partners Group patient capital",
+      "Jacobs Holding AG sectors",
+      "Lombard Odier Private Equity infrastructure",
+      "Pictet Asset Management emerging markets infrastructure"
+    ]
+  },
+  "prospects": [
+    {
+      "name": "Jacobs Holding AG",
+      "brief_description": "Jacobs Holding AG is a family-owned Swiss investment holding company headquartered in Zurich. It operates as an evergreen investor, deploying private family capital without fixed horizons, and focuses on long-term value creation. Its private equity arm, Jacobs Capital AG, targets majority stakes in high-performing European companies.",
+      "sectors": [
+        "Business Services",
+        "Consumer",
+        "Education",
+        "Healthcare",
+        "Infrastructure",
+        "Technology"
+      ],
+      "geography": "Switzerland (Headquarters), Pan-European focus for investments",
+      "email": "info@jacobscap.com",
+      "email_status": "Found",
+      "location": "Mainaustrasse 2, 8008 Z\u00fcrich, Switzerland",
+      "source_urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH1l-TbEp616U2gFLs3myMWhe1Fe4PvpYRan4Rx2psqHGsOgsBYZYDXO_KOMU95bO3jkwMgd3WGraJVnMDsiqyb1-QzX-N25dmgziXcLB_O7PJ4aTUOhQT6vRLBYNZcwR1jHTrWTb0GqQr2K5nhWir6KOUpiY2aNgUboVCjaPsiDzQy28371tJFog7p5iEBY_wslUozUtK-QLJJ_RmCMdXAkwswIMv9",
+          "title": null
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHlw_iZlZqYnKmtpj9WPrxJGtnImjEj6xE7AJgxdJJNex_dive1ZPSNC3Wy-nv-32J4lRL-N_e8xNaKosf6q1EOvFe6ECZqCtOE0WmauMXZdRSFCrrTVyv0rn_kBX8dUH_F4OjN6A==",
+          "title": "grokipedia.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH1gdCPLF7pmsDaUm_jVA_bDJ_EvpOBnraRLKHRjwEcJ1UjFUa64QuMiS1q7B6k4axpmV63VA-ySl8ecpgdurSyI9eAkyZ7d2EjiS069vWMLbkXcCcLcQwmWISUOBXMf4PCXJAVmpJnVWVSbBzdrRmqR_CtinL-VjPT5RxA9YnchvqU60YZFs63_w==",
+          "title": "jacobsfoundation.org"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEtnVozQyE-j1wZkNa63IQbOHGPP2B7m_4N_Iunu7CBi2ksEULDnJTRrPRfbCsMj5TxIQeUSiq0bWnw3D1RIQ8-MEr1Vmb9ZjeTVDbQfYpp7dhtaKkmbLqtoXzh9NczRuYFIg==",
+          "title": "jacobscap.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGO_UcofvUX-myNj5Pk1IfNpHrseeSIRxsFKl0PFWqzowWCzwoUKBGM5DjNSlNY_9tH2q4wgasFAidwNi6F8cBXQ5CJeKniSqHqdGd6TbEh5yEZ2Bi0OZWOazQ=",
+          "title": "jacobscap.com"
+        }
+      ],
+      "introduced_by": null,
+      "scoring_signals": {
+        "core_fit": "Jacobs Holding AG is a family-owned Swiss investment holding company and operates Jacobs Capital AG as its private equity arm.",
+        "capital_or_operational_orientation": "Operates as an evergreen investor, deploying private family capital without fixed horizons, focused on long-term growth and value creation.",
+        "sector_alignment": "Stated sectors include Business Services, Consumer, Education, Healthcare. Lists 'Infrastructure' as a transaction type and 'Technology bets' as an investment thesis.",
+        "governance_institutional_mindset": "Emphasizes a family ethos of agility, integrity, and entrepreneurial partnership, with principled leadership for generations to come.",
+        "strategic_adjacency_tbp": "Headquartered in Zurich, Switzerland, with a pan-European investment focus. Exposure to Business Services (logistics/digital infrastructure potential), and Infrastructure/Technology as transaction/investment types.",
+        "engagement_readiness": "Direct contact email available: info@jacobscap.com."
+      }
+    },
+    {
+      "name": "Lombard Odier",
+      "brief_description": "Lombard Odier is an independent Geneva-based Swiss private bank and asset manager, serving wealthy international families, family offices, and institutional investors. The firm offers comprehensive wealth management and investment solutions with a strong emphasis on private assets.",
+      "sectors": [
+        "Private Equity",
+        "Private Debt",
+        "Real Estate",
+        "Infrastructure",
+        "Clean Energy Transition",
+        "Digital Infrastructure",
+        "AI"
+      ],
+      "geography": "Switzerland (Headquarters, Geneva) with an international outlook and 25+ offices worldwide.",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Geneva, Switzerland",
+      "source_urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHl7m5lJcrNZrNR9ieqKByEpYAJEPEZq52tCNfTmTYtIbuzKGlVcC_0C0yE44xQIfCyQ0_N90axtjJBpke1xkxD3mUwkpD0LWiwr1d8WAVSAFKOIm6DjqqJAJLnbfQC120mBE26qes8jk9lB1SWgmQ72JVIYJjPLNmZ2K76tg==",
+          "title": null
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE6FuSZMYXTmKHWSk2IzDOIPUFXavtGR3QxTWsuJ8pizS71vIqX_Aemsb__MV-CJbPUYMQmS1aeA0tfHgBog0mGplksCA7zmik-o46cIp7CulaSS_NoBXPk8FGLg6cQcr2YXBph7qk0pnJ9gKcGf2EPUKfTclOBrL2gk1KuNXGE4WqM13lSCGMrUVatPw==",
+          "title": "lombardodier.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFu9V4hFIhkrk8GMpWGzuSU03CHFmCn1clOsXy5cPWYnMfW7s7QAvSGLtwBnGHNuO7AProGDSLOzACvdn5guVYKHVUG60YiqDAoeHfojd-W5km7ToHmwKDBP9vgjTqgtFwvxfPk4RGdl7ZlrGIXQ8NGsNd0Kj3krijB1eD0kXDx7fjOf9oB8aLV2vTSJCWOhhaCZ9zPyA==",
+          "title": "lombardodier.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFxEQWrrhluyFJBW3mG5nPdyAhcTO9WXzj73ZhLyy5RiO89I7ONG3ober95Afi2pqRqCGwFVGaYIPr8Hiylosn07yADRqMSbuxJYOhYLy8zK95CGeiPl855DbhqZxnny69c",
+          "title": "lombardodier.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGP0sxMYP_pOXrxWPbWcHzfCVjk9xsbDi3YxDsDy8vzusNh5M8GrfpMxbFSaE87CSYrKS8haTqJJ0VYyQ-Rjq0iXE9LmNqNVZzK44-8ZEpI4bio8drlp-dMyYLBLyUl2Fwdjje2WMw8Cld__nGyw-57LtlJV2eHJfNdYSwDI7_Y5BsvXc76qEkiJKtxDJzvVAXcHA==",
+          "title": "lombardodier.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGe6fYhejP5Hekc9JRj6mC_o9ta67rUIOICq4NvM7OrCLqx4fPfQrilEl8IA6S40KkHinVuNq9PnrKnGKWiAdK6F-iSaS39GxRK9idlcRvjtkEVyinQU9gvb4VL1YgghRx7KdXa6oOCN5UmlfjP_fesgt5vZK2bk27N4hXQ6Pka6YQgWJeX8vgFJjNzzccFdx6h8Ncu1KocT9e_4uKMhlQbteA1qbzCuaNe6HdBd4JtZfR8EFBNgPvMAhgSwccvcFoNrQLfgSAmY1MkBLJvdw==",
+          "title": "morningstar.com"
+        }
+      ],
+      "introduced_by": null,
+      "scoring_signals": {
+        "core_fit": "Self-describes as a Swiss Private Bank and independent wealth/asset manager for private and institutional clients, explicitly serving 'wealthy international families/family office'.",
+        "capital_or_operational_orientation": "Focuses on 'long-term investment strategy', 'patient investors due to lower liquidity', and aims to 'preserve, grow and transfer wealth to future generations'.",
+        "sector_alignment": "Core focus areas include 'private equity, private debt, real estate, and infrastructure', with emphasis on 'clean energy transition, and the growth of digital infrastructure'.",
+        "governance_institutional_mindset": "Highlights '225 years of stability' and 'agile responses to changing economic and political conditions', alongside a 'rigorous approach to selection' in private assets.",
+        "strategic_adjacency_tbp": "Headquartered in Geneva, with strong, stated focus on infrastructure, clean energy, and digital infrastructure relevant to global corridors.",
+        "engagement_readiness": "No direct generic contact email (e.g., info@ or ir@) found in provided search snippets."
+      }
+    },
+    {
+      "name": "Swiss Family Partners",
+      "brief_description": "Swiss Family Partners is an owner-operated Multi-Family Office in Switzerland. They co-invest their own capital alongside clients across real assets, structured finance, and direct investments, focusing on long-term growth and entrepreneurial values.",
+      "sectors": [
+        "Real Estate",
+        "Equity Stakes",
+        "Digital Assets",
+        "AI",
+        "Robotics",
+        "Health Solutions"
+      ],
+      "geography": "Switzerland",
+      "email": "info@swiss-fp.com",
+      "email_status": "Found",
+      "location": "Switzerland (implied from name and website, founders' emails)",
+      "source_urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGzr-lOUwkKUWCLZ_TciE5SiLemFYd5S9ihYpqDfmC71WFN8h3sWZT8_ghGtB4-J5o9Yk4lO50m0ljQbv0JvJtr855pypmlJpm72Y3mJCTWRA6dBnc=",
+          "title": "swiss-fp.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH58yARZoHf33SPAfgcZtBs-qy2MuI-dQKZJTEMkjUacYagEdVAawikCE5Z5ux534Z462IpiM-DlGKyIBknscV86bb3L-UbI7gzEVI4weWo3DMU7jjnIWci-GwjXQ==",
+          "title": null
+        }
+      ],
+      "introduced_by": null,
+      "scoring_signals": {
+        "core_fit": "Explicitly self-describes as an 'owner-operated Multi-Family Office' and 'independent Swiss family office'.",
+        "capital_or_operational_orientation": "States 'Built for the long term. Structured with discipline.', 'think and act as co-investors with a long-term focus' in real estate, and highlights a 'long-term vision' for mid-sized businesses.",
+        "sector_alignment": "Core investment areas are 'Real Estate Portfolio', 'Equity Stakes and Financing', and 'Digital Assets'. Also emphasizes 'AI and robotics' as important investment areas.",
+        "governance_institutional_mindset": "Highlights being 'Structured with discipline', 'Rooted in Family Values. Driven by Entrepreneurship', and having 'Seasoned leaders, clear responsibilities'.",
+        "strategic_adjacency_tbp": "Swiss-based, with exposure to Real Estate, Digital Assets, AI, and Robotics, which are adjacent to digital infrastructure and industrial platforms.",
+        "engagement_readiness": "Direct contact email available: info@swiss-fp.com, along with individual founder emails."
+      }
+    }
+  ]
+}

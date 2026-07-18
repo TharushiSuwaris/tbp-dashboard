@@ -1,0 +1,123 @@
+{
+  "run_metadata": {
+    "circle": "Angel Investor",
+    "circle_key": "angel-investor",
+    "country": "Switzerland",
+    "sector": null,
+    "category": null,
+    "query": "Identify angel investors, strategic capital connectors, private-market advisers, and ecosystem partners with early-stage or emerging-opportunity investment interest headquartered in or primarily active in Switzerland, with exposure to trade, infrastructure, energy, logistics, digital infrastructure, fintech, technology, or emerging markets, valued for network quality and ability to support early visibility rather than capital scale alone. Prioritize entities showing evidence of patient capital, long-horizon stewardship, and governance discipline.",
+    "date": "2026-07-14_0946",
+    "model": "gemini-2.5-flash",
+    "web_search_queries_executed": [
+      "angel investors Switzerland early stage trade infrastructure energy logistics digital infrastructure fintech technology emerging markets patient capital",
+      "venture capital Switzerland long-horizon stewardship early-stage infrastructure energy fintech",
+      "private market advisors Switzerland strategic partnerships early visibility technology emerging markets",
+      "family office Switzerland patient capital trade infrastructure energy digital infrastructure",
+      "strategic capital connectors Switzerland early stage technology logistics"
+    ]
+  },
+  "prospects": [
+    {
+      "name": "Strategic Swiss Partners",
+      "brief_description": "Strategic Swiss Partners is a boutique management and financial advisory firm headquartered in Switzerland, authorized under FINSA. It connects investors, governments, and businesses with strategic opportunities, partnerships, and market entry solutions, particularly focusing on private equity, investment advisory, project finance, and emerging markets, including trade finance.",
+      "sectors": [
+        "Private Equity",
+        "Investment Advisory",
+        "Transaction Support",
+        "Mergers & Acquisitions",
+        "Project Finance",
+        "Emerging Markets",
+        "Trade Finance"
+      ],
+      "geography": "Switzerland",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Switzerland",
+      "source_urls": [
+        {
+          "url": "https://www.strategicswisspartners.com/",
+          "title": null
+        }
+      ],
+      "introduced_by": null,
+      "scoring_signals": {
+        "core_fit": "explicitly describes itself as a 'leading boutique management and financial advisory firm' and provides services across 'Private Equity, Investment Advisory, Project Finance and Emerging Markets'.",
+        "capital_or_operational_orientation": "delivers tailored solutions that optimize investment performance by unlocking the full potential of markets through its integrated advisory platform, focusing on strategic opportunities, partnerships, and market entry.",
+        "sector_alignment": "stated core focuses include 'Private Equity, Investment Advisory, Project Finance and Emerging Markets' and 'Trade Finance'.",
+        "governance_institutional_mindset": "authorized under FINSA (Swiss Financial Services Act), indicating regulatory compliance and an institutional approach.",
+        "strategic_adjacency_tbp": "has affiliated offices in China, the United Arab Emirates and Malaysia, and focuses on 'Emerging Markets' and 'Trade Finance', which plausibly overlaps with global trade and infrastructure corridors.",
+        "engagement_readiness": "No specific named decision-maker or direct public-facing investment email found; website offers a general contact form. Needs Verification."
+      }
+    },
+    {
+      "name": "Global Strategic Capital AG",
+      "brief_description": "Global Strategic Capital is an independent research boutique and investment advisor based in Switzerland, with a clear focus on innovative technologies and structural future trends. It identifies high-potential, disruptive companies early on and makes them accessible to investors.",
+      "sectors": [
+        "Technology",
+        "Artificial Intelligence",
+        "Green Tech",
+        "AI Infrastructure",
+        "Space Technology",
+        "Quantum Computing"
+      ],
+      "geography": "Switzerland",
+      "email": "db@globalstrategic.ch",
+      "email_status": "Found",
+      "location": "Switzerland",
+      "source_urls": [
+        {
+          "url": "https://globalstrategic.ch/",
+          "title": null
+        }
+      ],
+      "introduced_by": null,
+      "scoring_signals": {
+        "core_fit": "explicitly self-describes as an 'independent research boutique and investment advisor' focusing on 'innovative technologies and structural future trends'.",
+        "capital_or_operational_orientation": "focuses on 'identifying high-potential, disruptive companies early on' and making them accessible to investors, with its CEO shaping 'the strategic direction of the company'.",
+        "sector_alignment": "stated core focus includes 'artificial intelligence, green tech, AI infrastructure, space technology, and quantum computing'.",
+        "governance_institutional_mindset": "Board of Directors includes high-profile individuals like a 'Professor Emeritus of the University of St. Gallen and former Vice Chairman of the Swiss National Bank', and a 'Lawyer and attorney-at-law, former General Counsel of Credit Suisse (Switzerland)'.",
+        "strategic_adjacency_tbp": "sector focus on 'AI infrastructure' and 'Green Tech' directly aligns with digital infrastructure and energy corridors.",
+        "engagement_readiness": "Daniel Br\u00fchwiler, CEO and Founder, has a direct contact email listed: db@globalstrategic.ch."
+      }
+    },
+    {
+      "name": "Swisscom Ventures",
+      "brief_description": "Swisscom Ventures is the corporate venture capital arm of Swisscom, specializing in early to growth stage technology investments. It focuses on companies aligned with Swisscom's enterprise footprint and infrastructure relevance, offering corporate access, B2B distribution lift, and a strong local brand.",
+      "sectors": [
+        "Cloud/Networking",
+        "Enterprise Software",
+        "Fintech",
+        "Climate/Energy",
+        "Industry 4.0",
+        "Digital Infrastructure"
+      ],
+      "geography": "Switzerland",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Zurich, Switzerland",
+      "source_urls": [
+        {
+          "url": "https://ventures.swisscom.com/",
+          "title": null
+        },
+        {
+          "url": "https://peony.io/blog/top-swiss-vcs-actively-funding-startups-in-2026",
+          "title": null
+        },
+        {
+          "url": "https://incubatorlist.com/en/vcs/switzerland",
+          "title": null
+        }
+      ],
+      "introduced_by": null,
+      "scoring_signals": {
+        "core_fit": "explicitly identifies as the 'corporate venture capital arm of Swisscom' and is described as a 'strategic but financially driven CVC'.",
+        "capital_or_operational_orientation": "provides 'corporate access to Swiss enterprise customers, B2B distribution lift, and strong local brand', indicating an operational and strategic capability beyond mere capital provision.",
+        "sector_alignment": "stated core focuses include 'Cloud/networking, enterprise software, fintech, climate/energy, Industry 4.0', aligning with digital infrastructure, fintech, and energy.",
+        "governance_institutional_mindset": "being the corporate venture capital arm of Swisscom, it benefits from the institutional backing and governance of a large established corporation.",
+        "strategic_adjacency_tbp": "investments are aligned with 'Swisscom's enterprise footprint' and 'infrastructure relevance', including 'cloud/networking' and 'climate/energy', directly overlapping with digital infrastructure and energy corridors.",
+        "engagement_readiness": "No specific named decision-maker or direct investment-related email found in the provided snippets or on their general ventures website; contact is primarily through a form. Needs Verification."
+      }
+    }
+  ]
+}

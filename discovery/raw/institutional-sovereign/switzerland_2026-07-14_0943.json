@@ -1,0 +1,243 @@
+{
+  "run_metadata": {
+    "circle": "Institutional / Sovereign",
+    "circle_key": "institutional-sovereign",
+    "country": "Switzerland",
+    "sector": null,
+    "category": null,
+    "query": "Identify sovereign wealth funds, infrastructure investment funds, pension funds, asset management firms, and large institutional investment platforms headquartered in or primarily active in Switzerland, with exposure to infrastructure, energy, trade, ports, and large-scale institutional investment platforms with significant capital scale. Prioritize entities showing evidence of patient capital, long-horizon stewardship, and governance discipline.",
+    "date": "2026-07-14_0943",
+    "model": "gemini-2.5-flash",
+    "web_search_queries_executed": [
+      "Partners Group infrastructure investment strategy",
+      "Partners Group contact investor relations",
+      "Partners Group governance",
+      "Partners Group sectors",
+      "Publica pension fund infrastructure investments",
+      "Publica contact investor relations",
+      "Publica investment strategy",
+      "Publica governance",
+      "UBS Asset Management infrastructure equity",
+      "UBS Asset Management real assets investment strategy",
+      "UBS Asset Management contact institutional investors",
+      "UBS Asset Management governance ESG",
+      "UBS Asset Management general email"
+    ]
+  },
+  "prospects": [
+    {
+      "name": "Partners Group",
+      "brief_description": "Partners Group is a global private markets firm with over USD 185 billion in assets under management, investing in private equity, private real estate, private debt, and private infrastructure on behalf of clients worldwide. The firm is headquartered in Switzerland and known for its long-term investment approach and focus on value creation through entrepreneurial governance.",
+      "sectors": [
+        "Private infrastructure",
+        "Energy transition",
+        "Digital infrastructure",
+        "Private equity",
+        "Private real estate",
+        "Private debt",
+        "Royalties"
+      ],
+      "geography": "Global",
+      "email": "investorrelations@partnersgroup.com",
+      "email_status": "Found",
+      "location": "Baar, Zug, Switzerland",
+      "source_urls": [
+        {
+          "url": "https://www.partnersgroup.com/en/our-firm/at-a-glance/",
+          "title": null
+        },
+        {
+          "url": "https://www.partnersgroup.com/en/contact/",
+          "title": null
+        },
+        {
+          "url": "https://www.partnersgroup.com/en/shareholders/reports-presentations/",
+          "title": null
+        },
+        {
+          "url": "https://www.partnersgroup.com/en/private-markets/private-infrastructure/",
+          "title": null
+        },
+        {
+          "url": "https://www.partnersgroup.com/en/private-markets/private-equity/",
+          "title": null
+        },
+        {
+          "url": "https://www.partnersgroup.com/en/private-markets/private-real-estate/",
+          "title": null
+        },
+        {
+          "url": "https://www.partnersgroup.com/en/private-markets/private-debt/",
+          "title": null
+        },
+        {
+          "url": "https://www.partnersgroup.com/en/private-markets/royalties/",
+          "title": null
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEq0Go_ZNYF8Jd1cDb8IPFEIjtfe2mb1-d2b0g7BQFU5EhVtJTZT9bxmpeGJhg5j7FO0YPDR8Wgr-P-u48qyfUuSyURZGd3rbIAUKeWljceEwgFRFJjA1oLUWN8eK9UPJaeuuP5Bl89JLB8JfmmP7ERQrtad-xsWfknsEYCFPlqTgFLEi1GAtAOus_MVLg=",
+          "title": "privateequityinternational.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHQOAVgRc3gJgyVOTQObzv7TXc6gFkul0ZLga4tM7cZjaew2PVv4GGgSSBuBbhvXt7v7ifqjfVyqYcZ1kseeJ-D7qAhSQL66sJysJr_cl5iv9xym07cRiL_S9soN3YvhcGrT59VxAmVEyBhcDM0TmJEVY=",
+          "title": null
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFSIxSFCQdmH6A0JIvxpCbVsv0zYjvbgRvJv6tlCdluf1OtmFTmNc3yAE_Ytisw6dwt8BShvG5huL5UIuSTlTAvcK3wJRu9xkC7Wk7_kjVX45cJD61RP-k7ql24G-TQIyVUAXePF4w=",
+          "title": "wikipedia.org"
+        }
+      ],
+      "introduced_by": null,
+      "scoring_signals": {
+        "core_fit": "Partners Group is a 'global private markets firm' investing in 'private equity, private debt, private infrastructure, private real estate and private credit'.",
+        "capital_or_operational_orientation": "The firm's ethos is rooted in 'long-term investment, active ownership' and their infrastructure strategy is designed to 'consistently generate attractive risk-adjusted returns over the long term'.",
+        "sector_alignment": "Explicitly invests in 'private infrastructure', with a focus on 'energy-transition assets, digital infrastructure', 'utilities, transportation, energy-transition assets, digital infrastructure, and other essential-service platforms'.",
+        "governance_institutional_mindset": "Partners Group pursues 'responsible ownership and integrates sustainability and impact considerations' and is 'committed to meeting high standards of corporate governance'.",
+        "strategic_adjacency_tbp": "Global infrastructure investments with themes like 'energy transition' and 'digital infrastructure', aligning with global trade, infrastructure, and energy corridors.",
+        "engagement_readiness": "'investorrelations@partnersgroup.com' email is listed on their contact page."
+      }
+    },
+    {
+      "name": "Publica, the federal pension fund",
+      "brief_description": "Publica is Switzerland's largest pension fund for the federal government and other public employers, managing pension assets with a diversified investment strategy that includes infrastructure. It is known for its responsible investing approach and long-term horizon.",
+      "sectors": [
+        "Infrastructure",
+        "Private infrastructure equity",
+        "Private infrastructure debt",
+        "Shares",
+        "Bonds",
+        "Real estate",
+        "Precious metals"
+      ],
+      "geography": "Global (for diversified investments, including infrastructure)",
+      "email": "info@publica.ch",
+      "email_status": "Found",
+      "location": "Bern, Switzerland",
+      "source_urls": [
+        {
+          "url": "https://www.publica.ch/en/about-publica/",
+          "title": null
+        },
+        {
+          "url": "https://www.publica.ch/en/investments/strategic-asset-allocation/",
+          "title": null
+        },
+        {
+          "url": "https://www.publica.ch/en/sustainability/",
+          "title": null
+        },
+        {
+          "url": "https://www.publica.ch/en/governance/",
+          "title": null
+        },
+        {
+          "url": "https://www.publica.ch/en/contact/",
+          "title": null
+        },
+        {
+          "url": "https://www.publica.ch/en/news-media/news/detail/article/publica-schweiz-groesste-pensionskasse-nimmt-neue-strategie-ins-visier/",
+          "title": null
+        },
+        {
+          "url": "https://www.publica.ch/en/news-media/news/detail/article/digital-transformation-decarbonisation-and-demographic-change-are-the-megatrends-in-infrastructure/",
+          "title": null
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG-ECGqRYdsBkm94I3aVovIVehrtqm5EaPFpsyJDTBUD2lodmQIQ6GrpVRH9CbuRzEvxFNmgEqV2NlmhNaTYlOvCh0I2pm59ALlwXgZeI9ZoOJKD67a_LbcNsNg1NDxIXKrTwDxd9tC87rhddppTkjBENBW_Hl0BLWxoAVXw-O-Ph_BzmIF19YhWtI4pgWJ4G1me3iCt0QdGafFJ20LbuTEMCJoRAtozO96Kvx8=",
+          "title": null
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFhnf9Dqr1LxxongxCpGsTYBAG_chaCqpLbbxYbSRIbNNLXUbwzkhf-Ntp5Ik7SGRjpR_u37lNLj_j7RUSIxWRDgZWQSxL-5TmgCXNaUnMQRULMSsefe7AnksjwbPHWGXhXDH0pn-UUl0AHXzrSkw=",
+          "title": null
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFHr8Fgi0dEIzesQjXieCxY62JTyzmfKYlG4svI4ZvVN23LHRPeSBd4h1JVVuLUEBJ-Irys9UGgkbnGapt6oMTsfTQrqhqcpayWP94VxB_eiDAh8IWzBCc-NTBw7kjYzpGIt6HCFWuSCJt0RO4SVvEkB51Jg7pE0YgoRqxJLNa_8sn_NcHXYlvd8w=",
+          "title": null
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFSh0ZxLH-TBD09n_thsJd7ueTNofSPEY17s6xZpyzsd0G95m2JQCntKFvYkOep4UomzjAEJfmMh1t-YQXNVGEM4rU3E3yuSmpO9MEBSWFJHdPdBLYOit1xLaiXmpllTBU_o42NRHRvIDuYMdZvkiwVC9N8CQ=",
+          "title": null
+        }
+      ],
+      "introduced_by": null,
+      "scoring_signals": {
+        "core_fit": "Publica is 'Switzerland's largest pension fund'.",
+        "capital_or_operational_orientation": "As a pension fund, Publica has an 'inherently long-term investment horizon' to meet liabilities, and pursues a 'four-year plan to put the new strategy in place'.",
+        "sector_alignment": "Publica's strategic asset allocation includes 'infrastructure projects', and they are investing in 'private infrastructure equities' and 'debt finance' for infrastructure.",
+        "governance_institutional_mindset": "Publica integrates 'ESG considerations across its portfolio' and is a founding member of the Swiss Association for Responsible Investments (SVVK-ASIR), and a signatory of the UN Principles for Responsible Investment.",
+        "strategic_adjacency_tbp": "Invests in 'core infrastructure' and 'foreign infrastructure projects' as part of its global private market exposures.",
+        "engagement_readiness": "'info@publica.ch' email is available on their contact page."
+      }
+    },
+    {
+      "name": "UBS Asset Management",
+      "brief_description": "UBS Asset Management is a large-scale global asset manager headquartered in Switzerland, providing traditional and alternative investment solutions to institutional, wholesale and wealth management clients worldwide. It has a significant focus on real assets, including infrastructure equity and debt.",
+      "sectors": [
+        "Infrastructure equity",
+        "Infrastructure debt",
+        "Real estate",
+        "Private equity",
+        "Energy / energy transition",
+        "Utilities",
+        "Communication",
+        "Transportation",
+        "Social infrastructure"
+      ],
+      "geography": "Global",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Zurich, Switzerland",
+      "source_urls": [
+        {
+          "url": "https://www.ubs.com/global/en/asset-management/who-we-are.html",
+          "title": null
+        },
+        {
+          "url": "https://www.ubs.com/global/en/asset-management/investment-capabilities/alternatives/real-assets/infrastructure.html",
+          "title": null
+        },
+        {
+          "url": "https://www.ubs.com/global/en/asset-management/sustainable-investing.html",
+          "title": null
+        },
+        {
+          "url": "https://www.ubs.com/global/en/asset-management/responsible-investing/stewardship-governance.html",
+          "title": null
+        },
+        {
+          "url": "https://www.ubs.com/global/en/asset-management/contact.html",
+          "title": null
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFsluZKmjZ4_c4oUnpwWaC6mzKWDH-wqIQYjeL0OnI9zDBXR37bjVRICA-fsVF75fP2nMzRgQHTqeY95yauRW9NfOY0dGJqSmkrceQ6IPMT4cCfx8zzN_liF7C5tfTBUNeYhPD1ICY1VRz6dqBCkkX2p3SjvRB4qQgv0A=",
+          "title": null
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFdBLsUlyDX3uHFZIn29jllsPhT1qzXtvdRQa6PyMkB796QDb2oXudaxjhrDjalcHgxDNZLVrmjqC0q5dy71WxFVrm7cLWzBVrfEbq7CMgfnrjvxD3ndeQdF-ZoxG_SS1QQrBQnAuXF45rYHlorN7ewxCGEADxC141uVyfoHIX3ST0WZHg=",
+          "title": "ubs.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG-5O0MVyWlu2Pgf5ILcUb4wp37XYZjxYUn8bspPAo6GZ0cJEmT8ZA1NTRCzBCucCOM3s14HgbsBYJx7ookTs3tCYR9IJv34Km8i_yBPHrwd0L44g5GQ-ac6t1coz7wzwYgD6kCQpqDWhOqbQ8mo_qTzoI4YuwyRcV72jiZLJ_d3NKHlhtrNhQJqJQivJ4Y2lzescrtTdI=",
+          "title": null
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE4CBxYEoXxf0xH-xA4hzkMwB0QcXsz8KHD0kyMKy6N29ZaI3ifT5P6l_6bFwqYgWpTId0Aoq16z2Csy8bY2PaFA9g2Mi7a2DfsH7n30_6pM-SvSridmRCcslfoVnx2M9JfQ309ANAazWBwrvM4PcPOr5sDSkcxyIb3t2nG50CxXnnaD5nnelvedCiflsb_DOT6Zq8-202AmWXF6DT8GQVzcP9loeAo2mEqA1h1TJ-_9tcqDwf0g6-PTxB3QsX3xr0oB6euBipsocwo=",
+          "title": null
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFOgj5jgjtWcYDCon2fGvDZH5ShvBGAgXuJOUU1yiegbqrna5Ie7u_ZwNhY1NJPv3C1t_Skn1APdmmUxgXwc7Sk1ufXY4E0Rr432bKhPV6YBW0VoYsiTgpHyoVTheqqbsanS4LD7TrlO1v6KM-1a0kgu5tQ3LP4MW9DYBMJi7zb2reyo1WOz__mxVtFxBIk8N3bVdJ8i-X16LpfPJW9JMcHQCZx",
+          "title": null
+        }
+      ],
+      "introduced_by": null,
+      "scoring_signals": {
+        "core_fit": "UBS Asset Management is a 'large-scale asset manager' that offers 'real estate, infrastructure and private equity investment solutions'.",
+        "capital_or_operational_orientation": "Committed to 'long-term value creation' and 'enhancing the climate resilience of our real asset investments'. As 'good stewards of assets held and managed on behalf of our clients', they aim to be 'supportive, long-term shareholders'.",
+        "sector_alignment": "Explicitly invests in 'infrastructure equity and debt', and seeks to invest across 'energy / energy transition, utilities, communication, transportation, and social infrastructure'.",
+        "governance_institutional_mindset": "Strong focus on 'ESG integration' and 'responsible investment', with a 'stewardship policy' to act as 'good stewards of assets' by encouraging 'strong and effective governance'.",
+        "strategic_adjacency_tbp": "Global infrastructure investments benefiting from 'long-term macro trends such as digitalization, energy transition and demographic change'.",
+        "engagement_readiness": "General inquiry form available on their website; specific investor relations email needs verification."
+      }
+    }
+  ]
+}

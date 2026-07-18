@@ -1,0 +1,203 @@
+{
+  "run_metadata": {
+    "circle": "Strategic Operational Partner",
+    "circle_key": "strategic-operational-partner",
+    "country": "Switzerland",
+    "sector": null,
+    "category": null,
+    "query": "Identify asset owners, port operators, logistics and freight companies, energy infrastructure firms, and data-centre or digital-infrastructure operators headquartered in or primarily active in Switzerland, with exposure to ports, logistics, energy infrastructure, digital infrastructure, and real estate development capable of activating physical assets, corridors, cities, or infrastructure. Prioritize entities showing evidence of patient capital, long-horizon stewardship, and governance discipline.",
+    "date": "2026-07-14_0947",
+    "model": "gemini-2.5-flash",
+    "web_search_queries_executed": [
+      "Swiss infrastructure investors patient capital",
+      "Swiss pension funds infrastructure investments",
+      "Switzerland logistics companies infrastructure asset owners",
+      "Swiss energy infrastructure firms patient capital",
+      "Switzerland data center operators asset owners long-term",
+      "Kuehne+Nagel asset ownership real estate development",
+      "Green Datacenter AG strategy governance",
+      "Alpiq AG investor relations strategy",
+      "InfraVia Capital Partners Switzerland patient capital",
+      "Energy Infrastructure Partners AG contact email",
+      "Green Datacenter AG contact email investor relations",
+      "Alpiq AG investor relations email"
+    ]
+  },
+  "prospects": [
+    {
+      "name": "Energy Infrastructure Partners AG",
+      "brief_description": "Energy Infrastructure Partners AG (EIP) is a Swiss manager of collective assets focused on high-quality, large-scale renewables and system-critical energy infrastructure assets, with an unlimited investment horizon and a direct investment approach for institutional investors.",
+      "sectors": [
+        "Energy Infrastructure",
+        "Renewable Energies (wind, solar, hydro)",
+        "Energy Transmission and Generation",
+        "Energy Storage",
+        "Energy Efficiency"
+      ],
+      "geography": "Switzerland (primarily for direct investments for Swiss pension funds, with global reach for institutional investors)",
+      "email": "contact@energy-infrastructure-partners.com",
+      "email_status": "Found",
+      "location": "Zurich, Switzerland",
+      "source_urls": [
+        {
+          "url": "https://www.energy-infrastructure-partners.com/",
+          "title": null
+        },
+        {
+          "url": "https://ippjournal.com/en/companies/energy-infrastructure-partners-ag-eip",
+          "title": null
+        },
+        {
+          "url": "https://www.energy-infrastructure-partners.com/contact/",
+          "title": null
+        },
+        {
+          "url": "https://www.energy-infrastructure-partners.com/team-career/",
+          "title": null
+        },
+        {
+          "url": "https://www.energy-infrastructure-partners.com/imprint/",
+          "title": null
+        },
+        {
+          "url": "https://www.renewables.digital/renewable-energy-investors-switzerland/",
+          "title": null
+        }
+      ],
+      "introduced_by": null,
+      "scoring_signals": {
+        "core_fit": "Swiss manager of collective assets focused on high quality, large-scale renewables and system-critical energy infrastructure assets.",
+        "capital_or_operational_orientation": "Unlimited investment horizon. Open-ended structure with a hold-to-maturity approach. Long-term investments.",
+        "sector_alignment": "Swiss energy infrastructure, mainly targeting system-critical generation and transmission assets",
+        "governance_institutional_mindset": "clients focus primarily on pension funds, insurances and large family offices seeking investments in long-term, stable cash flow-generating assets",
+        "strategic_adjacency_tbp": "system-critical generation and transmission assets that are essential for the country's energy security",
+        "engagement_readiness": "Dedicated 'For investors' section with named contacts for Client Solutions"
+      }
+    },
+    {
+      "name": "Green Datacenter AG",
+      "brief_description": "Green Datacenter AG is a leading Swiss-based digital infrastructure platform operating hyperscale and enterprise data centers, committed to sustainable and energy-efficient operations.",
+      "sectors": [
+        "Digital Infrastructure",
+        "Data Centers",
+        "Cloud Services",
+        "Colocation"
+      ],
+      "geography": "Switzerland (headquartered in Lupfig, with operations in Zurich area, expanding into Germany)",
+      "email": "request@green.ch",
+      "email_status": "Found",
+      "location": "Lupfig, Switzerland",
+      "source_urls": [
+        {
+          "url": "https://www.green.ch/en/company/green/",
+          "title": null
+        },
+        {
+          "url": "https://www.green.ch/en/contact/",
+          "title": null
+        },
+        {
+          "url": "https://www.dcbyte.com/company/green-datacenter-ag",
+          "title": null
+        },
+        {
+          "url": "https://www.kenresearch.com/report-detail/switzerland-data-center-market",
+          "title": null
+        },
+        {
+          "url": "https://www.ifminvestors.com/media/news-and-insights/ifm-investors-announces-investment-in-leading-swiss-data-centre-operator/",
+          "title": null
+        },
+        {
+          "url": "https://www.legal500.com/guides/chapter/switzerland-data-centers-and-beyond-the-next-frontier-for-private-equity-in-switzerland-2024/",
+          "title": null
+        },
+        {
+          "url": "https://www.researchandmarkets.com/report/switzerland-data-center-market",
+          "title": null
+        },
+        {
+          "url": "https://encoradvisors.com/green-data-center-guide/",
+          "title": null
+        },
+        {
+          "url": "https://www.bcs.org/articles-opinion-and-research/how-to-implement-a-clean-green-data-centre-strategy/",
+          "title": null
+        },
+        {
+          "url": "https://www.green.ch/en/about-green/management/",
+          "title": null
+        },
+        {
+          "url": "https://www.green.ch/en/about-green/sustainability/",
+          "title": null
+        }
+      ],
+      "introduced_by": null,
+      "scoring_signals": {
+        "core_fit": "Swiss-based digital infrastructure platform operating hyperscale and enterprise data centres.",
+        "capital_or_operational_orientation": "committed to strong governance and a long-term financial strategy. Securing the necessary capital is essential for further investment in sustainable data centers.",
+        "sector_alignment": "hyperscale and enterprise data centres",
+        "governance_institutional_mindset": "committed to strong governance",
+        "strategic_adjacency_tbp": "leader in Switzerland's fast-growing data centre market, benefiting from long-term contracts with leading cloud service providers",
+        "engagement_readiness": "Direct email 'request@green.ch' and contact form available."
+      }
+    },
+    {
+      "name": "Alpiq AG",
+      "brief_description": "Alpiq AG is a leading Swiss energy company focusing on flexible energy assets, including hydropower, battery storage, and pumped-hydro, driving the European energy transition towards net-zero.",
+      "sectors": [
+        "Energy Infrastructure",
+        "Renewable Energies (hydropower, wind, solar)",
+        "Battery Energy Storage Systems (BESS)",
+        "Pumped-Hydro",
+        "Energy Generation",
+        "Energy Solutions",
+        "Energy Trading"
+      ],
+      "geography": "Switzerland (headquartered in Lausanne) and across Europe (e.g., Finland, France, Germany)",
+      "email": "investors@alpiq.com",
+      "email_status": "Found",
+      "location": "Lausanne, Switzerland",
+      "source_urls": [
+        {
+          "url": "https://www.alpiq.com/investor-relations",
+          "title": null
+        },
+        {
+          "url": "https://www.alpiq.com/about-sustainability/strategy",
+          "title": null
+        },
+        {
+          "url": "https://www.alpiq.com/media/newsroom/media-releases/detail/alpiq-sharpens-strategy-to-strengthen-its-role-in-the-european-energy-transition-1",
+          "title": null
+        },
+        {
+          "url": "https://www.alpiq.com/media/publications/annual-reports/2025/financial-review-alpiq-group",
+          "title": null
+        },
+        {
+          "url": "https://www.alpiq.com/media/publications/annual-reports/2025/foreword",
+          "title": null
+        },
+        {
+          "url": "https://www.alpiq.com/media/publications/sustainability-reports/2022/sustainability-report-2022",
+          "title": null
+        },
+        {
+          "url": "https://www.alpiq.com/contact",
+          "title": null
+        }
+      ],
+      "introduced_by": null,
+      "scoring_signals": {
+        "core_fit": "one of the leading providers of flexibility \u2013 an increasingly indispensable pillar of the energy system.",
+        "capital_or_operational_orientation": "committed to significantly increasing investments in flexible assets up to CHF 1 billion per year",
+        "sector_alignment": "flexible infrastructure, including battery storage and pumped hydro",
+        "governance_institutional_mindset": "information policy is based on transparency, topicality and continuity.",
+        "strategic_adjacency_tbp": "strengthening its role in the European energy transition",
+        "engagement_readiness": "Dedicated Investor Relations email address 'investors@alpiq.com'"
+      }
+    }
+  ]
+}

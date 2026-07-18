@@ -28,7 +28,7 @@ function parseLine(line: string): string[] {
 }
 
 function readCSV(filename: string): Record<string, string>[] {
-  const filePath = path.join(process.cwd(), "data", filename);
+  const filePath = path.join(process.cwd(), "data", "database_files", filename);
   // Strip UTF-8 BOM if present (PowerShell 5.1 adds it)
   let content = fs.readFileSync(filePath, "utf-8").replace(/^﻿/, "");
   const lines = content.trim().split(/\r?\n/).filter((l) => l.trim() !== "");
@@ -48,8 +48,16 @@ const REGION_MAP: Record<string, string> = {
   "Indonesia":             "Southeast Asia",
   "Malaysia":              "Southeast Asia",
   "Singapore":             "Southeast Asia",
+  "Southeast Asia":        "Southeast Asia",
   "Sri Lanka":             "South Asia",
+  "South Asia":            "South Asia",
   "New York / New Jersey": "North America",
+  "North America":         "North America",
+  "Uzbekistan":            "Central Asia",
+  "Kazakhstan":            "Central Asia",
+  "United Kingdom & Europe": "United Kingdom & Europe",
+  "Ireland":               "United Kingdom & Europe",
+  "United States":         "North America",
 };
 
 // ── Seed handler ──────────────────────────────────────────────────
@@ -79,17 +87,17 @@ export async function GET() {
     p2.map((r) => ({
       prospect_id:                    r.prospect_id,
       family_or_group_background:     r.family_or_group_background     || null,
-      investment_philosophy:          r.investment_philosophy           || null,
+      investment_philosophy:          r.investment_philosophy           || "",
       long_horizon_capital_indicators:  r.long_horizon_capital_indicators  === "true",
       permanent_capital_indicators:     r.permanent_capital_indicators     === "true",
       direct_investment_activity:       r.direct_investment_activity       === "true",
       governance_stewardship_language:  r.governance_stewardship_language  === "true",
-      infrastructure_exposure:        r.infrastructure_exposure        || null,
-      energy_exposure:                r.energy_exposure                || null,
-      logistics_transport_exposure:   r.logistics_transport_exposure   || null,
-      real_estate_exposure:           r.real_estate_exposure           || null,
-      technology_digital_exposure:    r.technology_digital_exposure    || null,
-      emerging_markets_exposure:      r.emerging_markets_exposure      || null,
+      infrastructure_exposure:        r.infrastructure_exposure        || "None",
+      energy_exposure:                r.energy_exposure                || "None",
+      logistics_transport_exposure:   r.logistics_transport_exposure   || "None",
+      real_estate_exposure:           r.real_estate_exposure           || "None",
+      technology_digital_exposure:    r.technology_digital_exposure    || "None",
+      emerging_markets_exposure:      r.emerging_markets_exposure      || "None",
     })),
     { onConflict: "prospect_id" }
   );
@@ -103,7 +111,7 @@ export async function GET() {
       prospect_id:        r.prospect_id,
       website:            r.website            || null,
       public_source_url:  r.public_source_url  || null,
-      source_quality:     r.source_quality     || null,
+      source_quality:     r.source_quality     || "Public source",
       key_public_contacts: r.key_public_contacts || null,
       email:              r.email              || null,
       address:            r.address            || null,
@@ -139,7 +147,7 @@ export async function GET() {
       prospect_id:                  r.prospect_id,
       tbp_relevance_summary:        r.tbp_relevance_summary        || null,
       best_tbp_entry_point:         r.best_tbp_entry_point         || null,
-      suggested_conversation_angle: r.suggested_conversation_angle || null,
+      suggested_conversation_angle: r.suggested_conversation_angle || "",
       recommended_contact_route:    r.recommended_contact_route    || null,
     })),
     { onConflict: "prospect_id" }
@@ -154,8 +162,8 @@ export async function GET() {
       prospect_id:          r.prospect_id,
       pipeline_stage:       r.pipeline_stage       || "Identified",
       assigned_owner:       r.assigned_owner        || "TBP Advisory",
-      next_action:          r.next_action           || null,
-      next_action_date:     r.next_action_date      || null,
+      next_action:          r.next_action           || "Research and qualify",
+      next_action_date:     r.next_action_date      || "2026-07-31",
       briefing_pack_status: r.briefing_pack_status  || "Not Generated",
     })),
     { onConflict: "prospect_id" }
@@ -190,15 +198,14 @@ export async function GET() {
 
   // ── Tasks (mock data, unchanged) ──────────────────────────────
   const taskRows = mockTasks.map((t) => ({
-    id:               t.id,
-    title:            t.title,
-    description:      t.description,
-    assigned_to:      t.assignedTo,
-    status:           t.status,
-    priority:         t.priority,
-    due_date:         t.dueDate,
-    linked_prospects: t.linkedProspects,
-    tags:             t.tags,
+    id:          t.id,
+    title:       t.title,
+    description: t.description,
+    assigned_to: t.assignedTo,
+    status:      t.status,
+    priority:    t.priority,
+    due_date:    t.dueDate,
+    tags:        t.tags,
   }));
   const { error: te } = await supabase.from("tasks").upsert(taskRows, { onConflict: "id" });
   if (te) errors.push(`tasks: ${te.message}`);
@@ -214,7 +221,6 @@ export async function GET() {
     last_updated:      d.lastUpdated,
     approved_internal: d.approvedInternal,
     approved_external: d.approvedExternal,
-    linked_prospects:  d.linkedProspects,
     notes:             d.notes,
     category:          d.category,
   }));

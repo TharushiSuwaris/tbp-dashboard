@@ -1,12 +1,13 @@
 """
-TBP Family Office Discovery Engine.
+TBP Multi-Circle Discovery Engine.
 
-Input: a country (and optionally a sector / prospect category).
-Output: a raw JSON file in discovery/raw/, never touching Master_List.csv or Supabase.
+Input: a circle + a country (and optionally a sector / prospect category override).
+Output: a raw JSON file in discovery/raw/<circle>/, never touching Master_List.csv or Supabase.
 
 Usage:
-    python discover.py --country Singapore
-    python discover.py --country Indonesia --sector "digital infrastructure" --max-results 10
+    python discover.py --circle family-office --country Switzerland
+    python discover.py --circle angel-investor --country "United Kingdom" --max-results 10
+    python discover.py                                   # interactive mode, prompts for circle then loops on country
 """
 
 import argparse
@@ -23,27 +24,80 @@ SCRIPT_DIR = Path(__file__).parent
 RAW_DIR = SCRIPT_DIR / "raw"
 MODEL_NAME = "gemini-2.5-flash"
 
-TARGET_CATEGORIES = (
-    "single-family offices, multi-family offices, family-controlled investment "
-    "companies, family holding companies, qualified HNWI investment entities, "
-    "and permanent-capital private investment groups"
-)
-TARGET_SECTORS = (
-    "trade, infrastructure, energy, logistics, digital infrastructure, real "
-    "estate, ports, technology, industrial platforms, or emerging markets"
-)
+CIRCLES = {
+    "family-office": {
+        "label": "Family Office",
+        "categories": (
+            "single-family offices, multi-family offices, family-controlled investment "
+            "companies, family holding companies, qualified HNWI investment entities, "
+            "and permanent-capital private investment groups"
+        ),
+        "sectors": (
+            "trade, infrastructure, energy, logistics, digital infrastructure, real "
+            "estate, ports, technology, industrial platforms, or emerging markets"
+        ),
+    },
+    "angel-investor": {
+        "label": "Angel Investor",
+        "categories": (
+            "angel investors, strategic capital connectors, private-market advisers, "
+            "and ecosystem partners with early-stage or emerging-opportunity investment interest"
+        ),
+        "sectors": (
+            "trade, infrastructure, energy, logistics, digital infrastructure, fintech, "
+            "technology, or emerging markets, valued for network quality and ability to "
+            "support early visibility rather than capital scale alone"
+        ),
+    },
+    "institutional-sovereign": {
+        "label": "Institutional / Sovereign",
+        "categories": (
+            "sovereign wealth funds, infrastructure investment funds, pension funds, "
+            "asset management firms, and large institutional investment platforms"
+        ),
+        "sectors": (
+            "infrastructure, energy, trade, ports, and large-scale institutional "
+            "investment platforms with significant capital scale"
+        ),
+    },
+    "strategic-operational-partner": {
+        "label": "Strategic Operational Partner",
+        "categories": (
+            "asset owners, port operators, logistics and freight companies, energy "
+            "infrastructure firms, and data-centre or digital-infrastructure operators"
+        ),
+        "sectors": (
+            "ports, logistics, energy infrastructure, digital infrastructure, and real "
+            "estate development capable of activating physical assets, corridors, cities, "
+            "or infrastructure"
+        ),
+    },
+    "capital-advisory-introducer": {
+        "label": "Capital Advisory / Introducer",
+        "categories": (
+            "third-party capital advisers, private-market advisory firms, placement "
+            "agents, private banks, investment banks, and family-office introducers"
+        ),
+        "sectors": (
+            "capital introduction, private-market advisory, and investor placement "
+            "services who may bring qualified investors into opportunities, subject to "
+            "separate mandates"
+        ),
+    },
+}
 
 
-def build_query(country: str, sector: str | None = None, category: str | None = None) -> str:
-    query = f"Identify {category or TARGET_CATEGORIES} headquartered in or primarily active in {country}"
-    query += f", with a focus on {sector}" if sector else f", with exposure to {TARGET_SECTORS}"
+def build_query(country: str, circle_key: str, sector: str | None = None, category: str | None = None) -> str:
+    circle = CIRCLES[circle_key]
+    query = f"Identify {category or circle['categories']} headquartered in or primarily active in {country}"
+    query += f", with a focus on {sector}" if sector else f", with exposure to {circle['sectors']}"
     query += ". Prioritize entities showing evidence of patient capital, long-horizon stewardship, and governance discipline."
     return query
 
 
-def build_prompt(query: str, max_results: int) -> str:
-    return f"""You are a research assistant identifying family office and private-capital \
-investment prospects for a capital-advisory intelligence project.
+def build_prompt(query: str, max_results: int, category_description: str) -> str:
+    return f"""You are a research assistant identifying capital and strategic-partnership \
+prospects for a capital-advisory intelligence project.
 
 TASK: {query}
 
@@ -55,19 +109,20 @@ STRICT RULES:
 - If a field cannot be confirmed from a public source, set it to null (for email) or the exact \
 string "Needs Verification" (for text fields) — do not guess a plausible-sounding value.
 - Do not include duplicate organizations.
-- Only include organizations that plausibly fit: single-family offices, multi-family offices, \
-family-controlled investment companies, family holding companies, qualified HNWI investment \
-entities, permanent-capital private investment groups, or strategic private capital groups.
+- Only include organizations that plausibly fit: {category_description}.
+- When looking for a contact email, prefer official public-facing channels (e.g. an \
+investorrelations@ or ir@ address) over a generic info@ address, and prefer either of those over \
+a personal individual's email.
 
 For each prospect, also fill "scoring_signals" — one short, specific evidence snippet per \
 question below (a phrase or clause, not a paragraph). If your search results contain no evidence \
 for a question, write "No evidence found" rather than a generic or hedged guess:
-- family_office_fit: does the organization explicitly self-describe as a family office, holding \
-company, or family-controlled/HNWI investment entity?
-- permanent_capital_orientation: is there explicit long-term, multi-generational, or \
-stewardship-oriented language?
+- core_fit: does the organization explicitly self-describe in terms matching its target category \
+(stated type, structure, or role)?
+- capital_or_operational_orientation: is there explicit language about long-term commitment, \
+patient capital, or operational/strategic capability relevant to its role?
 - sector_alignment: which specific target sectors are a stated core focus (not just listed)?
-- governance_institutional_mindset: is there explicit governance/stewardship language, or any \
+- governance_institutional_mindset: is there explicit governance/credibility language, or any \
 speculative/short-term red flags?
 - strategic_adjacency_tbp: does geography and/or sector plausibly overlap a global trade, \
 infrastructure, energy, or digital-infrastructure corridor thesis?
@@ -88,9 +143,10 @@ text before or after it, matching exactly this shape:
       "email_status": "Found or Needs Verification",
       "location": "string",
       "source_urls": ["string", "..."],
+      "introduced_by": "string or null",
       "scoring_signals": {{
-        "family_office_fit": "string",
-        "permanent_capital_orientation": "string",
+        "core_fit": "string",
+        "capital_or_operational_orientation": "string",
         "sector_alignment": "string",
         "governance_institutional_mindset": "string",
         "strategic_adjacency_tbp": "string",
@@ -132,29 +188,33 @@ def attach_source_titles(prospects: list, title_lookup: dict) -> list:
     return prospects
 
 
-def save_raw_text(country_slug: str, timestamp: str, text: str) -> Path:
-    path = unique_path(country_slug, timestamp, suffix=".raw.txt")
-    path.write_text(text, encoding="utf-8")
-    return path
-
-
-def unique_path(country_slug: str, timestamp: str, suffix: str) -> Path:
-    path = RAW_DIR / f"{country_slug}_{timestamp}{suffix}"
+def unique_path(circle_dir: Path, country_slug: str, timestamp: str, suffix: str) -> Path:
+    path = circle_dir / f"{country_slug}_{timestamp}{suffix}"
     counter = 2
     while path.exists():
-        path = RAW_DIR / f"{country_slug}_{timestamp}_{counter}{suffix}"
+        path = circle_dir / f"{country_slug}_{timestamp}_{counter}{suffix}"
         counter += 1
     return path
 
 
-def run(country: str, sector: str | None, category: str | None, max_results: int) -> Path:
+def save_raw_text(circle_dir: Path, country_slug: str, timestamp: str, text: str) -> Path:
+    path = unique_path(circle_dir, country_slug, timestamp, suffix=".raw.txt")
+    path.write_text(text, encoding="utf-8")
+    return path
+
+
+def run(country: str, circle_key: str, sector: str | None, category: str | None, max_results: int) -> Path:
     load_dotenv(SCRIPT_DIR / ".env")
     client = genai.Client()
 
-    query = build_query(country, sector, category)
-    prompt = build_prompt(query, max_results)
+    circle = CIRCLES[circle_key]
+    query = build_query(country, circle_key, sector, category)
+    prompt = build_prompt(query, max_results, category or circle["categories"])
 
-    print(f"Searching: {query}")
+    print(f"[{circle['label']}] Searching: {query}")
+
+    circle_dir = RAW_DIR / circle_key
+    circle_dir.mkdir(parents=True, exist_ok=True)
 
     country_slug = country.strip().lower().replace(" ", "_")
     timestamp = datetime.now().strftime("%Y-%m-%d_%H%M")
@@ -173,7 +233,7 @@ def run(country: str, sector: str | None, category: str | None, max_results: int
                 print("  Response wasn't valid JSON (likely a model glitch) - retrying once...")
 
     if parsed is None:
-        raw_path = save_raw_text(country_slug, timestamp, response.text)
+        raw_path = save_raw_text(circle_dir, country_slug, timestamp, response.text)
         raise RuntimeError(
             f"Could not parse JSON from Gemini's response after retry ({last_error}). "
             f"Raw response saved to {raw_path} for manual review."
@@ -186,6 +246,8 @@ def run(country: str, sector: str | None, category: str | None, max_results: int
 
     output = {
         "run_metadata": {
+            "circle": circle["label"],
+            "circle_key": circle_key,
             "country": country,
             "sector": sector,
             "category": category,
@@ -197,8 +259,7 @@ def run(country: str, sector: str | None, category: str | None, max_results: int
         "prospects": prospects,
     }
 
-    RAW_DIR.mkdir(exist_ok=True)
-    out_path = unique_path(country_slug, timestamp, suffix=".json")
+    out_path = unique_path(circle_dir, country_slug, timestamp, suffix=".json")
     out_path.write_text(json.dumps(output, indent=2), encoding="utf-8")
 
     prospect_count = len(output["prospects"])
@@ -213,32 +274,52 @@ def run(country: str, sector: str | None, category: str | None, max_results: int
     return out_path
 
 
-def interactive_loop(sector: str | None, category: str | None, max_results: int):
-    print("TBP Family Office Discovery - interactive mode. Press Enter with no input to stop.\n")
+def prompt_circle() -> str:
+    keys = list(CIRCLES.keys())
+    print("Select a circle:")
+    for i, key in enumerate(keys, 1):
+        print(f"  {i}. {CIRCLES[key]['label']}")
+    while True:
+        choice = input("Circle number: ").strip()
+        if choice.isdigit() and 1 <= int(choice) <= len(keys):
+            return keys[int(choice) - 1]
+        print("  Invalid choice, try again.")
+
+
+def interactive_loop(circle_key: str | None, sector: str | None, category: str | None, max_results: int):
+    if circle_key is None:
+        circle_key = prompt_circle()
+    label = CIRCLES[circle_key]["label"]
+    print(f"\nTBP Discovery - {label} circle, interactive mode. Press Enter with no input to stop.\n")
     while True:
         country = input("Country to search: ").strip()
         if not country:
             print("Stopped.")
             break
         try:
-            run(country, sector, category, max_results)
+            run(country, circle_key, sector, category, max_results)
         except RuntimeError as exc:
             print(f"  Error: {exc}")
         print()
 
 
 def main():
-    parser = argparse.ArgumentParser(description="TBP Family Office Discovery Engine")
-    parser.add_argument("--country", default=None, help='e.g. "Singapore" (omit for interactive mode)')
-    parser.add_argument("--sector", default=None, help='optional, e.g. "digital infrastructure"')
-    parser.add_argument("--category", default=None, help='optional, e.g. "multi-family offices"')
+    parser = argparse.ArgumentParser(description="TBP Multi-Circle Discovery Engine")
+    parser.add_argument("--country", default=None, help='e.g. "Switzerland" (omit for interactive mode)')
+    parser.add_argument(
+        "--circle", choices=list(CIRCLES.keys()), default=None,
+        help="circle to search (omit to be prompted in interactive mode; defaults to family-office in scripted mode)",
+    )
+    parser.add_argument("--sector", default=None, help='optional override, e.g. "digital infrastructure"')
+    parser.add_argument("--category", default=None, help='optional override, e.g. "multi-family offices"')
     parser.add_argument("--max-results", type=int, default=12)
     args = parser.parse_args()
 
     if args.country:
-        run(args.country, args.sector, args.category, args.max_results)
+        circle_key = args.circle or "family-office"
+        run(args.country, circle_key, args.sector, args.category, args.max_results)
     else:
-        interactive_loop(args.sector, args.category, args.max_results)
+        interactive_loop(args.circle, args.sector, args.category, args.max_results)
 
 
 if __name__ == "__main__":

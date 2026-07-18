@@ -1,0 +1,128 @@
+{
+  "run_metadata": {
+    "circle": "Capital Advisory / Introducer",
+    "circle_key": "capital-advisory-introducer",
+    "country": "Switzerland",
+    "sector": null,
+    "category": null,
+    "query": "Identify third-party capital advisers, private-market advisory firms, placement agents, private banks, investment banks, and family-office introducers headquartered in or primarily active in Switzerland, with exposure to capital introduction, private-market advisory, and investor placement services who may bring qualified investors into opportunities, subject to separate mandates. Prioritize entities showing evidence of patient capital, long-horizon stewardship, and governance discipline.",
+    "date": "2026-07-14_0948",
+    "model": "gemini-2.5-flash",
+    "web_search_queries_executed": [
+      "private market advisory firms Switzerland patient capital",
+      "placement agents Switzerland long-term investors",
+      "capital introduction Switzerland governance discipline",
+      "investment banks Switzerland private markets long horizon",
+      "family office introducers Switzerland patient capital",
+      "private equity advisory Switzerland",
+      "private debt advisory Switzerland"
+    ]
+  },
+  "prospects": [
+    {
+      "name": "Patrimonium Asset Management AG",
+      "brief_description": "An independent Swiss asset management group active across private markets, including private equity, private credit, real estate, and infrastructure investments. Their private equity arm advises on buyout and growth investments in small and medium-sized companies in the DACH region, focusing on active partnerships to implement growth strategies.",
+      "sectors": [
+        "Private Equity",
+        "Private Credit",
+        "Real Estate",
+        "Infrastructure",
+        "Industrial",
+        "Consumer Goods",
+        "Services",
+        "Healthcare"
+      ],
+      "geography": "Switzerland, Germany, Austria (DACH region), neighboring European countries",
+      "email": "privateequity@patrimonium.ch",
+      "email_status": "Found",
+      "location": "Crissier (near Lausanne), Zurich, Baar, Switzerland",
+      "source_urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEdjXyE-bjZp-aC_C5OEyE5sADq-IAne2bjBY2toKaB-aCJAypIYwG3kFRtlNDnqD72CLkrgT53uiMa_bwjtKTo68WzXtCVuInRm3nJ4uLTyXYE-BbNmc3DR2d8ceFd_RyWpHDqeV4YWVudqyypNO-ybGsVVM_R4rqt--CwWuqK_cECDY3pWA==",
+          "title": "seca.ch"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHxUu3nJh1E8wZxxBIa70l_OxgAhd9DoajOvFlONDeGDqB7wXvKv1oihf_K6-_d7MoP5a3-ctgdAdF49Zx_36KBz85znxfwAOyK4Q2EB2YABGiTanZtbbRmtjIcT9uRzOiFIA8V1Iv2PPHF_LmsHe4rvUI=",
+          "title": "patrimonium.ch"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHMHxKDJsieUrUIZ8WJ47w0jKou1IA2FSRUVuFvqLIjVnP8Jnd9KdcrnMahdKibsqjU6ojURbq7ymvVEgg7Mj03PQn_s5nLhAeUY2nNUEw1VQ4ToAbBy4mdmvtwC81MFfadNzxU8xKYzt-Hd0CPQ74p9Wc9sPbh1NSyN-DZsvU1Frxejh22R35ZxdsR2bbNLzo1O9lOUY-K4cWNSQc=",
+          "title": "patrimonium.ch"
+        }
+      ],
+      "introduced_by": null,
+      "scoring_signals": {
+        "core_fit": "Patrimonium Asset Management AG, an independent Swiss asset management group active in all areas of private markets: real estate, private credit, private equity and infrastructure investments.",
+        "capital_or_operational_orientation": "We aim to create value by actively partnering with business owners and their management to implement growth, buy & build, internationalization and digital transformation strategies.",
+        "sector_alignment": "small and medium-sized companies active in industrial, consumer goods or services sectors. real estate, private credit, private equity and infrastructure investments.",
+        "governance_institutional_mindset": "This responsible approach is also reflected in the strict separation between our debt and equity financing activities, with no migration between the two.",
+        "strategic_adjacency_tbp": "geographic focus on Switzerland, Germany, and neighboring European countries. Infrastructure investments are a core activity.",
+        "engagement_readiness": "Email address privateequity@patrimonium.ch and phone number +41 58 787 00 70 available."
+      }
+    },
+    {
+      "name": "21 Capital Advisors",
+      "brief_description": "A Zurich-based independent placement agent and third-party distribution firm representing alternative investment funds, including hedge funds, private equity, private credit, and real estate, to institutional investors across Switzerland.",
+      "sectors": [
+        "Alternative Investment Funds",
+        "Hedge Funds",
+        "Private Equity",
+        "Private Credit",
+        "Real Estate"
+      ],
+      "geography": "Switzerland (focus on Swiss institutional investors)",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Zurich, Switzerland",
+      "source_urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG4uJ38hlDFL1GtO4xgQKhXZ2XU93MpFLBtta3EIC9oB0jJAc6TeeONqERUDl6StuxlPUsPrTB0k_eibBL84gNGiw8te0UtNoX4DpbT1eh0mEZ2vqr14K4YiUXK60g=",
+          "title": "21capitaladvisors.com"
+        }
+      ],
+      "introduced_by": null,
+      "scoring_signals": {
+        "core_fit": "21 Capital Advisors is a Zurich-based third-party distribution firm representing alternative investment funds to institutional investors across Switzerland.",
+        "capital_or_operational_orientation": "Full-cycle support from introduction to close and beyond. Ongoing relationship development.",
+        "sector_alignment": "Hedge funds, PE, private credit & real estate.",
+        "governance_institutional_mindset": "They work with 'Swiss institutional investors' who have 'extensive due diligence requirements'. Expert guidance on fund positioning, marketing materials, and investor landscape.",
+        "strategic_adjacency_tbp": "Focus on Swiss institutional capital, which can be deployed globally across various asset classes, including those relevant to trade, infrastructure, energy, or digital infrastructure. (Implicit)",
+        "engagement_readiness": "No direct contact email or named decision-maker found in the snippets. Needs Verification."
+      }
+    },
+    {
+      "name": "Lombard Odier",
+      "brief_description": "A long-established Swiss private banking and wealth management firm, offering private banking, asset management, and technology solutions. They aim to create sustainable value and drive long-term performance for clients through innovative solutions, including exposure to private equity and credit markets.",
+      "sectors": [
+        "Private Banking",
+        "Wealth Management",
+        "Asset Management",
+        "Private Equity",
+        "Private Credit"
+      ],
+      "geography": "Geneva, Switzerland (headquarters) with an international outlook and over 25 offices worldwide",
+      "email": null,
+      "email_status": "Needs Verification",
+      "location": "Geneva, Switzerland",
+      "source_urls": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFMpa6gDXAKaDzGcl07_9xXoCjuPoUfNhUE16pGpzoILQZK8woOFVy0FPuS6y3_pNydTRznak6jW7_x5GmYMHKsEcwft5-iXzzMnDrrCNeClkdST71DWoQquIt1oSqWIxkN",
+          "title": "lombardodier.com"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEVF7zlP6dVpxoQNpSjqCFPwAY9xAV-PxhXYd3np2yfxkoth6-XmttWUWX5IluZa25V-3gLIPwuxut7ZlwlQFYBCUCUXB5qRrKXwBQIu4l3tS0waMGACUL5N1QDsaL8UrW20f2JESksp6sZLtBIr-MtKOtYr5kcwdBdXGrEOCKxZGlUEEFpKqhDJoqr5v4o8Q==",
+          "title": "lombardodier.com"
+        }
+      ],
+      "introduced_by": null,
+      "scoring_signals": {
+        "core_fit": "Lombard Odier | Swiss Private Bank Since 1796. Our teams manage specialised strategies across private equity and credit markets.",
+        "capital_or_operational_orientation": "Swiss private banking offers exactly that: a steady, trusted anchor for long-term financial decisions. We guide founders in shaping personal wealth and plan for future generations.",
+        "sector_alignment": "Private equity and credit markets. Real estate.",
+        "governance_institutional_mindset": "As an independent Swiss private bank with over 230 years of experience and a strong balance sheet, we offer stability, discretion, and global expertise.",
+        "strategic_adjacency_tbp": "Global outlook with local expertise in each of our target markets. Engagement with entrepreneurs implies interest in underlying businesses potentially in trade, infrastructure, energy, or digital infrastructure sectors.",
+        "engagement_readiness": "No specific investor relations email or named decision-maker found in the snippets. Needs Verification."
+      }
+    }
+  ]
+}
