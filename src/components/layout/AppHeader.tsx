@@ -1,6 +1,27 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { clearPortalSession, getPortalSession, type PortalSessionUser } from "@/lib/portal/session";
+
+function initials(name: string): string {
+  const parts = name.trim().split(/\s+/);
+  return ((parts[0]?.[0] ?? "") + (parts[1]?.[0] ?? "")).toUpperCase();
+}
+
 export function AppHeader() {
+  const router = useRouter();
+  const [user, setUser] = useState<PortalSessionUser | null>(null);
+
+  useEffect(() => {
+    setUser(getPortalSession());
+  }, []);
+
+  function handleLogout() {
+    clearPortalSession();
+    router.push("/portal/login");
+  }
+
   return (
     <header
       style={{
@@ -105,13 +126,51 @@ export function AppHeader() {
               fontWeight: 900, fontSize: 13, color: "#0C1929", flexShrink: 0,
             }}
           >
-            RJ
+            {user ? initials(user.name) : "?"}
           </div>
           <div>
-            <div style={{ fontSize: 12, fontWeight: 700, color: "#E8EFF8" }}>Ribi Jayasinghe</div>
-            <div style={{ fontSize: 10, color: "#4A5C70" }}>TBP Leadership</div>
+            <div style={{ fontSize: 12, fontWeight: 700, color: "#E8EFF8" }}>
+              {user ? user.name : "Not logged in"}
+            </div>
+            <div style={{ fontSize: 10, color: "#4A5C70" }}>
+              {user ? user.role.replace(/_/g, " ") : "—"}
+            </div>
           </div>
         </div>
+
+        {user ? (
+          <button
+            onClick={handleLogout}
+            style={{
+              padding: "7px 14px",
+              borderRadius: 8,
+              border: "1px solid rgba(255,255,255,0.1)",
+              background: "rgba(255,255,255,0.04)",
+              color: "#7B8EAA",
+              fontSize: 11.5,
+              fontWeight: 600,
+              cursor: "pointer",
+            }}
+          >
+            Log Out
+          </button>
+        ) : (
+          <a
+            href="/portal/login"
+            style={{
+              padding: "7px 14px",
+              borderRadius: 8,
+              border: "1px solid rgba(196,153,42,0.3)",
+              background: "rgba(196,153,42,0.12)",
+              color: "#C4992A",
+              fontSize: 11.5,
+              fontWeight: 600,
+              textDecoration: "none",
+            }}
+          >
+            Log In
+          </a>
+        )}
       </div>
     </header>
   );
