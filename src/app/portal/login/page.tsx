@@ -20,7 +20,10 @@ export default function PortalLoginPage() {
     try {
       const user = await loginPortalUser(email.trim());
       savePortalSession(user);
-      router.push("/portal");
+      // Admins already have the full internal toolset at /dashboard - no
+      // reason to duplicate it inside the portal shell. Circle Members land
+      // on their own Overview.
+      router.push(user.role === "admin" ? "/dashboard" : "/portal");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Login failed");
     } finally {
