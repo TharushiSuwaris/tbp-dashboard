@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { getPortalSession, type PortalSessionUser } from "@/lib/portal/session";
+import { getPortalSession, isStaffRole, type PortalSessionUser } from "@/lib/portal/session";
 import { portalTheme } from "@/lib/portal/theme";
 import { getMessages, listCircleMembers, sendMessage, type CircleMember, type PortalMessage } from "@/lib/portal/content";
 
@@ -29,7 +29,7 @@ export default function MessagesPage() {
     const session = getPortalSession();
     if (!session) return;
     setUser(session);
-    if (session.role === "admin") {
+    if (isStaffRole(session.role)) {
       listCircleMembers()
         .then((m) => {
           setMembers(m);
@@ -69,13 +69,13 @@ export default function MessagesPage() {
     <div>
       <h1 style={{ color: portalTheme.textPrimary, fontSize: 20, fontWeight: 700, margin: "0 0 4px" }}>Messages</h1>
       <p style={{ color: portalTheme.textMuted, fontSize: 13, marginBottom: 20 }}>
-        {user.role === "admin" ? "Communicate with Circle Members." : "Communicate with TBP Advisory."}
+        {isStaffRole(user.role) ? "Communicate with Circle Members." : "Communicate with TBP Advisory."}
       </p>
 
       {error && <div style={{ color: portalTheme.danger, fontSize: 13, marginBottom: 14 }}>{error}</div>}
 
       <div style={{ display: "flex", gap: 16 }}>
-        {user.role === "admin" && (
+        {isStaffRole(user.role) && (
           <div
             style={{
               width: 200,

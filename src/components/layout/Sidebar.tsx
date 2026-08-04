@@ -1,9 +1,13 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { getPortalSession, isStaffRole } from "@/lib/portal/session";
 
-const navItems = [
+type NavItem = { href: string; icon: string; label: string; warn?: boolean };
+
+const baseNavItems: NavItem[] = [
   { href: "/dashboard", icon: "⊞", label: "Executive Overview" },
   { href: "/dashboard/prospects", icon: "📋", label: "Prospect Longlist" },
   { href: "/dashboard/circles", icon: "🌐", label: "Multi-Circle Prospects" },
@@ -17,11 +21,28 @@ const navItems = [
   { href: "/dashboard/governance", icon: "🛡️", label: "Governance Language", warn: true },
   { href: "/dashboard/tasks", icon: "✅", label: "Task Board" },
   { href: "/dashboard/agents", icon: "🤖", label: "AI Automation" },
-  { href: "/dashboard/settings", icon: "⚙️", label: "Settings" },
 ];
+
+const myAccountItem: NavItem = { href: "/portal/account", icon: "👤", label: "My Account" };
+const adminRequestsItem: NavItem = { href: "/portal/admin-requests", icon: "🛂", label: "Admin Account Requests" };
+const manageUsersItem: NavItem = { href: "/portal/manage-users", icon: "👥", label: "Manage User Accounts" };
+const settingsItem: NavItem = { href: "/dashboard/settings", icon: "⚙️", label: "Settings" };
 
 export function Sidebar() {
   const pathname = usePathname();
+  const [role, setRole] = useState<string | null>(null);
+
+  useEffect(() => {
+    setRole(getPortalSession()?.role ?? null);
+  }, []);
+
+  const isSuperAdmin = role === "super_admin";
+  const navItems = [
+    ...baseNavItems,
+    ...(role && isStaffRole(role) ? [myAccountItem] : []),
+    ...(isSuperAdmin ? [adminRequestsItem, manageUsersItem] : []),
+    settingsItem,
+  ];
 
   function isActive(href: string) {
     if (href === "/dashboard") return pathname === "/dashboard";

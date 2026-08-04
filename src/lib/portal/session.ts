@@ -3,7 +3,7 @@
 // has no login wall. Storage-only, swap for a real session once this rolls
 // out beyond the additive phase.
 
-export type PortalRole = "admin" | "circle_member";
+export type PortalRole = "super_admin" | "admin" | "circle_member";
 
 export type PortalSessionUser = {
   id: string;
@@ -31,4 +31,11 @@ export function getPortalSession(): PortalSessionUser | null {
 
 export function clearPortalSession() {
   localStorage.removeItem(STORAGE_KEY);
+}
+
+// super_admin has every capability admin has, plus approving new Admin
+// requests - most UI checks just need "is this an internal TBP account",
+// not the specific tier, so use this instead of comparing to "admin" directly.
+export function isStaffRole(role: string): boolean {
+  return role === "admin" || role === "super_admin";
 }

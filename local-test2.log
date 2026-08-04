@@ -1,0 +1,21 @@
+
+> tbp-dashboard@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.55.53:3000
+- Environments: .env.local
+✓ Ready in 355ms
+
+ GET /dashboard 200 in 389ms (next.js: 135ms, application-code: 254ms)
+ GET / 307 in 70ms (next.js: 33ms, application-code: 37ms)
+ GET /portal/admin-requests 200 in 156ms (next.js: 93ms, application-code: 63ms)
+ GET /portal/login 200 in 134ms (next.js: 87ms, application-code: 47ms)
+ GET /dashboard 200 in 43ms (next.js: 6ms, application-code: 36ms)
+ GET /dashboard/settings 200 in 113ms (next.js: 73ms, application-code: 40ms)
+ GET /dashboard/governance 200 in 1292ms (next.js: 1233ms, application-code: 59ms)
+✓ Compiled in 906ms
+ GET /dashboard/governance 200 in 267ms (next.js: 175ms, application-code: 91ms)
+ GET /dashboard/governance 200 in 61ms (next.js: 6ms, application-code: 55ms)
+ GET /dashboard/governance 200 in 26ms (next.js: 3ms, application-code: 23ms)

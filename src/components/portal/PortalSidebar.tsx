@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { portalTheme } from "@/lib/portal/theme";
 import { portalPagesForRole } from "@/lib/portal/pages";
+import { isStaffRole } from "@/lib/portal/session";
 
 export function PortalSidebar({ role }: { role: string }) {
   const pathname = usePathname();
@@ -75,7 +76,7 @@ export function PortalSidebar({ role }: { role: string }) {
         })}
       </nav>
 
-      {role === "admin" && (
+      {isStaffRole(role) && (
         <div style={{ padding: "10px 10px 18px" }}>
           <Link
             href="/dashboard"

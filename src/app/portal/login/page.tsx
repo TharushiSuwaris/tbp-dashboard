@@ -3,12 +3,35 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { loginPortalUser } from "@/lib/portal/auth";
-import { savePortalSession } from "@/lib/portal/session";
+import { isStaffRole, savePortalSession } from "@/lib/portal/session";
 import { portalTheme } from "@/lib/portal/theme";
+
+const labelStyle: React.CSSProperties = {
+  display: "block",
+  fontSize: 11,
+  fontWeight: 600,
+  color: portalTheme.textSecondary,
+  textTransform: "uppercase",
+  letterSpacing: ".6px",
+  marginBottom: 6,
+};
+
+const inputStyle: React.CSSProperties = {
+  width: "100%",
+  padding: "10px 12px",
+  borderRadius: 8,
+  border: `1px solid ${portalTheme.inputBorder}`,
+  background: portalTheme.inputBackground,
+  color: portalTheme.textPrimary,
+  fontSize: 14,
+  outline: "none",
+  boxSizing: "border-box",
+};
 
 export default function PortalLoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -18,12 +41,12 @@ export default function PortalLoginPage() {
     setLoading(true);
     setError(null);
     try {
-      const user = await loginPortalUser(email.trim());
+      const user = await loginPortalUser(email.trim(), password);
       savePortalSession(user);
       // Admins already have the full internal toolset at /dashboard - no
       // reason to duplicate it inside the portal shell. Circle Members land
       // on their own Overview.
-      router.push(user.role === "admin" ? "/dashboard" : "/portal");
+      router.push(isStaffRole(user.role) ? "/dashboard" : "/portal");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Login failed");
     } finally {
@@ -79,36 +102,23 @@ export default function PortalLoginPage() {
             padding: "28px 26px",
           }}
         >
-          <label
-            style={{
-              display: "block",
-              fontSize: 11,
-              fontWeight: 600,
-              color: portalTheme.textSecondary,
-              textTransform: "uppercase",
-              letterSpacing: ".6px",
-              marginBottom: 6,
-            }}
-          >
-            Email
-          </label>
+          <label style={labelStyle}>Email</label>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@tbp.dev"
             autoFocus
-            style={{
-              width: "100%",
-              padding: "10px 12px",
-              borderRadius: 8,
-              border: `1px solid ${portalTheme.inputBorder}`,
-              background: portalTheme.inputBackground,
-              color: portalTheme.textPrimary,
-              fontSize: 14,
-              outline: "none",
-              boxSizing: "border-box",
-            }}
+            style={{ ...inputStyle, marginBottom: 14 }}
+          />
+
+          <label style={labelStyle}>Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Admins only — leave blank if you're a Circle Member"
+            style={inputStyle}
           />
 
           {error && <div style={{ color: portalTheme.danger, fontSize: 12.5, marginTop: 10 }}>{error}</div>}
@@ -134,7 +144,12 @@ export default function PortalLoginPage() {
           </button>
 
           <p style={{ fontSize: 11, color: portalTheme.textMuted, marginTop: 16, textAlign: "center" }}>
-            Stub auth — enter your registered email, no password yet.
+            Circle Members log in with email only. Admin accounts require a password.
+          </p>
+          <p style={{ fontSize: 11, textAlign: "center", marginTop: 8 }}>
+            <a href="/portal/register-admin" style={{ color: portalTheme.gold, textDecoration: "none" }}>
+              Request an Admin account &rarr;
+            </a>
           </p>
         </form>
       </div>

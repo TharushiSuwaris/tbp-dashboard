@@ -1,10 +1,12 @@
 import { supabase } from "@/lib/supabase/client";
-import type { PortalSessionUser } from "./session";
+import { isStaffRole, type PortalSessionUser } from "./session";
+import { loginWithPassword } from "./adminAuth";
 
-// Stub login (email only, no password) - matches the same pattern used for
-// the R&D Engine's /auth/login. Looks the user up directly in portal_users
-// via the existing Supabase client.
-export async function loginPortalUser(email: string): Promise<PortalSessionUser> {
+// Circle Members: email-only stub login (unchanged). Admins: real password
+// login (see migration_admin_requests.sql) - an admin-role account must
+// never be reachable through the password-less path below, even if the
+// caller leaves the password blank.
+async function loginByEmailOnly(email: string): Promise<PortalSessionUser> {
   const { data, error } = await supabase
     .from("portal_users")
     .select("id, name, email, role")
@@ -13,6 +15,19 @@ export async function loginPortalUser(email: string): Promise<PortalSessionUser>
 
   if (error) throw new Error(error.message);
   if (!data) throw new Error("No account found for that email");
-
   return data as PortalSessionUser;
+}
+
+export async function loginPortalUser(email: string, password: string): Promise<PortalSessionUser> {
+  if (password.trim()) {
+    const user = await loginWithPassword(email, password);
+    if (user) return user;
+    throw new Error("Incorrect email or password");
+  }
+
+  const user = await loginByEmailOnly(email);
+  if (isStaffRole(user.role)) {
+    throw new Error("Admin accounts require a password");
+  }
+  return user;
 }

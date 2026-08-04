@@ -1,0 +1,169 @@
+
+> tbp-dashboard@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.55.53:3000
+- Environments: .env.local
+✓ Ready in 712ms
+
+ GET / 307 in 456ms (next.js: 278ms, application-code: 178ms)
+ GET /portal/login 200 in 540ms (next.js: 133ms, application-code: 407ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+      <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+        <LoadingBoundary name="login/" loading={null}>
+          <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+            <RedirectBoundary>
+              <RedirectErrorBoundary router={{...}}>
+                <InnerLayoutRouter url="/portal/login" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                  <SegmentViewNode type="page" pagePath="portal/log...">
+                    <SegmentTrieNode>
+                    <ClientPageRoot Component={function PortalLoginPage} serverProvidedParams={{...}}>
+                      <PortalLoginPage params={Promise} searchParams={Promise}>
+                        <main style={{...}}>
+                          <div style={{width:"100%", ...}}>
+                            <div>
+                            <form onSubmit={function handleSubmit} style={{...}}>
+                              <label>
+                              <input
+                                type="email"
+                                value=""
+                                onChange={function onChange}
+                                placeholder="you@tbp.dev"
+                                autoFocus={true}
+                                style={{width:"100%",padding:"10px 12px",borderRadius:8,border:"1px solid ...",background:"#0A1624",color:"...", ...}}
+-                               fdprocessedid="gofjhe"
+                              >
+                              <label>
+                              <input
+                                type="password"
+                                value=""
+                                onChange={function onChange}
+                                placeholder={"Admins only — leave blank if you're a Circle Member"}
+                                style={{width:"100%",padding:"10px 12px",borderRadius:8,border:"1px solid ...",background:"#0A1624",color:"...", ...}}
+-                               fdprocessedid="3gzhuq"
+                              >
+                              ...
+                  ...
+                ...
+      ...
+ 
+ GET /dashboard 200 in 190ms (next.js: 107ms, application-code: 83ms)
+ GET /portal/login 200 in 97ms (next.js: 14ms, application-code: 83ms)
+ GET /portal/register-admin 200 in 476ms (next.js: 133ms, application-code: 344ms)
+ GET /portal/register-admin 200 in 131ms (next.js: 58ms, application-code: 73ms)
+ GET /portal/register-admin 200 in 110ms (next.js: 75ms, application-code: 34ms)
+ GET /portal/register-admin 200 in 199ms (next.js: 79ms, application-code: 119ms)
+ GET /portal/register-admin 200 in 70ms (next.js: 4ms, application-code: 66ms)
+ GET /portal/register-admin 200 in 34ms (next.js: 6ms, application-code: 28ms)
+ GET /portal/register-admin 200 in 165ms (next.js: 90ms, application-code: 74ms)
+ GET /portal/register-admin 200 in 33ms (next.js: 4ms, application-code: 29ms)
+ GET /portal/register-admin 200 in 102ms (next.js: 54ms, application-code: 48ms)
+ GET /portal/register-admin 200 in 117ms (next.js: 73ms, application-code: 44ms)
+ GET /portal/register-admin 200 in 108ms (next.js: 58ms, application-code: 49ms)
+ GET /portal/register-admin 200 in 95ms (next.js: 58ms, application-code: 37ms)
+ GET /portal/register-admin 200 in 278ms (next.js: 195ms, application-code: 83ms)
+ GET /portal/register-admin 200 in 138ms (next.js: 69ms, application-code: 69ms)
+ GET /portal/register-admin 200 in 489ms (next.js: 13ms, application-code: 476ms)
+ GET /portal/login 200 in 821ms (next.js: 251ms, application-code: 569ms)
+ GET /portal/login 200 in 161ms (next.js: 10ms, application-code: 151ms)
+ GET /dashboard 200 in 497ms (next.js: 281ms, application-code: 216ms)
+ GET /portal/register-admin 200 in 157ms (next.js: 13ms, application-code: 145ms)
+ GET /portal/login 200 in 171ms (next.js: 10ms, application-code: 160ms)
+ GET /dashboard 200 in 101ms (next.js: 11ms, application-code: 91ms)
+○ Compiling /dashboard/tasks ...
+ GET /dashboard/tasks 200 in 3.4s (next.js: 3.3s, application-code: 96ms)
+ GET /dashboard 200 in 106ms (next.js: 32ms, application-code: 74ms)
+ GET /dashboard/settings 200 in 1786ms (next.js: 1723ms, application-code: 63ms)
+ GET /dashboard 200 in 73ms (next.js: 15ms, application-code: 58ms)
+  Reload env: .env.local
+ GET /dashboard 200 in 141ms (next.js: 94ms, application-code: 48ms)
+ GET /dashboard 200 in 170ms (next.js: 117ms, application-code: 53ms)
+ GET /dashboard 200 in 181ms (next.js: 7ms, application-code: 175ms)
+ GET /dashboard 200 in 143ms (next.js: 3ms, application-code: 139ms)
+ GET /dashboard 200 in 107ms (next.js: 49ms, application-code: 57ms)
+ GET /dashboard 200 in 105ms (next.js: 82ms, application-code: 23ms)
+ GET /dashboard 200 in 110ms (next.js: 8ms, application-code: 102ms)
+ GET /dashboard 200 in 124ms (next.js: 67ms, application-code: 58ms)
+ GET /dashboard 200 in 106ms (next.js: 7ms, application-code: 99ms)
+ GET /dashboard 200 in 85ms (next.js: 3ms, application-code: 82ms)
+ GET /dashboard 200 in 67ms (next.js: 3ms, application-code: 64ms)
+ GET /dashboard 200 in 67ms (next.js: 31ms, application-code: 37ms)
+ GET /dashboard 200 in 68ms (next.js: 17ms, application-code: 51ms)
+ GET /dashboard 200 in 25ms (next.js: 3ms, application-code: 23ms)
+ GET /dashboard 200 in 132ms (next.js: 22ms, application-code: 110ms)
+ GET /dashboard 200 in 133ms (next.js: 5ms, application-code: 127ms)
+ GET /dashboard 200 in 95ms (next.js: 3ms, application-code: 92ms)
+ GET /dashboard 200 in 95ms (next.js: 22ms, application-code: 73ms)
+ GET /dashboard 200 in 97ms (next.js: 49ms, application-code: 48ms)
+ GET /dashboard 200 in 37ms (next.js: 4ms, application-code: 33ms)
+ GET /dashboard 200 in 120ms (next.js: 4ms, application-code: 116ms)
+ GET /dashboard 200 in 120ms (next.js: 62ms, application-code: 58ms)
+ GET /dashboard 200 in 122ms (next.js: 26ms, application-code: 95ms)
+ GET /dashboard 200 in 123ms (next.js: 42ms, application-code: 81ms)
+ GET /dashboard 200 in 123ms (next.js: 81ms, application-code: 42ms)
+ GET /dashboard 200 in 29ms (next.js: 2ms, application-code: 26ms)
+ GET /dashboard 200 in 108ms (next.js: 3ms, application-code: 105ms)
+ GET /dashboard 200 in 109ms (next.js: 17ms, application-code: 92ms)
+ GET /dashboard 200 in 109ms (next.js: 38ms, application-code: 71ms)
+ GET /dashboard 200 in 76ms (next.js: 19ms, application-code: 56ms)
+ GET /dashboard 200 in 77ms (next.js: 34ms, application-code: 43ms)
+ GET /dashboard 200 in 30ms (next.js: 2ms, application-code: 28ms)
+ GET /dashboard 200 in 44ms (next.js: 2ms, application-code: 41ms)
+ GET /dashboard 200 in 139ms (next.js: 2ms, application-code: 136ms)
+ GET /dashboard 200 in 118ms (next.js: 32ms, application-code: 86ms)
+ GET /dashboard 200 in 119ms (next.js: 8ms, application-code: 111ms)
+ GET /dashboard 200 in 120ms (next.js: 58ms, application-code: 62ms)
+ GET /dashboard 200 in 119ms (next.js: 74ms, application-code: 45ms)
+ GET /dashboard 200 in 29ms (next.js: 3ms, application-code: 26ms)
+ GET /dashboard 200 in 123ms (next.js: 5ms, application-code: 118ms)
+ GET /dashboard 200 in 123ms (next.js: 22ms, application-code: 101ms)
+ GET /dashboard 200 in 124ms (next.js: 38ms, application-code: 85ms)
+ GET /dashboard 200 in 124ms (next.js: 59ms, application-code: 65ms)
+ GET /dashboard 200 in 56ms (next.js: 9ms, application-code: 47ms)
+ GET /dashboard 200 in 55ms (next.js: 19ms, application-code: 36ms)
+ GET /dashboard 200 in 137ms (next.js: 10ms, application-code: 127ms)
+ GET /dashboard 200 in 134ms (next.js: 70ms, application-code: 64ms)
+ GET /dashboard 200 in 135ms (next.js: 49ms, application-code: 86ms)
+ GET /dashboard 200 in 137ms (next.js: 31ms, application-code: 106ms)
+ GET /dashboard 200 in 49ms (next.js: 6ms, application-code: 42ms)
+ GET /dashboard 200 in 48ms (next.js: 23ms, application-code: 25ms)
+ GET /dashboard 200 in 88ms (next.js: 4ms, application-code: 84ms)
+ GET /dashboard 200 in 88ms (next.js: 31ms, application-code: 57ms)
+ GET /dashboard 200 in 88ms (next.js: 43ms, application-code: 44ms)
+ GET /dashboard 200 in 89ms (next.js: 18ms, application-code: 71ms)
+ GET /dashboard 200 in 33ms (next.js: 3ms, application-code: 31ms)
+ GET /dashboard 200 in 34ms (next.js: 16ms, application-code: 19ms)
+ GET /dashboard 200 in 94ms (next.js: 3ms, application-code: 91ms)
+ GET /dashboard 200 in 94ms (next.js: 16ms, application-code: 78ms)
+ GET /dashboard 200 in 94ms (next.js: 45ms, application-code: 49ms)
+ GET /dashboard 200 in 94ms (next.js: 31ms, application-code: 64ms)
+ GET /dashboard 200 in 94ms (next.js: 59ms, application-code: 36ms)
+ GET /dashboard 200 in 39ms (next.js: 21ms, application-code: 18ms)
+ GET /dashboard 200 in 29ms (next.js: 2ms, application-code: 27ms)
+ GET /dashboard 200 in 29ms (next.js: 15ms, application-code: 14ms)
+ GET /dashboard 200 in 124ms (next.js: 72ms, application-code: 52ms)
+✓ Compiled in 452ms
+ GET /dashboard 200 in 555ms (next.js: 287ms, application-code: 268ms)
+ GET /dashboard 200 in 846ms (next.js: 307ms, application-code: 539ms)
+ GET /dashboard 200 in 275ms (next.js: 53ms, application-code: 222ms)
+ GET /dashboard 200 in 77ms (next.js: 9ms, application-code: 68ms)
+ GET /dashboard 200 in 204ms (next.js: 4ms, application-code: 200ms)
+ GET /dashboard 200 in 39ms (next.js: 5ms, application-code: 34ms)
+✓ Compiled in 75ms
+ GET /dashboard 200 in 135ms (next.js: 84ms, application-code: 52ms)
+[?25h
