@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { clearPortalSession, getPortalSession, type PortalSessionUser } from "@/lib/portal/session";
 import { portalTheme } from "@/lib/portal/theme";
 import { PortalSidebar } from "@/components/portal/PortalSidebar";
+import { NotificationBell } from "@/components/portal/NotificationBell";
 
 export default function PortalAppLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -40,6 +41,7 @@ export default function PortalAppLayout({ children }: { children: React.ReactNod
             borderBottom: `1px solid ${portalTheme.panelBorder}`,
           }}
         >
+          <NotificationBell userId={user.id} role={user.role} />
           <div style={{ textAlign: "right" }}>
             <div style={{ color: portalTheme.textPrimary, fontSize: 13, fontWeight: 700 }}>{user.name}</div>
             <div style={{ color: portalTheme.textMuted, fontSize: 11 }}>{user.role.replace(/_/g, " ")}</div>

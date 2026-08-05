@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { clearPortalSession, getPortalSession, type PortalSessionUser } from "@/lib/portal/session";
+import { NotificationBell } from "@/components/portal/NotificationBell";
 
 function initials(name: string): string {
   const parts = name.trim().split(/\s+/);
@@ -101,21 +102,7 @@ export function AppHeader() {
         </div>
 
         {/* Notifications */}
-        <div style={{ position: "relative", cursor: "pointer", lineHeight: 1 }}>
-          <span style={{ fontSize: 18 }}>🔔</span>
-          <div
-            style={{
-              position: "absolute", top: -4, right: -6,
-              width: 16, height: 16,
-              background: "#EF4444", borderRadius: "50%",
-              fontSize: 9, fontWeight: 800, color: "#fff",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              border: "2px solid #091524",
-            }}
-          >
-            3
-          </div>
-        </div>
+        {user && <NotificationBell userId={user.id} role={user.role} />}
 
         {/* Avatar */}
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>

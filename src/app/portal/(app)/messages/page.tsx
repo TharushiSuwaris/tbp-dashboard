@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { getPortalSession, isStaffRole, type PortalSessionUser } from "@/lib/portal/session";
 import { portalTheme } from "@/lib/portal/theme";
 import { getMessages, listCircleMembers, sendMessage, type CircleMember, type PortalMessage } from "@/lib/portal/content";
+import { markMessagesSeen } from "@/lib/portal/notifications";
 
 const inputStyle: React.CSSProperties = {
   width: "100%",
@@ -29,6 +30,7 @@ export default function MessagesPage() {
     const session = getPortalSession();
     if (!session) return;
     setUser(session);
+    markMessagesSeen(session.id);
     if (isStaffRole(session.role)) {
       listCircleMembers()
         .then((m) => {

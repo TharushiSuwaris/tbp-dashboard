@@ -10,6 +10,7 @@ import {
   type Application,
   type Opportunity,
 } from "@/lib/portal/content";
+import { markOpportunitiesSeen } from "@/lib/portal/notifications";
 
 const panelStyle: React.CSSProperties = {
   background: portalTheme.panel,
@@ -46,6 +47,7 @@ export default function OpportunitiesPage() {
     const session = getPortalSession();
     if (!session) return;
     setUser(session);
+    if (session.role === "circle_member") markOpportunitiesSeen(session.id);
     load(session);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
