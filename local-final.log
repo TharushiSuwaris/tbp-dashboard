@@ -1,0 +1,89 @@
+
+> tbp-dashboard@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.55.53:3000
+- Environments: .env.local
+✓ Ready in 558ms
+
+ GET / 307 in 352ms (next.js: 196ms, application-code: 157ms)
+ GET /portal/login 200 in 447ms (next.js: 100ms, application-code: 346ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+      <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+        <LoadingBoundary name="login/" loading={null}>
+          <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+            <RedirectBoundary>
+              <RedirectErrorBoundary router={{...}}>
+                <InnerLayoutRouter url="/portal/login" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                  <SegmentViewNode type="page" pagePath="portal/log...">
+                    <SegmentTrieNode>
+                    <ClientPageRoot Component={function PortalLoginPage} serverProvidedParams={{...}}>
+                      <PortalLoginPage params={Promise} searchParams={Promise}>
+                        <main style={{...}}>
+                          <div style={{width:"100%", ...}}>
+                            <div>
+                            <form onSubmit={function handleSubmit} style={{...}}>
+                              <label>
+                              <input
+                                type="email"
+                                value=""
+                                onChange={function onChange}
+                                placeholder="you@tbp.dev"
+                                autoFocus={true}
+                                style={{width:"100%",padding:"10px 12px",borderRadius:8,border:"1px solid ...",background:"#0A1624",color:"...", ...}}
+-                               fdprocessedid="m722vp"
+                              >
+                              <label>
+                              <input
+                                type="password"
+                                value=""
+                                onChange={function onChange}
+                                placeholder={"Admins only — leave blank if you're a Circle Member"}
+                                style={{width:"100%",padding:"10px 12px",borderRadius:8,border:"1px solid ...",background:"#0A1624",color:"...", ...}}
+-                               fdprocessedid="m4e56f"
+                              >
+                              ...
+                  ...
+                ...
+      ...
+ 
+ GET /portal/login 200 in 165ms (next.js: 17ms, application-code: 149ms)
+ GET /dashboard 200 in 217ms (next.js: 121ms, application-code: 97ms)
+ GET /portal/messages 200 in 240ms (next.js: 143ms, application-code: 97ms)
+ GET /portal/applications 200 in 210ms (next.js: 138ms, application-code: 72ms)
+ GET /portal 200 in 382ms (next.js: 119ms, application-code: 263ms)
+ GET /portal/account 200 in 198ms (next.js: 118ms, application-code: 80ms)
+ GET /dashboard 200 in 76ms (next.js: 16ms, application-code: 60ms)
+ GET /portal/manage-users 200 in 241ms (next.js: 132ms, application-code: 109ms)
+ GET /portal/admin-requests 200 in 203ms (next.js: 120ms, application-code: 83ms)
+ GET /portal/applications 200 in 91ms (next.js: 13ms, application-code: 78ms)
+ GET /portal/profiles/review 200 in 250ms (next.js: 133ms, application-code: 117ms)
+ GET /portal/opportunities/manage 200 in 205ms (next.js: 111ms, application-code: 94ms)
+ GET /portal/manage-users 200 in 60ms (next.js: 9ms, application-code: 51ms)
+ GET /portal/admin-requests 200 in 73ms (next.js: 10ms, application-code: 63ms)
+ GET /portal/login 200 in 144ms (next.js: 10ms, application-code: 135ms)
+ GET /dashboard 200 in 172ms (next.js: 12ms, application-code: 160ms)
+ GET /portal/applications 200 in 96ms (next.js: 11ms, application-code: 85ms)
+ GET /portal/admin-requests 200 in 93ms (next.js: 11ms, application-code: 82ms)
+ GET /portal/applications 200 in 80ms (next.js: 9ms, application-code: 71ms)
+ GET /portal/profiles/review 200 in 83ms (next.js: 9ms, application-code: 74ms)
+ GET /portal/manage-users 200 in 74ms (next.js: 10ms, application-code: 65ms)
+ GET /portal/opportunities 200 in 237ms (next.js: 123ms, application-code: 114ms)
+ GET /portal/manage-users 200 in 79ms (next.js: 10ms, application-code: 70ms)
+ GET /portal/admin-requests 200 in 70ms (next.js: 8ms, application-code: 62ms)
+ GET /portal/admin-requests 200 in 323ms (next.js: 13ms, application-code: 310ms)

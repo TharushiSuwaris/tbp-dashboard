@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getPortalSession, isStaffRole } from "@/lib/portal/session";
+import { portalPagesForRole } from "@/lib/portal/pages";
 
 type NavItem = { href: string; icon: string; label: string; warn?: boolean };
 
@@ -23,9 +24,23 @@ const baseNavItems: NavItem[] = [
   { href: "/dashboard/agents", icon: "🤖", label: "AI Automation" },
 ];
 
-const myAccountItem: NavItem = { href: "/portal/account", icon: "👤", label: "My Account" };
-const adminRequestsItem: NavItem = { href: "/portal/admin-requests", icon: "🛂", label: "Admin Account Requests" };
-const manageUsersItem: NavItem = { href: "/portal/manage-users", icon: "👥", label: "Manage User Accounts" };
+// Icons for the FO Circle Portal pages, appended to the main dashboard
+// sidebar for staff roles so admin/super_admin can reach them without
+// switching into /portal. Registry-driven from PORTAL_PAGES (see
+// src/lib/portal/pages.ts) so this list can't drift out of sync with
+// the portal's own sidebar.
+const portalIconByPath: Record<string, string> = {
+  "/portal/account": "👤",
+  "/portal/opportunities": "💼",
+  "/portal/events": "📅",
+  "/portal/messages": "💬",
+  "/portal/opportunities/manage": "🗃️",
+  "/portal/profiles/review": "📝",
+  "/portal/applications": "📥",
+  "/portal/admin-requests": "🛂",
+  "/portal/manage-users": "👥",
+};
+
 const settingsItem: NavItem = { href: "/dashboard/settings", icon: "⚙️", label: "Settings" };
 
 export function Sidebar() {
@@ -36,13 +51,16 @@ export function Sidebar() {
     setRole(getPortalSession()?.role ?? null);
   }, []);
 
-  const isSuperAdmin = role === "super_admin";
-  const navItems = [
-    ...baseNavItems,
-    ...(role && isStaffRole(role) ? [myAccountItem] : []),
-    ...(isSuperAdmin ? [adminRequestsItem, manageUsersItem] : []),
-    settingsItem,
-  ];
+  const portalItems: NavItem[] =
+    role && isStaffRole(role)
+      ? portalPagesForRole(role).map((p) => ({
+          href: p.path,
+          icon: portalIconByPath[p.path] ?? "•",
+          label: p.label,
+        }))
+      : [];
+
+  const navItems = [...baseNavItems, ...portalItems, settingsItem];
 
   function isActive(href: string) {
     if (href === "/dashboard") return pathname === "/dashboard";

@@ -3,6 +3,15 @@ export const dynamic = "force-dynamic";
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase/client";
 
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 // Server-only: RESEND_API_KEY never reaches the client bundle. Notifies every
 // super_admin by email when a new Admin account request comes in, so it
 // doesn't rely on someone remembering to check /portal/admin-requests.
@@ -22,6 +31,8 @@ export async function POST(request: Request) {
     }
 
     const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? new URL(request.url).origin;
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
 
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -34,10 +45,26 @@ export async function POST(request: Request) {
         to: recipients,
         subject: "New Admin account request — TBP Circle Portal",
         html: `
-          <p>A new Admin account has been requested on the TBP Circle Portal.</p>
-          <p><strong>Name:</strong> ${name}<br/>
-             <strong>Email:</strong> ${email}</p>
-          <p><a href="${appUrl}/portal/admin-requests">Review the request</a></p>
+          <div style="font-family: Arial, Helvetica, sans-serif; color: #0C1929; max-width: 480px;">
+            <p style="font-size: 15px; line-height: 1.6;">
+              <strong>${safeName}</strong> (${safeEmail}) has requested an Admin account on the
+              TBP Circle Portal.
+            </p>
+            <p style="font-size: 15px; line-height: 1.6;">
+              Log in to review the request and approve or decline it.
+            </p>
+            <p style="margin: 24px 0;">
+              <a href="${appUrl}/portal/login"
+                 style="background: #C4992A; color: #0C1929; text-decoration: none; font-weight: bold;
+                        padding: 10px 20px; border-radius: 6px; display: inline-block; font-size: 14px;">
+                Log In to TBP Circle Portal
+              </a>
+            </p>
+            <p style="font-size: 12px; color: #4A5C70;">
+              Once logged in, go to <strong>Admin Account Requests</strong> in the sidebar to approve or
+              decline this request.
+            </p>
+          </div>
         `,
       }),
     });

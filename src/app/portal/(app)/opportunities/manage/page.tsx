@@ -42,6 +42,7 @@ export default function ManageOpportunitiesPage() {
   const [showForm, setShowForm] = useState(false);
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
+  const [region, setRegion] = useState("");
   const [description, setDescription] = useState("");
   const [saving, setSaving] = useState(false);
 
@@ -65,9 +66,10 @@ export default function ManageOpportunitiesPage() {
     if (!user || !title.trim() || !category.trim() || !description.trim()) return;
     setSaving(true);
     try {
-      await createOpportunity({ title, category, description, status: "draft", created_by: user.id });
+      await createOpportunity({ title, category, region: region.trim() || undefined, description, status: "draft", created_by: user.id });
       setTitle("");
       setCategory("");
+      setRegion("");
       setDescription("");
       setShowForm(false);
       await load();
@@ -123,6 +125,7 @@ export default function ManageOpportunitiesPage() {
         <form onSubmit={handleCreate} style={{ ...panelStyle, marginBottom: 16, display: "grid", gap: 10 }}>
           <input style={inputStyle} placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
           <input style={inputStyle} placeholder="Category" value={category} onChange={(e) => setCategory(e.target.value)} />
+          <input style={inputStyle} placeholder="Region (e.g. Central Asia, Africa, Global / Multi-Region)" value={region} onChange={(e) => setRegion(e.target.value)} />
           <textarea
             style={{ ...inputStyle, resize: "vertical" }}
             placeholder="Description"
@@ -155,7 +158,7 @@ export default function ManageOpportunitiesPage() {
           <div key={opp.id} style={{ ...panelStyle, display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
             <div>
               <div style={{ color: portalTheme.textMuted, fontSize: 11, textTransform: "uppercase", letterSpacing: ".5px", marginBottom: 4 }}>
-                {opp.category}
+                {opp.category}{opp.region ? ` · ${opp.region}` : ""}
               </div>
               <div style={{ color: portalTheme.textPrimary, fontWeight: 700, fontSize: 14 }}>{opp.title}</div>
             </div>

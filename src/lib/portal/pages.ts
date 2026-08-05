@@ -30,6 +30,12 @@ export const PORTAL_PAGES: PortalPageDef[] = [
     roles: ["circle_member", "admin", "super_admin"],
   },
   {
+    path: "/portal/events",
+    label: "Upcoming Events",
+    description: "Private briefings and roundtables",
+    roles: ["circle_member", "admin", "super_admin"],
+  },
+  {
     path: "/portal/profile",
     label: "My Profile",
     description: "Your intake profile and approval status",

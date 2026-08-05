@@ -9,8 +9,21 @@ export type Opportunity = {
   id: string;
   title: string;
   category: string;
+  region: string | null;
   description: string;
   status: OpportunityStatus;
+  created_at: string;
+};
+
+export type UpcomingEvent = {
+  id: string;
+  title: string;
+  description: string;
+  region: string | null;
+  image_path: string | null;
+  event_date: string | null;
+  venue: string | null;
+  status: "draft" | "published";
   created_at: string;
 };
 
@@ -77,6 +90,7 @@ export async function listAllOpportunities(): Promise<Opportunity[]> {
 export async function createOpportunity(input: {
   title: string;
   category: string;
+  region?: string;
   description: string;
   status: OpportunityStatus;
   created_by: string;
@@ -206,4 +220,15 @@ export async function getMessages(memberId: string): Promise<PortalMessage[]> {
 export async function sendMessage(memberId: string, senderId: string, content: string): Promise<void> {
   const { error } = await supabase.from("portal_messages").insert({ member_id: memberId, sender_id: senderId, content });
   if (error) throw new Error(error.message);
+}
+
+// ── Upcoming Events ────────────────────────────────────────────
+export async function listPublishedEvents(): Promise<UpcomingEvent[]> {
+  const { data, error } = await supabase
+    .from("upcoming_events")
+    .select("*")
+    .eq("status", "published")
+    .order("created_at", { ascending: false });
+  if (error) throw new Error(error.message);
+  return data ?? [];
 }
