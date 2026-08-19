@@ -171,7 +171,7 @@ export default function OpportunitiesPage() {
                         borderRadius: 20,
                         textTransform: "capitalize",
                         color: application.status === "approved" ? "#34D399" : application.status === "rejected" ? portalTheme.danger : "#FBBF24",
-                        background: "rgba(255,255,255,0.06)",
+                        background: "rgba(27,42,61,0.06)",
                       }}
                     >
                       {application.status}

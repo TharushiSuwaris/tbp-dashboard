@@ -45,7 +45,7 @@ export default function GovernancePage() {
                 <div key={item.phrase} style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 14px", background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.2)", borderRadius: 8, fontSize: 13 }}>
                   <span>✅</span>
                   <span style={{ fontWeight: 600, color: "#34D399", flex: 1 }}>"{item.phrase}"</span>
-                  <span style={{ fontSize: 11, color: "#7B8EAA", marginLeft: "auto" }}>{item.note}</span>
+                  <span style={{ fontSize: 11, color: "#756E5D", marginLeft: "auto" }}>{item.note}</span>
                 </div>
               ))}
             </div>
@@ -70,9 +70,9 @@ export default function GovernancePage() {
         <Panel title="Live Text Checker" subtitle="Paste any email draft, deck copy, or briefing note — AI flags issues and suggests approved alternatives">
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
             <div>
-              <div style={{ fontSize: 11, color: "#4A5C70", textTransform: "uppercase", letterSpacing: ".8px", marginBottom: 8 }}>Input — Paste text here</div>
+              <div style={{ fontSize: 11, color: "#5C5648", textTransform: "uppercase", letterSpacing: ".8px", marginBottom: 8 }}>Input — Paste text here</div>
               <textarea
-                style={{ width: "100%", minHeight: 160, resize: "vertical", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 8, padding: "10px 12px", fontSize: 13, fontFamily: "inherit", background: "#0A1624", color: "#E8EFF8", outline: "none" }}
+                style={{ width: "100%", minHeight: 160, resize: "vertical", border: "1px solid rgba(27,42,61,0.12)", borderRadius: 8, padding: "10px 12px", fontSize: 13, fontFamily: "inherit", background: "#FFFFFF", color: "#1B2A3D", outline: "none" }}
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 placeholder="Paste your draft email, briefing note, or deck copy here..."
@@ -80,24 +80,24 @@ export default function GovernancePage() {
               <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
                 <button
                   onClick={handleCheck}
-                  style={{ background: "#C4992A", color: "#0C1929", fontWeight: 700, fontSize: 13, padding: "9px 20px", borderRadius: 8, border: "none", cursor: "pointer" }}
+                  style={{ background: "#C4992A", color: "#1B2A3D", fontWeight: 700, fontSize: 13, padding: "9px 20px", borderRadius: 8, border: "none", cursor: "pointer" }}
                 >
                   Check Language →
                 </button>
                 <button
                   onClick={handleClear}
-                  style={{ background: "rgba(255,255,255,0.06)", color: "#7B8EAA", fontWeight: 600, fontSize: 13, padding: "9px 16px", borderRadius: 8, border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}
+                  style={{ background: "rgba(27,42,61,0.06)", color: "#756E5D", fontWeight: 600, fontSize: 13, padding: "9px 16px", borderRadius: 8, border: "1px solid rgba(27,42,61,0.1)", cursor: "pointer" }}
                 >
                   Clear
                 </button>
               </div>
-              <div style={{ marginTop: 10, fontSize: 11, color: "#4A5C70" }}>
+              <div style={{ marginTop: 10, fontSize: 11, color: "#5C5648" }}>
                 Source compliance: Use publicly available and ethically sourced information only. Do not include confidential employer or client data.
               </div>
             </div>
 
             <div>
-              <div style={{ fontSize: 11, color: "#4A5C70", textTransform: "uppercase", letterSpacing: ".8px", marginBottom: 8 }}>
+              <div style={{ fontSize: 11, color: "#5C5648", textTransform: "uppercase", letterSpacing: ".8px", marginBottom: 8 }}>
                 {checked && result ? `Results — ${result.flaggedPhrases.length} Issue${result.flaggedPhrases.length !== 1 ? "s" : ""} Found` : "Results"}
               </div>
 
@@ -107,7 +107,7 @@ export default function GovernancePage() {
                     <span style={{ fontSize: 18 }}>{result.approvalStatus === "Safe" ? "✅" : result.approvalStatus === "Needs Review" ? "⚠️" : "🚫"}</span>
                     <div>
                       <div style={{ fontWeight: 700, fontSize: 13, color: statusColor }}>{result.approvalStatus}</div>
-                      <div style={{ fontSize: 11, color: "#7B8EAA" }}>Risk Score: {result.riskScore}/100</div>
+                      <div style={{ fontSize: 11, color: "#756E5D" }}>Risk Score: {result.riskScore}/100</div>
                     </div>
                   </div>
 
@@ -117,7 +117,7 @@ export default function GovernancePage() {
                         <span style={{ fontSize: 15, flexShrink: 0 }}>🚫</span>
                         <div>
                           <div><span style={{ fontWeight: 700, color: "#F87171" }}>"{f.phrase}"</span> — {f.severity === "blocked" ? "Blocked" : "Needs Review"}</div>
-                          <div style={{ color: "#7B8EAA", marginTop: 2 }}>→ Replace with: <em>"{f.replacement}"</em></div>
+                          <div style={{ color: "#756E5D", marginTop: 2 }}>→ Replace with: <em>"{f.replacement}"</em></div>
                         </div>
                       </div>
                     ))}
@@ -129,12 +129,12 @@ export default function GovernancePage() {
                     )}
                   </div>
 
-                  <div style={{ marginTop: 14, padding: "10px 12px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 8, fontSize: 11, color: "#7B8EAA" }}>
-                    <strong style={{ color: "#E8EFF8" }}>Summary:</strong> {result.summary}
+                  <div style={{ marginTop: 14, padding: "10px 12px", background: "rgba(27,42,61,0.04)", border: "1px solid rgba(27,42,61,0.07)", borderRadius: 8, fontSize: 11, color: "#756E5D" }}>
+                    <strong style={{ color: "#1B2A3D" }}>Summary:</strong> {result.summary}
                   </div>
                 </div>
               ) : (
-                <div style={{ textAlign: "center", padding: "40px 0", color: "#4A5C70", fontSize: 13 }}>
+                <div style={{ textAlign: "center", padding: "40px 0", color: "#5C5648", fontSize: 13 }}>
                   Enter text above and click "Check Language" to run the compliance check.
                 </div>
               )}

@@ -24,21 +24,21 @@ export default function SettingsPage() {
                 { name: "Supabase",                purpose: "Production database for all prospect and pipeline data", status: "Not Connected", docs: "Required for multi-user / production" },
                 { name: "Claude API (Anthropic)",  purpose: "AI scoring, governance check, and briefing generation", status: "Not Connected", docs: "Required for live AI agent mode" },
               ].map((api) => (
-                <div key={api.name} style={{ padding: "12px 14px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 8 }}>
+                <div key={api.name} style={{ padding: "12px 14px", background: "rgba(27,42,61,0.04)", border: "1px solid rgba(27,42,61,0.07)", borderRadius: 8 }}>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 4 }}>
-                    <div style={{ fontWeight: 700, fontSize: 13, color: "#E8EFF8" }}>{api.name}</div>
+                    <div style={{ fontWeight: 700, fontSize: 13, color: "#1B2A3D" }}>{api.name}</div>
                     <span style={{ fontSize: 10, padding: "2px 9px", borderRadius: 20, background: "rgba(239,68,68,0.14)", color: "#F87171", fontWeight: 700 }}>
                       {api.status}
                     </span>
                   </div>
-                  <div style={{ fontSize: 11, color: "#7B8EAA", marginBottom: 4 }}>{api.purpose}</div>
-                  <div style={{ fontSize: 10, color: "#4A5C70" }}>{api.docs}</div>
+                  <div style={{ fontSize: 11, color: "#756E5D", marginBottom: 4 }}>{api.purpose}</div>
+                  <div style={{ fontSize: 10, color: "#5C5648" }}>{api.docs}</div>
                   <div style={{ marginTop: 8 }}>
                     <input
                       type="password"
                       placeholder="Paste API key..."
                       disabled
-                      style={{ width: "100%", padding: "6px 10px", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 6, fontSize: 12, background: "#0A1624", color: "#E8EFF8", cursor: "not-allowed", opacity: 0.5 }}
+                      style={{ width: "100%", padding: "6px 10px", border: "1px solid rgba(27,42,61,0.1)", borderRadius: 6, fontSize: 12, background: "#FFFFFF", color: "#1B2A3D", cursor: "not-allowed", opacity: 0.5 }}
                     />
                   </div>
                 </div>
@@ -52,7 +52,7 @@ export default function SettingsPage() {
                 <thead>
                   <tr>
                     {["Name", "Role", "Access Level"].map(h => (
-                      <th key={h} style={{ textAlign: "left", fontSize: 10, textTransform: "uppercase", letterSpacing: ".8px", color: "#4A5C70", paddingBottom: 8, borderBottom: "1px solid rgba(255,255,255,0.07)" }}>{h}</th>
+                      <th key={h} style={{ textAlign: "left", fontSize: 10, textTransform: "uppercase", letterSpacing: ".8px", color: "#5C5648", paddingBottom: 8, borderBottom: "1px solid rgba(27,42,61,0.07)" }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
@@ -63,12 +63,12 @@ export default function SettingsPage() {
                     { name: "Tharushi",          role: "AI Automation Intern", access: "Read + Write" },
                   ].map((u) => (
                     <tr key={u.name}
-                      onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.04)")}
+                      onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(27,42,61,0.04)")}
                       onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
                     >
-                      <td style={{ padding: "9px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 13, fontWeight: 600, color: "#E8EFF8" }}>{u.name}</td>
-                      <td style={{ padding: "9px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 12, color: "#7B8EAA" }}>{u.role}</td>
-                      <td style={{ padding: "9px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                      <td style={{ padding: "9px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 13, fontWeight: 600, color: "#1B2A3D" }}>{u.name}</td>
+                      <td style={{ padding: "9px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 12, color: "#756E5D" }}>{u.role}</td>
+                      <td style={{ padding: "9px 0", borderBottom: "1px solid rgba(27,42,61,0.06)" }}>
                         <span style={{ fontSize: 10, padding: "2px 9px", borderRadius: 20, background: u.access === "Full Admin" ? "rgba(196,153,42,0.18)" : "rgba(59,130,246,0.18)", color: u.access === "Full Admin" ? "#D4AA3A" : "#60A5FA", fontWeight: 700 }}>{u.access}</span>
                       </td>
                     </tr>
@@ -88,8 +88,8 @@ export default function SettingsPage() {
                 ].map((g) => (
                   <div key={g.label} style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", padding: "10px 12px", background: "rgba(16,185,129,0.06)", border: "1px solid rgba(16,185,129,0.18)", borderRadius: 8 }}>
                     <div>
-                      <div style={{ fontSize: 12, fontWeight: 700, color: "#E8EFF8" }}>{g.label}</div>
-                      <div style={{ fontSize: 10, color: "#7B8EAA", marginTop: 2 }}>{g.note}</div>
+                      <div style={{ fontSize: 12, fontWeight: 700, color: "#1B2A3D" }}>{g.label}</div>
+                      <div style={{ fontSize: 10, color: "#756E5D", marginTop: 2 }}>{g.note}</div>
                     </div>
                     <span style={{ fontSize: 10, padding: "2px 9px", borderRadius: 20, background: "rgba(16,185,129,0.18)", color: "#34D399", fontWeight: 700, flexShrink: 0, marginLeft: 12 }}>
                       {g.status}
@@ -109,9 +109,9 @@ export default function SettingsPage() {
                   ["Discovery",   "Mock mode — Tavily / Brave / SerpAPI pending"],
                   ["Deployment",  "Not deployed — run locally with npm run dev"],
                 ].map(([label, value]) => (
-                  <div key={label} style={{ display: "flex", gap: 12, padding: "7px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 12 }}>
-                    <div style={{ width: 120, color: "#4A5C70", flexShrink: 0 }}>{label}</div>
-                    <div style={{ color: "#E8EFF8" }}>{value}</div>
+                  <div key={label} style={{ display: "flex", gap: 12, padding: "7px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 12 }}>
+                    <div style={{ width: 120, color: "#5C5648", flexShrink: 0 }}>{label}</div>
+                    <div style={{ color: "#1B2A3D" }}>{value}</div>
                   </div>
                 ))}
               </div>

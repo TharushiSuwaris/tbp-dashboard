@@ -21,7 +21,7 @@ export default function RegionalMappingPage() {
   const { prospects, loading } = useProspects();
 
   if (loading) return (
-    <div style={{ padding: 28, color: "#7B8EAA", fontSize: 13 }}>Loading regional data from database...</div>
+    <div style={{ padding: 28, color: "#756E5D", fontSize: 13 }}>Loading regional data from database...</div>
   );
 
   const byRegion = (region: Region) => prospects.filter((p) => p.region === region);
@@ -44,10 +44,10 @@ export default function RegionalMappingPage() {
             { label: "Avg Suitability",  value: Math.round(prospects.reduce((a, b) => a + b.suitability_score, 0) / prospects.length), color: "#8B5CF6" },
             { label: "Joined Circle",    value: prospects.filter(p => p.pipeline_stage === "Joined Circle").length, color: "#059669" },
           ].map((c, i) => (
-            <div key={i} style={{ background: "#132037", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 10, padding: "14px 16px", position: "relative", overflow: "hidden" }}>
+            <div key={i} style={{ background: "#F1EDE1", border: "1px solid rgba(27,42,61,0.07)", borderRadius: 10, padding: "14px 16px", position: "relative", overflow: "hidden" }}>
               <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: c.color }} />
-              <div style={{ fontSize: 26, fontWeight: 900, color: "#E8EFF8" }}>{c.value}</div>
-              <div style={{ fontSize: 11, color: "#7B8EAA" }}>{c.label}</div>
+              <div style={{ fontSize: 26, fontWeight: 900, color: "#1B2A3D" }}>{c.value}</div>
+              <div style={{ fontSize: 11, color: "#756E5D" }}>{c.label}</div>
             </div>
           ))}
         </div>
@@ -66,32 +66,32 @@ export default function RegionalMappingPage() {
                 style={{ borderTop: `3px solid ${color}` }}
               >
                 <div style={{ marginBottom: 12 }}>
-                  <div style={{ height: 8, background: "rgba(255,255,255,0.08)", borderRadius: 4, overflow: "hidden", display: "flex" }}>
+                  <div style={{ height: 8, background: "rgba(27,42,61,0.08)", borderRadius: 4, overflow: "hidden", display: "flex" }}>
                     <div style={{ width: `${(priority.length / prospects.length) * 100}%`, background: "#10B981" }} />
                     <div style={{ width: `${(strong.length / prospects.length) * 100}%`, background: "#F59E0B" }} />
-                    <div style={{ flex: 1, background: "rgba(255,255,255,0.06)" }} />
+                    <div style={{ flex: 1, background: "rgba(27,42,61,0.06)" }} />
                   </div>
-                  <div style={{ display: "flex", gap: 12, marginTop: 6, fontSize: 10, color: "#7B8EAA" }}>
+                  <div style={{ display: "flex", gap: 12, marginTop: 6, fontSize: 10, color: "#756E5D" }}>
                     <span><span style={{ color: "#34D399", fontWeight: 700 }}>{priority.length}</span> Priority</span>
                     <span><span style={{ color: "#FBBF24", fontWeight: 700 }}>{strong.length}</span> Strong</span>
-                    <span><span style={{ color: "#4A5C70", fontWeight: 700 }}>{prospects.length - priority.length - strong.length}</span> Monitor/Other</span>
+                    <span><span style={{ color: "#5C5648", fontWeight: 700 }}>{prospects.length - priority.length - strong.length}</span> Monitor/Other</span>
                   </div>
                 </div>
 
                 <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                   {prospects.slice(0, 4).map((p) => (
-                    <div key={p.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "6px 10px", background: "rgba(255,255,255,0.04)", borderRadius: 6, border: "1px solid rgba(255,255,255,0.05)" }}>
+                    <div key={p.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "6px 10px", background: "rgba(27,42,61,0.04)", borderRadius: 6, border: "1px solid rgba(27,42,61,0.05)" }}>
                       <div>
-                        <div style={{ fontSize: 12, fontWeight: 600, color: "#E8EFF8" }}>{p.prospect_name}</div>
-                        <div style={{ fontSize: 10, color: "#4A5C70" }}>{p.city} · {p.pipeline_stage}</div>
+                        <div style={{ fontSize: 12, fontWeight: 600, color: "#1B2A3D" }}>{p.prospect_name}</div>
+                        <div style={{ fontSize: 10, color: "#5C5648" }}>{p.city} · {p.pipeline_stage}</div>
                       </div>
-                      <div style={{ fontSize: 13, fontWeight: 900, color: p.suitability_score >= 80 ? "#34D399" : p.suitability_score >= 65 ? "#FBBF24" : "#7B8EAA" }}>
+                      <div style={{ fontSize: 13, fontWeight: 900, color: p.suitability_score >= 80 ? "#34D399" : p.suitability_score >= 65 ? "#FBBF24" : "#756E5D" }}>
                         {p.suitability_score}
                       </div>
                     </div>
                   ))}
                   {prospects.length > 4 && (
-                    <div style={{ textAlign: "center", fontSize: 11, color: "#4A5C70", padding: "4px 0" }}>
+                    <div style={{ textAlign: "center", fontSize: 11, color: "#5C5648", padding: "4px 0" }}>
                       +{prospects.length - 4} more
                     </div>
                   )}

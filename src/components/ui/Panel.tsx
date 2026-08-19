@@ -13,8 +13,8 @@ export function Panel({ title, subtitle, action, children, style, bodyStyle }: P
   return (
     <div
       style={{
-        background: "#132037",
-        border: "1px solid rgba(255,255,255,0.07)",
+        background: "#F1EDE1",
+        border: "1px solid rgba(27,42,61,0.07)",
         borderRadius: 12,
         overflow: "hidden",
         ...style,
@@ -24,15 +24,15 @@ export function Panel({ title, subtitle, action, children, style, bodyStyle }: P
         <div
           style={{
             padding: "13px 18px",
-            borderBottom: "1px solid rgba(255,255,255,0.06)",
+            borderBottom: "1px solid rgba(27,42,61,0.06)",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
           }}
         >
           <div>
-            {title && <div style={{ fontSize: 12.5, fontWeight: 700, color: "#E8EFF8", textTransform: "uppercase", letterSpacing: ".6px" }}>{title}</div>}
-            {subtitle && <div style={{ fontSize: 11, color: "#4A5C70", marginTop: 2 }}>{subtitle}</div>}
+            {title && <div style={{ fontSize: 12.5, fontWeight: 700, color: "#1B2A3D", textTransform: "uppercase", letterSpacing: ".6px" }}>{title}</div>}
+            {subtitle && <div style={{ fontSize: 11, color: "#5C5648", marginTop: 2 }}>{subtitle}</div>}
           </div>
           {action && <div>{action}</div>}
         </div>

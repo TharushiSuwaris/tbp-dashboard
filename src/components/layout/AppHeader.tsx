@@ -26,8 +26,8 @@ export function AppHeader() {
   return (
     <header
       style={{
-        background: "#091524",
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
+        background: "#FBF8F1",
+        borderBottom: "1px solid rgba(27,42,61,0.06)",
         height: 64,
         display: "flex",
         alignItems: "center",
@@ -47,7 +47,7 @@ export function AppHeader() {
           alignItems: "center",
           gap: 10,
           padding: "0 16px",
-          borderRight: "1px solid rgba(255,255,255,0.06)",
+          borderRight: "1px solid rgba(27,42,61,0.06)",
           height: "100%",
         }}
       >
@@ -57,23 +57,23 @@ export function AppHeader() {
             background: "#C4992A",
             borderRadius: 8,
             display: "flex", alignItems: "center", justifyContent: "center",
-            fontWeight: 900, fontSize: 11, color: "#0C1929", flexShrink: 0,
+            fontWeight: 900, fontSize: 11, color: "#1B2A3D", flexShrink: 0,
             letterSpacing: ".5px",
           }}
         >
           TBP
         </div>
         <div>
-          <div style={{ fontSize: 10, fontWeight: 700, color: "#E8EFF8", textTransform: "uppercase", letterSpacing: "1px", lineHeight: 1.2 }}>
+          <div style={{ fontSize: 10, fontWeight: 700, color: "#1B2A3D", textTransform: "uppercase", letterSpacing: "1px", lineHeight: 1.2 }}>
             The Borderless
           </div>
-          <div style={{ fontSize: 9, color: "#4A5C70", letterSpacing: ".5px" }}>Project</div>
+          <div style={{ fontSize: 9, color: "#5C5648", letterSpacing: ".5px" }}>Project</div>
         </div>
       </div>
 
       {/* Title */}
       <div style={{ flex: 1, padding: "0 24px" }}>
-        <div style={{ fontSize: 14, fontWeight: 800, color: "#E8EFF8", letterSpacing: ".3px" }}>
+        <div style={{ fontSize: 14, fontWeight: 800, color: "#1B2A3D", letterSpacing: ".3px" }}>
           TBP CAPITAL ADVISORY &amp; FAMILY OFFICE CIRCLE
         </div>
         <div style={{ fontSize: 10, color: "#C4992A", letterSpacing: "1.4px", textTransform: "uppercase", marginTop: 2 }}>
@@ -110,16 +110,16 @@ export function AppHeader() {
             style={{
               width: 36, height: 36, background: "#C4992A", borderRadius: "50%",
               display: "flex", alignItems: "center", justifyContent: "center",
-              fontWeight: 900, fontSize: 13, color: "#0C1929", flexShrink: 0,
+              fontWeight: 900, fontSize: 13, color: "#1B2A3D", flexShrink: 0,
             }}
           >
             {user ? initials(user.name) : "?"}
           </div>
           <div>
-            <div style={{ fontSize: 12, fontWeight: 700, color: "#E8EFF8" }}>
+            <div style={{ fontSize: 12, fontWeight: 700, color: "#1B2A3D" }}>
               {user ? user.name : "Not logged in"}
             </div>
-            <div style={{ fontSize: 10, color: "#4A5C70" }}>
+            <div style={{ fontSize: 10, color: "#5C5648" }}>
               {user ? user.role.replace(/_/g, " ") : "—"}
             </div>
           </div>
@@ -131,9 +131,9 @@ export function AppHeader() {
             style={{
               padding: "7px 14px",
               borderRadius: 8,
-              border: "1px solid rgba(255,255,255,0.1)",
-              background: "rgba(255,255,255,0.04)",
-              color: "#7B8EAA",
+              border: "1px solid rgba(27,42,61,0.1)",
+              background: "rgba(27,42,61,0.04)",
+              color: "#756E5D",
               fontSize: 11.5,
               fontWeight: 600,
               cursor: "pointer",

@@ -22,27 +22,27 @@ function TaskCard({ task }: { task: Task }) {
   return (
     <div
       style={{
-        background: "#0C1929", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 8,
+        background: "#F7F4EC", border: "1px solid rgba(27,42,61,0.07)", borderRadius: 8,
         padding: "12px 14px", transition: "border-color 0.15s", cursor: "pointer",
       }}
       onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(196,153,42,0.35)")}
-      onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.07)")}
+      onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(27,42,61,0.07)")}
     >
       <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 8 }}>
-        <div style={{ fontWeight: 600, fontSize: 13, color: "#E8EFF8", flex: 1, lineHeight: 1.4 }}>{task.title}</div>
+        <div style={{ fontWeight: 600, fontSize: 13, color: "#1B2A3D", flex: 1, lineHeight: 1.4 }}>{task.title}</div>
         <span style={{ fontSize: 10, padding: "2px 7px", borderRadius: 20, background: priorityColors[task.priority] + "22", color: priorityColors[task.priority], fontWeight: 700, marginLeft: 8, whiteSpace: "nowrap" }}>
           {task.priority}
         </span>
       </div>
-      <div style={{ fontSize: 11, color: "#7B8EAA", lineHeight: 1.5, marginBottom: 8 }}>{task.description.slice(0, 80)}...</div>
+      <div style={{ fontSize: 11, color: "#756E5D", lineHeight: 1.5, marginBottom: 8 }}>{task.description.slice(0, 80)}...</div>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ display: "flex", gap: 6 }}>
-          <span style={{ fontSize: 10, background: "rgba(255,255,255,0.06)", padding: "2px 8px", borderRadius: 6, color: "#7B8EAA" }}>{task.assignedTo}</span>
+          <span style={{ fontSize: 10, background: "rgba(27,42,61,0.06)", padding: "2px 8px", borderRadius: 6, color: "#756E5D" }}>{task.assignedTo}</span>
           {task.tags.slice(0, 2).map((tag) => (
             <span key={tag} style={{ fontSize: 10, background: "rgba(196,153,42,0.12)", padding: "2px 8px", borderRadius: 6, color: "#D4AA3A" }}>{tag}</span>
           ))}
         </div>
-        <span style={{ fontSize: 10, color: isOverdue ? "#F87171" : "#4A5C70", fontWeight: isOverdue ? 700 : 400 }}>
+        <span style={{ fontSize: 10, color: isOverdue ? "#F87171" : "#5C5648", fontWeight: isOverdue ? 700 : 400 }}>
           {isOverdue ? "⚠ Overdue " : ""}Due {task.dueDate}
         </span>
       </div>
@@ -55,7 +55,7 @@ export default function TasksPage() {
   const [filterOwner, setFilterOwner] = useState("");
 
   if (loading) return (
-    <div style={{ padding: 28, color: "#7B8EAA", fontSize: 13 }}>Loading tasks from database...</div>
+    <div style={{ padding: 28, color: "#756E5D", fontSize: 13 }}>Loading tasks from database...</div>
   );
 
   const owners = Array.from(new Set(tasks.map((t) => t.assignedTo)));
@@ -67,15 +67,15 @@ export default function TasksPage() {
       <div style={{ padding: "24px 28px 40px" }}>
 
         <div style={{ display: "flex", gap: 10, marginBottom: 20, alignItems: "center" }}>
-          <div style={{ fontSize: 12, color: "#7B8EAA", fontWeight: 600 }}>Filter by:</div>
+          <div style={{ fontSize: 12, color: "#756E5D", fontWeight: 600 }}>Filter by:</div>
           <button
             onClick={() => setFilterOwner("")}
-            style={{ padding: "6px 14px", borderRadius: 8, border: "1px solid rgba(255,255,255,0.1)", fontSize: 12, fontWeight: 600, cursor: "pointer", background: filterOwner === "" ? "#C4992A" : "rgba(255,255,255,0.06)", color: filterOwner === "" ? "#0C1929" : "#7B8EAA" }}
+            style={{ padding: "6px 14px", borderRadius: 8, border: "1px solid rgba(27,42,61,0.1)", fontSize: 12, fontWeight: 600, cursor: "pointer", background: filterOwner === "" ? "#C4992A" : "rgba(27,42,61,0.06)", color: filterOwner === "" ? "#F7F4EC" : "#756E5D" }}
           >All</button>
           {owners.map((owner) => (
             <button key={owner}
               onClick={() => setFilterOwner(owner)}
-              style={{ padding: "6px 14px", borderRadius: 8, border: "1px solid rgba(255,255,255,0.1)", fontSize: 12, fontWeight: 600, cursor: "pointer", background: filterOwner === owner ? "#C4992A" : "rgba(255,255,255,0.06)", color: filterOwner === owner ? "#0C1929" : "#7B8EAA" }}
+              style={{ padding: "6px 14px", borderRadius: 8, border: "1px solid rgba(27,42,61,0.1)", fontSize: 12, fontWeight: 600, cursor: "pointer", background: filterOwner === owner ? "#C4992A" : "rgba(27,42,61,0.06)", color: filterOwner === owner ? "#F7F4EC" : "#756E5D" }}
             >{owner}</button>
           ))}
         </div>
@@ -87,12 +87,12 @@ export default function TasksPage() {
               <div key={status}>
                 <div style={{ marginBottom: 10, display: "flex", alignItems: "center", gap: 8 }}>
                   <div style={{ width: 10, height: 10, borderRadius: "50%", background: statusColors[status] }} />
-                  <span style={{ fontWeight: 700, fontSize: 13, color: "#E8EFF8" }}>{status}</span>
+                  <span style={{ fontWeight: 700, fontSize: 13, color: "#1B2A3D" }}>{status}</span>
                   <span style={{ fontSize: 11, background: statusColors[status] + "22", color: statusColors[status], padding: "2px 8px", borderRadius: 20, fontWeight: 700 }}>{col.length}</span>
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                   {col.length === 0 && (
-                    <div style={{ padding: "20px", textAlign: "center", fontSize: 11, color: "#4A5C70", background: "#132037", border: "1px dashed rgba(255,255,255,0.1)", borderRadius: 8 }}>No tasks</div>
+                    <div style={{ padding: "20px", textAlign: "center", fontSize: 11, color: "#5C5648", background: "#F1EDE1", border: "1px dashed rgba(27,42,61,0.1)", borderRadius: 8 }}>No tasks</div>
                   )}
                   {col.map((task) => <TaskCard key={task.id} task={task} />)}
                 </div>

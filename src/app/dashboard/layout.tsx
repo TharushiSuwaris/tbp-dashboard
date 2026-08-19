@@ -3,7 +3,7 @@ import { AppHeader } from "@/components/layout/AppHeader";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh", background: "#0C1929" }}>
+    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh", background: "#F7F4EC" }}>
       <AppHeader />
       <div style={{ display: "flex", flex: 1 }}>
         <Sidebar />

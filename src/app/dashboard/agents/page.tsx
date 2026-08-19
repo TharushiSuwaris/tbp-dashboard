@@ -30,55 +30,55 @@ export default function AgentsPage() {
             <div
               key={agent.id}
               style={{
-                background: "#132037", border: "1px solid rgba(255,255,255,0.07)",
+                background: "#F1EDE1", border: "1px solid rgba(27,42,61,0.07)",
                 borderRadius: 12, padding: 20,
                 transition: "border-color 0.15s",
               }}
               onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(196,153,42,0.35)")}
-              onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.07)")}
+              onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(27,42,61,0.07)")}
             >
               <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 12 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                   <div style={{ fontSize: 22 }}>{agent.icon}</div>
                   <div>
-                    <div style={{ fontWeight: 700, fontSize: 14, color: "#E8EFF8" }}>{agent.name}</div>
+                    <div style={{ fontWeight: 700, fontSize: 14, color: "#1B2A3D" }}>{agent.name}</div>
                     <StatusChip status={agent.status} />
                   </div>
                 </div>
                 <div style={{ textAlign: "right" }}>
-                  <div style={{ fontSize: 10, color: "#4A5C70" }}>Human Approval</div>
+                  <div style={{ fontSize: 10, color: "#5C5648" }}>Human Approval</div>
                   <div style={{ fontSize: 12, fontWeight: 700, color: agent.humanApprovalRequired ? "#F87171" : "#34D399" }}>
                     {agent.humanApprovalRequired ? "Required" : "Not Required"}
                   </div>
                 </div>
               </div>
 
-              <div style={{ fontSize: 12, color: "#7B8EAA", lineHeight: 1.6, marginBottom: 12 }}>
+              <div style={{ fontSize: 12, color: "#756E5D", lineHeight: 1.6, marginBottom: 12 }}>
                 {agent.purpose}
               </div>
 
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 12 }}>
-                <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 8, padding: "8px 10px", border: "1px solid rgba(255,255,255,0.06)" }}>
-                  <div style={{ fontSize: 9, textTransform: "uppercase", letterSpacing: ".8px", color: "#4A5C70", marginBottom: 3 }}>Input</div>
-                  <div style={{ fontSize: 11, color: "#E8EFF8", lineHeight: 1.4 }}>{agent.input}</div>
+                <div style={{ background: "rgba(27,42,61,0.04)", borderRadius: 8, padding: "8px 10px", border: "1px solid rgba(27,42,61,0.06)" }}>
+                  <div style={{ fontSize: 9, textTransform: "uppercase", letterSpacing: ".8px", color: "#5C5648", marginBottom: 3 }}>Input</div>
+                  <div style={{ fontSize: 11, color: "#1B2A3D", lineHeight: 1.4 }}>{agent.input}</div>
                 </div>
-                <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 8, padding: "8px 10px", border: "1px solid rgba(255,255,255,0.06)" }}>
-                  <div style={{ fontSize: 9, textTransform: "uppercase", letterSpacing: ".8px", color: "#4A5C70", marginBottom: 3 }}>Output</div>
-                  <div style={{ fontSize: 11, color: "#E8EFF8", lineHeight: 1.4 }}>{agent.output}</div>
+                <div style={{ background: "rgba(27,42,61,0.04)", borderRadius: 8, padding: "8px 10px", border: "1px solid rgba(27,42,61,0.06)" }}>
+                  <div style={{ fontSize: 9, textTransform: "uppercase", letterSpacing: ".8px", color: "#5C5648", marginBottom: 3 }}>Output</div>
+                  <div style={{ fontSize: 11, color: "#1B2A3D", lineHeight: 1.4 }}>{agent.output}</div>
                 </div>
               </div>
 
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <div style={{ fontSize: 11, color: "#4A5C70" }}>
+                <div style={{ fontSize: 11, color: "#5C5648" }}>
                   {agent.lastRun ? `Last run: ${new Date(agent.lastRun).toLocaleDateString()}` : "Never run"}
                 </div>
                 <button
                   style={{
                     padding: "6px 14px", borderRadius: 7,
-                    border: "1px solid rgba(255,255,255,0.1)",
+                    border: "1px solid rgba(27,42,61,0.1)",
                     fontSize: 11, fontWeight: 600, cursor: "pointer",
-                    background: agent.status === "Active" ? "#C4992A" : "rgba(255,255,255,0.06)",
-                    color: agent.status === "Active" ? "#0C1929" : "#7B8EAA",
+                    background: agent.status === "Active" ? "#C4992A" : "rgba(27,42,61,0.06)",
+                    color: agent.status === "Active" ? "#F7F4EC" : "#756E5D",
                   }}
                 >
                   {agent.status === "Active" ? "▶ Run" : agent.status === "Needs API" ? "🔌 Connect API" : "⚙ Configure"}

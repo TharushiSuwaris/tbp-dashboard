@@ -1,17 +1,17 @@
-// Reuses the existing FO Circle dashboard's dark navy/gold palette
-// (see src/components/layout/Sidebar.tsx, Topbar.tsx) so the new portal
+// Reuses the existing FO Circle dashboard's warm ivory/gold palette
+// (see src/components/layout/Sidebar.tsx, Topbar.tsx) so the portal
 // area looks like part of the same product, not a bolted-on extra.
 export const portalTheme = {
-  background: "#0C1929",
-  panel: "#0A1624",
-  panelBorder: "rgba(255,255,255,0.08)",
-  sidebarBackground: "#091524",
-  textPrimary: "#E8EFF8",
-  textSecondary: "#B0C0D4",
-  textMuted: "#7B8EAA",
+  background: "#F7F4EC",
+  panel: "#FFFFFF",
+  panelBorder: "rgba(27,42,61,0.08)",
+  sidebarBackground: "#FBF8F1",
+  textPrimary: "#1B2A3D",
+  textSecondary: "#33465E",
+  textMuted: "#756E5D",
   gold: "#C4992A",
-  goldText: "#0C1929",
+  goldText: "#1B2A3D",
   danger: "#EF4444",
-  inputBackground: "#0A1624",
-  inputBorder: "rgba(255,255,255,0.12)",
+  inputBackground: "#FFFFFF",
+  inputBorder: "rgba(27,42,61,0.12)",
 };

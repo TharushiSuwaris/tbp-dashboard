@@ -25,12 +25,12 @@ export default function ProspectsPage() {
   }).sort((a, b) => b.suitability_score - a.suitability_score);
 
   const inputStyle: React.CSSProperties = {
-    padding: "8px 12px", borderRadius: 8, border: "1px solid rgba(255,255,255,0.12)",
-    fontSize: 12, color: "#E8EFF8", background: "#0A1624", outline: "none",
+    padding: "8px 12px", borderRadius: 8, border: "1px solid rgba(27,42,61,0.12)",
+    fontSize: 12, color: "#1B2A3D", background: "#FFFFFF", outline: "none",
   };
 
   if (loading) return (
-    <div style={{ padding: 28, color: "#7B8EAA", fontSize: 13 }}>Loading prospects from database...</div>
+    <div style={{ padding: 28, color: "#756E5D", fontSize: 13 }}>Loading prospects from database...</div>
   );
 
   return (
@@ -57,8 +57,8 @@ export default function ProspectsPage() {
               <option key={s} value={s}>{s}</option>
             ))}
           </select>
-          <div style={{ marginLeft: "auto", fontSize: 12, color: "#7B8EAA", display: "flex", alignItems: "center" }}>
-            Showing <strong style={{ margin: "0 4px", color: "#E8EFF8" }}>{filtered.length}</strong> of {prospects.length} prospects
+          <div style={{ marginLeft: "auto", fontSize: 12, color: "#756E5D", display: "flex", alignItems: "center" }}>
+            Showing <strong style={{ margin: "0 4px", color: "#1B2A3D" }}>{filtered.length}</strong> of {prospects.length} prospects
           </div>
         </div>
 
@@ -67,58 +67,58 @@ export default function ProspectsPage() {
             <thead>
               <tr>
                 {["#", "Prospect", "Country / Location", "Region", "Type", "Score", "Classification", "Stage", "Owner", "Pack", "Email", "Next Action"].map((h) => (
-                  <th key={h} style={{ textAlign: "left", fontSize: 10, textTransform: "uppercase", letterSpacing: ".8px", color: "#4A5C70", padding: "0 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.07)", whiteSpace: "nowrap" }}>{h}</th>
+                  <th key={h} style={{ textAlign: "left", fontSize: 10, textTransform: "uppercase", letterSpacing: ".8px", color: "#5C5648", padding: "0 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.07)", whiteSpace: "nowrap" }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {filtered.map((p, i) => (
                 <tr key={p.id} style={{ cursor: "pointer" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.04)")}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(27,42,61,0.04)")}
                   onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
                 >
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 12, color: "#4A5C70" }}>{i + 1}</td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", minWidth: 200 }}>
-                    <div style={{ fontWeight: 600, color: "#E8EFF8", fontSize: 13 }}>{p.prospect_name}</div>
-                    <div style={{ fontSize: 11, color: "#4A5C70" }}>{p.city} · {p.sector_interests.slice(0, 2).join(", ")}</div>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 12, color: "#5C5648" }}>{i + 1}</td>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", minWidth: 200 }}>
+                    <div style={{ fontWeight: 600, color: "#1B2A3D", fontSize: 13 }}>{p.prospect_name}</div>
+                    <div style={{ fontSize: 11, color: "#5C5648" }}>{p.city} · {p.sector_interests.slice(0, 2).join(", ")}</div>
                   </td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", minWidth: 120 }}>
-                    <div style={{ fontSize: 12, color: "#7B8EAA" }}>{p.country}</div>
-                    {p.address && <div style={{ fontSize: 10, color: "#4A5C70", marginTop: 2 }}>{p.address}</div>}
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", minWidth: 120 }}>
+                    <div style={{ fontSize: 12, color: "#756E5D" }}>{p.country}</div>
+                    {p.address && <div style={{ fontSize: 10, color: "#5C5648", marginTop: 2 }}>{p.address}</div>}
                   </td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 11, color: "#4A5C70", whiteSpace: "nowrap" }}>{p.region}</td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 11, color: "#7B8EAA", whiteSpace: "nowrap" }}>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 11, color: "#5C5648", whiteSpace: "nowrap" }}>{p.region}</td>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 11, color: "#756E5D", whiteSpace: "nowrap" }}>
                     {p.prospect_type.split("-").map(w => w[0].toUpperCase()).join("")}
                   </td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)" }}>
                     <ScoreBadge score={p.suitability_score} />
                   </td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)" }}>
                     <ClassificationBadge classification={p.classification} />
                   </td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)" }}>
                     <StageBadge stage={p.pipeline_stage} />
                   </td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 11, color: "#7B8EAA", whiteSpace: "nowrap" }}>{p.assigned_owner}</td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                    <span style={{ fontSize: 10, padding: "2px 7px", borderRadius: 6, background: p.briefing_pack_status === "Generated" ? "rgba(16,185,129,0.18)" : "rgba(255,255,255,0.06)", color: p.briefing_pack_status === "Generated" ? "#34D399" : "#4A5C70" }}>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 11, color: "#756E5D", whiteSpace: "nowrap" }}>{p.assigned_owner}</td>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)" }}>
+                    <span style={{ fontSize: 10, padding: "2px 7px", borderRadius: 6, background: p.briefing_pack_status === "Generated" ? "rgba(16,185,129,0.18)" : "rgba(27,42,61,0.06)", color: p.briefing_pack_status === "Generated" ? "#34D399" : "#5C5648" }}>
                       {p.briefing_pack_status}
                     </span>
                   </td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", minWidth: 180 }}>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", minWidth: 180 }}>
                     {p.email ? (
                       <a href={`mailto:${p.email.split(";")[0].trim()}`}
-                        style={{ fontSize: 11, color: "#7B8EAA", textDecoration: "none", display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", maxWidth: 200 }}
+                        style={{ fontSize: 11, color: "#756E5D", textDecoration: "none", display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", maxWidth: 200 }}
                         onClick={(e) => e.stopPropagation()}
                         title={p.email}
                       >
                         {p.email.split(";")[0].trim()}
                       </a>
                     ) : (
-                      <span style={{ fontSize: 11, color: "#2A3A50" }}>—</span>
+                      <span style={{ fontSize: 11, color: "#847D6C" }}>—</span>
                     )}
                   </td>
-                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 11, color: "#7B8EAA", maxWidth: 160, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 11, color: "#756E5D", maxWidth: 160, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                     {p.next_action}
                   </td>
                 </tr>

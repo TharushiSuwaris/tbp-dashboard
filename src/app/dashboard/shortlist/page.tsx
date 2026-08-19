@@ -24,7 +24,7 @@ export default function ShortlistPage() {
   const { prospects, loading } = useProspects();
 
   if (loading) return (
-    <div style={{ padding: 28, color: "#7B8EAA", fontSize: 13 }}>Loading shortlist from database...</div>
+    <div style={{ padding: 28, color: "#756E5D", fontSize: 13 }}>Loading shortlist from database...</div>
   );
 
   const shortlist = prospects
@@ -48,10 +48,10 @@ export default function ShortlistPage() {
             { label: "Strong Potential", value: strongCount, color: "#F59E0B" },
             { label: "Average Score", value: `${avg}/100`, color: "#3B82F6" },
           ].map((c, i) => (
-            <div key={i} style={{ background: "#132037", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 12, padding: "16px 20px", position: "relative", overflow: "hidden" }}>
+            <div key={i} style={{ background: "#F1EDE1", border: "1px solid rgba(27,42,61,0.07)", borderRadius: 12, padding: "16px 20px", position: "relative", overflow: "hidden" }}>
               <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: c.color }} />
-              <div style={{ fontSize: 26, fontWeight: 900, color: "#E8EFF8", marginBottom: 4 }}>{c.value}</div>
-              <div style={{ fontSize: 12, color: "#7B8EAA" }}>{c.label}</div>
+              <div style={{ fontSize: 26, fontWeight: 900, color: "#1B2A3D", marginBottom: 4 }}>{c.value}</div>
+              <div style={{ fontSize: 12, color: "#756E5D" }}>{c.label}</div>
             </div>
           ))}
         </div>
@@ -61,37 +61,37 @@ export default function ShortlistPage() {
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
               <thead>
                 <tr>
-                  <th style={{ textAlign: "left", fontSize: 10, textTransform: "uppercase", letterSpacing: ".7px", color: "#4A5C70", padding: "6px 8px", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>Family Office</th>
+                  <th style={{ textAlign: "left", fontSize: 10, textTransform: "uppercase", letterSpacing: ".7px", color: "#5C5648", padding: "6px 8px", borderBottom: "1px solid rgba(27,42,61,0.07)" }}>Family Office</th>
                   {dimLabels.map((h) => (
-                    <th key={h} style={{ textAlign: "center", fontSize: 10, textTransform: "uppercase", letterSpacing: ".7px", color: "#4A5C70", padding: "6px 8px", borderBottom: "1px solid rgba(255,255,255,0.07)", whiteSpace: "nowrap" }}>{h}</th>
+                    <th key={h} style={{ textAlign: "center", fontSize: 10, textTransform: "uppercase", letterSpacing: ".7px", color: "#5C5648", padding: "6px 8px", borderBottom: "1px solid rgba(27,42,61,0.07)", whiteSpace: "nowrap" }}>{h}</th>
                   ))}
-                  <th style={{ textAlign: "left", fontSize: 10, textTransform: "uppercase", letterSpacing: ".7px", color: "#4A5C70", padding: "6px 8px", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>Classification</th>
-                  <th style={{ textAlign: "left", fontSize: 10, textTransform: "uppercase", letterSpacing: ".7px", color: "#4A5C70", padding: "6px 8px", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>Region</th>
+                  <th style={{ textAlign: "left", fontSize: 10, textTransform: "uppercase", letterSpacing: ".7px", color: "#5C5648", padding: "6px 8px", borderBottom: "1px solid rgba(27,42,61,0.07)" }}>Classification</th>
+                  <th style={{ textAlign: "left", fontSize: 10, textTransform: "uppercase", letterSpacing: ".7px", color: "#5C5648", padding: "6px 8px", borderBottom: "1px solid rgba(27,42,61,0.07)" }}>Region</th>
                 </tr>
               </thead>
               <tbody>
                 {shortlist.map((p, i) => {
                   const bd = p.scoring_breakdown;
                   return (
-                    <tr key={p.id} style={{ background: i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.02)" }}>
-                      <td style={{ padding: "8px 8px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                        <div style={{ fontWeight: 600, color: "#E8EFF8" }}>{p.prospect_name}</div>
-                        <div style={{ fontSize: 10, color: "#4A5C70" }}>{p.city}, {p.country}</div>
+                    <tr key={p.id} style={{ background: i % 2 === 0 ? "transparent" : "rgba(27,42,61,0.02)" }}>
+                      <td style={{ padding: "8px 8px", borderBottom: "1px solid rgba(27,42,61,0.06)" }}>
+                        <div style={{ fontWeight: 600, color: "#1B2A3D" }}>{p.prospect_name}</div>
+                        <div style={{ fontSize: 10, color: "#5C5648" }}>{p.city}, {p.country}</div>
                       </td>
-                      <td style={{ textAlign: "center", padding: "8px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}><DimVal v={bd.familyOfficeFit} max={20} /></td>
-                      <td style={{ textAlign: "center", padding: "8px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}><DimVal v={bd.permanentCapitalOrientation} max={20} /></td>
-                      <td style={{ textAlign: "center", padding: "8px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}><DimVal v={bd.sectorAlignment} max={20} /></td>
-                      <td style={{ textAlign: "center", padding: "8px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}><DimVal v={bd.governanceInstitutionalMindset} max={15} /></td>
-                      <td style={{ textAlign: "center", padding: "8px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}><DimVal v={bd.strategicAdjacencyTBP} max={15} /></td>
-                      <td style={{ textAlign: "center", padding: "8px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}><DimVal v={bd.engagementReadiness} max={10} /></td>
-                      <td style={{ textAlign: "center", padding: "8px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}><ScoreBadge score={p.suitability_score} /></td>
-                      <td style={{ padding: "8px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}><ClassificationBadge classification={p.classification} /></td>
-                      <td style={{ padding: "8px", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 11, color: "#7B8EAA", whiteSpace: "nowrap" }}>{p.region}</td>
+                      <td style={{ textAlign: "center", padding: "8px", borderBottom: "1px solid rgba(27,42,61,0.06)" }}><DimVal v={bd.familyOfficeFit} max={20} /></td>
+                      <td style={{ textAlign: "center", padding: "8px", borderBottom: "1px solid rgba(27,42,61,0.06)" }}><DimVal v={bd.permanentCapitalOrientation} max={20} /></td>
+                      <td style={{ textAlign: "center", padding: "8px", borderBottom: "1px solid rgba(27,42,61,0.06)" }}><DimVal v={bd.sectorAlignment} max={20} /></td>
+                      <td style={{ textAlign: "center", padding: "8px", borderBottom: "1px solid rgba(27,42,61,0.06)" }}><DimVal v={bd.governanceInstitutionalMindset} max={15} /></td>
+                      <td style={{ textAlign: "center", padding: "8px", borderBottom: "1px solid rgba(27,42,61,0.06)" }}><DimVal v={bd.strategicAdjacencyTBP} max={15} /></td>
+                      <td style={{ textAlign: "center", padding: "8px", borderBottom: "1px solid rgba(27,42,61,0.06)" }}><DimVal v={bd.engagementReadiness} max={10} /></td>
+                      <td style={{ textAlign: "center", padding: "8px", borderBottom: "1px solid rgba(27,42,61,0.06)" }}><ScoreBadge score={p.suitability_score} /></td>
+                      <td style={{ padding: "8px", borderBottom: "1px solid rgba(27,42,61,0.06)" }}><ClassificationBadge classification={p.classification} /></td>
+                      <td style={{ padding: "8px", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 11, color: "#756E5D", whiteSpace: "nowrap" }}>{p.region}</td>
                     </tr>
                   );
                 })}
                 <tr style={{ background: "rgba(196,153,42,0.08)", fontWeight: 700, fontSize: 11 }}>
-                  <td style={{ padding: "8px", color: "#E8EFF8" }}>Average (top {shortlist.length})</td>
+                  <td style={{ padding: "8px", color: "#1B2A3D" }}>Average (top {shortlist.length})</td>
                   {[
                     Math.round(shortlist.reduce((s, p) => s + p.scoring_breakdown.familyOfficeFit, 0) / shortlist.length),
                     Math.round(shortlist.reduce((s, p) => s + p.scoring_breakdown.permanentCapitalOrientation, 0) / shortlist.length),

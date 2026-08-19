@@ -13,7 +13,7 @@ function StatusChip({ status }: { status: DocumentStatus }) {
     "In Review":           { background: "rgba(245,158,11,0.18)",  color: "#FBBF24" },
     "Approved (Internal)": { background: "rgba(59,130,246,0.18)",  color: "#60A5FA" },
     "Approved (External)": { background: "rgba(16,185,129,0.18)",  color: "#34D399" },
-    "Archived":            { background: "rgba(255,255,255,0.06)", color: "#6B7F96" },
+    "Archived":            { background: "rgba(27,42,61,0.06)", color: "#6B6455" },
   };
   return <span style={{ display: "inline-block", padding: "3px 9px", borderRadius: 20, fontSize: 10, fontWeight: 700, ...styles[status] }}>{status}</span>;
 }
@@ -22,7 +22,7 @@ export default function DocumentsPage() {
   const { documents, loading } = useDocuments();
 
   if (loading) return (
-    <div style={{ padding: 28, color: "#7B8EAA", fontSize: 13 }}>Loading documents from database...</div>
+    <div style={{ padding: 28, color: "#756E5D", fontSize: 13 }}>Loading documents from database...</div>
   );
 
   return (
@@ -42,10 +42,10 @@ export default function DocumentsPage() {
             { label: "In Review",         value: documents.filter(d => d.status === "In Review").length, color: "#F59E0B" },
             { label: "Draft",             value: documents.filter(d => d.status === "Draft").length, color: "#8B5CF6" },
           ].map((c, i) => (
-            <div key={i} style={{ background: "#132037", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 10, padding: "14px 16px", position: "relative", overflow: "hidden" }}>
+            <div key={i} style={{ background: "#F1EDE1", border: "1px solid rgba(27,42,61,0.07)", borderRadius: 10, padding: "14px 16px", position: "relative", overflow: "hidden" }}>
               <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: c.color }} />
-              <div style={{ fontSize: 24, fontWeight: 900, color: "#E8EFF8" }}>{c.value}</div>
-              <div style={{ fontSize: 11, color: "#7B8EAA" }}>{c.label}</div>
+              <div style={{ fontSize: 24, fontWeight: 900, color: "#1B2A3D" }}>{c.value}</div>
+              <div style={{ fontSize: 11, color: "#756E5D" }}>{c.label}</div>
             </div>
           ))}
         </div>
@@ -59,33 +59,33 @@ export default function DocumentsPage() {
                 <thead>
                   <tr>
                     {["Document", "Status", "Owner", "Version", "Last Updated", "Internal", "External", "Notes"].map((h) => (
-                      <th key={h} style={{ textAlign: "left", fontSize: 10, textTransform: "uppercase", letterSpacing: ".8px", color: "#4A5C70", padding: "0 8px 8px 0", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>{h}</th>
+                      <th key={h} style={{ textAlign: "left", fontSize: 10, textTransform: "uppercase", letterSpacing: ".8px", color: "#5C5648", padding: "0 8px 8px 0", borderBottom: "1px solid rgba(27,42,61,0.07)" }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
                   {docs.map((doc) => (
                     <tr key={doc.id}
-                      onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.04)")}
+                      onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(27,42,61,0.04)")}
                       onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
                     >
-                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                        <div style={{ fontWeight: 600, color: "#E8EFF8", fontSize: 13 }}>{doc.title}</div>
+                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)" }}>
+                        <div style={{ fontWeight: 600, color: "#1B2A3D", fontSize: 13 }}>{doc.title}</div>
                         {doc.linkedProspects.length > 0 && (
-                          <div style={{ fontSize: 10, color: "#4A5C70" }}>Linked to {doc.linkedProspects.length} prospect{doc.linkedProspects.length > 1 ? "s" : ""}</div>
+                          <div style={{ fontSize: 10, color: "#5C5648" }}>Linked to {doc.linkedProspects.length} prospect{doc.linkedProspects.length > 1 ? "s" : ""}</div>
                         )}
                       </td>
-                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}><StatusChip status={doc.status} /></td>
-                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 12, color: "#7B8EAA" }}>{doc.owner}</td>
-                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 12, color: "#7B8EAA" }}>{doc.version}</td>
-                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 12, color: "#7B8EAA" }}>{doc.lastUpdated}</td>
-                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", textAlign: "center" }}>
+                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)" }}><StatusChip status={doc.status} /></td>
+                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 12, color: "#756E5D" }}>{doc.owner}</td>
+                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 12, color: "#756E5D" }}>{doc.version}</td>
+                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 12, color: "#756E5D" }}>{doc.lastUpdated}</td>
+                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", textAlign: "center" }}>
                         <span style={{ fontSize: 14 }}>{doc.approvedInternal ? "✅" : "❌"}</span>
                       </td>
-                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", textAlign: "center" }}>
+                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", textAlign: "center" }}>
                         <span style={{ fontSize: 14 }}>{doc.approvedExternal ? "✅" : "❌"}</span>
                       </td>
-                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 11, color: "#7B8EAA", maxWidth: 220 }}>{doc.notes}</td>
+                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 11, color: "#756E5D", maxWidth: 220 }}>{doc.notes}</td>
                     </tr>
                   ))}
                 </tbody>

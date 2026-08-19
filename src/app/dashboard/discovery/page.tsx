@@ -14,12 +14,12 @@ type RowState = { status: "pending" } | { status: "scoring" } | { status: "done"
 
 const inputStyle: React.CSSProperties = {
   width: "100%", padding: "9px 12px", borderRadius: 8,
-  border: "1px solid rgba(255,255,255,0.12)", fontSize: 13, color: "#E8EFF8",
-  background: "#0A1624", outline: "none",
+  border: "1px solid rgba(27,42,61,0.12)", fontSize: 13, color: "#1B2A3D",
+  background: "#FFFFFF", outline: "none",
 };
 
 const labelStyle: React.CSSProperties = {
-  fontSize: 11, fontWeight: 600, color: "#4A5C70",
+  fontSize: 11, fontWeight: 600, color: "#5C5648",
   textTransform: "uppercase", letterSpacing: ".8px", marginBottom: 6, display: "block",
 };
 
@@ -185,7 +185,7 @@ export default function DiscoveryPage() {
               onClick={handleSearch}
               disabled={searching || scoringActive || !country.trim()}
               style={{
-                background: "#C4992A", color: "#0C1929",
+                background: "#C4992A", color: "#1B2A3D",
                 fontWeight: 700, fontSize: 13, padding: "10px 24px",
                 borderRadius: 8, border: "none", cursor: searching || scoringActive || !country.trim() ? "not-allowed" : "pointer",
                 opacity: searching || scoringActive || !country.trim() ? 0.7 : 1,
@@ -204,7 +204,7 @@ export default function DiscoveryPage() {
             {prospects.length > 0 && (
               <button
                 onClick={handleExportCsv}
-                style={{ background: "rgba(255,255,255,0.06)", color: "#7B8EAA", fontWeight: 600, fontSize: 13, padding: "10px 20px", borderRadius: 8, border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}
+                style={{ background: "rgba(27,42,61,0.06)", color: "#756E5D", fontWeight: 600, fontSize: 13, padding: "10px 20px", borderRadius: 8, border: "1px solid rgba(27,42,61,0.1)", cursor: "pointer" }}
               >
                 ⬇ Download CSV
               </button>
@@ -214,7 +214,7 @@ export default function DiscoveryPage() {
         </Panel>
 
         {searching && (
-          <div style={{ textAlign: "center", padding: "40px 0", color: "#7B8EAA", fontSize: 13 }}>
+          <div style={{ textAlign: "center", padding: "40px 0", color: "#756E5D", fontSize: 13 }}>
             🔍 Searching the web for {circle.label} prospects in {country}...
           </div>
         )}
@@ -228,7 +228,7 @@ export default function DiscoveryPage() {
               <thead>
                 <tr>
                   {["Prospect", "Sectors", "Score", "Classification", "Email", "Status"].map((h) => (
-                    <th key={h} style={{ textAlign: "left", fontSize: 10, textTransform: "uppercase", letterSpacing: ".8px", color: "#4A5C70", padding: "0 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>{h}</th>
+                    <th key={h} style={{ textAlign: "left", fontSize: 10, textTransform: "uppercase", letterSpacing: ".8px", color: "#5C5648", padding: "0 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.07)" }}>{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -242,27 +242,27 @@ export default function DiscoveryPage() {
                       <tr
                         onClick={() => clickable && setExpandedIndex(expanded ? null : i)}
                         style={{ cursor: clickable ? "pointer" : "default" }}
-                        onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.04)")}
+                        onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(27,42,61,0.04)")}
                         onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
                       >
-                        <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", minWidth: 200 }}>
-                          <div style={{ fontWeight: 600, color: "#E8EFF8", fontSize: 13 }}>{p.name}</div>
-                          <div style={{ fontSize: 11, color: "#4A5C70", maxWidth: 320 }}>{p.brief_description}</div>
+                        <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", minWidth: 200 }}>
+                          <div style={{ fontWeight: 600, color: "#1B2A3D", fontSize: 13 }}>{p.name}</div>
+                          <div style={{ fontSize: 11, color: "#5C5648", maxWidth: 320 }}>{p.brief_description}</div>
                         </td>
-                        <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 11, color: "#7B8EAA", maxWidth: 180 }}>
+                        <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 11, color: "#756E5D", maxWidth: 180 }}>
                           {(p.sectors ?? []).slice(0, 3).join(", ")}
                         </td>
-                        <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                          {row?.status === "done" ? <ScoreBadge score={Math.round(row.result.totalScore)} /> : <span style={{ fontSize: 11, color: "#4A5C70" }}>—</span>}
+                        <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)" }}>
+                          {row?.status === "done" ? <ScoreBadge score={Math.round(row.result.totalScore)} /> : <span style={{ fontSize: 11, color: "#5C5648" }}>—</span>}
                         </td>
-                        <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                          {row?.status === "done" ? <ClassificationBadge classification={row.result.classification} /> : <span style={{ fontSize: 11, color: "#4A5C70" }}>—</span>}
+                        <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)" }}>
+                          {row?.status === "done" ? <ClassificationBadge classification={row.result.classification} /> : <span style={{ fontSize: 11, color: "#5C5648" }}>—</span>}
                         </td>
-                        <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 11 }}>
-                          {p.email ? <a href={`mailto:${p.email}`} style={{ color: "#7B8EAA" }} onClick={(e) => e.stopPropagation()}>{p.email}</a> : <span style={{ color: "#2A3A50" }}>Needs Verification</span>}
+                        <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 11 }}>
+                          {p.email ? <a href={`mailto:${p.email}`} style={{ color: "#756E5D" }} onClick={(e) => e.stopPropagation()}>{p.email}</a> : <span style={{ color: "#847D6C" }}>Needs Verification</span>}
                         </td>
-                        <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 11 }}>
-                          {row?.status === "pending" && <span style={{ color: "#4A5C70" }}>Queued</span>}
+                        <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 11 }}>
+                          {row?.status === "pending" && <span style={{ color: "#5C5648" }}>Queued</span>}
                           {row?.status === "scoring" && <span style={{ color: "#FBBF24" }}>Scoring...</span>}
                           {row?.status === "done" && <span style={{ color: "#34D399" }}>Scored ▾</span>}
                           {row?.status === "error" && <span style={{ color: "#F87171" }} title={row.message}>Failed</span>}
@@ -270,18 +270,18 @@ export default function DiscoveryPage() {
                       </tr>
                       {expanded && row?.status === "done" && (
                         <tr>
-                          <td colSpan={6} style={{ padding: "6px 8px 18px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                            <div style={{ background: "#0A1624", borderRadius: 8, padding: "14px 16px", display: "grid", gap: 8 }}>
+                          <td colSpan={6} style={{ padding: "6px 8px 18px 0", borderBottom: "1px solid rgba(27,42,61,0.06)" }}>
+                            <div style={{ background: "#FFFFFF", borderRadius: 8, padding: "14px 16px", display: "grid", gap: 8 }}>
                               {row.result.tierCategories.map((c) => (
                                 <div key={c.key} style={{ display: "flex", gap: 10, fontSize: 12 }}>
-                                  <div style={{ minWidth: 260, color: "#E8EFF8", fontWeight: 600 }}>{c.label} ({c.points}/{c.maxPoints})</div>
-                                  <div style={{ color: "#7B8EAA" }}>{c.tier} — {c.reason}</div>
+                                  <div style={{ minWidth: 260, color: "#1B2A3D", fontWeight: 600 }}>{c.label} ({c.points}/{c.maxPoints})</div>
+                                  <div style={{ color: "#756E5D" }}>{c.tier} — {c.reason}</div>
                                 </div>
                               ))}
                               {row.result.similarityCategories.map((c) => (
                                 <div key={c.key} style={{ display: "flex", gap: 10, fontSize: 12 }}>
-                                  <div style={{ minWidth: 260, color: "#E8EFF8", fontWeight: 600 }}>{c.label} ({c.score}/{c.maxPoints})</div>
-                                  <div style={{ color: "#7B8EAA" }}>cosine similarity {c.cosine.toFixed(4)}</div>
+                                  <div style={{ minWidth: 260, color: "#1B2A3D", fontWeight: 600 }}>{c.label} ({c.score}/{c.maxPoints})</div>
+                                  <div style={{ color: "#756E5D" }}>cosine similarity {c.cosine.toFixed(4)}</div>
                                 </div>
                               ))}
                             </div>
@@ -297,7 +297,7 @@ export default function DiscoveryPage() {
         )}
 
         {!searching && prospects.length === 0 && !searchError && (
-          <div style={{ textAlign: "center", padding: "60px 0", color: "#4A5C70", fontSize: 13 }}>
+          <div style={{ textAlign: "center", padding: "60px 0", color: "#5C5648", fontSize: 13 }}>
             Pick a circle and country above and run a live discovery search.
           </div>
         )}

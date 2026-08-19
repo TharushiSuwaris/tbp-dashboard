@@ -13,7 +13,7 @@ export function Badge({ children, variant = "gray" }: BadgeProps) {
     purple: { background: "rgba(139,92,246,0.18)",  color: "#A78BFA" },
     pink:   { background: "rgba(236,72,153,0.18)",  color: "#F472B6" },
     red:    { background: "rgba(239,68,68,0.18)",   color: "#F87171" },
-    gray:   { background: "rgba(255,255,255,0.08)", color: "#9CA3AF" },
+    gray:   { background: "rgba(27,42,61,0.08)", color: "#8A8371" },
     gold:   { background: "rgba(196,153,42,0.18)",  color: "#D4AA3A" },
   };
 

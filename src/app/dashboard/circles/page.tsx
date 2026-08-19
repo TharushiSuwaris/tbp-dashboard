@@ -25,12 +25,12 @@ export default function CirclesPage() {
   });
 
   const inputStyle: React.CSSProperties = {
-    padding: "8px 12px", borderRadius: 8, border: "1px solid rgba(255,255,255,0.12)",
-    fontSize: 12, color: "#E8EFF8", background: "#0A1624", outline: "none",
+    padding: "8px 12px", borderRadius: 8, border: "1px solid rgba(27,42,61,0.12)",
+    fontSize: 12, color: "#1B2A3D", background: "#FFFFFF", outline: "none",
   };
 
   if (loading) return (
-    <div style={{ padding: 28, color: "#7B8EAA", fontSize: 13 }}>Loading multi-circle prospects from database...</div>
+    <div style={{ padding: 28, color: "#756E5D", fontSize: 13 }}>Loading multi-circle prospects from database...</div>
   );
 
   return (
@@ -51,8 +51,8 @@ export default function CirclesPage() {
             <option value="">All Priorities</option>
             {priorities.map((p) => <option key={p} value={p}>{p}</option>)}
           </select>
-          <div style={{ marginLeft: "auto", fontSize: 12, color: "#7B8EAA", display: "flex", alignItems: "center" }}>
-            Showing <strong style={{ margin: "0 4px", color: "#E8EFF8" }}>{filtered.length}</strong> of {circleProspects.length} prospects
+          <div style={{ marginLeft: "auto", fontSize: 12, color: "#756E5D", display: "flex", alignItems: "center" }}>
+            Showing <strong style={{ margin: "0 4px", color: "#1B2A3D" }}>{filtered.length}</strong> of {circleProspects.length} prospects
           </div>
         </div>
 
@@ -61,7 +61,7 @@ export default function CirclesPage() {
             <thead>
               <tr>
                 {["Prospect", "Circle", "Country", "Score", "Classification", "Sectors", "Contact"].map((h) => (
-                  <th key={h} style={{ textAlign: "left", fontSize: 10, textTransform: "uppercase", letterSpacing: ".8px", color: "#4A5C70", padding: "0 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.07)", whiteSpace: "nowrap" }}>{h}</th>
+                  <th key={h} style={{ textAlign: "left", fontSize: 10, textTransform: "uppercase", letterSpacing: ".8px", color: "#5C5648", padding: "0 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.07)", whiteSpace: "nowrap" }}>{h}</th>
                 ))}
               </tr>
             </thead>
@@ -73,50 +73,50 @@ export default function CirclesPage() {
                   <Fragment key={rowKey}>
                     <tr style={{ cursor: "pointer" }}
                       onClick={() => setExpandedId(expanded ? null : rowKey)}
-                      onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.04)")}
+                      onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(27,42,61,0.04)")}
                       onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
                     >
-                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", minWidth: 200 }}>
-                        <div style={{ fontWeight: 600, color: "#E8EFF8", fontSize: 13 }}>{p.prospect_name}</div>
+                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", minWidth: 200 }}>
+                        <div style={{ fontWeight: 600, color: "#1B2A3D", fontSize: 13 }}>{p.prospect_name}</div>
                       </td>
-                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 11, color: "#7B8EAA", whiteSpace: "nowrap" }}>{p.circle}</td>
-                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 12, color: "#7B8EAA", whiteSpace: "nowrap" }}>{p.country}</td>
-                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 11, color: "#756E5D", whiteSpace: "nowrap" }}>{p.circle}</td>
+                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 12, color: "#756E5D", whiteSpace: "nowrap" }}>{p.country}</td>
+                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)" }}>
                         <ScoreBadge score={Math.round(p.totalScore)} />
                       </td>
-                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)" }}>
                         <ClassificationBadge classification={p.classification} />
                       </td>
-                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 11, color: "#4A5C70", maxWidth: 220, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 11, color: "#5C5648", maxWidth: 220, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                         {p.sectors.slice(0, 3).join(", ")}
                       </td>
-                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                      <td style={{ padding: "10px 8px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)" }}>
                         {p.email ? (
                           <a href={`mailto:${p.email}`}
-                            style={{ fontSize: 11, color: "#7B8EAA", textDecoration: "none" }}
+                            style={{ fontSize: 11, color: "#756E5D", textDecoration: "none" }}
                             onClick={(e) => e.stopPropagation()}
                           >
                             {p.email}
                           </a>
                         ) : (
-                          <span style={{ fontSize: 11, color: "#2A3A50" }}>Needs Verification</span>
+                          <span style={{ fontSize: 11, color: "#847D6C" }}>Needs Verification</span>
                         )}
                       </td>
                     </tr>
                     {expanded && (
                       <tr key={`${rowKey}-detail`}>
-                        <td colSpan={7} style={{ padding: "6px 8px 18px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                          <div style={{ background: "#0A1624", borderRadius: 8, padding: "14px 16px", display: "grid", gap: 8 }}>
+                        <td colSpan={7} style={{ padding: "6px 8px 18px 0", borderBottom: "1px solid rgba(27,42,61,0.06)" }}>
+                          <div style={{ background: "#FFFFFF", borderRadius: 8, padding: "14px 16px", display: "grid", gap: 8 }}>
                             {p.categories.map((c) => (
                               <div key={c.categoryName} style={{ display: "flex", gap: 10, fontSize: 12 }}>
-                                <div style={{ minWidth: 220, color: "#E8EFF8", fontWeight: 600 }}>
+                                <div style={{ minWidth: 220, color: "#1B2A3D", fontWeight: 600 }}>
                                   {c.categoryName} ({c.score}/{c.maxPoints})
                                 </div>
-                                <div style={{ color: "#7B8EAA" }}>{c.explanation || "—"}</div>
+                                <div style={{ color: "#756E5D" }}>{c.explanation || "—"}</div>
                               </div>
                             ))}
                             {p.address && (
-                              <div style={{ fontSize: 11, color: "#4A5C70", marginTop: 4 }}>Address: {p.address}</div>
+                              <div style={{ fontSize: 11, color: "#5C5648", marginTop: 4 }}>Address: {p.address}</div>
                             )}
                           </div>
                         </td>

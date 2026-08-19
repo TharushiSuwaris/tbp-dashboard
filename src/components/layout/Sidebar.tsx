@@ -72,7 +72,7 @@ export function Sidebar() {
       className="sidebar-scroll"
       style={{
         width: 200,
-        background: "#091524",
+        background: "#FBF8F1",
         display: "flex",
         flexDirection: "column",
         position: "fixed",
@@ -81,7 +81,7 @@ export function Sidebar() {
         height: "calc(100vh - 64px)",
         overflowY: "auto",
         zIndex: 20,
-        borderRight: "1px solid rgba(255,255,255,0.05)",
+        borderRight: "1px solid rgba(27,42,61,0.05)",
       }}
     >
       {/* Nav */}
@@ -98,8 +98,8 @@ export function Sidebar() {
                 gap: 10,
                 padding: "8px 14px",
                 cursor: "pointer",
-                color: active ? "#E8EFF8" : "#6B7F96",
-                background: active ? "rgba(255,255,255,0.06)" : "transparent",
+                color: active ? "#1B2A3D" : "#6B6455",
+                background: active ? "rgba(27,42,61,0.06)" : "transparent",
                 borderLeft: active ? "3px solid #C4992A" : "3px solid transparent",
                 fontSize: 12.5,
                 fontWeight: active ? 600 : 400,
@@ -109,14 +109,14 @@ export function Sidebar() {
               }}
               onMouseEnter={(e) => {
                 if (!active) {
-                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.04)";
-                  (e.currentTarget as HTMLElement).style.color = "#B0C0D4";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(27,42,61,0.04)";
+                  (e.currentTarget as HTMLElement).style.color = "#33465E";
                 }
               }}
               onMouseLeave={(e) => {
                 if (!active) {
                   (e.currentTarget as HTMLElement).style.background = "transparent";
-                  (e.currentTarget as HTMLElement).style.color = "#6B7F96";
+                  (e.currentTarget as HTMLElement).style.color = "#6B6455";
                 }
               }}
             >
@@ -141,13 +141,13 @@ export function Sidebar() {
       <div
         style={{
           padding: "14px 16px",
-          borderTop: "1px solid rgba(255,255,255,0.05)",
+          borderTop: "1px solid rgba(27,42,61,0.05)",
         }}
       >
-        <div style={{ fontSize: 9, textTransform: "uppercase", letterSpacing: "1.4px", color: "#3A4E62", marginBottom: 6, fontWeight: 700 }}>
+        <div style={{ fontSize: 9, textTransform: "uppercase", letterSpacing: "1.4px", color: "#847D6C", marginBottom: 6, fontWeight: 700 }}>
           TBP Mission
         </div>
-        <div style={{ fontSize: 10, color: "#3A4E62", lineHeight: 1.6 }}>
+        <div style={{ fontSize: 10, color: "#847D6C", lineHeight: 1.6 }}>
           To build neutral, borderless trade infrastructure and permanent-capital ecosystems that enable global prosperity, opportunity and inclusion.
         </div>
       </div>

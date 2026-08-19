@@ -139,7 +139,7 @@ export default function MessagesPage() {
                   style={{
                     alignSelf: isMine ? "flex-end" : "flex-start",
                     maxWidth: "70%",
-                    background: isMine ? "rgba(196,153,42,0.16)" : "rgba(255,255,255,0.05)",
+                    background: isMine ? "rgba(196,153,42,0.16)" : "rgba(27,42,61,0.06)",
                     color: portalTheme.textPrimary,
                     borderRadius: 10,
                     padding: "9px 12px",

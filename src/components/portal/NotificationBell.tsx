@@ -63,7 +63,7 @@ export function NotificationBell({ userId, role }: { userId: string; role: strin
               background: "#EF4444", borderRadius: 8,
               fontSize: 9, fontWeight: 800, color: "#fff",
               display: "flex", alignItems: "center", justifyContent: "center",
-              border: "2px solid #091524",
+              border: "2px solid #FBF8F1",
             }}
           >
             {total > 9 ? "9+" : total}
@@ -78,19 +78,19 @@ export function NotificationBell({ userId, role }: { userId: string; role: strin
             top: 30,
             right: 0,
             width: 280,
-            background: "#0A1624",
-            border: "1px solid rgba(255,255,255,0.1)",
+            background: "#FFFFFF",
+            border: "1px solid rgba(27,42,61,0.1)",
             borderRadius: 10,
-            boxShadow: "0 8px 24px rgba(0,0,0,0.4)",
+            boxShadow: "0 8px 24px rgba(27,42,61,0.15)",
             zIndex: 50,
             overflow: "hidden",
           }}
         >
-          <div style={{ padding: "10px 14px", fontSize: 11, fontWeight: 700, color: "#7B8EAA", textTransform: "uppercase", letterSpacing: ".6px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+          <div style={{ padding: "10px 14px", fontSize: 11, fontWeight: 700, color: "#756E5D", textTransform: "uppercase", letterSpacing: ".6px", borderBottom: "1px solid rgba(27,42,61,0.06)" }}>
             Notifications
           </div>
           {items.length === 0 ? (
-            <div style={{ padding: "16px 14px", fontSize: 12.5, color: "#4A5C70" }}>Nothing new.</div>
+            <div style={{ padding: "16px 14px", fontSize: 12.5, color: "#5C5648" }}>Nothing new.</div>
           ) : (
             items.map((item) => (
               <div
@@ -99,14 +99,14 @@ export function NotificationBell({ userId, role }: { userId: string; role: strin
                 style={{
                   padding: "11px 14px",
                   fontSize: 12.5,
-                  color: "#E8EFF8",
+                  color: "#1B2A3D",
                   cursor: "pointer",
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
-                  borderBottom: "1px solid rgba(255,255,255,0.04)",
+                  borderBottom: "1px solid rgba(27,42,61,0.04)",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.04)")}
+                onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(27,42,61,0.04)")}
                 onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
               >
                 <span>{item.label}</span>

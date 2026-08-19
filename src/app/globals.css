@@ -1,26 +1,26 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #0C1929;
-  --color-foreground: #E8EFF8;
+  --color-background: #F7F4EC;
+  --color-foreground: #1B2A3D;
 
-  --color-navy: #0C1929;
-  --color-sidebar: #091524;
-  --color-card: #132037;
-  --color-card-hover: #1A2B40;
+  --color-navy: #F7F4EC;
+  --color-sidebar: #FBF8F1;
+  --color-card: #F1EDE1;
+  --color-card-hover: #EFE8D9;
 
   --color-gold: #C4992A;
   --color-gold-pale: rgba(196, 153, 42, 0.14);
 
-  --color-t1: #E8EFF8;
-  --color-t2: #7B8EAA;
-  --color-t3: #4A5C70;
+  --color-t1: #1B2A3D;
+  --color-t2: #756E5D;
+  --color-t3: #5C5648;
 
-  --color-border: rgba(255, 255, 255, 0.07);
-  --color-border-strong: rgba(255, 255, 255, 0.12);
-  --color-panel: #132037;
-  --color-input: #0A1624;
-  --color-hover: rgba(255, 255, 255, 0.04);
+  --color-border: rgba(27, 42, 61, 0.07);
+  --color-border-strong: rgba(27, 42, 61, 0.12);
+  --color-panel: #F1EDE1;
+  --color-input: #FFFFFF;
+  --color-hover: rgba(27, 42, 61, 0.04);
 
   --color-success: #10B981;
   --color-warning: #F59E0B;
@@ -37,19 +37,19 @@
 }
 
 body {
-  background: #0C1929;
-  color: #E8EFF8;
+  background: #F7F4EC;
+  color: #1B2A3D;
   font-family: var(--font-sans);
   font-size: 14px;
 }
 
 input, select, textarea {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: #4A5C70;
+  color: #5C5648;
 }
 
 @keyframes pulse-dot {
@@ -68,7 +68,7 @@ textarea::placeholder {
   background: transparent;
 }
 .sidebar-scroll::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(27, 42, 61, 0.08);
   border-radius: 2px;
 }
 
@@ -79,6 +79,6 @@ textarea::placeholder {
   background: transparent;
 }
 .kanban-scroll::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(27, 42, 61, 0.08);
   border-radius: 2px;
 }
