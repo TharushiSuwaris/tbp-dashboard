@@ -1,14 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { clearPortalSession, getPortalSession, type PortalSessionUser } from "@/lib/portal/session";
 import { portalTheme } from "@/lib/portal/theme";
+import { PORTAL_PAGES } from "@/lib/portal/pages";
 import { PortalSidebar } from "@/components/portal/PortalSidebar";
 import { NotificationBell } from "@/components/portal/NotificationBell";
 
 export default function PortalAppLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const pathname = usePathname();
   const [user, setUser] = useState<PortalSessionUser | null>(null);
 
   useEffect(() => {
@@ -20,7 +22,23 @@ export default function PortalAppLayout({ children }: { children: React.ReactNod
     setUser(session);
   }, [router]);
 
+  // Nav-hiding alone isn't real access control - anyone who knows (or is
+  // still holding a stale localStorage session for) a restricted URL could
+  // otherwise load it directly. "/portal" itself is the shared Overview and
+  // isn't in the registry, so it's always allowed once logged in.
+  useEffect(() => {
+    if (!user || pathname === "/portal") return;
+    const pageDef = PORTAL_PAGES.find((p) => p.path === pathname);
+    if (pageDef && !pageDef.roles.includes(user.role)) {
+      router.replace("/portal");
+    }
+  }, [user, pathname, router]);
+
   if (!user) return null;
+  if (pathname !== "/portal") {
+    const pageDef = PORTAL_PAGES.find((p) => p.path === pathname);
+    if (pageDef && !pageDef.roles.includes(user.role)) return null;
+  }
 
   function handleLogout() {
     clearPortalSession();

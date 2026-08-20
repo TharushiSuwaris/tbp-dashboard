@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { portalTheme } from "@/lib/portal/theme";
+import { getPortalSession, type PortalSessionUser } from "@/lib/portal/session";
 import { listApplicationsWithDetails, reviewApplication, type ApplicationWithDetails } from "@/lib/portal/content";
 
 export default function ApplicationsPage() {
+  const [user, setUser] = useState<PortalSessionUser | null>(null);
   const [applications, setApplications] = useState<ApplicationWithDetails[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -17,8 +19,16 @@ export default function ApplicationsPage() {
   }
 
   useEffect(() => {
+    setUser(getPortalSession());
     load();
   }, []);
+
+  // A plain Admin only sees enquiries from Circle Members assigned to them;
+  // super_admin sees every enquiry regardless of assignment.
+  const visible =
+    user?.role === "admin"
+      ? applications.filter((a) => a.applicant_assigned_admin_id === user.id)
+      : applications;
 
   async function handleReview(id: string, status: "approved" | "rejected") {
     try {
@@ -38,7 +48,7 @@ export default function ApplicationsPage() {
 
       {error && <div style={{ color: portalTheme.danger, fontSize: 13, marginBottom: 14 }}>{error}</div>}
 
-      {applications.length === 0 && <div style={{ color: portalTheme.textMuted, fontSize: 13 }}>No applications yet.</div>}
+      {visible.length === 0 && <div style={{ color: portalTheme.textMuted, fontSize: 13 }}>No applications yet.</div>}
 
       <div
         style={{
@@ -48,7 +58,7 @@ export default function ApplicationsPage() {
           overflow: "hidden",
         }}
       >
-        {applications.map((app) => (
+        {visible.map((app) => (
           <div
             key={app.id}
             style={{

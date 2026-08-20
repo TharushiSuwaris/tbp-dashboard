@@ -5,11 +5,45 @@ export type OpportunityStatus = "draft" | "published" | "closed";
 export type ApplicationStatus = "pending" | "approved" | "rejected";
 export type ProfileStatus = "draft" | "submitted" | "approved" | "rejected";
 
+// Fixed taxonomies from the "Tharushi TBP Capital Circle Task" doc's
+// proposed filtering architecture — kept as const arrays (not DB enums)
+// so Opportunity Management can offer them as checkboxes without a migration
+// every time the list changes.
+export const OPPORTUNITY_SECTORS = [
+  "Global Trade",
+  "Infrastructure",
+  "Energy",
+  "Maritime",
+  "Technology & AI",
+  "Logistics",
+  "Cities & Built Environment",
+  "Sustainability",
+] as const;
+
+export const CAPITAL_CIRCLES = [
+  "Family Office & Private Capital",
+  "Institutional Investors",
+  "Angel Investors",
+] as const;
+
+export const PARTICIPATION_TYPES = [
+  "Investment",
+  "Co-Investment",
+  "Project Partnership",
+  "Technology / Innovation",
+  "Development",
+  "Operating Partnership",
+  "Strategic Partnership",
+] as const;
+
 export type Opportunity = {
   id: string;
   title: string;
   category: string;
   region: string | null;
+  sector: string[] | null;
+  eligible_circles: string[] | null;
+  participation_types: string[] | null;
   description: string;
   status: OpportunityStatus;
   created_at: string;
@@ -40,6 +74,7 @@ export type ApplicationWithDetails = Application & {
   opportunity_title: string;
   applicant_name: string;
   applicant_email: string;
+  applicant_assigned_admin_id: string | null;
 };
 
 export type MemberProfile = {
@@ -61,11 +96,12 @@ export type PortalMessage = {
   id: string;
   member_id: string;
   sender_id: string;
+  subject: string | null;
   content: string;
   created_at: string;
 };
 
-export type CircleMember = { id: string; name: string; email: string };
+export type CircleMember = { id: string; name: string; email: string; assigned_admin_id: string | null };
 
 // ── Opportunities ──────────────────────────────────────────────
 export async function listPublishedOpportunities(): Promise<Opportunity[]> {
@@ -91,6 +127,9 @@ export async function createOpportunity(input: {
   title: string;
   category: string;
   region?: string;
+  sector?: string[];
+  eligible_circles?: string[];
+  participation_types?: string[];
   description: string;
   status: OpportunityStatus;
   created_by: string;
@@ -117,17 +156,33 @@ export async function getMyApplications(applicantId: string): Promise<Applicatio
   return data ?? [];
 }
 
-export async function applyToOpportunity(opportunityId: string, applicantId: string, message: string): Promise<void> {
+export async function applyToOpportunity(
+  opportunityId: string,
+  opportunityTitle: string,
+  applicantId: string,
+  message: string
+): Promise<void> {
   const { error } = await supabase
     .from("opportunity_applications")
     .insert({ opportunity_id: opportunityId, applicant_id: applicantId, message });
   if (error) throw new Error(error.message);
+
+  // Every enquiry also lands in the member's correspondence thread, so
+  // their assigned advisor (see portal_users.assigned_admin_id) sees it
+  // as an incoming item rather than only in the Application Review list.
+  const { error: msgError } = await supabase.from("portal_messages").insert({
+    member_id: applicantId,
+    sender_id: applicantId,
+    subject: `Enquiry: ${opportunityTitle}`,
+    content: message.trim() || `I would like to express interest in ${opportunityTitle}.`,
+  });
+  if (msgError) throw new Error(msgError.message);
 }
 
 export async function listApplicationsWithDetails(): Promise<ApplicationWithDetails[]> {
   const { data, error } = await supabase
     .from("opportunity_applications")
-    .select("*, investment_opportunities(title), portal_users(name, email)")
+    .select("*, investment_opportunities(title), portal_users(name, email, assigned_admin_id)")
     .order("created_at", { ascending: false });
   if (error) throw new Error(error.message);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -141,6 +196,7 @@ export async function listApplicationsWithDetails(): Promise<ApplicationWithDeta
     opportunity_title: row.investment_opportunities?.title ?? "—",
     applicant_name: row.portal_users?.name ?? "—",
     applicant_email: row.portal_users?.email ?? "—",
+    applicant_assigned_admin_id: row.portal_users?.assigned_admin_id ?? null,
   }));
 }
 
@@ -202,7 +258,10 @@ export async function reviewProfile(portalUserId: string, status: "approved" | "
 
 // ── Messages ───────────────────────────────────────────────────
 export async function listCircleMembers(): Promise<CircleMember[]> {
-  const { data, error } = await supabase.from("portal_users").select("id, name, email").eq("role", "circle_member");
+  const { data, error } = await supabase
+    .from("portal_users")
+    .select("id, name, email, assigned_admin_id")
+    .eq("role", "circle_member");
   if (error) throw new Error(error.message);
   return data ?? [];
 }
@@ -217,8 +276,10 @@ export async function getMessages(memberId: string): Promise<PortalMessage[]> {
   return data ?? [];
 }
 
-export async function sendMessage(memberId: string, senderId: string, content: string): Promise<void> {
-  const { error } = await supabase.from("portal_messages").insert({ member_id: memberId, sender_id: senderId, content });
+export async function sendMessage(memberId: string, senderId: string, content: string, subject?: string): Promise<void> {
+  const { error } = await supabase
+    .from("portal_messages")
+    .insert({ member_id: memberId, sender_id: senderId, content, subject: subject?.trim() || null });
   if (error) throw new Error(error.message);
 }
 

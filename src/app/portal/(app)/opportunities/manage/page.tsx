@@ -7,6 +7,9 @@ import {
   createOpportunity,
   listAllOpportunities,
   updateOpportunityStatus,
+  OPPORTUNITY_SECTORS,
+  CAPITAL_CIRCLES,
+  PARTICIPATION_TYPES,
   type Opportunity,
   type OpportunityStatus,
 } from "@/lib/portal/content";
@@ -17,6 +20,47 @@ const panelStyle: React.CSSProperties = {
   borderRadius: 12,
   padding: "20px 22px",
 };
+
+function CheckboxGroup({
+  label,
+  options,
+  selected,
+  onToggle,
+}: {
+  label: string;
+  options: readonly string[];
+  selected: string[];
+  onToggle: (value: string) => void;
+}) {
+  return (
+    <div>
+      <div style={{ fontSize: 11, fontWeight: 700, color: portalTheme.textMuted, textTransform: "uppercase", letterSpacing: ".5px", marginBottom: 6 }}>
+        {label}
+      </div>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+        {options.map((opt) => {
+          const active = selected.includes(opt);
+          return (
+            <label
+              key={opt}
+              style={{
+                display: "flex", alignItems: "center", gap: 5,
+                padding: "5px 10px", borderRadius: 20, cursor: "pointer",
+                fontSize: 12,
+                background: active ? "rgba(196,153,42,0.14)" : "rgba(27,42,61,0.05)",
+                color: active ? portalTheme.gold : portalTheme.textMuted,
+                border: `1px solid ${active ? "rgba(196,153,42,0.3)" : "transparent"}`,
+              }}
+            >
+              <input type="checkbox" checked={active} onChange={() => onToggle(opt)} style={{ display: "none" }} />
+              {opt}
+            </label>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
 
 const inputStyle: React.CSSProperties = {
   width: "100%",
@@ -43,8 +87,15 @@ export default function ManageOpportunitiesPage() {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [region, setRegion] = useState("");
+  const [sector, setSector] = useState<string[]>([]);
+  const [eligibleCircles, setEligibleCircles] = useState<string[]>([]);
+  const [participationTypes, setParticipationTypes] = useState<string[]>([]);
   const [description, setDescription] = useState("");
   const [saving, setSaving] = useState(false);
+
+  function toggle(list: string[], setList: (v: string[]) => void, value: string) {
+    setList(list.includes(value) ? list.filter((v) => v !== value) : [...list, value]);
+  }
 
   async function load() {
     try {
@@ -66,10 +117,23 @@ export default function ManageOpportunitiesPage() {
     if (!user || !title.trim() || !category.trim() || !description.trim()) return;
     setSaving(true);
     try {
-      await createOpportunity({ title, category, region: region.trim() || undefined, description, status: "draft", created_by: user.id });
+      await createOpportunity({
+        title,
+        category,
+        region: region.trim() || undefined,
+        sector,
+        eligible_circles: eligibleCircles,
+        participation_types: participationTypes,
+        description,
+        status: "draft",
+        created_by: user.id,
+      });
       setTitle("");
       setCategory("");
       setRegion("");
+      setSector([]);
+      setEligibleCircles([]);
+      setParticipationTypes([]);
       setDescription("");
       setShowForm(false);
       await load();
@@ -126,6 +190,9 @@ export default function ManageOpportunitiesPage() {
           <input style={inputStyle} placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
           <input style={inputStyle} placeholder="Category" value={category} onChange={(e) => setCategory(e.target.value)} />
           <input style={inputStyle} placeholder="Region (e.g. Central Asia, Africa, Global / Multi-Region)" value={region} onChange={(e) => setRegion(e.target.value)} />
+          <CheckboxGroup label="Sector / Project Environment" options={OPPORTUNITY_SECTORS} selected={sector} onToggle={(v) => toggle(sector, setSector, v)} />
+          <CheckboxGroup label="Eligible Capital Circles" options={CAPITAL_CIRCLES} selected={eligibleCircles} onToggle={(v) => toggle(eligibleCircles, setEligibleCircles, v)} />
+          <CheckboxGroup label="Participation Type" options={PARTICIPATION_TYPES} selected={participationTypes} onToggle={(v) => toggle(participationTypes, setParticipationTypes, v)} />
           <textarea
             style={{ ...inputStyle, resize: "vertical" }}
             placeholder="Description"
@@ -160,7 +227,10 @@ export default function ManageOpportunitiesPage() {
               <div style={{ color: portalTheme.textMuted, fontSize: 11, textTransform: "uppercase", letterSpacing: ".5px", marginBottom: 4 }}>
                 {opp.category}{opp.region ? ` · ${opp.region}` : ""}
               </div>
-              <div style={{ color: portalTheme.textPrimary, fontWeight: 700, fontSize: 14 }}>{opp.title}</div>
+              <div style={{ color: portalTheme.textPrimary, fontWeight: 700, fontSize: 14, marginBottom: 4 }}>{opp.title}</div>
+              {!!opp.sector?.length && (
+                <div style={{ color: portalTheme.textMuted, fontSize: 11 }}>{opp.sector.join(" · ")}</div>
+              )}
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
               <span style={{ fontSize: 11, fontWeight: 700, textTransform: "capitalize", color: statusColor[opp.status] }}>

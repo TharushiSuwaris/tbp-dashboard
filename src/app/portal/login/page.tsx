@@ -86,10 +86,10 @@ export default function PortalLoginPage() {
             TBP
           </div>
           <h1 style={{ color: portalTheme.textPrimary, fontSize: 20, fontWeight: 700, margin: 0 }}>
-            TBP Circle Portal
+            TBP Capital Circles
           </h1>
           <p style={{ color: portalTheme.textMuted, fontSize: 12.5, marginTop: 6 }}>
-            Family Office &amp; Private Capital Circle
+            Bringing Different Classes of Capital into One Curated Global Project Ecosystem
           </p>
         </div>
 
@@ -117,7 +117,7 @@ export default function PortalLoginPage() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Admins only — leave blank if you're a Circle Member"
+            placeholder="Leave blank only if your account predates password login"
             style={inputStyle}
           />
 
@@ -143,11 +143,13 @@ export default function PortalLoginPage() {
             {loading ? "Logging in..." : "Log In"}
           </button>
 
-          <p style={{ fontSize: 11, color: portalTheme.textMuted, marginTop: 16, textAlign: "center" }}>
-            Circle Members log in with email only. Admin accounts require a password.
+          <p style={{ fontSize: 11, textAlign: "center", marginTop: 16 }}>
+            <a href="/portal/register-member" style={{ color: portalTheme.gold, textDecoration: "none" }}>
+              Register as a Circle Member &rarr;
+            </a>
           </p>
           <p style={{ fontSize: 11, textAlign: "center", marginTop: 8 }}>
-            <a href="/portal/register-admin" style={{ color: portalTheme.gold, textDecoration: "none" }}>
+            <a href="/portal/register-admin" style={{ color: portalTheme.textMuted, textDecoration: "none" }}>
               Request an Admin account &rarr;
             </a>
           </p>

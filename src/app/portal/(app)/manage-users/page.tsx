@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getPortalSession, type PortalSessionUser } from "@/lib/portal/session";
-import { deletePortalUser, listAllPortalUsers, type ManagedUser } from "@/lib/portal/adminAuth";
+import { assignAdvisor, deletePortalUser, listAllPortalUsers, type ManagedUser } from "@/lib/portal/adminAuth";
 import { portalTheme } from "@/lib/portal/theme";
 
 const roleColor: Record<string, string> = {
@@ -41,7 +41,18 @@ export default function ManageUsersPage() {
     }
   }
 
+  async function handleAssign(memberId: string, adminId: string) {
+    try {
+      await assignAdvisor(memberId, adminId || null);
+      await load();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to assign advisor");
+    }
+  }
+
   if (!user) return null;
+
+  const advisors = users.filter((u) => u.role === "admin" || u.role === "super_admin");
 
   return (
     <div>
@@ -70,32 +81,29 @@ export default function ManageUsersPage() {
             <div
               key={u.id}
               style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                gap: 12,
                 padding: "14px 20px",
                 borderBottom: `1px solid ${portalTheme.panelBorder}`,
               }}
             >
-              <div>
-                <div style={{ color: portalTheme.textPrimary, fontWeight: 700, fontSize: 13.5 }}>
-                  {u.name} {isSelf && <span style={{ color: portalTheme.textMuted, fontWeight: 400 }}>(you)</span>}
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
+                <div>
+                  <div style={{ color: portalTheme.textPrimary, fontWeight: 700, fontSize: 13.5 }}>
+                    {u.name} {isSelf && <span style={{ color: portalTheme.textMuted, fontWeight: 400 }}>(you)</span>}
+                  </div>
+                  <div style={{ color: portalTheme.textMuted, fontSize: 12 }}>{u.email}</div>
                 </div>
-                <div style={{ color: portalTheme.textMuted, fontSize: 12 }}>{u.email}</div>
-              </div>
-              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                <span
-                  style={{
-                    fontSize: 11,
-                    fontWeight: 700,
-                    textTransform: "capitalize",
-                    color: roleColor[u.role] ?? portalTheme.textMuted,
-                  }}
-                >
-                  {u.role.replace(/_/g, " ")}
-                </span>
-                {!isSelf && !isSuperAdmin && (
+                <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                  <span
+                    style={{
+                      fontSize: 11,
+                      fontWeight: 700,
+                      textTransform: "capitalize",
+                      color: roleColor[u.role] ?? portalTheme.textMuted,
+                    }}
+                  >
+                    {u.role.replace(/_/g, " ")}
+                  </span>
+                  {!isSelf && !isSuperAdmin && (
                   isConfirming ? (
                     <>
                       <span style={{ color: portalTheme.textMuted, fontSize: 12 }}>Delete this account?</span>
@@ -120,8 +128,34 @@ export default function ManageUsersPage() {
                       Delete
                     </button>
                   )
-                )}
+                  )}
+                </div>
               </div>
+
+              {u.role === "circle_member" && (
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 10 }}>
+                  <span style={{ fontSize: 11, fontWeight: 700, color: portalTheme.textMuted, textTransform: "uppercase", letterSpacing: ".5px" }}>
+                    Assigned Advisor
+                  </span>
+                  <select
+                    value={u.assigned_admin_id ?? ""}
+                    onChange={(e) => handleAssign(u.id, e.target.value)}
+                    style={{
+                      padding: "5px 8px",
+                      borderRadius: 6,
+                      border: `1px solid ${portalTheme.inputBorder}`,
+                      background: portalTheme.inputBackground,
+                      color: portalTheme.textPrimary,
+                      fontSize: 11.5,
+                    }}
+                  >
+                    <option value="">Unassigned</option>
+                    {advisors.map((a) => (
+                      <option key={a.id} value={a.id}>{a.name}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
             </div>
           );
         })}

@@ -36,6 +36,14 @@ export async function getStaffNotifications(userId: string, role: string): Promi
       .select("id", { count: "exact", head: true })
       .eq("status", "pending");
     if (count && count > 0) items.push({ label: "Pending Admin Requests", count, href: "/portal/admin-requests" });
+
+    const { count: memberReqCount } = await supabase
+      .from("member_requests")
+      .select("id", { count: "exact", head: true })
+      .eq("status", "pending");
+    if (memberReqCount && memberReqCount > 0) {
+      items.push({ label: "Pending Circle Member Requests", count: memberReqCount, href: "/portal/member-requests" });
+    }
   }
 
   const { count: profileCount } = await supabase
@@ -55,12 +63,29 @@ export async function getStaffNotifications(userId: string, role: string): Promi
   }
 
   const lastSeen = getLastSeen(LAST_SEEN_MESSAGES_KEY, userId);
-  const { count: msgCount } = await supabase
+  let messageQuery = supabase
     .from("portal_messages")
     .select("id", { count: "exact", head: true })
     .neq("sender_id", userId)
     .gt("created_at", lastSeen);
-  if (msgCount && msgCount > 0) items.push({ label: "New Messages", count: msgCount, href: "/portal/messages" });
+
+  // A plain Admin should only be notified about correspondence from Circle
+  // Members assigned to them - super_admin sees everything.
+  if (role === "admin") {
+    const { data: assigned } = await supabase
+      .from("portal_users")
+      .select("id")
+      .eq("role", "circle_member")
+      .eq("assigned_admin_id", userId);
+    const memberIds = (assigned ?? []).map((r) => r.id);
+    if (memberIds.length === 0) {
+      return items;
+    }
+    messageQuery = messageQuery.in("member_id", memberIds);
+  }
+
+  const { count: msgCount } = await messageQuery;
+  if (msgCount && msgCount > 0) items.push({ label: "New Correspondence", count: msgCount, href: "/portal/messages" });
 
   return items;
 }
@@ -75,7 +100,7 @@ export async function getMemberNotifications(userId: string): Promise<Notificati
     .eq("member_id", userId)
     .neq("sender_id", userId)
     .gt("created_at", lastSeenMsg);
-  if (msgCount && msgCount > 0) items.push({ label: "New Messages", count: msgCount, href: "/portal/messages" });
+  if (msgCount && msgCount > 0) items.push({ label: "New Correspondence", count: msgCount, href: "/portal/messages" });
 
   const lastSeenOpp = getLastSeen(LAST_SEEN_OPPORTUNITIES_KEY, userId);
   const { count: oppCount } = await supabase
@@ -84,7 +109,7 @@ export async function getMemberNotifications(userId: string): Promise<Notificati
     .eq("status", "published")
     .gt("created_at", lastSeenOpp);
   if (oppCount && oppCount > 0) {
-    items.push({ label: "New Investment Opportunities", count: oppCount, href: "/portal/opportunities" });
+    items.push({ label: "New Project Opportunities", count: oppCount, href: "/portal/opportunities" });
   }
 
   return items;

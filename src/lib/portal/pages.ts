@@ -25,7 +25,7 @@ export const PORTAL_PAGES: PortalPageDef[] = [
   },
   {
     path: "/portal/opportunities",
-    label: "Investment Opportunities",
+    label: "Project Opportunities",
     description: "Browse published opportunities and apply",
     roles: ["circle_member", "admin", "super_admin"],
   },
@@ -43,8 +43,8 @@ export const PORTAL_PAGES: PortalPageDef[] = [
   },
   {
     path: "/portal/messages",
-    label: "Messages",
-    description: "Communicate with TBP Advisory",
+    label: "Correspondence",
+    description: "Correspondence with your assigned TBP Capital Advisor",
     roles: ["circle_member", "admin", "super_admin"],
   },
   {
@@ -64,6 +64,12 @@ export const PORTAL_PAGES: PortalPageDef[] = [
     label: "Application Review",
     description: "See who applied to which opportunity",
     roles: ["admin", "super_admin"],
+  },
+  {
+    path: "/portal/member-requests",
+    label: "Circle Member Requests",
+    description: "Review registrations, assign advisors, and approve new Circle Members",
+    roles: ["super_admin"],
   },
   {
     path: "/portal/admin-requests",

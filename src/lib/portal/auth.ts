@@ -1,12 +1,18 @@
 import { supabase } from "@/lib/supabase/client";
-import { isStaffRole, type PortalSessionUser } from "./session";
-import { loginWithPassword } from "./adminAuth";
+import type { PortalSessionUser } from "./session";
+import { loginWithPassword, emailRequiresPassword } from "./adminAuth";
 
-// Circle Members: email-only stub login (unchanged). Admins: real password
-// login (see migration_admin_requests.sql) - an admin-role account must
-// never be reachable through the password-less path below, even if the
-// caller leaves the password blank.
+// Legacy Circle Members (seeded before password auth existed, or before
+// self-registration via migration_member_requests.sql) still log in by
+// email only. Anyone with a password_hash set - all Admins, and any
+// Circle Member who registered through /portal/register-member - must
+// use it; blank-password login is refused for them via
+// email_requires_password() rather than trusting the client not to skip it.
 async function loginByEmailOnly(email: string): Promise<PortalSessionUser> {
+  if (await emailRequiresPassword(email)) {
+    throw new Error("This account requires a password");
+  }
+
   const { data, error } = await supabase
     .from("portal_users")
     .select("id, name, email, role")
@@ -25,9 +31,5 @@ export async function loginPortalUser(email: string, password: string): Promise<
     throw new Error("Incorrect email or password");
   }
 
-  const user = await loginByEmailOnly(email);
-  if (isStaffRole(user.role)) {
-    throw new Error("Admin accounts require a password");
-  }
-  return user;
+  return loginByEmailOnly(email);
 }

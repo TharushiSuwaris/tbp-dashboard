@@ -42,8 +42,8 @@ export function NotificationBell({ userId, role }: { userId: string; role: strin
   }, []);
 
   function handleItemClick(item: NotificationItem) {
-    if (item.label === "New Messages") markMessagesSeen(userId);
-    if (item.label === "New Investment Opportunities") markOpportunitiesSeen(userId);
+    if (item.label === "New Correspondence") markMessagesSeen(userId);
+    if (item.label === "New Project Opportunities") markOpportunitiesSeen(userId);
     setOpen(false);
     router.push(item.href);
     setTimeout(load, 500);

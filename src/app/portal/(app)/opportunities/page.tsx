@@ -7,6 +7,9 @@ import {
   applyToOpportunity,
   getMyApplications,
   listPublishedOpportunities,
+  OPPORTUNITY_SECTORS,
+  CAPITAL_CIRCLES,
+  PARTICIPATION_TYPES,
   type Application,
   type Opportunity,
 } from "@/lib/portal/content";
@@ -21,11 +24,35 @@ const selectStyle: React.CSSProperties = {
   fontSize: 12.5,
 };
 
+const searchStyle: React.CSSProperties = {
+  padding: "8px 12px",
+  borderRadius: 8,
+  border: `1px solid ${portalTheme.inputBorder}`,
+  background: portalTheme.inputBackground,
+  color: portalTheme.textPrimary,
+  fontSize: 12.5,
+  flex: 1,
+  minWidth: 200,
+};
+
+const tagStyle = (bg: string, color: string): React.CSSProperties => ({
+  fontSize: 10,
+  fontWeight: 700,
+  color,
+  background: bg,
+  padding: "3px 9px",
+  borderRadius: 20,
+});
+
 export default function OpportunitiesPage() {
   const [user, setUser] = useState<PortalSessionUser | null>(null);
   const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
   const [applications, setApplications] = useState<Application[]>([]);
   const [regionFilter, setRegionFilter] = useState("");
+  const [sectorFilter, setSectorFilter] = useState("");
+  const [circleFilter, setCircleFilter] = useState("");
+  const [participationFilter, setParticipationFilter] = useState("");
+  const [search, setSearch] = useState("");
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [applyingTo, setApplyingTo] = useState<string | null>(null);
   const [applyMessage, setApplyMessage] = useState("");
@@ -60,12 +87,26 @@ export default function OpportunitiesPage() {
     () => Array.from(new Set(opportunities.map((o) => o.region).filter((r): r is string => !!r))).sort(),
     [opportunities]
   );
-  const filtered = regionFilter ? opportunities.filter((o) => o.region === regionFilter) : opportunities;
 
-  async function handleApply(opportunityId: string) {
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    return opportunities.filter((o) => {
+      if (regionFilter && o.region !== regionFilter) return false;
+      if (sectorFilter && !(o.sector ?? []).includes(sectorFilter)) return false;
+      if (circleFilter && !(o.eligible_circles ?? []).includes(circleFilter)) return false;
+      if (participationFilter && !(o.participation_types ?? []).includes(participationFilter)) return false;
+      if (q) {
+        const haystack = [o.title, o.category, o.description, ...(o.sector ?? [])].join(" ").toLowerCase();
+        if (!haystack.includes(q)) return false;
+      }
+      return true;
+    });
+  }, [opportunities, regionFilter, sectorFilter, circleFilter, participationFilter, search]);
+
+  async function handleApply(opportunityId: string, opportunityTitle: string) {
     if (!user) return;
     try {
-      await applyToOpportunity(opportunityId, user.id, applyMessage);
+      await applyToOpportunity(opportunityId, opportunityTitle, user.id, applyMessage);
       setApplyingTo(null);
       setApplyMessage("");
       await load(user);
@@ -82,25 +123,48 @@ export default function OpportunitiesPage() {
 
   return (
     <div>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20, flexWrap: "wrap", gap: 12 }}>
-        <div>
-          <h1 style={{ color: portalTheme.textPrimary, fontSize: 20, fontWeight: 700, margin: "0 0 4px" }}>
-            Investment Opportunities
-          </h1>
-          <p style={{ color: portalTheme.textMuted, fontSize: 13, margin: 0 }}>
-            {user.role === "circle_member"
-              ? "Browse published opportunities and request a partnership."
-              : "Published opportunities visible to Circle Members."}
-          </p>
-        </div>
-        {regions.length > 0 && (
-          <select style={selectStyle} value={regionFilter} onChange={(e) => setRegionFilter(e.target.value)}>
-            <option value="">All Regions</option>
-            {regions.map((r) => (
-              <option key={r} value={r}>{r}</option>
-            ))}
-          </select>
-        )}
+      <div style={{ marginBottom: 16 }}>
+        <h1 style={{ color: portalTheme.textPrimary, fontSize: 20, fontWeight: 700, margin: "0 0 4px" }}>
+          Project Opportunities
+        </h1>
+        <p style={{ color: portalTheme.textMuted, fontSize: 13, margin: 0 }}>
+          {user.role === "circle_member"
+            ? "Explore curated TBP projects and request a partnership."
+            : "Published opportunities visible to Circle Members."}
+        </p>
+      </div>
+
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: 20 }}>
+        <input
+          style={searchStyle}
+          placeholder="Search by project, geography, sector or keyword..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <select style={selectStyle} value={regionFilter} onChange={(e) => setRegionFilter(e.target.value)}>
+          <option value="">All Regions</option>
+          {regions.map((r) => (
+            <option key={r} value={r}>{r}</option>
+          ))}
+        </select>
+        <select style={selectStyle} value={sectorFilter} onChange={(e) => setSectorFilter(e.target.value)}>
+          <option value="">All Sectors</option>
+          {OPPORTUNITY_SECTORS.map((s) => (
+            <option key={s} value={s}>{s}</option>
+          ))}
+        </select>
+        <select style={selectStyle} value={circleFilter} onChange={(e) => setCircleFilter(e.target.value)}>
+          <option value="">All Eligible Circles</option>
+          {CAPITAL_CIRCLES.map((c) => (
+            <option key={c} value={c}>{c}</option>
+          ))}
+        </select>
+        <select style={selectStyle} value={participationFilter} onChange={(e) => setParticipationFilter(e.target.value)}>
+          <option value="">All Participation Types</option>
+          {PARTICIPATION_TYPES.map((p) => (
+            <option key={p} value={p}>{p}</option>
+          ))}
+        </select>
       </div>
 
       {error && <div style={{ color: portalTheme.danger, fontSize: 13, marginBottom: 14 }}>{error}</div>}
@@ -126,11 +190,10 @@ export default function OpportunitiesPage() {
               }}
             >
               <div style={{ display: "flex", gap: 8, marginBottom: 8, flexWrap: "wrap" }}>
-                {opp.region && (
-                  <span style={{ fontSize: 10, fontWeight: 700, color: portalTheme.gold, background: "rgba(196,153,42,0.12)", padding: "3px 9px", borderRadius: 20 }}>
-                    {opp.region}
-                  </span>
-                )}
+                {opp.region && <span style={tagStyle("rgba(196,153,42,0.12)", portalTheme.gold)}>{opp.region}</span>}
+                {(opp.sector ?? []).map((s) => (
+                  <span key={s} style={tagStyle("rgba(27,42,61,0.06)", portalTheme.textMuted)}>{s}</span>
+                ))}
                 <span style={{ fontSize: 10, fontWeight: 600, color: portalTheme.textMuted, textTransform: "uppercase", letterSpacing: ".5px", padding: "3px 0" }}>
                   {opp.category}
                 </span>
@@ -152,6 +215,17 @@ export default function OpportunitiesPage() {
               >
                 {opp.description}
               </p>
+
+              {(opp.eligible_circles?.length || opp.participation_types?.length) ? (
+                <div style={{ fontSize: 11.5, color: portalTheme.textMuted, lineHeight: 1.9, marginBottom: 12 }}>
+                  {!!opp.eligible_circles?.length && (
+                    <div><strong style={{ color: portalTheme.textSecondary }}>Available to:</strong> {opp.eligible_circles.join(" · ")}</div>
+                  )}
+                  {!!opp.participation_types?.length && (
+                    <div><strong style={{ color: portalTheme.textSecondary }}>Opportunities:</strong> {opp.participation_types.join(" · ")}</div>
+                  )}
+                </div>
+              ) : null}
 
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, marginTop: "auto" }}>
                 <button
@@ -181,7 +255,7 @@ export default function OpportunitiesPage() {
                       onClick={() => setApplyingTo(applyingTo === opp.id ? null : opp.id)}
                       style={{ padding: "7px 14px", borderRadius: 8, border: "none", background: portalTheme.gold, color: portalTheme.goldText, fontWeight: 700, fontSize: 12.5, cursor: "pointer" }}
                     >
-                      Request Partnership
+                      Express Interest
                     </button>
                   )
                 )}
@@ -192,7 +266,7 @@ export default function OpportunitiesPage() {
                   <textarea
                     value={applyMessage}
                     onChange={(e) => setApplyMessage(e.target.value)}
-                    placeholder="Why are you interested in partnering on this project?"
+                    placeholder="What aspect of this project interests you?"
                     rows={3}
                     style={{
                       width: "100%",
@@ -208,7 +282,7 @@ export default function OpportunitiesPage() {
                   />
                   <div style={{ display: "flex", gap: 6 }}>
                     <button
-                      onClick={() => handleApply(opp.id)}
+                      onClick={() => handleApply(opp.id, opp.title)}
                       style={{ padding: "6px 12px", borderRadius: 6, border: "none", background: portalTheme.gold, color: portalTheme.goldText, fontWeight: 700, fontSize: 12, cursor: "pointer" }}
                     >
                       Submit Request

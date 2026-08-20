@@ -57,7 +57,7 @@ export default function PortalOverviewPage() {
 
       <div style={{ ...statCardStyle, padding: "22px 24px" }}>
         <div style={{ color: portalTheme.textPrimary, fontWeight: 700, fontSize: 14, marginBottom: 4 }}>
-          Recommended Investment Opportunities
+          Recommended Project Opportunities
         </div>
         <p style={{ color: portalTheme.textMuted, fontSize: 13, margin: 0 }}>
           Coming soon — this will surface opportunities matched to your profile once opportunity-matching is built.
