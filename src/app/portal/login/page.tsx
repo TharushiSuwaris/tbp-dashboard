@@ -144,11 +144,6 @@ export default function PortalLoginPage() {
           </button>
 
           <p style={{ fontSize: 11, textAlign: "center", marginTop: 16 }}>
-            <a href="/portal/register-member" style={{ color: portalTheme.gold, textDecoration: "none" }}>
-              Register as a Circle Member &rarr;
-            </a>
-          </p>
-          <p style={{ fontSize: 11, textAlign: "center", marginTop: 8 }}>
             <a href="/portal/register-admin" style={{ color: portalTheme.textMuted, textDecoration: "none" }}>
               Request an Admin account &rarr;
             </a>

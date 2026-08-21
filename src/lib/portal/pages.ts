@@ -36,12 +36,6 @@ export const PORTAL_PAGES: PortalPageDef[] = [
     roles: ["circle_member", "admin", "super_admin"],
   },
   {
-    path: "/portal/profile",
-    label: "My Profile",
-    description: "Your intake profile and approval status",
-    roles: ["circle_member"],
-  },
-  {
     path: "/portal/messages",
     label: "Correspondence",
     description: "Correspondence with your assigned TBP Capital Advisor",

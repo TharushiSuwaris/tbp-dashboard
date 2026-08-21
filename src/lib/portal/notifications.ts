@@ -69,9 +69,11 @@ export async function getStaffNotifications(userId: string, role: string): Promi
     .neq("sender_id", userId)
     .gt("created_at", lastSeen);
 
-  // A plain Admin should only be notified about correspondence from Circle
-  // Members assigned to them - super_admin sees everything.
-  if (role === "admin") {
+  // Correspondence notifications are private to whoever is actually
+  // assigned as a member's advisor - super_admin does NOT get a blanket
+  // override here (matches messages/page.tsx), unlike the admin/member
+  // request counts above which are intentionally global for super_admin.
+  {
     const { data: assigned } = await supabase
       .from("portal_users")
       .select("id")

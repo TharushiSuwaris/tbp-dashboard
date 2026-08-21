@@ -15,12 +15,13 @@ export type MemberRequestInput = {
   sectorInterests: string[];
   referralCode?: string;
   familyOrGroupBackground?: string;
-  geography?: string;
-  capitalAppetite?: string;
+  geographyFocus: string[];
+  capitalParticipationInterests: string[];
   investmentHorizon?: string;
   riskPreference?: string;
-  esgAlignment?: string;
-  legacyObjectives?: string;
+  esgAlignmentInterests: string[];
+  strategicImpactObjectives: string[];
+  additionalNotes?: string;
 };
 
 export async function requestMemberSignup(input: MemberRequestInput): Promise<void> {
@@ -38,12 +39,13 @@ export async function requestMemberSignup(input: MemberRequestInput): Promise<vo
     p_sector_interests: input.sectorInterests,
     p_referral_code: input.referralCode || null,
     p_family_or_group_background: input.familyOrGroupBackground || null,
-    p_geography: input.geography || null,
-    p_capital_appetite: input.capitalAppetite || null,
+    p_geography_focus: input.geographyFocus,
+    p_capital_participation_interests: input.capitalParticipationInterests,
     p_investment_horizon: input.investmentHorizon || null,
     p_risk_preference: input.riskPreference || null,
-    p_esg_alignment: input.esgAlignment || null,
-    p_legacy_objectives: input.legacyObjectives || null,
+    p_esg_alignment_interests: input.esgAlignmentInterests,
+    p_strategic_impact_objectives: input.strategicImpactObjectives,
+    p_additional_notes: input.additionalNotes || null,
   });
   if (error) throw new Error(friendlyDbError(error));
 }
@@ -62,12 +64,13 @@ export type MemberRequest = {
   sector_interests: string[];
   referral_code: string | null;
   family_or_group_background: string | null;
-  geography: string | null;
-  capital_appetite: string | null;
+  geography_focus: string[];
+  capital_participation_interests: string[];
   investment_horizon: string | null;
   risk_preference: string | null;
-  esg_alignment: string | null;
-  legacy_objectives: string | null;
+  esg_alignment_interests: string[];
+  strategic_impact_objectives: string[];
+  additional_notes: string | null;
   status: "pending" | "approved" | "rejected";
   requested_at: string;
   created_user_id: string | null;
@@ -78,7 +81,7 @@ export async function listMemberRequests(): Promise<MemberRequest[]> {
   const { data, error } = await supabase
     .from("member_requests")
     .select(
-      "id, name, email, phone, organisation, role_title, city, country, linkedin_or_website, capital_circle, sector_interests, referral_code, family_or_group_background, geography, capital_appetite, investment_horizon, risk_preference, esg_alignment, legacy_objectives, status, requested_at, created_user_id"
+      "id, name, email, phone, organisation, role_title, city, country, linkedin_or_website, capital_circle, sector_interests, referral_code, family_or_group_background, geography_focus, capital_participation_interests, investment_horizon, risk_preference, esg_alignment_interests, strategic_impact_objectives, additional_notes, status, requested_at, created_user_id"
     )
     .order("requested_at", { ascending: false });
   if (error) throw new Error(friendlyDbError(error));

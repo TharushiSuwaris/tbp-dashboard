@@ -1,11 +1,82 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { requestMemberSignup } from "@/lib/portal/memberAuth";
 import { CAPITAL_CIRCLES, OPPORTUNITY_SECTORS } from "@/lib/portal/content";
 import { portalTheme } from "@/lib/portal/theme";
 
-const STEPS = ["Details", "Investment Profile", "Review & Submit"];
+const STEPS = ["Details", "Capital Profile", "Review & Submit"];
+
+const FAMILY_GROUP_CATEGORIES = [
+  "Single Family Office",
+  "Multi-Family Office",
+  "Private Investment Company",
+  "Private Capital / PE",
+  "Institutional Investor",
+  "Asset Manager",
+  "Pension / Insurance",
+  "Bank / DFI",
+  "Corporate Investment Arm",
+  "Angel / Individual Investor",
+  "Other",
+];
+
+const GEOGRAPHY_FOCUS_OPTIONS = [
+  "Global",
+  "Africa",
+  "Europe",
+  "Middle East",
+  "North America",
+  "Central Asia",
+  "South Asia",
+  "Southeast Asia",
+  "East Asia",
+  "Latin America",
+];
+
+const CAPITAL_PARTICIPATION_INTERESTS = [
+  "Infrastructure",
+  "Real Assets",
+  "Project Finance",
+  "Co-Investment",
+  "Private Equity",
+  "Venture / Innovation",
+  "Energy",
+  "Maritime",
+  "Technology",
+  "Strategic Partnership",
+  "Operating Partnership",
+  "Corridor-Level Participation",
+];
+
+const INVESTMENT_HORIZON_OPTIONS = ["Opportunistic / Project Dependent", "1–3 Years", "3–7 Years", "7–15 Years", "15+ Years / Long-Term"];
+
+const INVESTMENT_ORIENTATION_OPTIONS = ["Capital Preservation", "Conservative", "Balanced", "Growth", "Innovation / Venture", "Project Dependent"];
+
+const ESG_ALIGNMENT_OPTIONS = [
+  "Sustainable Infrastructure",
+  "Energy Transition",
+  "Climate Resilience",
+  "Energy Security",
+  "Trade & Economic Inclusion",
+  "Employment & Skills",
+  "Food Security",
+  "Digital Infrastructure",
+  "Social Impact",
+  "No Specific Mandate",
+];
+
+const STRATEGIC_IMPACT_OBJECTIVES_OPTIONS = [
+  "Intergenerational Value",
+  "Long-Term Economic Impact",
+  "Regional Development",
+  "Infrastructure Development",
+  "Innovation",
+  "Strategic Resilience",
+  "Sustainable Development",
+  "Philanthropic / Impact Objectives",
+  "No Specific Objective",
+];
 
 const labelStyle: React.CSSProperties = {
   display: "block",
@@ -41,27 +112,137 @@ function Field({ label, ...props }: { label: string } & React.InputHTMLAttribute
   );
 }
 
-function TextAreaField({
+// Single-select: a plain dropdown
+function SingleChoice({
   label,
+  options,
   value,
   onChange,
-  required,
+  hint,
 }: {
   label: string;
+  options: string[];
   value: string;
   onChange: (v: string) => void;
-  required?: boolean;
+  hint?: string;
 }) {
   return (
-    <div>
+    <div style={{ marginBottom: 20 }}>
       <label style={labelStyle}>{label}</label>
-      <textarea
-        style={{ ...inputStyle, resize: "vertical", fontFamily: "inherit" }}
-        rows={3}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        required={required}
-      />
+      {hint && <p style={{ color: portalTheme.textMuted, fontSize: 11.5, margin: "-2px 0 10px", fontStyle: "italic" }}>{hint}</p>}
+      <select value={value} onChange={(e) => onChange(e.target.value)} style={{ ...inputStyle, marginBottom: 0 }}>
+        <option value="" disabled>
+          Select...
+        </option>
+        {options.map((opt) => (
+          <option key={opt} value={opt}>
+            {opt}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
+// Multi-select: a real dropdown - closed by default showing a summary of
+// what's picked, opens a checkbox panel on click, closes on an outside
+// click or when you're done. Looks and behaves like SingleChoice above,
+// just allows more than one pick.
+function MultiChoice({
+  label,
+  options,
+  values,
+  onChange,
+  hint,
+}: {
+  label: string;
+  options: string[];
+  values: string[];
+  onChange: (v: string[]) => void;
+  hint?: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  function toggle(opt: string) {
+    onChange(values.includes(opt) ? values.filter((v) => v !== opt) : [...values, opt]);
+  }
+
+  const summary = values.length === 0 ? "Select..." : values.length <= 2 ? values.join(", ") : `${values.length} selected`;
+
+  return (
+    <div style={{ marginBottom: 20 }} ref={ref}>
+      <label style={labelStyle}>{label}</label>
+      {hint && <p style={{ color: portalTheme.textMuted, fontSize: 11.5, margin: "-2px 0 10px" }}>{hint}</p>}
+      <div style={{ position: "relative" }}>
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          style={{
+            ...inputStyle,
+            marginBottom: 0,
+            textAlign: "left",
+            cursor: "pointer",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            color: values.length === 0 ? portalTheme.textMuted : portalTheme.textPrimary,
+          }}
+        >
+          <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{summary}</span>
+          <span style={{ color: portalTheme.textMuted, marginLeft: 8, flexShrink: 0 }}>{open ? "▲" : "▼"}</span>
+        </button>
+
+        {open && (
+          <div
+            style={{
+              position: "absolute",
+              top: "calc(100% + 4px)",
+              left: 0,
+              right: 0,
+              zIndex: 10,
+              background: portalTheme.panel,
+              border: `1px solid ${portalTheme.inputBorder}`,
+              borderRadius: 8,
+              boxShadow: "0 8px 24px rgba(27,42,61,0.15)",
+              maxHeight: 260,
+              overflowY: "auto",
+              padding: 6,
+            }}
+          >
+            {options.map((opt) => {
+              const active = values.includes(opt);
+              return (
+                <label
+                  key={opt}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 9,
+                    padding: "8px 10px",
+                    borderRadius: 6,
+                    fontSize: 12.5,
+                    cursor: "pointer",
+                    color: active ? portalTheme.gold : portalTheme.textSecondary,
+                    background: active ? "rgba(196,153,42,0.08)" : "transparent",
+                  }}
+                >
+                  <input type="checkbox" checked={active} onChange={() => toggle(opt)} style={{ margin: 0 }} />
+                  {opt}
+                </label>
+              );
+            })}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -87,21 +268,19 @@ export default function RegisterMemberPage() {
   const [sectorInterests, setSectorInterests] = useState<string[]>([]);
   const [referralCode, setReferralCode] = useState("");
 
-  // Step 2 — required, so TBP has this on hand before reviewing the request
-  const [familyOrGroupBackground, setFamilyOrGroupBackground] = useState("");
-  const [geography, setGeography] = useState("");
-  const [capitalAppetite, setCapitalAppetite] = useState("");
+  // Step 2 — selection-led Capital Profile
+  const [familyGroupCategory, setFamilyGroupCategory] = useState("");
+  const [familyGroupOther, setFamilyGroupOther] = useState("");
+  const [geographyFocus, setGeographyFocus] = useState<string[]>([]);
+  const [participationInterests, setParticipationInterests] = useState<string[]>([]);
   const [investmentHorizon, setInvestmentHorizon] = useState("");
-  const [riskPreference, setRiskPreference] = useState("");
-  const [esgAlignment, setEsgAlignment] = useState("");
-  const [legacyObjectives, setLegacyObjectives] = useState("");
+  const [investmentOrientation, setInvestmentOrientation] = useState("");
+  const [esgAlignment, setEsgAlignment] = useState<string[]>([]);
+  const [strategicObjectives, setStrategicObjectives] = useState<string[]>([]);
+  const [additionalNotes, setAdditionalNotes] = useState("");
 
   // Step 3
   const [consent, setConsent] = useState(false);
-
-  function toggleSector(s: string) {
-    setSectorInterests((prev) => (prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s]));
-  }
 
   function validateStep1(): string | null {
     if (!name.trim() || !email.trim()) return "Name and email are required.";
@@ -113,17 +292,14 @@ export default function RegisterMemberPage() {
   }
 
   function validateStep2(): string | null {
-    if (
-      !familyOrGroupBackground.trim() ||
-      !geography.trim() ||
-      !capitalAppetite.trim() ||
-      !investmentHorizon.trim() ||
-      !riskPreference.trim() ||
-      !esgAlignment.trim() ||
-      !legacyObjectives.trim()
-    ) {
-      return "Please complete every field in this section — TBP reviews your request against this information.";
-    }
+    if (!familyGroupCategory) return "Please select the category that best describes you.";
+    if (familyGroupCategory === "Other" && !familyGroupOther.trim()) return "Please describe your category.";
+    if (geographyFocus.length === 0) return "Please select at least one geography focus.";
+    if (participationInterests.length === 0) return "Please select at least one capital & participation interest.";
+    if (!investmentHorizon) return "Please select an investment horizon.";
+    if (!investmentOrientation) return "Please select an indicative investment orientation.";
+    if (esgAlignment.length === 0) return "Please select at least one ESG alignment (or \"No Specific Mandate\").";
+    if (strategicObjectives.length === 0) return "Please select at least one strategic & impact objective (or \"No Specific Objective\").";
     return null;
   }
 
@@ -158,13 +334,14 @@ export default function RegisterMemberPage() {
         capitalCircle,
         sectorInterests,
         referralCode: referralCode.trim(),
-        familyOrGroupBackground: familyOrGroupBackground.trim(),
-        geography: geography.trim(),
-        capitalAppetite: capitalAppetite.trim(),
-        investmentHorizon: investmentHorizon.trim(),
-        riskPreference: riskPreference.trim(),
-        esgAlignment: esgAlignment.trim(),
-        legacyObjectives: legacyObjectives.trim(),
+        familyOrGroupBackground: familyGroupCategory === "Other" ? familyGroupOther.trim() : familyGroupCategory,
+        geographyFocus,
+        capitalParticipationInterests: participationInterests,
+        investmentHorizon,
+        riskPreference: investmentOrientation,
+        esgAlignmentInterests: esgAlignment,
+        strategicImpactObjectives: strategicObjectives,
+        additionalNotes: additionalNotes.trim(),
       });
       setSubmitted(true);
     } catch (err) {
@@ -183,7 +360,7 @@ export default function RegisterMemberPage() {
         padding: "40px 24px",
       }}
     >
-      <div style={{ width: "100%", maxWidth: 640, margin: "0 auto" }}>
+      <div style={{ width: "100%", maxWidth: 720, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 24 }}>
           <h1 style={{ color: portalTheme.textPrimary, fontSize: 22, fontWeight: 700, margin: 0 }}>
             TBP Capital Circles
@@ -281,55 +458,14 @@ export default function RegisterMemberPage() {
                     <Field label="LinkedIn / Company Website" value={linkedinOrWebsite} onChange={(e) => setLinkedinOrWebsite(e.target.value)} />
                   </div>
 
-                  <label style={labelStyle}>Which Capital Circle best describes you? *</label>
-                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 8, marginBottom: 16 }}>
-                    {CAPITAL_CIRCLES.map((c) => (
-                      <button
-                        key={c}
-                        type="button"
-                        onClick={() => setCapitalCircle(c)}
-                        style={{
-                          padding: "10px 12px",
-                          borderRadius: 8,
-                          fontSize: 12.5,
-                          cursor: "pointer",
-                          border: `1px solid ${capitalCircle === c ? portalTheme.gold : portalTheme.inputBorder}`,
-                          background: capitalCircle === c ? "rgba(196,153,42,0.14)" : portalTheme.inputBackground,
-                          color: capitalCircle === c ? portalTheme.gold : portalTheme.textSecondary,
-                          fontWeight: capitalCircle === c ? 700 : 500,
-                        }}
-                      >
-                        {c}
-                      </button>
-                    ))}
-                  </div>
+                  <SingleChoice label="Which Capital Circle best describes you? *" options={[...CAPITAL_CIRCLES]} value={capitalCircle} onChange={setCapitalCircle} />
 
-                  <label style={labelStyle}>Sector Interest * (select at least one)</label>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 16 }}>
-                    {OPPORTUNITY_SECTORS.map((s) => {
-                      const active = sectorInterests.includes(s);
-                      return (
-                        <label
-                          key={s}
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: 8,
-                            padding: "9px 11px",
-                            borderRadius: 8,
-                            fontSize: 12.5,
-                            cursor: "pointer",
-                            border: `1px solid ${active ? portalTheme.gold : portalTheme.inputBorder}`,
-                            background: active ? "rgba(196,153,42,0.1)" : portalTheme.inputBackground,
-                            color: active ? portalTheme.gold : portalTheme.textSecondary,
-                          }}
-                        >
-                          <input type="checkbox" checked={active} onChange={() => toggleSector(s)} style={{ margin: 0 }} />
-                          {s}
-                        </label>
-                      );
-                    })}
-                  </div>
+                  <MultiChoice
+                    label="Sector Interest * (select at least one)"
+                    options={[...OPPORTUNITY_SECTORS]}
+                    values={sectorInterests}
+                    onChange={setSectorInterests}
+                  />
 
                   <Field label="Referral / Invitation Code (optional)" value={referralCode} onChange={(e) => setReferralCode(e.target.value)} />
                 </div>
@@ -337,17 +473,54 @@ export default function RegisterMemberPage() {
 
               {step === 1 && (
                 <div>
-                  <p style={{ color: portalTheme.textMuted, fontSize: 12.5, marginBottom: 16 }}>
-                    TBP&apos;s Capital Advisory &amp; Coordination Office reviews every request against this
-                    information — please complete all fields.
+                  <p style={{ color: portalTheme.textMuted, fontSize: 12.5, marginBottom: 20 }}>
+                    Select the options that best describe you — this takes about a minute. TBP&apos;s Capital
+                    Advisory &amp; Coordination Office reviews every request against this information.
                   </p>
-                  <TextAreaField label="Family / Group Background *" value={familyOrGroupBackground} onChange={setFamilyOrGroupBackground} required />
-                  <TextAreaField label="Geography Focus *" value={geography} onChange={setGeography} required />
-                  <TextAreaField label="Capital Appetite *" value={capitalAppetite} onChange={setCapitalAppetite} required />
-                  <TextAreaField label="Investment Horizon *" value={investmentHorizon} onChange={setInvestmentHorizon} required />
-                  <TextAreaField label="Risk Preference *" value={riskPreference} onChange={setRiskPreference} required />
-                  <TextAreaField label="ESG Alignment *" value={esgAlignment} onChange={setEsgAlignment} required />
-                  <TextAreaField label="Legacy Objectives *" value={legacyObjectives} onChange={setLegacyObjectives} required />
+
+                  <SingleChoice label="Family / Group Category *" options={FAMILY_GROUP_CATEGORIES} value={familyGroupCategory} onChange={setFamilyGroupCategory} />
+                  {familyGroupCategory === "Other" && (
+                    <Field label="Please describe *" value={familyGroupOther} onChange={(e) => setFamilyGroupOther(e.target.value)} />
+                  )}
+
+                  <MultiChoice label="Geography Focus * (select all that apply)" options={GEOGRAPHY_FOCUS_OPTIONS} values={geographyFocus} onChange={setGeographyFocus} />
+
+                  <MultiChoice
+                    label="Capital & Participation Interests * (select all that apply)"
+                    options={CAPITAL_PARTICIPATION_INTERESTS}
+                    values={participationInterests}
+                    onChange={setParticipationInterests}
+                  />
+
+                  <SingleChoice label="Investment Horizon *" options={INVESTMENT_HORIZON_OPTIONS} value={investmentHorizon} onChange={setInvestmentHorizon} />
+
+                  <SingleChoice
+                    label="Indicative Investment Orientation *"
+                    options={INVESTMENT_ORIENTATION_OPTIONS}
+                    value={investmentOrientation}
+                    onChange={setInvestmentOrientation}
+                    hint="For membership profiling and opportunity relevance only."
+                  />
+
+                  <MultiChoice label="ESG Alignment * (select all that apply)" options={ESG_ALIGNMENT_OPTIONS} values={esgAlignment} onChange={setEsgAlignment} />
+
+                  <MultiChoice
+                    label="Strategic & Impact Objectives * (select all that apply)"
+                    options={STRATEGIC_IMPACT_OBJECTIVES_OPTIONS}
+                    values={strategicObjectives}
+                    onChange={setStrategicObjectives}
+                  />
+
+                  <div>
+                    <label style={labelStyle}>Anything Else We Should Know? (Optional)</label>
+                    <textarea
+                      style={{ ...inputStyle, resize: "vertical", fontFamily: "inherit", marginBottom: 0 }}
+                      rows={3}
+                      placeholder="Please share any particular investment themes, strategic interests, regions, projects or participation objectives you would like TBP Capital Advisory to be aware of."
+                      value={additionalNotes}
+                      onChange={(e) => setAdditionalNotes(e.target.value)}
+                    />
+                  </div>
                 </div>
               )}
 
@@ -362,6 +535,13 @@ export default function RegisterMemberPage() {
                     {(city || country) && <div>{[city, country].filter(Boolean).join(", ")}</div>}
                     <div>Capital Circle: <strong style={{ color: portalTheme.textPrimary }}>{capitalCircle}</strong></div>
                     <div>Sector Interest: {sectorInterests.join(" · ")}</div>
+                    <div>Category: {familyGroupCategory === "Other" ? familyGroupOther : familyGroupCategory}</div>
+                    <div>Geography Focus: {geographyFocus.join(" · ")}</div>
+                    <div>Capital &amp; Participation Interests: {participationInterests.join(" · ")}</div>
+                    <div>Investment Horizon: {investmentHorizon}</div>
+                    <div>Indicative Investment Orientation: {investmentOrientation}</div>
+                    <div>ESG Alignment: {esgAlignment.join(" · ")}</div>
+                    <div>Strategic &amp; Impact Objectives: {strategicObjectives.join(" · ")}</div>
                   </div>
 
                   <label style={{ display: "flex", alignItems: "flex-start", gap: 10, cursor: "pointer" }}>

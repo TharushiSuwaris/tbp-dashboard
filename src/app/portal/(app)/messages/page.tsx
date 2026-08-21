@@ -45,9 +45,12 @@ export default function MessagesPage() {
     if (isStaffRole(session.role)) {
       listCircleMembers()
         .then((m) => {
-          // A plain Admin only corresponds with Circle Members assigned to
-          // them; super_admin can see and reply to every thread.
-          const scoped = session.role === "admin" ? m.filter((c) => c.assigned_admin_id === session.id) : m;
+          // Correspondence is private to whoever is actually assigned as a
+          // member's advisor - super_admin does NOT get a blanket override
+          // here (unlike account approvals/deletion elsewhere in the
+          // portal). A super_admin only sees threads for members assigned
+          // to them personally, same as any other Admin.
+          const scoped = m.filter((c) => c.assigned_admin_id === session.id);
           setMembers(scoped);
           if (scoped.length > 0) setSelectedMember(scoped[0].id);
         })
@@ -112,7 +115,7 @@ export default function MessagesPage() {
           >
             {members.length === 0 && (
               <div style={{ color: portalTheme.textMuted, fontSize: 12.5, padding: 10 }}>
-                {user.role === "admin" ? "No Circle Members assigned to you yet." : "No Circle Members yet."}
+                No Circle Members assigned to you yet.
               </div>
             )}
             {members.map((m) => (

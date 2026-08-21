@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getPortalSession, isStaffRole, type PortalSessionUser } from "@/lib/portal/session";
-import { changePassword } from "@/lib/portal/adminAuth";
+import { changePassword, emailRequiresPassword } from "@/lib/portal/adminAuth";
+import { getMyProfile, type MemberProfile, type ProfileStatus } from "@/lib/portal/content";
 import { portalTheme } from "@/lib/portal/theme";
 
 const inputStyle: React.CSSProperties = {
@@ -27,8 +28,37 @@ const labelStyle: React.CSSProperties = {
   marginBottom: 6,
 };
 
+const panelStyle: React.CSSProperties = {
+  background: portalTheme.panel,
+  border: `1px solid ${portalTheme.panelBorder}`,
+  borderRadius: 12,
+  padding: "22px 24px",
+  marginBottom: 16,
+};
+
+const statusColor: Record<ProfileStatus, string> = {
+  draft: portalTheme.textMuted,
+  submitted: "#FBBF24",
+  approved: "#34D399",
+  rejected: portalTheme.danger,
+};
+
+const profileFields: { key: keyof MemberProfile; label: string }[] = [
+  { key: "family_or_group_background", label: "Family / Group Background" },
+  { key: "geography", label: "Geography & Market Interests" },
+  { key: "sector_preferences", label: "Sector Preferences" },
+  { key: "capital_appetite", label: "Capital Appetite" },
+  { key: "investment_horizon", label: "Investment Horizon" },
+  { key: "risk_preference", label: "Risk Preference" },
+  { key: "esg_alignment", label: "ESG & Impact Alignment" },
+  { key: "legacy_objectives", label: "Legacy & Generational Objectives" },
+];
+
 export default function AccountPage() {
   const [user, setUser] = useState<PortalSessionUser | null>(null);
+  const [profile, setProfile] = useState<MemberProfile | null>(null);
+  const [hasPassword, setHasPassword] = useState<boolean | null>(null);
+
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -37,7 +67,17 @@ export default function AccountPage() {
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    setUser(getPortalSession());
+    const session = getPortalSession();
+    if (!session) return;
+    setUser(session);
+
+    emailRequiresPassword(session.email)
+      .then(setHasPassword)
+      .catch(() => setHasPassword(false));
+
+    if (session.role === "circle_member") {
+      getMyProfile(session.id).then(setProfile).catch(() => {});
+    }
   }, []);
 
   if (!user) return null;
@@ -91,18 +131,10 @@ export default function AccountPage() {
 
       <h1 style={{ color: portalTheme.textPrimary, fontSize: 20, fontWeight: 700, margin: "0 0 4px" }}>My Account</h1>
       <p style={{ color: portalTheme.textMuted, fontSize: 13, marginBottom: 20 }}>
-        Your profile details{isStaffRole(user.role) ? " and password" : ""}.
+        Your account details{profile ? ", profile summary," : ""} and password.
       </p>
 
-      <div
-        style={{
-          background: portalTheme.panel,
-          border: `1px solid ${portalTheme.panelBorder}`,
-          borderRadius: 12,
-          padding: "22px 24px",
-          marginBottom: 16,
-        }}
-      >
+      <div style={panelStyle}>
         <div style={{ display: "grid", gap: 12 }}>
           <div style={{ display: "flex", gap: 10, fontSize: 13 }}>
             <div style={{ minWidth: 100, color: portalTheme.textMuted }}>Name</div>
@@ -121,16 +153,43 @@ export default function AccountPage() {
         </div>
       </div>
 
-      {isStaffRole(user.role) ? (
-        <form
-          onSubmit={handleChangePassword}
-          style={{
-            background: portalTheme.panel,
-            border: `1px solid ${portalTheme.panelBorder}`,
-            borderRadius: 12,
-            padding: "22px 24px",
-          }}
-        >
+      {user.role === "circle_member" && (
+        <div style={panelStyle}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
+            <div style={{ color: portalTheme.textPrimary, fontWeight: 700, fontSize: 14 }}>Profile Summary</div>
+            {profile && (
+              <span style={{ fontSize: 11, fontWeight: 700, textTransform: "capitalize", color: statusColor[profile.status] }}>
+                {profile.status}
+              </span>
+            )}
+          </div>
+
+          {!profile ? (
+            <div style={{ color: portalTheme.textMuted, fontSize: 12.5 }}>No profile on file yet.</div>
+          ) : (
+            <div style={{ display: "grid", gap: 12 }}>
+              {profile.capital_circle && (
+                <div style={{ display: "flex", gap: 10, fontSize: 13 }}>
+                  <div style={{ minWidth: 160, color: portalTheme.textMuted, flexShrink: 0 }}>Capital Circle</div>
+                  <div style={{ color: portalTheme.textPrimary, fontWeight: 600 }}>{profile.capital_circle}</div>
+                </div>
+              )}
+              {profileFields.map(
+                (f) =>
+                  profile[f.key] && (
+                    <div key={f.key} style={{ display: "flex", gap: 10, fontSize: 13 }}>
+                      <div style={{ minWidth: 160, color: portalTheme.textMuted, flexShrink: 0 }}>{f.label}</div>
+                      <div style={{ color: portalTheme.textSecondary, lineHeight: 1.6 }}>{profile[f.key] as string}</div>
+                    </div>
+                  )
+              )}
+            </div>
+          )}
+        </div>
+      )}
+
+      {hasPassword ? (
+        <form onSubmit={handleChangePassword} style={panelStyle}>
           <div style={{ color: portalTheme.textPrimary, fontWeight: 700, fontSize: 14, marginBottom: 14 }}>
             Change Password
           </div>
@@ -183,11 +242,11 @@ export default function AccountPage() {
             {saving ? "Saving..." : "Update Password"}
           </button>
         </form>
-      ) : (
+      ) : hasPassword === false ? (
         <div style={{ color: portalTheme.textMuted, fontSize: 13 }}>
-          Circle Members log in with email only — there&apos;s no password to change.
+          This account logs in by email only — there&apos;s no password to change.
         </div>
-      )}
+      ) : null}
     </div>
   );
 }

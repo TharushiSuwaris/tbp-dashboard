@@ -87,6 +87,7 @@ export type MemberProfile = {
   risk_preference: string | null;
   esg_alignment: string | null;
   legacy_objectives: string | null;
+  capital_circle: string | null;
   status: ProfileStatus;
   submitted_at: string | null;
   reviewed_at: string | null;

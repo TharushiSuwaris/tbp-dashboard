@@ -162,13 +162,14 @@ export default function MemberRequestsPage() {
                     <DetailRow label="Referral Code" value={r.referral_code} />
                   </div>
                   <div>
-                    <DetailRow label="Family / Group Background" value={r.family_or_group_background} />
-                    <DetailRow label="Geography Focus" value={r.geography} />
-                    <DetailRow label="Capital Appetite" value={r.capital_appetite} />
+                    <DetailRow label="Family / Group Category" value={r.family_or_group_background} />
+                    <DetailRow label="Geography Focus" value={r.geography_focus?.join(" · ")} />
+                    <DetailRow label="Capital & Participation Interests" value={r.capital_participation_interests?.join(" · ")} />
                     <DetailRow label="Investment Horizon" value={r.investment_horizon} />
-                    <DetailRow label="Risk Preference" value={r.risk_preference} />
-                    <DetailRow label="ESG Alignment" value={r.esg_alignment} />
-                    <DetailRow label="Legacy Objectives" value={r.legacy_objectives} />
+                    <DetailRow label="Indicative Investment Orientation" value={r.risk_preference} />
+                    <DetailRow label="ESG Alignment" value={r.esg_alignment_interests?.join(" · ")} />
+                    <DetailRow label="Strategic & Impact Objectives" value={r.strategic_impact_objectives?.join(" · ")} />
+                    <DetailRow label="Additional Notes" value={r.additional_notes} />
                   </div>
                 </div>
               )}
