@@ -6,9 +6,22 @@ import { portalTheme } from "@/lib/portal/theme";
 import { portalPagesForRole } from "@/lib/portal/pages";
 import { isStaffRole } from "@/lib/portal/session";
 
+// Project Opportunities and Upcoming Events only show in the sidebar while
+// on one of these "main" pages - everywhere else (My Account, and every
+// admin/management page: Opportunity Management, Profile Review,
+// Application Review, Circle Member Requests, Invitations, Admin Account
+// Requests, Manage User Accounts) they stay hidden, consistently, so the
+// sidebar doesn't grow/shrink as you move between those pages.
+const MAIN_PAGE_PATHS = ["/portal", "/portal/opportunities", "/portal/events", "/portal/messages"];
+const HIDDEN_OFF_MAIN_PAGES = ["/portal/opportunities", "/portal/events"];
+
 export function PortalSidebar({ role }: { role: string }) {
   const pathname = usePathname();
-  const navItems = [{ path: "/portal", label: "Overview" }, ...portalPagesForRole(role)];
+  const onMainPage = MAIN_PAGE_PATHS.includes(pathname);
+  const navItems = [
+    { path: "/portal", label: "Overview" },
+    ...portalPagesForRole(role).filter((p) => onMainPage || !HIDDEN_OFF_MAIN_PAGES.includes(p.path)),
+  ];
 
   function isActive(path: string) {
     if (path === "/portal") return pathname === "/portal";

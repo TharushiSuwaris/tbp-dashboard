@@ -38,6 +38,7 @@ const portalIconByPath: Record<string, string> = {
   "/portal/profiles/review": "📝",
   "/portal/applications": "📥",
   "/portal/member-requests": "🧾",
+  "/portal/invitations": "✉️",
   "/portal/admin-requests": "🛂",
   "/portal/manage-users": "👥",
 };
