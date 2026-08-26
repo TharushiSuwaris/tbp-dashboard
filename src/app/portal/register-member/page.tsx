@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { requestMemberSignup } from "@/lib/portal/memberAuth";
+import { checkInvitationEmail, previewInvitation, type InvitationPreview } from "@/lib/portal/invitations";
 import { CAPITAL_CIRCLES, OPPORTUNITY_SECTORS } from "@/lib/portal/content";
 import { portalTheme } from "@/lib/portal/theme";
 
@@ -264,9 +265,16 @@ export default function RegisterMemberPage() {
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
   const [linkedinOrWebsite, setLinkedinOrWebsite] = useState("");
-  const [capitalCircle, setCapitalCircle] = useState("");
   const [sectorInterests, setSectorInterests] = useState<string[]>([]);
-  const [referralCode, setReferralCode] = useState("");
+  const [additionalCircleRelevance, setAdditionalCircleRelevance] = useState<string[]>([]);
+
+  // Invitation code — required, verified against the invitations table
+  const [invitationCode, setInvitationCode] = useState("");
+  const [invitationStatus, setInvitationStatus] = useState<"idle" | "checking" | "verified" | "invalid">("idle");
+  const [invitationError, setInvitationError] = useState<string | null>(null);
+  const [invitation, setInvitation] = useState<InvitationPreview | null>(null);
+  const [emailMismatch, setEmailMismatch] = useState(false);
+  const capitalCircle = invitation?.capital_circle ?? "";
 
   // Step 2 — selection-led Capital Profile
   const [familyGroupCategory, setFamilyGroupCategory] = useState("");
@@ -282,11 +290,46 @@ export default function RegisterMemberPage() {
   // Step 3
   const [consent, setConsent] = useState(false);
 
+  async function handleCheckInvitationCode() {
+    const code = invitationCode.trim();
+    if (!code) {
+      setInvitationStatus("idle");
+      setInvitation(null);
+      return;
+    }
+    setInvitationStatus("checking");
+    setInvitationError(null);
+    try {
+      const preview = await previewInvitation(code);
+      setInvitation(preview);
+      setInvitationStatus("verified");
+      if (email.trim()) {
+        const match = await checkInvitationEmail(code, email.trim());
+        setEmailMismatch(!match);
+      }
+    } catch (err) {
+      setInvitation(null);
+      setInvitationStatus("invalid");
+      setInvitationError(err instanceof Error ? err.message : "Invalid invitation code.");
+    }
+  }
+
+  async function handleCheckEmailMatch() {
+    if (invitationStatus !== "verified" || !email.trim()) return;
+    try {
+      const match = await checkInvitationEmail(invitationCode.trim(), email.trim());
+      setEmailMismatch(!match);
+    } catch {
+      // non-fatal — the authoritative check happens server-side at submit
+    }
+  }
+
   function validateStep1(): string | null {
     if (!name.trim() || !email.trim()) return "Name and email are required.";
     if (password.length < 8) return "Password must be at least 8 characters.";
     if (password !== confirmPassword) return "Passwords do not match.";
-    if (!capitalCircle) return "Please select which Capital Circle best describes you.";
+    if (invitationStatus !== "verified" || !invitation) return "Please enter a valid, verified invitation code.";
+    if (emailMismatch) return "This invitation is associated with another email address.";
     if (sectorInterests.length === 0) return "Please select at least one sector of interest.";
     return null;
   }
@@ -333,7 +376,7 @@ export default function RegisterMemberPage() {
         linkedinOrWebsite: linkedinOrWebsite.trim(),
         capitalCircle,
         sectorInterests,
-        referralCode: referralCode.trim(),
+        invitationCode: invitationCode.trim(),
         familyOrGroupBackground: familyGroupCategory === "Other" ? familyGroupOther.trim() : familyGroupCategory,
         geographyFocus,
         capitalParticipationInterests: participationInterests,
@@ -342,6 +385,7 @@ export default function RegisterMemberPage() {
         esgAlignmentInterests: esgAlignment,
         strategicImpactObjectives: strategicObjectives,
         additionalNotes: additionalNotes.trim(),
+        additionalCircleRelevance,
       });
       setSubmitted(true);
     } catch (err) {
@@ -432,10 +476,60 @@ export default function RegisterMemberPage() {
                     }}
                   >
                     <div style={{ fontSize: 11, fontWeight: 700, color: portalTheme.gold, textTransform: "uppercase", letterSpacing: ".6px", marginBottom: 12 }}>
+                      Your Invitation
+                    </div>
+                    <label style={labelStyle}>Private Invitation Code *</label>
+                    <p style={{ color: portalTheme.textMuted, fontSize: 11.5, margin: "-2px 0 10px", fontStyle: "italic" }}>
+                      Your personal invitation code is included in your TBP Capital Circles invitation.
+                    </p>
+                    <input
+                      style={{ ...inputStyle, marginBottom: 0, textTransform: "uppercase" }}
+                      value={invitationCode}
+                      onChange={(e) => {
+                        setInvitationCode(e.target.value);
+                        setInvitationStatus("idle");
+                        setInvitation(null);
+                        setEmailMismatch(false);
+                      }}
+                      onBlur={handleCheckInvitationCode}
+                      placeholder="TBP-XXXX-XXXX"
+                    />
+                    {invitationStatus === "checking" && (
+                      <p style={{ color: portalTheme.textMuted, fontSize: 12, marginTop: 8 }}>Verifying...</p>
+                    )}
+                    {invitationStatus === "invalid" && invitationError && (
+                      <p style={{ color: portalTheme.danger, fontSize: 12, marginTop: 8 }}>{invitationError}</p>
+                    )}
+                    {invitationStatus === "verified" && invitation && (
+                      <div style={{ marginTop: 10 }}>
+                        <p style={{ color: "#0F8A5F", fontSize: 12.5, fontWeight: 700, margin: "0 0 6px" }}>✓ Invitation Verified</p>
+                        <p style={{ color: portalTheme.textSecondary, fontSize: 12.5, margin: 0 }}>
+                          Invited Circle: <strong style={{ color: portalTheme.textPrimary }}>{invitation.capital_circle} Circle™</strong>
+                        </p>
+                        {emailMismatch && (
+                          <p style={{ color: portalTheme.danger, fontSize: 12, marginTop: 8 }}>
+                            This invitation is associated with another email address. Please use the email address to
+                            which your TBP invitation was issued or contact TBP Capital Advisory.
+                          </p>
+                        )}
+                      </div>
+                    )}
+                  </div>
+
+                  <div
+                    style={{
+                      background: "rgba(196,153,42,0.06)",
+                      border: `1px solid ${portalTheme.panelBorder}`,
+                      borderRadius: 10,
+                      padding: "16px 18px",
+                      marginBottom: 18,
+                    }}
+                  >
+                    <div style={{ fontSize: 11, fontWeight: 700, color: portalTheme.gold, textTransform: "uppercase", letterSpacing: ".6px", marginBottom: 12 }}>
                       Create Your Account
                     </div>
                     <div style={fieldRow}>
-                      <Field label="Email Address *" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                      <Field label="Email Address *" type="email" value={email} onChange={(e) => setEmail(e.target.value)} onBlur={handleCheckEmailMatch} required />
                       <Field label="Password *" type="password" placeholder="Min. 8 characters" value={password} onChange={(e) => setPassword(e.target.value)} required />
                     </div>
                     <Field label="Confirm Password *" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
@@ -458,8 +552,6 @@ export default function RegisterMemberPage() {
                     <Field label="LinkedIn / Company Website" value={linkedinOrWebsite} onChange={(e) => setLinkedinOrWebsite(e.target.value)} />
                   </div>
 
-                  <SingleChoice label="Which Capital Circle best describes you? *" options={[...CAPITAL_CIRCLES]} value={capitalCircle} onChange={setCapitalCircle} />
-
                   <MultiChoice
                     label="Sector Interest * (select at least one)"
                     options={[...OPPORTUNITY_SECTORS]}
@@ -467,7 +559,15 @@ export default function RegisterMemberPage() {
                     onChange={setSectorInterests}
                   />
 
-                  <Field label="Referral / Invitation Code (optional)" value={referralCode} onChange={(e) => setReferralCode(e.target.value)} />
+                  {invitationStatus === "verified" && invitation && (
+                    <MultiChoice
+                      label="Additional Circle Relevance — Optional"
+                      hint="If you may also be relevant to other Capital Circles, you can flag that here — this does not change your invited Circle."
+                      options={[...CAPITAL_CIRCLES].filter((c) => c !== invitation.capital_circle)}
+                      values={additionalCircleRelevance}
+                      onChange={setAdditionalCircleRelevance}
+                    />
+                  )}
                 </div>
               )}
 

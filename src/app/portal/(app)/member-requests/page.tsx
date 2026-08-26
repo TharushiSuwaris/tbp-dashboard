@@ -159,7 +159,8 @@ export default function MemberRequestsPage() {
                     <DetailRow label="Location" value={[r.city, r.country].filter(Boolean).join(", ")} />
                     <DetailRow label="LinkedIn / Website" value={r.linkedin_or_website} />
                     <DetailRow label="Sector Interest" value={r.sector_interests?.join(" · ")} />
-                    <DetailRow label="Referral Code" value={r.referral_code} />
+                    <DetailRow label="Invitation Code" value={r.invitation_code} />
+                    <DetailRow label="Invited At" value={r.invited_at ? new Date(r.invited_at).toLocaleString() : null} />
                   </div>
                   <div>
                     <DetailRow label="Family / Group Category" value={r.family_or_group_background} />
@@ -169,6 +170,7 @@ export default function MemberRequestsPage() {
                     <DetailRow label="Indicative Investment Orientation" value={r.risk_preference} />
                     <DetailRow label="ESG Alignment" value={r.esg_alignment_interests?.join(" · ")} />
                     <DetailRow label="Strategic & Impact Objectives" value={r.strategic_impact_objectives?.join(" · ")} />
+                    <DetailRow label="Additional Circle Relevance" value={r.additional_circle_relevance?.join(" · ")} />
                     <DetailRow label="Additional Notes" value={r.additional_notes} />
                   </div>
                 </div>
