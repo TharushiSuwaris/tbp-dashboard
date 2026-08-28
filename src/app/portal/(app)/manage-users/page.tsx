@@ -3,7 +3,17 @@
 import { useEffect, useState } from "react";
 import { getPortalSession, type PortalSessionUser } from "@/lib/portal/session";
 import { assignAdvisor, deletePortalUser, listAllPortalUsers, type ManagedUser } from "@/lib/portal/adminAuth";
+import { listProfilesForReview, updateMemberTier, MEMBER_TIERS } from "@/lib/portal/content";
 import { portalTheme } from "@/lib/portal/theme";
+
+const inlineSelectStyle: React.CSSProperties = {
+  padding: "5px 8px",
+  borderRadius: 6,
+  border: `1px solid ${portalTheme.inputBorder}`,
+  background: portalTheme.inputBackground,
+  color: portalTheme.textPrimary,
+  fontSize: 11.5,
+};
 
 const roleColor: Record<string, string> = {
   super_admin: portalTheme.gold,
@@ -14,12 +24,15 @@ const roleColor: Record<string, string> = {
 export default function ManageUsersPage() {
   const [user, setUser] = useState<PortalSessionUser | null>(null);
   const [users, setUsers] = useState<ManagedUser[]>([]);
+  const [tiers, setTiers] = useState<Record<string, string | null>>({});
   const [error, setError] = useState<string | null>(null);
   const [confirmingId, setConfirmingId] = useState<string | null>(null);
 
   async function load() {
     try {
-      setUsers(await listAllPortalUsers());
+      const [allUsers, profiles] = await Promise.all([listAllPortalUsers(), listProfilesForReview()]);
+      setUsers(allUsers);
+      setTiers(Object.fromEntries(profiles.map((p) => [p.portal_user_id, p.member_tier])));
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to load accounts");
     }
@@ -47,6 +60,16 @@ export default function ManageUsersPage() {
       await load();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to assign advisor");
+    }
+  }
+
+  async function handleSetTier(memberId: string, tier: string) {
+    if (!user) return;
+    try {
+      await updateMemberTier(memberId, tier, user.id);
+      await load();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to update membership access");
     }
   }
 
@@ -133,27 +156,37 @@ export default function ManageUsersPage() {
               </div>
 
               {u.role === "circle_member" && (
-                <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 10 }}>
-                  <span style={{ fontSize: 11, fontWeight: 700, color: portalTheme.textMuted, textTransform: "uppercase", letterSpacing: ".5px" }}>
-                    Assigned Advisor
-                  </span>
-                  <select
-                    value={u.assigned_admin_id ?? ""}
-                    onChange={(e) => handleAssign(u.id, e.target.value)}
-                    style={{
-                      padding: "5px 8px",
-                      borderRadius: 6,
-                      border: `1px solid ${portalTheme.inputBorder}`,
-                      background: portalTheme.inputBackground,
-                      color: portalTheme.textPrimary,
-                      fontSize: 11.5,
-                    }}
-                  >
-                    <option value="">Unassigned</option>
-                    {advisors.map((a) => (
-                      <option key={a.id} value={a.id}>{a.name}</option>
-                    ))}
-                  </select>
+                <div style={{ display: "flex", alignItems: "center", gap: 18, marginTop: 10, flexWrap: "wrap" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <span style={{ fontSize: 11, fontWeight: 700, color: portalTheme.textMuted, textTransform: "uppercase", letterSpacing: ".5px" }}>
+                      Assigned Advisor
+                    </span>
+                    <select
+                      value={u.assigned_admin_id ?? ""}
+                      onChange={(e) => handleAssign(u.id, e.target.value)}
+                      style={inlineSelectStyle}
+                    >
+                      <option value="">Unassigned</option>
+                      {advisors.map((a) => (
+                        <option key={a.id} value={a.id}>{a.name}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <span style={{ fontSize: 11, fontWeight: 700, color: portalTheme.textMuted, textTransform: "uppercase", letterSpacing: ".5px" }}>
+                      Membership Access
+                    </span>
+                    <select
+                      value={tiers[u.id] ?? ""}
+                      onChange={(e) => handleSetTier(u.id, e.target.value)}
+                      style={inlineSelectStyle}
+                    >
+                      <option value="" disabled>Not yet assigned</option>
+                      {MEMBER_TIERS.map((t) => (
+                        <option key={t} value={t}>{t}</option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
               )}
             </div>

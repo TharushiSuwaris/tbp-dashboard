@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { portalTheme } from "@/lib/portal/theme";
+import { getPortalSession, type PortalSessionUser } from "@/lib/portal/session";
 import { listProfilesForReview, reviewProfile, updateMemberTier, MEMBER_TIERS, type MemberProfile } from "@/lib/portal/content";
 
 const selectStyle: React.CSSProperties = {
@@ -27,6 +28,7 @@ const fieldLabels: { key: keyof MemberProfile; label: string }[] = [
 ];
 
 export default function ProfileReviewPage() {
+  const [user, setUser] = useState<PortalSessionUser | null>(null);
   const [profiles, setProfiles] = useState<ProfileRow[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [expanded, setExpanded] = useState<string | null>(null);
@@ -40,12 +42,14 @@ export default function ProfileReviewPage() {
   }
 
   useEffect(() => {
+    setUser(getPortalSession());
     load();
   }, []);
 
   async function handleReview(id: string, status: "approved" | "rejected") {
+    if (!user) return;
     try {
-      await reviewProfile(id, status);
+      await reviewProfile(id, status, user.id);
       await load();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to update profile");
@@ -53,8 +57,9 @@ export default function ProfileReviewPage() {
   }
 
   async function handleSetTier(id: string, tier: string) {
+    if (!user) return;
     try {
-      await updateMemberTier(id, tier);
+      await updateMemberTier(id, tier, user.id);
       await load();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to update membership access");

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Link from "next/link";
 import { getPortalSession, isStaffRole, type PortalSessionUser } from "@/lib/portal/session";
 import { changePassword, emailRequiresPassword } from "@/lib/portal/adminAuth";
@@ -47,11 +47,11 @@ const profileFields: { key: keyof MemberProfile; label: string }[] = [
   { key: "family_or_group_background", label: "Family / Group Background" },
   { key: "geography", label: "Geography & Market Interests" },
   { key: "sector_preferences", label: "Sector Preferences" },
-  { key: "capital_appetite", label: "Capital Appetite" },
+  { key: "capital_appetite", label: "Capital & Participation Interests" },
   { key: "investment_horizon", label: "Investment Horizon" },
   { key: "risk_preference", label: "Risk Preference" },
   { key: "esg_alignment", label: "ESG & Impact Alignment" },
-  { key: "legacy_objectives", label: "Legacy & Generational Objectives" },
+  { key: "legacy_objectives", label: "Strategic & Impact Objectives" },
 ];
 
 export default function AccountPage() {
@@ -167,20 +167,24 @@ export default function AccountPage() {
           {!profile ? (
             <div style={{ color: portalTheme.textMuted, fontSize: 12.5 }}>No profile on file yet.</div>
           ) : (
-            <div style={{ display: "grid", gap: 12 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "200px 1fr", rowGap: 12, columnGap: 16, fontSize: 13 }}>
               {profile.capital_circle && (
-                <div style={{ display: "flex", gap: 10, fontSize: 13 }}>
-                  <div style={{ minWidth: 160, color: portalTheme.textMuted, flexShrink: 0 }}>Capital Circle</div>
+                <Fragment>
+                  <div style={{ color: portalTheme.textMuted }}>Capital Circle</div>
                   <div style={{ color: portalTheme.textPrimary, fontWeight: 600 }}>{profile.capital_circle}</div>
-                </div>
+                </Fragment>
               )}
+              <div style={{ color: portalTheme.textMuted }}>Membership Access</div>
+              <div style={{ color: profile.status === "approved" ? portalTheme.gold : portalTheme.textMuted, fontWeight: 600 }}>
+                {profile.status !== "approved" ? "Pending Approval" : profile.member_tier ?? "Circle Member"}
+              </div>
               {profileFields.map(
                 (f) =>
                   profile[f.key] && (
-                    <div key={f.key} style={{ display: "flex", gap: 10, fontSize: 13 }}>
-                      <div style={{ minWidth: 160, color: portalTheme.textMuted, flexShrink: 0 }}>{f.label}</div>
+                    <Fragment key={f.key}>
+                      <div style={{ color: portalTheme.textMuted }}>{f.label}</div>
                       <div style={{ color: portalTheme.textSecondary, lineHeight: 1.6 }}>{profile[f.key] as string}</div>
-                    </div>
+                    </Fragment>
                   )
               )}
             </div>

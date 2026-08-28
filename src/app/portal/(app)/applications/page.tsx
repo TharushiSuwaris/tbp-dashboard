@@ -44,18 +44,20 @@ export default function ApplicationsPage() {
   const visibleInvitationRequests =
     user?.role === "admin" ? invitationRequests.filter((r) => r.member_assigned_admin_id === user.id) : invitationRequests;
 
-  async function handleReview(id: string, status: "approved" | "rejected") {
+  async function handleReview(app: ApplicationWithDetails, status: "approved" | "rejected") {
+    if (!user) return;
     try {
-      await reviewApplication(id, status);
+      await reviewApplication(app.id, status, user.id, app.applicant_id, app.opportunity_title);
       await load();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to update application");
     }
   }
 
-  async function handleReviewInvitation(id: string, status: "approved" | "rejected") {
+  async function handleReviewInvitation(req: EventInvitationWithDetails, status: "approved" | "rejected") {
+    if (!user) return;
     try {
-      await reviewEventInvitationRequest(id, status);
+      await reviewEventInvitationRequest(req.id, status, user.id, req.member_id, req.event_title);
       await load();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to update invitation request");
@@ -113,13 +115,13 @@ export default function ApplicationsPage() {
                 {app.status === "pending" && (
                   <>
                     <button
-                      onClick={() => handleReview(app.id, "approved")}
+                      onClick={() => handleReview(app, "approved")}
                       style={{ padding: "6px 12px", borderRadius: 6, border: "none", background: portalTheme.gold, color: portalTheme.goldText, fontWeight: 700, fontSize: 12, cursor: "pointer" }}
                     >
                       Approve
                     </button>
                     <button
-                      onClick={() => handleReview(app.id, "rejected")}
+                      onClick={() => handleReview(app, "rejected")}
                       style={{ padding: "6px 12px", borderRadius: 6, border: `1px solid ${portalTheme.panelBorder}`, background: "transparent", color: portalTheme.textMuted, fontSize: 12, cursor: "pointer" }}
                     >
                       Reject
@@ -173,13 +175,13 @@ export default function ApplicationsPage() {
                 {req.status === "pending" && (
                   <>
                     <button
-                      onClick={() => handleReviewInvitation(req.id, "approved")}
+                      onClick={() => handleReviewInvitation(req, "approved")}
                       style={{ padding: "6px 12px", borderRadius: 6, border: "none", background: portalTheme.gold, color: portalTheme.goldText, fontWeight: 700, fontSize: 12, cursor: "pointer" }}
                     >
                       Grant
                     </button>
                     <button
-                      onClick={() => handleReviewInvitation(req.id, "rejected")}
+                      onClick={() => handleReviewInvitation(req, "rejected")}
                       style={{ padding: "6px 12px", borderRadius: 6, border: `1px solid ${portalTheme.panelBorder}`, background: "transparent", color: portalTheme.textMuted, fontSize: 12, cursor: "pointer" }}
                     >
                       Decline

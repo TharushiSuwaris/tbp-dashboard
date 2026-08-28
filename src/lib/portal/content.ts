@@ -44,6 +44,25 @@ export const MEMBER_TIERS = [
   "Strategic Partner Candidate",
 ] as const;
 
+// The full enquiry-type set from the "TBP Investor Circle Member's Portal"
+// brief's Briefings & Enquiries section. Only "Private briefing request"
+// and "Roundtable participation request" are ever set automatically today
+// (Request Briefing / Request Roundtable / Request Invitation buttons) -
+// the rest are only reachable through the free-form submission form on
+// the Briefings & Enquiries page itself.
+export const ENQUIRY_TYPES = [
+  "Project information request",
+  "Private briefing request",
+  "Roundtable participation request",
+  "Strategic partnership enquiry",
+  "Capital participation enquiry",
+  "Regional opportunity enquiry",
+  "Protocol Establishment Round briefing",
+  "ASMOFP™ / offshore infrastructure briefing",
+  "Corridor Trust Bank™ / trust finance briefing",
+  "Other confidential enquiry",
+] as const;
+
 export type Opportunity = {
   id: string;
   title: string;
@@ -236,6 +255,21 @@ export async function submitEnquiry(input: {
   if (error) throw new Error(error.message);
 }
 
+// Posted automatically whenever an admin/super_admin approves, rejects or
+// grants something (application, event invitation, profile, membership
+// tier) - shows up in the member's Correspondence as coming from whichever
+// staff member actually reviewed it, so approvals/declines don't only
+// exist as a status pill the member has to go looking for.
+async function postSystemNotification(memberId: string, reviewerId: string, subject: string, content: string): Promise<void> {
+  const { error } = await supabase.from("portal_messages").insert({
+    member_id: memberId,
+    sender_id: reviewerId,
+    subject,
+    content,
+  });
+  if (error) throw new Error(error.message);
+}
+
 // Save Interest - a private bookmark, no correspondence side-effect.
 export async function listSavedOpportunities(memberId: string): Promise<SavedOpportunity[]> {
   const { data, error } = await supabase.from("saved_opportunities").select("*").eq("member_id", memberId);
@@ -278,12 +312,27 @@ export async function listApplicationsWithDetails(): Promise<ApplicationWithDeta
   }));
 }
 
-export async function reviewApplication(id: string, status: ApplicationStatus): Promise<void> {
+export async function reviewApplication(
+  id: string,
+  status: ApplicationStatus,
+  reviewerId: string,
+  applicantId: string,
+  opportunityTitle: string
+): Promise<void> {
   const { error } = await supabase
     .from("opportunity_applications")
     .update({ status, reviewed_at: new Date().toISOString() })
     .eq("id", id);
   if (error) throw new Error(error.message);
+
+  await postSystemNotification(
+    applicantId,
+    reviewerId,
+    `Application Update: ${opportunityTitle}`,
+    status === "approved"
+      ? `Your application for "${opportunityTitle}" has been approved. TBP Capital Advisory will be in touch with next steps.`
+      : `Your application for "${opportunityTitle}" was not taken forward at this time.`
+  );
 }
 
 // ── Profiles ───────────────────────────────────────────────────
@@ -326,20 +375,36 @@ export async function listProfilesForReview(): Promise<(MemberProfile & { name: 
   }));
 }
 
-export async function reviewProfile(portalUserId: string, status: "approved" | "rejected"): Promise<void> {
+export async function reviewProfile(portalUserId: string, status: "approved" | "rejected", reviewerId: string): Promise<void> {
   const { error } = await supabase
     .from("member_profiles")
     .update({ status, reviewed_at: new Date().toISOString() })
     .eq("portal_user_id", portalUserId);
   if (error) throw new Error(error.message);
+
+  await postSystemNotification(
+    portalUserId,
+    reviewerId,
+    "Membership Status Update",
+    status === "approved"
+      ? "Your Circle membership profile has been approved. Welcome to the TBP Capital Circle."
+      : "Your Circle membership profile was not approved at this time. Please contact TBP Capital Advisory for more information."
+  );
 }
 
-export async function updateMemberTier(portalUserId: string, memberTier: string): Promise<void> {
+export async function updateMemberTier(portalUserId: string, memberTier: string, reviewerId: string): Promise<void> {
   const { error } = await supabase
     .from("member_profiles")
     .update({ member_tier: memberTier })
     .eq("portal_user_id", portalUserId);
   if (error) throw new Error(error.message);
+
+  await postSystemNotification(
+    portalUserId,
+    reviewerId,
+    "Membership Access Update",
+    `Your membership access has been updated to ${memberTier}.`
+  );
 }
 
 // ── Messages ───────────────────────────────────────────────────
@@ -452,10 +517,25 @@ export async function listEventInvitationRequestsWithDetails(): Promise<EventInv
   }));
 }
 
-export async function reviewEventInvitationRequest(id: string, status: "approved" | "rejected"): Promise<void> {
+export async function reviewEventInvitationRequest(
+  id: string,
+  status: "approved" | "rejected",
+  reviewerId: string,
+  memberId: string,
+  eventTitle: string
+): Promise<void> {
   const { error } = await supabase
     .from("event_invitation_requests")
     .update({ status, reviewed_at: new Date().toISOString() })
     .eq("id", id);
   if (error) throw new Error(error.message);
+
+  await postSystemNotification(
+    memberId,
+    reviewerId,
+    `Invitation Update: ${eventTitle}`,
+    status === "approved"
+      ? `You have been granted an invitation to "${eventTitle}". You can view it in My Invitations.`
+      : `Your invitation request for "${eventTitle}" was declined at this time.`
+  );
 }

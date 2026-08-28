@@ -93,19 +93,22 @@ export async function listMemberRequests(): Promise<MemberRequest[]> {
   return data ?? [];
 }
 
+export type ApprovedMember = { id: string; name: string; email: string; role: string };
+
 export async function approveMemberRequest(
   requestId: string,
   reviewerId: string,
   assignedAdminId: string,
   capitalCircle: string
-): Promise<void> {
-  const { error } = await supabase.rpc("approve_member_request", {
+): Promise<ApprovedMember> {
+  const { data, error } = await supabase.rpc("approve_member_request", {
     p_request_id: requestId,
     p_reviewer_id: reviewerId,
     p_assigned_admin_id: assignedAdminId,
     p_capital_circle: capitalCircle,
   });
   if (error) throw new Error(friendlyDbError(error));
+  return Array.isArray(data) ? data[0] : data;
 }
 
 export async function rejectMemberRequest(requestId: string, reviewerId: string): Promise<void> {

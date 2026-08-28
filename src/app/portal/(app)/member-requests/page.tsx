@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { getPortalSession, type PortalSessionUser } from "@/lib/portal/session";
 import { portalTheme } from "@/lib/portal/theme";
-import { CAPITAL_CIRCLES } from "@/lib/portal/content";
+import { CAPITAL_CIRCLES, MEMBER_TIERS, updateMemberTier } from "@/lib/portal/content";
 import { deletePortalUser, listAllPortalUsers, type ManagedUser } from "@/lib/portal/adminAuth";
 import { approveMemberRequest, listMemberRequests, rejectMemberRequest, type MemberRequest } from "@/lib/portal/memberAuth";
 
@@ -35,6 +35,7 @@ export default function MemberRequestsPage() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [chosenAdvisor, setChosenAdvisor] = useState<Record<string, string>>({});
   const [chosenCircle, setChosenCircle] = useState<Record<string, string>>({});
+  const [chosenTier, setChosenTier] = useState<Record<string, string>>({});
   const [confirmingDeleteId, setConfirmingDeleteId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -61,7 +62,8 @@ export default function MemberRequestsPage() {
       return;
     }
     try {
-      await approveMemberRequest(r.id, user.id, advisorId, chosenCircle[r.id] ?? r.capital_circle);
+      const newMember = await approveMemberRequest(r.id, user.id, advisorId, chosenCircle[r.id] ?? r.capital_circle);
+      await updateMemberTier(newMember.id, chosenTier[r.id] ?? MEMBER_TIERS[0], user.id);
       await load();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to approve request");
@@ -97,7 +99,7 @@ export default function MemberRequestsPage() {
         Circle Member Registration Requests
       </h1>
       <p style={{ color: portalTheme.textMuted, fontSize: 13, marginBottom: 20 }}>
-        Review submitted registrations. Approving assigns a Capital Advisor and creates the member&apos;s account.
+        Review submitted registrations. Approving assigns a Capital Advisor, grants a Membership Access level, and creates the member&apos;s account.
       </p>
 
       {error && <div style={{ color: portalTheme.danger, fontSize: 13, marginBottom: 14 }}>{error}</div>}
@@ -195,6 +197,15 @@ export default function MemberRequestsPage() {
                   >
                     {CAPITAL_CIRCLES.map((c) => (
                       <option key={c} value={c}>{c}</option>
+                    ))}
+                  </select>
+                  <select
+                    style={selectStyle}
+                    value={chosenTier[r.id] ?? MEMBER_TIERS[0]}
+                    onChange={(e) => setChosenTier((prev) => ({ ...prev, [r.id]: e.target.value }))}
+                  >
+                    {MEMBER_TIERS.map((t) => (
+                      <option key={t} value={t}>{t}</option>
                     ))}
                   </select>
                   <button
