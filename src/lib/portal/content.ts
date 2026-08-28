@@ -85,6 +85,25 @@ export type ApplicationWithDetails = Application & {
   applicant_assigned_admin_id: string | null;
 };
 
+export type EventInvitationStatus = "pending" | "approved" | "rejected";
+
+export type EventInvitationRequest = {
+  id: string;
+  event_id: string;
+  member_id: string;
+  message: string | null;
+  status: EventInvitationStatus;
+  created_at: string;
+  reviewed_at: string | null;
+};
+
+export type EventInvitationWithDetails = EventInvitationRequest & {
+  event_title: string;
+  member_name: string;
+  member_email: string;
+  member_assigned_admin_id: string | null;
+};
+
 export type MemberProfile = {
   portal_user_id: string;
   family_or_group_background: string | null;
@@ -110,6 +129,7 @@ export type PortalMessage = {
   content: string;
   enquiry_type: string | null;
   related_opportunity_id: string | null;
+  related_event_id: string | null;
   created_at: string;
 };
 
@@ -202,6 +222,7 @@ export async function submitEnquiry(input: {
   subject: string;
   message: string;
   relatedOpportunityId?: string;
+  relatedEventId?: string;
 }): Promise<void> {
   const { error } = await supabase.from("portal_messages").insert({
     member_id: input.memberId,
@@ -210,6 +231,7 @@ export async function submitEnquiry(input: {
     content: input.message,
     enquiry_type: input.enquiryType,
     related_opportunity_id: input.relatedOpportunityId ?? null,
+    related_event_id: input.relatedEventId ?? null,
   });
   if (error) throw new Error(error.message);
 }
@@ -370,4 +392,70 @@ export async function listPublishedEvents(): Promise<UpcomingEvent[]> {
     .order("created_at", { ascending: false });
   if (error) throw new Error(error.message);
   return data ?? [];
+}
+
+// ── Event Invitation Requests ─────────────────────────────────
+// Mirrors opportunity_applications' shape/pattern: a member requests an
+// invitation, an admin/super_admin approves or rejects it (Application
+// Review), and only approved ones surface on My Invitations.
+export async function getMyEventInvitationRequests(memberId: string): Promise<EventInvitationRequest[]> {
+  const { data, error } = await supabase
+    .from("event_invitation_requests")
+    .select("*")
+    .eq("member_id", memberId);
+  if (error) throw new Error(error.message);
+  return data ?? [];
+}
+
+export async function requestEventInvitation(
+  eventId: string,
+  eventTitle: string,
+  memberId: string,
+  message: string
+): Promise<void> {
+  const { error } = await supabase
+    .from("event_invitation_requests")
+    .insert({ event_id: eventId, member_id: memberId, message });
+  if (error) throw new Error(error.message);
+
+  // Same dual-write as applyToOpportunity - the request also lands in the
+  // member's Correspondence thread immediately, tagged so it also shows on
+  // Briefings & Enquiries, rather than only surfacing once reviewed.
+  await submitEnquiry({
+    memberId,
+    enquiryType: "Roundtable participation request",
+    subject: `Invitation Request: ${eventTitle}`,
+    message: message.trim() || `I would like to request an invitation to ${eventTitle}.`,
+    relatedEventId: eventId,
+  });
+}
+
+export async function listEventInvitationRequestsWithDetails(): Promise<EventInvitationWithDetails[]> {
+  const { data, error } = await supabase
+    .from("event_invitation_requests")
+    .select("*, upcoming_events(title), portal_users(name, email, assigned_admin_id)")
+    .order("created_at", { ascending: false });
+  if (error) throw new Error(error.message);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (data ?? []).map((row: any) => ({
+    id: row.id,
+    event_id: row.event_id,
+    member_id: row.member_id,
+    message: row.message,
+    status: row.status,
+    created_at: row.created_at,
+    reviewed_at: row.reviewed_at,
+    event_title: row.upcoming_events?.title ?? "—",
+    member_name: row.portal_users?.name ?? "—",
+    member_email: row.portal_users?.email ?? "—",
+    member_assigned_admin_id: row.portal_users?.assigned_admin_id ?? null,
+  }));
+}
+
+export async function reviewEventInvitationRequest(id: string, status: "approved" | "rejected"): Promise<void> {
+  const { error } = await supabase
+    .from("event_invitation_requests")
+    .update({ status, reviewed_at: new Date().toISOString() })
+    .eq("id", id);
+  if (error) throw new Error(error.message);
 }

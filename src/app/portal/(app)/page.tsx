@@ -66,7 +66,7 @@ function StatCard({
         >
           <Icon size={17} color={portalTheme.gold} strokeWidth={1.8} />
         </div>
-        <div style={{ color: portalTheme.textMuted, fontSize: 11, textTransform: "uppercase", letterSpacing: ".5px" }}>{label}</div>
+        <div style={{ color: portalTheme.textSecondary, fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: ".5px" }}>{label}</div>
       </div>
       <div style={{ fontSize: 17, fontWeight: 700, color: valueColor ?? portalTheme.textPrimary, marginBottom: 3, lineHeight: 1.35 }}>
         {value}

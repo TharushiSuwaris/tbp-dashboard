@@ -3,7 +3,14 @@
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { portalTheme } from "@/lib/portal/theme";
-import { listPublishedEvents, type UpcomingEvent } from "@/lib/portal/content";
+import { getPortalSession, type PortalSessionUser } from "@/lib/portal/session";
+import {
+  listPublishedEvents,
+  getMyEventInvitationRequests,
+  requestEventInvitation,
+  type UpcomingEvent,
+  type EventInvitationRequest,
+} from "@/lib/portal/content";
 
 const selectStyle: React.CSSProperties = {
   padding: "8px 12px",
@@ -15,18 +22,46 @@ const selectStyle: React.CSSProperties = {
 };
 
 export default function EventsPage() {
+  const [user, setUser] = useState<PortalSessionUser | null>(null);
   const [events, setEvents] = useState<UpcomingEvent[]>([]);
+  const [invitationRequests, setInvitationRequests] = useState<EventInvitationRequest[]>([]);
   const [regionFilter, setRegionFilter] = useState("");
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [requestingId, setRequestingId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const session = getPortalSession();
+    setUser(session);
+
     listPublishedEvents()
-      .then(setEvents)
+      .then(async (evts) => {
+        setEvents(evts);
+        if (session?.role === "circle_member") {
+          setInvitationRequests(await getMyEventInvitationRequests(session.id));
+        }
+      })
       .catch((err) => setError(err instanceof Error ? err.message : "Failed to load events"))
       .finally(() => setLoading(false));
   }, []);
+
+  function requestFor(eventId: string) {
+    return invitationRequests.find((r) => r.event_id === eventId);
+  }
+
+  async function handleRequestInvitation(event: UpcomingEvent) {
+    if (!user) return;
+    setRequestingId(event.id);
+    try {
+      await requestEventInvitation(event.id, event.title, user.id, "");
+      setInvitationRequests(await getMyEventInvitationRequests(user.id));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to request invitation");
+    } finally {
+      setRequestingId(null);
+    }
+  }
 
   const regions = useMemo(
     () => Array.from(new Set(events.map((e) => e.region).filter((r): r is string => !!r))).sort(),
@@ -39,7 +74,7 @@ export default function EventsPage() {
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20, flexWrap: "wrap", gap: 12 }}>
         <div>
           <h1 style={{ color: portalTheme.textPrimary, fontSize: 20, fontWeight: 700, margin: "0 0 4px" }}>
-            Upcoming Events
+            Events &amp; Roundtables
           </h1>
           <p style={{ color: portalTheme.textMuted, fontSize: 13, margin: 0 }}>
             Private briefings and roundtables from TBP Capital Advisory.
@@ -64,6 +99,7 @@ export default function EventsPage() {
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 16 }}>
         {filtered.map((event) => {
           const expanded = expandedId === event.id;
+          const invitation = requestFor(event.id);
           return (
             <div
               key={event.id}
@@ -122,12 +158,50 @@ export default function EventsPage() {
                   {event.description}
                 </p>
 
-                <button
-                  onClick={() => setExpandedId(expanded ? null : event.id)}
-                  style={{ alignSelf: "flex-start", background: "none", border: "none", color: portalTheme.gold, fontSize: 12.5, fontWeight: 600, cursor: "pointer", padding: 0 }}
-                >
-                  {expanded ? "Show Less" : "Learn More"}
-                </button>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
+                  <button
+                    onClick={() => setExpandedId(expanded ? null : event.id)}
+                    style={{ background: "none", border: "none", color: portalTheme.gold, fontSize: 12.5, fontWeight: 600, cursor: "pointer", padding: 0 }}
+                  >
+                    {expanded ? "Show Less" : "Learn More"}
+                  </button>
+
+                  {user?.role === "circle_member" && (
+                    invitation ? (
+                      <span
+                        style={{
+                          fontSize: 11,
+                          fontWeight: 700,
+                          padding: "5px 10px",
+                          borderRadius: 20,
+                          textTransform: "capitalize",
+                          color: invitation.status === "approved" ? "#34D399" : invitation.status === "rejected" ? portalTheme.danger : "#FBBF24",
+                          background: "rgba(27,42,61,0.06)",
+                        }}
+                      >
+                        {invitation.status === "approved" ? "Invitation Granted ✓" : invitation.status === "rejected" ? "Declined" : "Requested"}
+                      </span>
+                    ) : (
+                      <button
+                        onClick={() => handleRequestInvitation(event)}
+                        disabled={requestingId === event.id}
+                        style={{
+                          padding: "7px 14px",
+                          borderRadius: 8,
+                          border: "none",
+                          background: portalTheme.gold,
+                          color: portalTheme.goldText,
+                          fontWeight: 700,
+                          fontSize: 12.5,
+                          cursor: requestingId === event.id ? "default" : "pointer",
+                          opacity: requestingId === event.id ? 0.6 : 1,
+                        }}
+                      >
+                        Request Invitation
+                      </button>
+                    )
+                  )}
+                </div>
               </div>
             </div>
           );

@@ -36,8 +36,15 @@ export const PORTAL_PAGES: PortalPageDef[] = [
   },
   {
     path: "/portal/events",
-    label: "Upcoming Events",
+    label: "Events & Roundtables",
     description: "Private briefings and roundtables",
+    roles: ["circle_member", "admin", "super_admin"],
+    section: "Opportunities & Events",
+  },
+  {
+    path: "/portal/my-invitations",
+    label: "My Invitations",
+    description: "Event invitations TBP Capital Advisory has granted you",
     roles: ["circle_member", "admin", "super_admin"],
     section: "Opportunities & Events",
   },
