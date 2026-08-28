@@ -5,6 +5,10 @@ export type PortalPageDef = {
   label: string;
   description: string;
   roles: PortalRole[];
+  // Consecutive entries sharing the same section render together under one
+  // small heading in the Circle Portal's own sidebar (see PortalSidebar.tsx).
+  // Entries with no section render flush, with no heading above them.
+  section?: string;
 };
 
 // Matches the "Portal Pages by Role" breakdown discussed for the FO Circle
@@ -25,21 +29,31 @@ export const PORTAL_PAGES: PortalPageDef[] = [
   },
   {
     path: "/portal/opportunities",
-    label: "Project Opportunities",
+    label: "Curated Projects",
     description: "Browse published opportunities and apply",
     roles: ["circle_member", "admin", "super_admin"],
+    section: "Opportunities & Events",
   },
   {
     path: "/portal/events",
     label: "Upcoming Events",
     description: "Private briefings and roundtables",
     roles: ["circle_member", "admin", "super_admin"],
+    section: "Opportunities & Events",
   },
   {
     path: "/portal/messages",
     label: "Correspondence",
     description: "Correspondence with your assigned TBP Capital Advisor",
     roles: ["circle_member", "admin", "super_admin"],
+    section: "Communications",
+  },
+  {
+    path: "/portal/briefings",
+    label: "Briefings & Enquiries",
+    description: "Submit structured requests to TBP Capital Advisory",
+    roles: ["circle_member", "admin", "super_admin"],
+    section: "Communications",
   },
   {
     path: "/portal/opportunities/manage",

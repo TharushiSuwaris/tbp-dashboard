@@ -6,21 +6,11 @@ import { portalTheme } from "@/lib/portal/theme";
 import { portalPagesForRole } from "@/lib/portal/pages";
 import { isStaffRole } from "@/lib/portal/session";
 
-// Project Opportunities and Upcoming Events only show in the sidebar while
-// on one of these "main" pages - everywhere else (My Account, and every
-// admin/management page: Opportunity Management, Profile Review,
-// Application Review, Circle Member Requests, Invitations, Admin Account
-// Requests, Manage User Accounts) they stay hidden, consistently, so the
-// sidebar doesn't grow/shrink as you move between those pages.
-const MAIN_PAGE_PATHS = ["/portal", "/portal/opportunities", "/portal/events", "/portal/messages"];
-const HIDDEN_OFF_MAIN_PAGES = ["/portal/opportunities", "/portal/events"];
-
 export function PortalSidebar({ role }: { role: string }) {
   const pathname = usePathname();
-  const onMainPage = MAIN_PAGE_PATHS.includes(pathname);
   const navItems = [
-    { path: "/portal", label: "Overview" },
-    ...portalPagesForRole(role).filter((p) => onMainPage || !HIDDEN_OFF_MAIN_PAGES.includes(p.path)),
+    { path: "/portal", label: "Overview", section: undefined as string | undefined },
+    ...portalPagesForRole(role),
   ];
 
   function isActive(path: string) {
@@ -64,29 +54,49 @@ export function PortalSidebar({ role }: { role: string }) {
       </Link>
 
       <nav style={{ flex: 1, padding: "6px 10px" }}>
-        {navItems.map((item) => {
-          const active = isActive(item.path);
-          return (
-            <Link
-              key={item.path}
-              href={item.path}
-              style={{
-                display: "block",
-                padding: "9px 12px",
-                marginBottom: 2,
-                borderRadius: 8,
-                textDecoration: "none",
-                fontSize: 13,
-                fontWeight: active ? 700 : 500,
-                color: active ? portalTheme.textPrimary : portalTheme.textSecondary,
-                background: active ? "rgba(196,153,42,0.14)" : "transparent",
-                borderLeft: active ? `3px solid ${portalTheme.gold}` : "3px solid transparent",
-              }}
-            >
-              {item.label}
-            </Link>
-          );
-        })}
+        {(() => {
+          let previousSection: string | undefined;
+          return navItems.map((item) => {
+            const active = isActive(item.path);
+            const showHeading = Boolean(item.section) && item.section !== previousSection;
+            previousSection = item.section;
+            return (
+              <div key={item.path}>
+                {showHeading && (
+                  <div
+                    style={{
+                      fontSize: 10.5,
+                      fontWeight: 700,
+                      color: portalTheme.gold,
+                      textTransform: "uppercase",
+                      letterSpacing: ".6px",
+                      padding: "16px 12px 6px",
+                    }}
+                  >
+                    {item.section}
+                  </div>
+                )}
+                <Link
+                  href={item.path}
+                  style={{
+                    display: "block",
+                    padding: "9px 12px",
+                    marginBottom: 2,
+                    borderRadius: 8,
+                    textDecoration: "none",
+                    fontSize: 13,
+                    fontWeight: active ? 700 : 500,
+                    color: active ? portalTheme.textPrimary : portalTheme.textSecondary,
+                    background: active ? "rgba(196,153,42,0.14)" : "transparent",
+                    borderLeft: active ? `3px solid ${portalTheme.gold}` : "3px solid transparent",
+                  }}
+                >
+                  {item.label}
+                </Link>
+              </div>
+            );
+          });
+        })()}
       </nav>
 
       {isStaffRole(role) && (

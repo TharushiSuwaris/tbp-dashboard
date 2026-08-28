@@ -36,6 +36,14 @@ export const PARTICIPATION_TYPES = [
   "Strategic Partnership",
 ] as const;
 
+export const MEMBER_TIERS = [
+  "Circle Member",
+  "Full Member",
+  "Founding Stewardship Candidate",
+  "Project-Level Candidate",
+  "Strategic Partner Candidate",
+] as const;
+
 export type Opportunity = {
   id: string;
   title: string;
@@ -88,6 +96,7 @@ export type MemberProfile = {
   esg_alignment: string | null;
   legacy_objectives: string | null;
   capital_circle: string | null;
+  member_tier: string | null;
   status: ProfileStatus;
   submitted_at: string | null;
   reviewed_at: string | null;
@@ -99,10 +108,14 @@ export type PortalMessage = {
   sender_id: string;
   subject: string | null;
   content: string;
+  enquiry_type: string | null;
+  related_opportunity_id: string | null;
   created_at: string;
 };
 
 export type CircleMember = { id: string; name: string; email: string; assigned_admin_id: string | null };
+
+export type SavedOpportunity = { id: string; member_id: string; opportunity_id: string; created_at: string };
 
 // ── Opportunities ──────────────────────────────────────────────
 export async function listPublishedOpportunities(): Promise<Opportunity[]> {
@@ -178,6 +191,48 @@ export async function applyToOpportunity(
     content: message.trim() || `I would like to express interest in ${opportunityTitle}.`,
   });
   if (msgError) throw new Error(msgError.message);
+}
+
+// Structured requests (Request Briefing, Request Roundtable Invitation) -
+// same as applyToOpportunity's auto-created message, just user-initiated
+// with an enquiry_type tag rather than a by-product of an application.
+export async function submitEnquiry(input: {
+  memberId: string;
+  enquiryType: string;
+  subject: string;
+  message: string;
+  relatedOpportunityId?: string;
+}): Promise<void> {
+  const { error } = await supabase.from("portal_messages").insert({
+    member_id: input.memberId,
+    sender_id: input.memberId,
+    subject: input.subject,
+    content: input.message,
+    enquiry_type: input.enquiryType,
+    related_opportunity_id: input.relatedOpportunityId ?? null,
+  });
+  if (error) throw new Error(error.message);
+}
+
+// Save Interest - a private bookmark, no correspondence side-effect.
+export async function listSavedOpportunities(memberId: string): Promise<SavedOpportunity[]> {
+  const { data, error } = await supabase.from("saved_opportunities").select("*").eq("member_id", memberId);
+  if (error) throw new Error(error.message);
+  return data ?? [];
+}
+
+export async function saveOpportunityInterest(memberId: string, opportunityId: string): Promise<void> {
+  const { error } = await supabase.from("saved_opportunities").insert({ member_id: memberId, opportunity_id: opportunityId });
+  if (error) throw new Error(error.message);
+}
+
+export async function unsaveOpportunityInterest(memberId: string, opportunityId: string): Promise<void> {
+  const { error } = await supabase
+    .from("saved_opportunities")
+    .delete()
+    .eq("member_id", memberId)
+    .eq("opportunity_id", opportunityId);
+  if (error) throw new Error(error.message);
 }
 
 export async function listApplicationsWithDetails(): Promise<ApplicationWithDetails[]> {
@@ -257,6 +312,14 @@ export async function reviewProfile(portalUserId: string, status: "approved" | "
   if (error) throw new Error(error.message);
 }
 
+export async function updateMemberTier(portalUserId: string, memberTier: string): Promise<void> {
+  const { error } = await supabase
+    .from("member_profiles")
+    .update({ member_tier: memberTier })
+    .eq("portal_user_id", portalUserId);
+  if (error) throw new Error(error.message);
+}
+
 // ── Messages ───────────────────────────────────────────────────
 export async function listCircleMembers(): Promise<CircleMember[]> {
   const { data, error } = await supabase
@@ -273,6 +336,20 @@ export async function getMessages(memberId: string): Promise<PortalMessage[]> {
     .select("*")
     .eq("member_id", memberId)
     .order("created_at", { ascending: true });
+  if (error) throw new Error(error.message);
+  return data ?? [];
+}
+
+// The Briefings & Enquiries page's list of a member's own structured
+// requests - a filtered view over the same portal_messages table
+// Correspondence reads, not a separate inbox.
+export async function listMyEnquiries(memberId: string): Promise<PortalMessage[]> {
+  const { data, error } = await supabase
+    .from("portal_messages")
+    .select("*")
+    .eq("member_id", memberId)
+    .not("enquiry_type", "is", null)
+    .order("created_at", { ascending: false });
   if (error) throw new Error(error.message);
   return data ?? [];
 }

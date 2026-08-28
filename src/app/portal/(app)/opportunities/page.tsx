@@ -1,12 +1,17 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { Bookmark, BookmarkCheck } from "lucide-react";
 import { getPortalSession, type PortalSessionUser } from "@/lib/portal/session";
 import { portalTheme } from "@/lib/portal/theme";
 import {
   applyToOpportunity,
   getMyApplications,
   listPublishedOpportunities,
+  listSavedOpportunities,
+  saveOpportunityInterest,
+  unsaveOpportunityInterest,
+  submitEnquiry,
   OPPORTUNITY_SECTORS,
   CAPITAL_CIRCLES,
   PARTICIPATION_TYPES,
@@ -44,6 +49,19 @@ const tagStyle = (bg: string, color: string): React.CSSProperties => ({
   borderRadius: 20,
 });
 
+const actionButtonStyle: React.CSSProperties = {
+  flex: 1,
+  padding: "8px 10px",
+  borderRadius: 7,
+  border: `1px solid ${portalTheme.panelBorder}`,
+  background: "transparent",
+  color: portalTheme.textSecondary,
+  fontSize: 11.5,
+  fontWeight: 600,
+  cursor: "pointer",
+  textAlign: "center",
+};
+
 export default function OpportunitiesPage() {
   const [user, setUser] = useState<PortalSessionUser | null>(null);
   const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
@@ -59,6 +77,9 @@ export default function OpportunitiesPage() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const [savedIds, setSavedIds] = useState<Set<string>>(new Set());
+  const [requestedActions, setRequestedActions] = useState<Set<string>>(new Set());
+
   async function load(u: PortalSessionUser) {
     setLoading(true);
     try {
@@ -66,11 +87,56 @@ export default function OpportunitiesPage() {
       setOpportunities(opps);
       if (u.role === "circle_member") {
         setApplications(await getMyApplications(u.id));
+        const saved = await listSavedOpportunities(u.id);
+        setSavedIds(new Set(saved.map((s) => s.opportunity_id)));
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to load opportunities");
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function handleToggleSave(opportunityId: string) {
+    if (!user) return;
+    const alreadySaved = savedIds.has(opportunityId);
+    try {
+      if (alreadySaved) {
+        await unsaveOpportunityInterest(user.id, opportunityId);
+        setSavedIds((prev) => { const next = new Set(prev); next.delete(opportunityId); return next; });
+      } else {
+        await saveOpportunityInterest(user.id, opportunityId);
+        setSavedIds((prev) => new Set(prev).add(opportunityId));
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to update saved interest");
+    }
+  }
+
+  async function handleRequest(opp: Opportunity, kind: "briefing" | "roundtable") {
+    if (!user) return;
+    const key = `${opp.id}:${kind}`;
+    try {
+      if (kind === "briefing") {
+        await submitEnquiry({
+          memberId: user.id,
+          enquiryType: "Private briefing request",
+          subject: `Private Briefing Request: ${opp.title}`,
+          message: `I would like to request a private briefing on ${opp.title}.`,
+          relatedOpportunityId: opp.id,
+        });
+      } else {
+        await submitEnquiry({
+          memberId: user.id,
+          enquiryType: "Roundtable participation request",
+          subject: `Roundtable Invitation Request: ${opp.title}`,
+          message: `I would like to request a roundtable invitation relating to ${opp.title}.`,
+          relatedOpportunityId: opp.id,
+        });
+      }
+      setRequestedActions((prev) => new Set(prev).add(key));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to submit request");
     }
   }
 
@@ -80,7 +146,6 @@ export default function OpportunitiesPage() {
     setUser(session);
     if (session.role === "circle_member") markOpportunitiesSeen(session.id);
     load(session);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const regions = useMemo(
@@ -125,7 +190,7 @@ export default function OpportunitiesPage() {
     <div>
       <div style={{ marginBottom: 16 }}>
         <h1 style={{ color: portalTheme.textPrimary, fontSize: 20, fontWeight: 700, margin: "0 0 4px" }}>
-          Project Opportunities
+          Curated Opportunities
         </h1>
         <p style={{ color: portalTheme.textMuted, fontSize: 13, margin: 0 }}>
           {user.role === "circle_member"
@@ -177,6 +242,9 @@ export default function OpportunitiesPage() {
         {filtered.map((opp) => {
           const application = applicationFor(opp.id);
           const expanded = expandedId === opp.id;
+          const briefingRequested = requestedActions.has(`${opp.id}:briefing`);
+          const roundtableRequested = requestedActions.has(`${opp.id}:roundtable`);
+          const saved = savedIds.has(opp.id);
           return (
             <div
               key={opp.id}
@@ -187,9 +255,35 @@ export default function OpportunitiesPage() {
                 padding: "20px 22px",
                 display: "flex",
                 flexDirection: "column",
+                position: "relative",
               }}
             >
-              <div style={{ display: "flex", gap: 8, marginBottom: 8, flexWrap: "wrap" }}>
+              {user.role === "circle_member" && (
+                <button
+                  onClick={() => handleToggleSave(opp.id)}
+                  aria-label={saved ? "Remove saved interest" : "Save interest"}
+                  title={saved ? "Remove saved interest" : "Save interest"}
+                  style={{
+                    position: "absolute",
+                    top: 14,
+                    right: 14,
+                    width: 28,
+                    height: 28,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderRadius: 6,
+                    border: "none",
+                    background: saved ? "rgba(196,153,42,0.14)" : "transparent",
+                    color: saved ? portalTheme.gold : portalTheme.textMuted,
+                    cursor: "pointer",
+                  }}
+                >
+                  {saved ? <BookmarkCheck size={17} strokeWidth={1.8} /> : <Bookmark size={17} strokeWidth={1.8} />}
+                </button>
+              )}
+
+              <div style={{ display: "flex", gap: 8, marginBottom: 8, flexWrap: "wrap", paddingRight: user.role === "circle_member" ? 30 : 0 }}>
                 {opp.region && <span style={tagStyle("rgba(196,153,42,0.12)", portalTheme.gold)}>{opp.region}</span>}
                 {(opp.sector ?? []).map((s) => (
                   <span key={s} style={tagStyle("rgba(27,42,61,0.06)", portalTheme.textMuted)}>{s}</span>
@@ -227,14 +321,7 @@ export default function OpportunitiesPage() {
                 </div>
               ) : null}
 
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, marginTop: "auto" }}>
-                <button
-                  onClick={() => setExpandedId(expanded ? null : opp.id)}
-                  style={{ background: "none", border: "none", color: portalTheme.gold, fontSize: 12.5, fontWeight: 600, cursor: "pointer", padding: 0 }}
-                >
-                  {expanded ? "Show Less" : "Learn More"}
-                </button>
-
+              <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", gap: 10, marginTop: "auto" }}>
                 {user.role === "circle_member" && (
                   application ? (
                     <span
@@ -260,6 +347,28 @@ export default function OpportunitiesPage() {
                   )
                 )}
               </div>
+
+              {user.role === "circle_member" && (
+                <div style={{ display: "flex", gap: 6, marginTop: 10, flexWrap: "wrap" }}>
+                  <button onClick={() => setExpandedId(expanded ? null : opp.id)} style={actionButtonStyle}>
+                    {expanded ? "Hide Details" : "View Details"}
+                  </button>
+                  <button
+                    onClick={() => handleRequest(opp, "briefing")}
+                    disabled={briefingRequested}
+                    style={{ ...actionButtonStyle, opacity: briefingRequested ? 0.55 : 1, cursor: briefingRequested ? "default" : "pointer" }}
+                  >
+                    {briefingRequested ? "Briefing Requested ✓" : "Request Briefing"}
+                  </button>
+                  <button
+                    onClick={() => handleRequest(opp, "roundtable")}
+                    disabled={roundtableRequested}
+                    style={{ ...actionButtonStyle, opacity: roundtableRequested ? 0.55 : 1, cursor: roundtableRequested ? "default" : "pointer" }}
+                  >
+                    {roundtableRequested ? "Roundtable Requested ✓" : "Request Roundtable"}
+                  </button>
+                </div>
+              )}
 
               {applyingTo === opp.id && (
                 <div style={{ marginTop: 14, paddingTop: 14, borderTop: `1px solid ${portalTheme.panelBorder}` }}>

@@ -2,7 +2,16 @@
 
 import { useEffect, useState } from "react";
 import { portalTheme } from "@/lib/portal/theme";
-import { listProfilesForReview, reviewProfile, type MemberProfile } from "@/lib/portal/content";
+import { listProfilesForReview, reviewProfile, updateMemberTier, MEMBER_TIERS, type MemberProfile } from "@/lib/portal/content";
+
+const selectStyle: React.CSSProperties = {
+  padding: "7px 10px",
+  borderRadius: 6,
+  border: `1px solid ${portalTheme.inputBorder}`,
+  background: portalTheme.inputBackground,
+  color: portalTheme.textPrimary,
+  fontSize: 12,
+};
 
 type ProfileRow = MemberProfile & { name: string; email: string };
 
@@ -40,6 +49,15 @@ export default function ProfileReviewPage() {
       await load();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to update profile");
+    }
+  }
+
+  async function handleSetTier(id: string, tier: string) {
+    try {
+      await updateMemberTier(id, tier);
+      await load();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to update membership access");
     }
   }
 
@@ -100,6 +118,21 @@ export default function ProfileReviewPage() {
 
               {isExpanded && (
                 <div style={{ marginTop: 14, paddingTop: 14, borderTop: `1px solid ${portalTheme.panelBorder}`, display: "grid", gap: 8 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 12.5, marginBottom: 4 }} onClick={(e) => e.stopPropagation()}>
+                    <div style={{ minWidth: 180, color: portalTheme.textMuted }}>Membership Access</div>
+                    <select
+                      style={selectStyle}
+                      value={p.member_tier ?? ""}
+                      onChange={(e) => handleSetTier(p.portal_user_id, e.target.value)}
+                    >
+                      <option value="" disabled>
+                        Not yet assigned
+                      </option>
+                      {MEMBER_TIERS.map((t) => (
+                        <option key={t} value={t}>{t}</option>
+                      ))}
+                    </select>
+                  </div>
                   {fieldLabels.map((f) => (
                     <div key={f.key} style={{ display: "flex", gap: 10, fontSize: 12.5 }}>
                       <div style={{ minWidth: 180, color: portalTheme.textMuted }}>{f.label}</div>
