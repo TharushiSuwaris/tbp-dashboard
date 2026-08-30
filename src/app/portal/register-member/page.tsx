@@ -3,10 +3,47 @@
 import { useEffect, useRef, useState } from "react";
 import { requestMemberSignup } from "@/lib/portal/memberAuth";
 import { checkInvitationEmail, previewInvitation, type InvitationPreview } from "@/lib/portal/invitations";
-import { CAPITAL_CIRCLES, OPPORTUNITY_SECTORS } from "@/lib/portal/content";
+import { CAPITAL_CIRCLES, OPPORTUNITY_SECTORS, PARTICIPATION_PATHWAYS } from "@/lib/portal/content";
 import { portalTheme } from "@/lib/portal/theme";
 
-const STEPS = ["Details", "Capital Profile", "Review & Submit"];
+const STEPS = ["Details", "Private Capital Profile", "Review & Submit"];
+
+// This registration form's own accent palette (Pacific Blue / Light Blue) -
+// deliberately scoped to just this page rather than changed in the shared
+// portalTheme, which every other portal page still uses its usual gold/navy
+// palette from.
+const FORM_ACCENT = "#3A9FC0";
+const FORM_ACCENT_TEXT = "#0B2333";
+const FORM_ACCENT_TINT = "rgba(58,159,192,0.08)";
+const FORM_ACCENT_TINT_SOFT = "rgba(58,159,192,0.06)";
+const FORM_BACKGROUND = "#D4EBF2";
+
+const COUNTRIES = [
+  "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia",
+  "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium",
+  "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria",
+  "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad",
+  "Chile", "China", "Colombia", "Comoros", "Congo (DRC)", "Congo (Republic)", "Costa Rica", "Croatia", "Cuba",
+  "Cyprus", "Czechia", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt",
+  "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France",
+  "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea",
+  "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia",
+  "Iran", "Iraq", "Ireland", "Israel", "Italy", "Ivory Coast", "Jamaica", "Japan", "Jordan", "Kazakhstan",
+  "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia",
+  "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Madagascar", "Malawi", "Malaysia", "Maldives",
+  "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco",
+  "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands",
+  "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman",
+  "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland",
+  "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia",
+  "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia",
+  "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands",
+  "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden",
+  "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga",
+  "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine",
+  "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu",
+  "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe", "Other",
+];
 
 const FAMILY_GROUP_CATEGORIES = [
   "Single Family Office",
@@ -232,8 +269,8 @@ function MultiChoice({
                     borderRadius: 6,
                     fontSize: 12.5,
                     cursor: "pointer",
-                    color: active ? portalTheme.gold : portalTheme.textSecondary,
-                    background: active ? "rgba(196,153,42,0.08)" : "transparent",
+                    color: active ? FORM_ACCENT : portalTheme.textSecondary,
+                    background: active ? FORM_ACCENT_TINT : "transparent",
                   }}
                 >
                   <input type="checkbox" checked={active} onChange={() => toggle(opt)} style={{ margin: 0 }} />
@@ -285,6 +322,7 @@ export default function RegisterMemberPage() {
   const [investmentOrientation, setInvestmentOrientation] = useState("");
   const [esgAlignment, setEsgAlignment] = useState<string[]>([]);
   const [strategicObjectives, setStrategicObjectives] = useState<string[]>([]);
+  const [participationPathway, setParticipationPathway] = useState<string[]>([]);
   const [additionalNotes, setAdditionalNotes] = useState("");
 
   // Step 3
@@ -343,6 +381,7 @@ export default function RegisterMemberPage() {
     if (!investmentOrientation) return "Please select an indicative investment orientation.";
     if (esgAlignment.length === 0) return "Please select at least one ESG alignment (or \"No Specific Mandate\").";
     if (strategicObjectives.length === 0) return "Please select at least one strategic & impact objective (or \"No Specific Objective\").";
+    if (participationPathway.length === 0) return "Please select at least one participation pathway interest.";
     return null;
   }
 
@@ -386,6 +425,7 @@ export default function RegisterMemberPage() {
         strategicImpactObjectives: strategicObjectives,
         additionalNotes: additionalNotes.trim(),
         additionalCircleRelevance,
+        participationPathwayInterest: participationPathway,
       });
       setSubmitted(true);
     } catch (err) {
@@ -399,7 +439,7 @@ export default function RegisterMemberPage() {
     <main
       style={{
         minHeight: "100vh",
-        background: portalTheme.background,
+        background: FORM_BACKGROUND,
         fontFamily: "sans-serif",
         padding: "40px 24px",
       }}
@@ -427,8 +467,8 @@ export default function RegisterMemberPage() {
                     justifyContent: "center",
                     fontSize: 12,
                     fontWeight: 700,
-                    background: i <= step ? portalTheme.gold : "rgba(27,42,61,0.08)",
-                    color: i <= step ? portalTheme.goldText : portalTheme.textMuted,
+                    background: i <= step ? FORM_ACCENT : "rgba(27,42,61,0.08)",
+                    color: i <= step ? FORM_ACCENT_TEXT : portalTheme.textMuted,
                   }}
                 >
                   {i + 1}
@@ -458,7 +498,7 @@ export default function RegisterMemberPage() {
                 TBP will review your details and assign a Capital Advisor. You&apos;ll be able to log in with the
                 email and password you just set once approved.
               </p>
-              <a href="/portal/login" style={{ color: portalTheme.gold, fontSize: 12.5, textDecoration: "none" }}>
+              <a href="/portal/login" style={{ color: FORM_ACCENT, fontSize: 12.5, textDecoration: "none" }}>
                 &larr; Back to Log In
               </a>
             </div>
@@ -468,14 +508,14 @@ export default function RegisterMemberPage() {
                 <div>
                   <div
                     style={{
-                      background: "rgba(196,153,42,0.06)",
+                      background: FORM_ACCENT_TINT_SOFT,
                       border: `1px solid ${portalTheme.panelBorder}`,
                       borderRadius: 10,
                       padding: "16px 18px",
                       marginBottom: 18,
                     }}
                   >
-                    <div style={{ fontSize: 11, fontWeight: 700, color: portalTheme.gold, textTransform: "uppercase", letterSpacing: ".6px", marginBottom: 12 }}>
+                    <div style={{ fontSize: 11, fontWeight: 700, color: FORM_ACCENT, textTransform: "uppercase", letterSpacing: ".6px", marginBottom: 12 }}>
                       Your Invitation
                     </div>
                     <label style={labelStyle}>Private Invitation Code *</label>
@@ -518,14 +558,14 @@ export default function RegisterMemberPage() {
 
                   <div
                     style={{
-                      background: "rgba(196,153,42,0.06)",
+                      background: FORM_ACCENT_TINT_SOFT,
                       border: `1px solid ${portalTheme.panelBorder}`,
                       borderRadius: 10,
                       padding: "16px 18px",
                       marginBottom: 18,
                     }}
                   >
-                    <div style={{ fontSize: 11, fontWeight: 700, color: portalTheme.gold, textTransform: "uppercase", letterSpacing: ".6px", marginBottom: 12 }}>
+                    <div style={{ fontSize: 11, fontWeight: 700, color: FORM_ACCENT, textTransform: "uppercase", letterSpacing: ".6px", marginBottom: 12 }}>
                       Create Your Account
                     </div>
                     <div style={fieldRow}>
@@ -548,7 +588,7 @@ export default function RegisterMemberPage() {
                   </div>
 
                   <div style={fieldRow}>
-                    <Field label="Country" value={country} onChange={(e) => setCountry(e.target.value)} />
+                    <SingleChoice label="Country" options={COUNTRIES} value={country} onChange={setCountry} />
                     <Field label="LinkedIn / Company Website" value={linkedinOrWebsite} onChange={(e) => setLinkedinOrWebsite(e.target.value)} />
                   </div>
 
@@ -574,8 +614,9 @@ export default function RegisterMemberPage() {
               {step === 1 && (
                 <div>
                   <p style={{ color: portalTheme.textMuted, fontSize: 12.5, marginBottom: 20 }}>
-                    Select the options that best describe you — this takes about a minute. TBP&apos;s Capital
-                    Advisory &amp; Coordination Office reviews every request against this information.
+                    Please select the options that best describe your family, group or investment vehicle. This
+                    information helps TBP Capital Advisory &amp; Coordination Office understand your profile, assess
+                    membership suitability and match you with relevant TBP opportunity pathways.
                   </p>
 
                   <SingleChoice label="Family / Group Category *" options={FAMILY_GROUP_CATEGORIES} value={familyGroupCategory} onChange={setFamilyGroupCategory} />
@@ -599,7 +640,7 @@ export default function RegisterMemberPage() {
                     options={INVESTMENT_ORIENTATION_OPTIONS}
                     value={investmentOrientation}
                     onChange={setInvestmentOrientation}
-                    hint="For membership profiling and opportunity relevance only."
+                    hint="For membership profiling, opportunity relevance and investor-concierge matching only."
                   />
 
                   <MultiChoice label="ESG Alignment * (select all that apply)" options={ESG_ALIGNMENT_OPTIONS} values={esgAlignment} onChange={setEsgAlignment} />
@@ -609,6 +650,14 @@ export default function RegisterMemberPage() {
                     options={STRATEGIC_IMPACT_OBJECTIVES_OPTIONS}
                     values={strategicObjectives}
                     onChange={setStrategicObjectives}
+                  />
+
+                  <MultiChoice
+                    label="Participation Pathway Interest * (select all that apply)"
+                    hint="Which route into TBP interests you most — this connects directly to your Capital Circle."
+                    options={[...PARTICIPATION_PATHWAYS]}
+                    values={participationPathway}
+                    onChange={setParticipationPathway}
                   />
 
                   <div>
@@ -642,14 +691,16 @@ export default function RegisterMemberPage() {
                     <div>Indicative Investment Orientation: {investmentOrientation}</div>
                     <div>ESG Alignment: {esgAlignment.join(" · ")}</div>
                     <div>Strategic &amp; Impact Objectives: {strategicObjectives.join(" · ")}</div>
+                    <div>Participation Pathway Interest: {participationPathway.join(" · ")}</div>
                   </div>
 
                   <label style={{ display: "flex", alignItems: "flex-start", gap: 10, cursor: "pointer" }}>
                     <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} style={{ marginTop: 3 }} />
                     <span style={{ fontSize: 12, color: portalTheme.textMuted, lineHeight: 1.6 }}>
-                      I confirm the information provided is accurate. I understand this is a request for review by
-                      TBP&apos;s Capital Advisory &amp; Coordination Office and does not constitute membership,
-                      an offer, or a solicitation until approved.
+                      I understand that submission of this form does not guarantee membership, portal access,
+                      investment allocation, project participation or financial return. All participation remains
+                      subject to TBP review, eligibility, approval, documentation and applicable legal/regulatory
+                      requirements.
                     </span>
                   </label>
                 </div>
@@ -676,7 +727,7 @@ export default function RegisterMemberPage() {
                   <button
                     type="button"
                     onClick={handleNext}
-                    style={{ padding: "10px 22px", borderRadius: 8, border: "none", background: portalTheme.gold, color: portalTheme.goldText, fontWeight: 700, fontSize: 13, cursor: "pointer" }}
+                    style={{ padding: "10px 22px", borderRadius: 8, border: "none", background: FORM_ACCENT, color: FORM_ACCENT_TEXT, fontWeight: 700, fontSize: 13, cursor: "pointer" }}
                   >
                     Continue &rarr;
                   </button>
@@ -685,7 +736,7 @@ export default function RegisterMemberPage() {
                     type="button"
                     onClick={handleSubmit}
                     disabled={loading}
-                    style={{ padding: "10px 22px", borderRadius: 8, border: "none", background: portalTheme.gold, color: portalTheme.goldText, fontWeight: 700, fontSize: 13, cursor: loading ? "not-allowed" : "pointer", opacity: loading ? 0.7 : 1 }}
+                    style={{ padding: "10px 22px", borderRadius: 8, border: "none", background: FORM_ACCENT, color: FORM_ACCENT_TEXT, fontWeight: 700, fontSize: 13, cursor: loading ? "not-allowed" : "pointer", opacity: loading ? 0.7 : 1 }}
                   >
                     {loading ? "Submitting..." : "Submit Request"}
                   </button>

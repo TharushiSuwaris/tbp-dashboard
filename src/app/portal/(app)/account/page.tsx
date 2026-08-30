@@ -52,6 +52,7 @@ const profileFields: { key: keyof MemberProfile; label: string }[] = [
   { key: "risk_preference", label: "Risk Preference" },
   { key: "esg_alignment", label: "ESG & Impact Alignment" },
   { key: "legacy_objectives", label: "Strategic & Impact Objectives" },
+  { key: "participation_pathway_interest", label: "Participation Pathway Interest" },
 ];
 
 export default function AccountPage() {

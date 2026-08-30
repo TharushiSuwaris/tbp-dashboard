@@ -18,13 +18,14 @@ type ProfileRow = MemberProfile & { name: string; email: string };
 
 const fieldLabels: { key: keyof MemberProfile; label: string }[] = [
   { key: "family_or_group_background", label: "Family / Group Background" },
-  { key: "geography", label: "Geography" },
+  { key: "geography", label: "Geography & Market Interests" },
   { key: "sector_preferences", label: "Sector Preferences" },
-  { key: "capital_appetite", label: "Capital Appetite" },
+  { key: "capital_appetite", label: "Capital & Participation Interests" },
   { key: "investment_horizon", label: "Investment Horizon" },
   { key: "risk_preference", label: "Risk Preference" },
-  { key: "esg_alignment", label: "ESG Alignment" },
-  { key: "legacy_objectives", label: "Legacy Objectives" },
+  { key: "esg_alignment", label: "ESG & Impact Alignment" },
+  { key: "legacy_objectives", label: "Strategic & Impact Objectives" },
+  { key: "participation_pathway_interest", label: "Participation Pathway Interest" },
 ];
 
 export default function ProfileReviewPage() {

@@ -21,6 +21,7 @@ export const OPPORTUNITY_SECTORS = [
 ] as const;
 
 export const CAPITAL_CIRCLES = [
+  "HNWI",
   "Family Office & Private Capital",
   "Institutional Investors",
   "Angel Investors",
@@ -61,6 +62,18 @@ export const ENQUIRY_TYPES = [
   "ASMOFP™ / offshore infrastructure briefing",
   "Corridor Trust Bank™ / trust finance briefing",
   "Other confidential enquiry",
+] as const;
+
+// Collected on Step 2 of registration - connects the applicant directly to
+// the Circle concept by letting them flag which route into TBP they're
+// actually interested in, ahead of TBP Capital Advisory's own outreach.
+export const PARTICIPATION_PATHWAYS = [
+  "Circle Membership",
+  "Founding Institutional Stewardship Track",
+  "Project-Level Participation",
+  "Strategic Partnership Pathway",
+  "Physical Roundtable Invitation",
+  "Private Briefing with TBP Capital Advisory",
 ] as const;
 
 export type Opportunity = {
@@ -133,6 +146,7 @@ export type MemberProfile = {
   risk_preference: string | null;
   esg_alignment: string | null;
   legacy_objectives: string | null;
+  participation_pathway_interest: string | null;
   capital_circle: string | null;
   member_tier: string | null;
   status: ProfileStatus;

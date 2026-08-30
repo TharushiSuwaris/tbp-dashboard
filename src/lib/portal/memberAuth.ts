@@ -23,6 +23,7 @@ export type MemberRequestInput = {
   strategicImpactObjectives: string[];
   additionalNotes?: string;
   additionalCircleRelevance?: string[];
+  participationPathwayInterest: string[];
 };
 
 export async function requestMemberSignup(input: MemberRequestInput): Promise<void> {
@@ -48,6 +49,7 @@ export async function requestMemberSignup(input: MemberRequestInput): Promise<vo
     p_strategic_impact_objectives: input.strategicImpactObjectives,
     p_additional_notes: input.additionalNotes || null,
     p_additional_circle_relevance: input.additionalCircleRelevance || [],
+    p_participation_pathway_interest: input.participationPathwayInterest,
   });
   if (error) throw new Error(friendlyDbError(error));
 }
@@ -76,6 +78,7 @@ export type MemberRequest = {
   strategic_impact_objectives: string[];
   additional_notes: string | null;
   additional_circle_relevance: string[];
+  participation_pathway_interest: string[];
   status: "pending" | "approved" | "rejected";
   requested_at: string;
   created_user_id: string | null;
@@ -86,7 +89,7 @@ export async function listMemberRequests(): Promise<MemberRequest[]> {
   const { data, error } = await supabase
     .from("member_requests")
     .select(
-      "id, name, email, phone, organisation, role_title, city, country, linkedin_or_website, capital_circle, sector_interests, invitation_code, invited_by, invited_at, family_or_group_background, geography_focus, capital_participation_interests, investment_horizon, risk_preference, esg_alignment_interests, strategic_impact_objectives, additional_notes, additional_circle_relevance, status, requested_at, created_user_id"
+      "id, name, email, phone, organisation, role_title, city, country, linkedin_or_website, capital_circle, sector_interests, invitation_code, invited_by, invited_at, family_or_group_background, geography_focus, capital_participation_interests, investment_horizon, risk_preference, esg_alignment_interests, strategic_impact_objectives, additional_notes, additional_circle_relevance, participation_pathway_interest, status, requested_at, created_user_id"
     )
     .order("requested_at", { ascending: false });
   if (error) throw new Error(friendlyDbError(error));

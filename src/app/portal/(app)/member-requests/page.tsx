@@ -173,6 +173,7 @@ export default function MemberRequestsPage() {
                     <DetailRow label="ESG Alignment" value={r.esg_alignment_interests?.join(" · ")} />
                     <DetailRow label="Strategic & Impact Objectives" value={r.strategic_impact_objectives?.join(" · ")} />
                     <DetailRow label="Additional Circle Relevance" value={r.additional_circle_relevance?.join(" · ")} />
+                    <DetailRow label="Participation Pathway Interest" value={r.participation_pathway_interest?.join(" · ")} />
                     <DetailRow label="Additional Notes" value={r.additional_notes} />
                   </div>
                 </div>
