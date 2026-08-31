@@ -167,9 +167,9 @@ export default function CapitalCirclesLandingPage() {
           --cc-navy: #1b2a3d;
           --cc-navy-2: #223650;
           --cc-navy-3: #17324a;
-          --cc-gold: #c4992a;
-          --cc-gold-2: #ddbe6a;
-          --cc-ivory: #f7f4ec;
+          --cc-gold: #3a9fc0;
+          --cc-gold-2: #5FB3CE;
+          --cc-ivory: #d4ebf2;
           --cc-white: #ffffff;
           --cc-slate: #5e6e7c;
           --cc-muted: #7b8792;
@@ -226,7 +226,7 @@ export default function CapitalCirclesLandingPage() {
           background: var(--cc-gold);
           color: var(--cc-navy);
           font-weight: 900;
-          box-shadow: 0 8px 24px rgba(201, 162, 74, 0.18);
+          box-shadow: 0 8px 24px rgba(58, 159, 192, 0.18);
           flex-shrink: 0;
         }
         .cc-brand-copy small {
@@ -263,7 +263,7 @@ export default function CapitalCirclesLandingPage() {
         .cc-btn-gold {
           background: var(--cc-gold);
           color: var(--cc-navy);
-          box-shadow: 0 10px 28px rgba(201, 162, 74, 0.22);
+          box-shadow: 0 10px 28px rgba(58, 159, 192, 0.22);
         }
         .cc-btn-gold:hover {
           background: var(--cc-gold-2);
@@ -275,7 +275,7 @@ export default function CapitalCirclesLandingPage() {
           background: white;
         }
         .cc-btn-outline:hover {
-          background: #f7f8f9;
+          background: #EAF6FA;
         }
 
         /* HERO */
@@ -283,16 +283,16 @@ export default function CapitalCirclesLandingPage() {
           position: relative;
           overflow: hidden;
           color: var(--cc-navy);
-          background: radial-gradient(circle at 86% 20%, rgba(197, 155, 58, 0.13), transparent 24%),
+          background: radial-gradient(circle at 86% 20%, rgba(58, 159, 192, 0.13), transparent 24%),
             radial-gradient(circle at 20% 86%, rgba(23, 50, 74, 0.06), transparent 28%),
-            linear-gradient(180deg, #fffdf8, #f7f2e8 82%);
+            linear-gradient(180deg, #fbfdfe, #eaf6fa 82%);
           border-bottom: 1px solid var(--cc-stone);
         }
         .cc-hero:before,
         .cc-hero:after {
           content: "";
           position: absolute;
-          border: 1px solid rgba(197, 155, 58, 0.16);
+          border: 1px solid rgba(58, 159, 192, 0.16);
           border-radius: 50%;
           width: 560px;
           height: 560px;
@@ -319,7 +319,7 @@ export default function CapitalCirclesLandingPage() {
           letter-spacing: 0.19em;
           font-size: 0.76rem;
           font-weight: 800;
-          color: #9a7623;
+          color: var(--cc-gold);
           margin-bottom: 18px;
         }
         .cc-page h1,
@@ -350,7 +350,7 @@ export default function CapitalCirclesLandingPage() {
           margin: 0 0 34px;
         }
         .cc-chip {
-          border: 1px solid #ddd4c3;
+          border: 1px solid var(--cc-stone);
           color: var(--cc-navy-2);
           padding: 9px 13px;
           border-radius: 999px;
@@ -370,14 +370,14 @@ export default function CapitalCirclesLandingPage() {
         }
         .cc-hero-card {
           background: rgba(255, 255, 255, 0.86);
-          border: 1px solid #ddd4c3;
+          border: 1px solid var(--cc-stone);
           border-radius: 24px;
           padding: 28px;
           backdrop-filter: blur(18px);
           box-shadow: var(--cc-shadow);
         }
         .cc-mini-title {
-          color: #9a7623;
+          color: var(--cc-gold);
           text-transform: uppercase;
           font-size: 0.72rem;
           font-weight: 800;
@@ -386,7 +386,7 @@ export default function CapitalCirclesLandingPage() {
         }
         .cc-metric {
           padding: 18px 0;
-          border-top: 1px solid #ece6da;
+          border-top: 1px solid var(--cc-stone);
         }
         .cc-metric:first-of-type {
           border-top: 0;
@@ -414,7 +414,7 @@ export default function CapitalCirclesLandingPage() {
           background: var(--cc-white);
         }
         .cc-section.dark {
-          background: #f5f1e7;
+          background: #EAF6FA;
         }
         .cc-section-head {
           display: grid;
@@ -456,7 +456,7 @@ export default function CapitalCirclesLandingPage() {
           display: grid;
           place-items: center;
           background: var(--cc-navy);
-          color: #c9a24a;
+          color: #86C5DA;
           font-weight: 800;
           margin-bottom: 26px;
         }
@@ -479,7 +479,7 @@ export default function CapitalCirclesLandingPage() {
         .cc-tag {
           padding: 7px 10px;
           border-radius: 999px;
-          border: 1px solid #e2ded4;
+          border: 1px solid var(--cc-stone);
           background: white;
           font-size: 0.75rem;
           color: #58697b;
@@ -505,7 +505,7 @@ export default function CapitalCirclesLandingPage() {
           width: 270px;
           height: 270px;
           border-radius: 50%;
-          border: 1px solid rgba(197, 155, 58, 0.18);
+          border: 1px solid rgba(58, 159, 192, 0.18);
           right: -90px;
           bottom: -120px;
         }
@@ -524,10 +524,10 @@ export default function CapitalCirclesLandingPage() {
           gap: 12px;
         }
         .cc-project-item {
-          border: 1px solid #e7e0d4;
+          border: 1px solid var(--cc-stone);
           border-radius: 14px;
           padding: 15px;
-          background: #fbf9f5;
+          background: #EAF6FA;
           color: var(--cc-navy-2);
           font-size: 0.9rem;
         }
@@ -584,8 +584,8 @@ export default function CapitalCirclesLandingPage() {
           font-size: 1.5rem;
           font-weight: 900;
           margin-bottom: 22px;
-          background: #faf7f0;
-          border: 1px solid #e5ddd0;
+          background: #EAF6FA;
+          border: 1px solid var(--cc-stone);
         }
         .cc-token.i .cc-token-badge {
           color: var(--cc-gold-2);
@@ -594,7 +594,7 @@ export default function CapitalCirclesLandingPage() {
           color: #667684;
         }
         .cc-token.n .cc-token-badge {
-          color: #a47644;
+          color: var(--cc-navy-2);
         }
         .cc-token h3 {
           color: var(--cc-navy);
@@ -642,8 +642,8 @@ export default function CapitalCirclesLandingPage() {
           border-radius: 50%;
           display: grid;
           place-items: center;
-          background: #f2e7ca;
-          color: #7a5b13;
+          background: #D8EEF5;
+          color: var(--cc-gold);
           flex: 0 0 24px;
           font-size: 0.75rem;
           font-weight: 900;
@@ -678,7 +678,7 @@ export default function CapitalCirclesLandingPage() {
         }
         .cc-privacy-option {
           border: 1px solid var(--cc-stone);
-          background: #fbfaf7;
+          background: #EAF6FA;
           border-radius: 16px;
           padding: 20px;
         }
@@ -724,7 +724,7 @@ export default function CapitalCirclesLandingPage() {
         .cc-final-cta {
           text-align: center;
           padding: 104px 0 112px;
-          background: radial-gradient(circle at 50% 0%, rgba(197, 155, 58, 0.13), transparent 34%), #f7f2e7;
+          background: radial-gradient(circle at 50% 0%, rgba(58, 159, 192, 0.13), transparent 34%), #EAF6FA;
           color: var(--cc-navy);
           border-top: 1px solid var(--cc-stone);
         }

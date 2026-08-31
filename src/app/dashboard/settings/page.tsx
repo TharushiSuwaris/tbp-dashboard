@@ -9,7 +9,7 @@ export default function SettingsPage() {
       <Topbar title="Settings" subtitle="TBP Family Office Intelligence Engine — configuration, API connections, and user access" />
       <div style={{ padding: "24px 28px 40px" }}>
 
-        <div style={{ background: "rgba(196,153,42,0.1)", border: "1px solid rgba(196,153,42,0.25)", borderRadius: 12, padding: "12px 18px", marginBottom: 20, fontSize: 12, color: "#FBBF24" }}>
+        <div style={{ background: "rgba(58,159,192,0.1)", border: "1px solid rgba(58,159,192,0.25)", borderRadius: 12, padding: "12px 18px", marginBottom: 20, fontSize: 12, color: "#FBBF24" }}>
           ⚙️ <strong>MVP Configuration.</strong> This platform is currently running on mock data. Connect real APIs below to activate live prospect discovery, AI scoring, and corridor matching. All external outreach features remain gated behind human approval.
         </div>
 
@@ -69,7 +69,7 @@ export default function SettingsPage() {
                       <td style={{ padding: "9px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 13, fontWeight: 600, color: "#1B2A3D" }}>{u.name}</td>
                       <td style={{ padding: "9px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 12, color: "#756E5D" }}>{u.role}</td>
                       <td style={{ padding: "9px 0", borderBottom: "1px solid rgba(27,42,61,0.06)" }}>
-                        <span style={{ fontSize: 10, padding: "2px 9px", borderRadius: 20, background: u.access === "Full Admin" ? "rgba(196,153,42,0.18)" : "rgba(59,130,246,0.18)", color: u.access === "Full Admin" ? "#D4AA3A" : "#60A5FA", fontWeight: 700 }}>{u.access}</span>
+                        <span style={{ fontSize: 10, padding: "2px 9px", borderRadius: 20, background: u.access === "Full Admin" ? "rgba(58,159,192,0.18)" : "rgba(59,130,246,0.18)", color: u.access === "Full Admin" ? "#D4AA3A" : "#60A5FA", fontWeight: 700 }}>{u.access}</span>
                       </td>
                     </tr>
                   ))}

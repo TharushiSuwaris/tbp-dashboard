@@ -55,7 +55,7 @@ export async function POST(request: Request) {
             </p>
             <p style="margin: 24px 0;">
               <a href="${appUrl}/portal/login"
-                 style="background: #C4992A; color: #0C1929; text-decoration: none; font-weight: bold;
+                 style="background: #3A9FC0; color: #0C1929; text-decoration: none; font-weight: bold;
                         padding: 10px 20px; border-radius: 6px; display: inline-block; font-size: 14px;">
                 Log In to TBP Circle Portal
               </a>

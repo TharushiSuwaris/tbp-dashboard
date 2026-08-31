@@ -80,7 +80,7 @@ export default function GovernancePage() {
               <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
                 <button
                   onClick={handleCheck}
-                  style={{ background: "#C4992A", color: "#1B2A3D", fontWeight: 700, fontSize: 13, padding: "9px 20px", borderRadius: 8, border: "none", cursor: "pointer" }}
+                  style={{ background: "#3A9FC0", color: "#1B2A3D", fontWeight: 700, fontSize: 13, padding: "9px 20px", borderRadius: 8, border: "none", cursor: "pointer" }}
                 >
                   Check Language →
                 </button>
@@ -143,7 +143,7 @@ export default function GovernancePage() {
         </Panel>
 
         <Panel title="📋 Required Disclaimer" subtitle="Must be included in all materials referencing the Protocol Establishment Round" style={{ marginTop: 14 }}>
-          <div style={{ padding: "14px 16px", background: "rgba(196,153,42,0.08)", border: "1px solid rgba(196,153,42,0.25)", borderRadius: 8, fontSize: 13, color: "#D4AA3A", lineHeight: 1.7 }}>
+          <div style={{ padding: "14px 16px", background: "rgba(58,159,192,0.08)", border: "1px solid rgba(58,159,192,0.25)", borderRadius: 8, fontSize: 13, color: "#D4AA3A", lineHeight: 1.7 }}>
             <em>"{REQUIRED_DISCLAIMER}"</em>
           </div>
         </Panel>

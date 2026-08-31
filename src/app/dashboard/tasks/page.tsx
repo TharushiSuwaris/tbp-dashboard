@@ -22,10 +22,10 @@ function TaskCard({ task }: { task: Task }) {
   return (
     <div
       style={{
-        background: "#F7F4EC", border: "1px solid rgba(27,42,61,0.07)", borderRadius: 8,
+        background: "#D4EBF2", border: "1px solid rgba(27,42,61,0.07)", borderRadius: 8,
         padding: "12px 14px", transition: "border-color 0.15s", cursor: "pointer",
       }}
-      onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(196,153,42,0.35)")}
+      onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(58,159,192,0.35)")}
       onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(27,42,61,0.07)")}
     >
       <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 8 }}>
@@ -39,7 +39,7 @@ function TaskCard({ task }: { task: Task }) {
         <div style={{ display: "flex", gap: 6 }}>
           <span style={{ fontSize: 10, background: "rgba(27,42,61,0.06)", padding: "2px 8px", borderRadius: 6, color: "#756E5D" }}>{task.assignedTo}</span>
           {task.tags.slice(0, 2).map((tag) => (
-            <span key={tag} style={{ fontSize: 10, background: "rgba(196,153,42,0.12)", padding: "2px 8px", borderRadius: 6, color: "#D4AA3A" }}>{tag}</span>
+            <span key={tag} style={{ fontSize: 10, background: "rgba(58,159,192,0.12)", padding: "2px 8px", borderRadius: 6, color: "#D4AA3A" }}>{tag}</span>
           ))}
         </div>
         <span style={{ fontSize: 10, color: isOverdue ? "#F87171" : "#5C5648", fontWeight: isOverdue ? 700 : 400 }}>
@@ -70,12 +70,12 @@ export default function TasksPage() {
           <div style={{ fontSize: 12, color: "#756E5D", fontWeight: 600 }}>Filter by:</div>
           <button
             onClick={() => setFilterOwner("")}
-            style={{ padding: "6px 14px", borderRadius: 8, border: "1px solid rgba(27,42,61,0.1)", fontSize: 12, fontWeight: 600, cursor: "pointer", background: filterOwner === "" ? "#C4992A" : "rgba(27,42,61,0.06)", color: filterOwner === "" ? "#F7F4EC" : "#756E5D" }}
+            style={{ padding: "6px 14px", borderRadius: 8, border: "1px solid rgba(27,42,61,0.1)", fontSize: 12, fontWeight: 600, cursor: "pointer", background: filterOwner === "" ? "#3A9FC0" : "rgba(27,42,61,0.06)", color: filterOwner === "" ? "#D4EBF2" : "#756E5D" }}
           >All</button>
           {owners.map((owner) => (
             <button key={owner}
               onClick={() => setFilterOwner(owner)}
-              style={{ padding: "6px 14px", borderRadius: 8, border: "1px solid rgba(27,42,61,0.1)", fontSize: 12, fontWeight: 600, cursor: "pointer", background: filterOwner === owner ? "#C4992A" : "rgba(27,42,61,0.06)", color: filterOwner === owner ? "#F7F4EC" : "#756E5D" }}
+              style={{ padding: "6px 14px", borderRadius: 8, border: "1px solid rgba(27,42,61,0.1)", fontSize: 12, fontWeight: 600, cursor: "pointer", background: filterOwner === owner ? "#3A9FC0" : "rgba(27,42,61,0.06)", color: filterOwner === owner ? "#D4EBF2" : "#756E5D" }}
             >{owner}</button>
           ))}
         </div>
@@ -92,7 +92,7 @@ export default function TasksPage() {
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                   {col.length === 0 && (
-                    <div style={{ padding: "20px", textAlign: "center", fontSize: 11, color: "#5C5648", background: "#F1EDE1", border: "1px dashed rgba(27,42,61,0.1)", borderRadius: 8 }}>No tasks</div>
+                    <div style={{ padding: "20px", textAlign: "center", fontSize: 11, color: "#5C5648", background: "#FFFFFF", border: "1px dashed rgba(27,42,61,0.1)", borderRadius: 8 }}>No tasks</div>
                   )}
                   {col.map((task) => <TaskCard key={task.id} task={task} />)}
                 </div>

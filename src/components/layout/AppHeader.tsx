@@ -26,7 +26,7 @@ export function AppHeader() {
   return (
     <header
       style={{
-        background: "#FBF8F1",
+        background: "#EAF6FA",
         borderBottom: "1px solid rgba(27,42,61,0.06)",
         height: 64,
         display: "flex",
@@ -54,7 +54,7 @@ export function AppHeader() {
         <div
           style={{
             width: 34, height: 34,
-            background: "#C4992A",
+            background: "#3A9FC0",
             borderRadius: 8,
             display: "flex", alignItems: "center", justifyContent: "center",
             fontWeight: 900, fontSize: 11, color: "#1B2A3D", flexShrink: 0,
@@ -76,7 +76,7 @@ export function AppHeader() {
         <div style={{ fontSize: 14, fontWeight: 800, color: "#1B2A3D", letterSpacing: ".3px" }}>
           TBP CAPITAL ADVISORY &amp; FAMILY OFFICE CIRCLE
         </div>
-        <div style={{ fontSize: 10, color: "#C4992A", letterSpacing: "1.4px", textTransform: "uppercase", marginTop: 2 }}>
+        <div style={{ fontSize: 10, color: "#3A9FC0", letterSpacing: "1.4px", textTransform: "uppercase", marginTop: 2 }}>
           Intelligence &amp; Coordination Dashboard
         </div>
       </div>
@@ -87,16 +87,16 @@ export function AppHeader() {
         <div
           style={{
             display: "flex", alignItems: "center", gap: 6,
-            background: "rgba(196,153,42,0.12)",
-            border: "1px solid rgba(196,153,42,0.25)",
+            background: "rgba(58,159,192,0.12)",
+            border: "1px solid rgba(58,159,192,0.25)",
             borderRadius: 20, padding: "5px 12px",
           }}
         >
           <div
             className="animate-pulse-dot"
-            style={{ width: 6, height: 6, background: "#C4992A", borderRadius: "50%", flexShrink: 0 }}
+            style={{ width: 6, height: 6, background: "#3A9FC0", borderRadius: "50%", flexShrink: 0 }}
           />
-          <span style={{ fontSize: 11, color: "#C4992A", fontWeight: 600, whiteSpace: "nowrap" }}>
+          <span style={{ fontSize: 11, color: "#3A9FC0", fontWeight: 600, whiteSpace: "nowrap" }}>
             Protocol Establishment Round
           </span>
         </div>
@@ -108,7 +108,7 @@ export function AppHeader() {
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <div
             style={{
-              width: 36, height: 36, background: "#C4992A", borderRadius: "50%",
+              width: 36, height: 36, background: "#3A9FC0", borderRadius: "50%",
               display: "flex", alignItems: "center", justifyContent: "center",
               fontWeight: 900, fontSize: 13, color: "#1B2A3D", flexShrink: 0,
             }}
@@ -147,9 +147,9 @@ export function AppHeader() {
             style={{
               padding: "7px 14px",
               borderRadius: 8,
-              border: "1px solid rgba(196,153,42,0.3)",
-              background: "rgba(196,153,42,0.12)",
-              color: "#C4992A",
+              border: "1px solid rgba(58,159,192,0.3)",
+              background: "rgba(58,159,192,0.12)",
+              color: "#3A9FC0",
               fontSize: 11.5,
               fontWeight: 600,
               textDecoration: "none",

@@ -43,12 +43,12 @@ export default function ShortlistPage() {
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 14, marginBottom: 20 }}>
           {[
-            { label: "Shortlisted Prospects", value: shortlist.length, color: "#C4992A" },
+            { label: "Shortlisted Prospects", value: shortlist.length, color: "#3A9FC0" },
             { label: "Priority Founding Stewards", value: priorityCount, color: "#10B981" },
             { label: "Strong Potential", value: strongCount, color: "#F59E0B" },
             { label: "Average Score", value: `${avg}/100`, color: "#3B82F6" },
           ].map((c, i) => (
-            <div key={i} style={{ background: "#F1EDE1", border: "1px solid rgba(27,42,61,0.07)", borderRadius: 12, padding: "16px 20px", position: "relative", overflow: "hidden" }}>
+            <div key={i} style={{ background: "#FFFFFF", border: "1px solid rgba(27,42,61,0.07)", borderRadius: 12, padding: "16px 20px", position: "relative", overflow: "hidden" }}>
               <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: c.color }} />
               <div style={{ fontSize: 26, fontWeight: 900, color: "#1B2A3D", marginBottom: 4 }}>{c.value}</div>
               <div style={{ fontSize: 12, color: "#756E5D" }}>{c.label}</div>
@@ -90,7 +90,7 @@ export default function ShortlistPage() {
                     </tr>
                   );
                 })}
-                <tr style={{ background: "rgba(196,153,42,0.08)", fontWeight: 700, fontSize: 11 }}>
+                <tr style={{ background: "rgba(58,159,192,0.08)", fontWeight: 700, fontSize: 11 }}>
                   <td style={{ padding: "8px", color: "#1B2A3D" }}>Average (top {shortlist.length})</td>
                   {[
                     Math.round(shortlist.reduce((s, p) => s + p.scoring_breakdown.familyOfficeFit, 0) / shortlist.length),
@@ -101,7 +101,7 @@ export default function ShortlistPage() {
                     Math.round(shortlist.reduce((s, p) => s + p.scoring_breakdown.engagementReadiness, 0) / shortlist.length),
                     avg,
                   ].map((v, i) => (
-                    <td key={i} style={{ padding: "8px", textAlign: "center", color: "#C4992A" }}>{v}</td>
+                    <td key={i} style={{ padding: "8px", textAlign: "center", color: "#3A9FC0" }}>{v}</td>
                   ))}
                   <td colSpan={2} />
                 </tr>

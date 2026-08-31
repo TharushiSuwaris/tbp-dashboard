@@ -50,7 +50,7 @@ const scoreDistribution = [
 ];
 
 const circumference = 2 * Math.PI * 56;
-const tooltipStyle = { background: "#F1EDE1", border: "1px solid rgba(27,42,61,0.12)", borderRadius: 8, fontSize: 12, color: "#1B2A3D" };
+const tooltipStyle = { background: "#FFFFFF", border: "1px solid rgba(27,42,61,0.12)", borderRadius: 8, fontSize: 12, color: "#1B2A3D" };
 
 export default function OverviewPage() {
   const { prospects, loading } = useProspects();
@@ -93,19 +93,19 @@ export default function OverviewPage() {
         {/* HERO BANNER */}
         <div
           style={{
-            background: "linear-gradient(130deg,#F1EDE1 0%,#EFE8D9 60%,#EFE8D9 100%)",
+            background: "linear-gradient(130deg,#FFFFFF 0%,#EAF6FA 60%,#EAF6FA 100%)",
             borderRadius: 16, padding: "28px 32px", marginBottom: 20,
             display: "flex", alignItems: "center", gap: 36,
             position: "relative", overflow: "hidden",
             border: "1px solid rgba(27,42,61,0.08)",
           }}
         >
-          <div style={{ position: "absolute", top: -60, right: 180, width: 300, height: 300, background: "radial-gradient(circle,rgba(196,153,42,0.08) 0%,transparent 70%)", pointerEvents: "none" }} />
+          <div style={{ position: "absolute", top: -60, right: 180, width: 300, height: 300, background: "radial-gradient(circle,rgba(58,159,192,0.08) 0%,transparent 70%)", pointerEvents: "none" }} />
           <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 10, textTransform: "uppercase", letterSpacing: 2, color: "#C4992A", marginBottom: 8 }}>
+            <div style={{ fontSize: 10, textTransform: "uppercase", letterSpacing: 2, color: "#3A9FC0", marginBottom: 8 }}>
               Founding Strategic Stewards Programme
             </div>
-            <div style={{ fontSize: 20, fontWeight: 800, color: "#fff", marginBottom: 6 }}>
+            <div style={{ fontSize: 20, fontWeight: 800, color: "#1B2A3D", marginBottom: 6 }}>
               Protocol Establishment Round — Global Pipeline Active
             </div>
             <div style={{ fontSize: 12, color: "#847D6C", maxWidth: 440, lineHeight: 1.7, marginBottom: 22 }}>
@@ -116,10 +116,10 @@ export default function OverviewPage() {
                 { n: kpi.totalProspects, l: "Identified" },
                 { n: kpi.scored, l: "Scored" },
                 { n: kpi.priorityFoundingSteward, l: "Priority Tier" },
-                { n: kpi.foundingStewardsSecured, l: "Committed", gold: true },
+                { n: kpi.foundingStewardsSecured, l: "Committed" },
               ].map((s, i) => (
                 <div key={i}>
-                  <div style={{ fontSize: 24, fontWeight: 800, color: s.gold ? "#C4992A" : "#fff", lineHeight: 1 }}>{s.n}</div>
+                  <div style={{ fontSize: 24, fontWeight: 800, color: "#1B2A3D", lineHeight: 1 }}>{s.n}</div>
                   <div style={{ fontSize: 10, color: "#6B6455", textTransform: "uppercase", letterSpacing: ".8px", marginTop: 2 }}>{s.l}</div>
                 </div>
               ))}
@@ -129,15 +129,15 @@ export default function OverviewPage() {
             <div style={{ position: "relative", width: 138, height: 138 }}>
               <svg width="138" height="138" viewBox="0 0 138 138" style={{ transform: "rotate(-90deg)" }}>
                 <circle cx="69" cy="69" r="56" fill="none" stroke="rgba(27,42,61,0.07)" strokeWidth="12" />
-                <circle cx="69" cy="69" r="56" fill="none" stroke="#C4992A" strokeWidth="12"
+                <circle cx="69" cy="69" r="56" fill="none" stroke="#3A9FC0" strokeWidth="12"
                   strokeDasharray={circumference} strokeDashoffset={dashOffset} strokeLinecap="round" />
               </svg>
               <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", textAlign: "center" }}>
-                <div style={{ fontSize: 34, fontWeight: 900, color: "#fff", lineHeight: 1 }}>{kpi.foundingStewardsSecured}</div>
+                <div style={{ fontSize: 34, fontWeight: 900, color: "#1B2A3D", lineHeight: 1 }}>{kpi.foundingStewardsSecured}</div>
                 <div style={{ fontSize: 12, color: "#6B6455", marginTop: 1 }}>of {kpi.targetFoundingStewards}</div>
               </div>
             </div>
-            <div style={{ fontSize: 10, color: "#C4992A", textTransform: "uppercase", letterSpacing: "1.2px" }}>
+            <div style={{ fontSize: 10, color: "#3A9FC0", textTransform: "uppercase", letterSpacing: "1.2px" }}>
               Global Target — {kpi.foundingStewardsSecured === 0 ? "Not Yet Secured" : "In Progress"}
             </div>
           </div>
@@ -146,7 +146,7 @@ export default function OverviewPage() {
         {/* KPI CARDS */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 14, marginBottom: 14 }}>
           {[
-            { icon: "🏛", value: kpi.totalProspects, label: "Total Prospects Discovered", trend: "↑ Across 10 global regions", color: "#C4992A", trendColor: "#34D399" },
+            { icon: "🏛", value: kpi.totalProspects, label: "Total Prospects Discovered", trend: "↑ Across 10 global regions", color: "#3A9FC0", trendColor: "#34D399" },
             { icon: "⭐", value: kpi.priorityFoundingSteward, label: "Priority Founding Stewards", trend: `Score 80–100 · Target: ${kpi.targetFoundingStewards}`, color: "#10B981", trendColor: "#34D399" },
             { icon: "🎯", value: kpi.strongPotential, label: "Strong Potential Prospects", trend: "Score 65–79 · Nurture track", color: "#F59E0B", trendColor: "#FBBF24" },
             { icon: "📄", value: kpi.briefingPacksGenerated, label: "Briefing Packs Generated", trend: `⚠ ${kpi.priorityFoundingSteward - kpi.briefingPacksGenerated} packs needed`, color: "#EF4444", trendColor: "#F87171" },
@@ -158,7 +158,7 @@ export default function OverviewPage() {
             <div
               key={i}
               style={{
-                background: "#F1EDE1", border: "1px solid rgba(27,42,61,0.07)", borderRadius: 12,
+                background: "#FFFFFF", border: "1px solid rgba(27,42,61,0.07)", borderRadius: 12,
                 padding: "18px 20px", position: "relative", overflow: "hidden",
               }}
             >
@@ -208,8 +208,8 @@ export default function OverviewPage() {
               <BarChart data={regionData} margin={{ top: 0, right: 0, left: -20, bottom: 0 }}>
                 <XAxis dataKey="name" tick={{ fontSize: 11, fill: "#5C5648" }} axisLine={false} tickLine={false} />
                 <YAxis tick={{ fontSize: 11, fill: "#5C5648" }} axisLine={false} tickLine={false} />
-                <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "rgba(196,153,42,0.08)" }} />
-                <Bar dataKey="count" fill="#C4992A" radius={[4, 4, 0, 0]} />
+                <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "rgba(58,159,192,0.08)" }} />
+                <Bar dataKey="count" fill="#3A9FC0" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </Panel>
@@ -265,7 +265,7 @@ export default function OverviewPage() {
               <BarChart data={sectorData} layout="vertical" margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
                 <XAxis type="number" tick={{ fontSize: 10, fill: "#5C5648" }} axisLine={false} tickLine={false} />
                 <YAxis type="category" dataKey="name" width={90} tick={{ fontSize: 11, fill: "#756E5D" }} axisLine={false} tickLine={false} />
-                <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "rgba(196,153,42,0.08)" }} />
+                <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "rgba(58,159,192,0.08)" }} />
                 <Bar dataKey="count" fill="#3B82F6" radius={[0, 4, 4, 0]} />
               </BarChart>
             </ResponsiveContainer>
@@ -274,7 +274,7 @@ export default function OverviewPage() {
 
         {/* TOP PROSPECTS TABLE */}
         <Panel title="Priority Founding Steward Candidates" subtitle="Top 5 by suitability score — briefing packs required before outreach"
-          action={<a href="/dashboard/shortlist" style={{ fontSize: 12, color: "#C4992A", cursor: "pointer", textDecoration: "none" }}>All prospects →</a>}
+          action={<a href="/dashboard/shortlist" style={{ fontSize: 12, color: "#3A9FC0", cursor: "pointer", textDecoration: "none" }}>All prospects →</a>}
         >
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>

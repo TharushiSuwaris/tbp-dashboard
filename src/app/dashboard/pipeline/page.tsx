@@ -55,16 +55,16 @@ export default function PipelinePage() {
       <div style={{ padding: "24px 28px 40px" }}>
 
         {/* Progress bar */}
-        <div style={{ background: "#F1EDE1", border: "1px solid rgba(27,42,61,0.07)", borderRadius: 12, padding: "18px 24px", marginBottom: 20 }}>
+        <div style={{ background: "#FFFFFF", border: "1px solid rgba(27,42,61,0.07)", borderRadius: 12, padding: "18px 24px", marginBottom: 20 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
             <div>
               <div style={{ fontSize: 13, fontWeight: 700, color: "#1B2A3D" }}>Founding Strategic Steward Progress</div>
               <div style={{ fontSize: 11, color: "#5C5648" }}>Target: 20 Founding Strategic Stewards globally</div>
             </div>
-            <div style={{ fontSize: 28, fontWeight: 900, color: "#C4992A" }}>{progressCount}<span style={{ fontSize: 14, color: "#5C5648", fontWeight: 400 }}> / 20</span></div>
+            <div style={{ fontSize: 28, fontWeight: 900, color: "#3A9FC0" }}>{progressCount}<span style={{ fontSize: 14, color: "#5C5648", fontWeight: 400 }}> / 20</span></div>
           </div>
           <div style={{ height: 10, background: "rgba(27,42,61,0.08)", borderRadius: 5, overflow: "hidden" }}>
-            <div style={{ height: "100%", width: `${(progressCount / 20) * 100}%`, background: "#C4992A", borderRadius: 5, transition: "width 0.5s" }} />
+            <div style={{ height: "100%", width: `${(progressCount / 20) * 100}%`, background: "#3A9FC0", borderRadius: 5, transition: "width 0.5s" }} />
           </div>
         </div>
 
@@ -76,8 +76,8 @@ export default function PipelinePage() {
                 padding: "7px 16px", borderRadius: 8,
                 border: "1px solid rgba(27,42,61,0.1)",
                 fontSize: 12, fontWeight: 600, cursor: "pointer",
-                background: view === v ? "#C4992A" : "rgba(27,42,61,0.06)",
-                color: view === v ? "#F7F4EC" : "#756E5D",
+                background: view === v ? "#3A9FC0" : "rgba(27,42,61,0.06)",
+                color: view === v ? "#D4EBF2" : "#756E5D",
               }}
             >
               {v === "kanban" ? "⊞ Kanban View" : "☰ List View"}
@@ -93,7 +93,7 @@ export default function PipelinePage() {
                 <div key={stage}
                   style={{
                     minWidth: 240,
-                    background: "#F1EDE1",
+                    background: "#FFFFFF",
                     border: "1px solid rgba(27,42,61,0.07)",
                     borderRadius: 12,
                     overflow: "hidden",
@@ -112,11 +112,11 @@ export default function PipelinePage() {
                     {cards.map((p) => (
                       <div key={p.id}
                         style={{
-                          background: "#F7F4EC", border: "1px solid rgba(27,42,61,0.07)",
+                          background: "#D4EBF2", border: "1px solid rgba(27,42,61,0.07)",
                           borderRadius: 8, padding: "10px 12px",
                           cursor: "pointer", transition: "border-color 0.15s",
                         }}
-                        onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(196,153,42,0.4)")}
+                        onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(58,159,192,0.4)")}
                         onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(27,42,61,0.07)")}
                       >
                         <div style={{ fontWeight: 600, fontSize: 12, color: "#1B2A3D", marginBottom: 4 }}>{p.prospect_name}</div>
@@ -136,7 +136,7 @@ export default function PipelinePage() {
             })}
           </div>
         ) : (
-          <div style={{ background: "#F1EDE1", border: "1px solid rgba(27,42,61,0.07)", borderRadius: 12, overflow: "hidden" }}>
+          <div style={{ background: "#FFFFFF", border: "1px solid rgba(27,42,61,0.07)", borderRadius: 12, overflow: "hidden" }}>
             <table style={{ width: "100%", borderCollapse: "collapse" }}>
               <thead>
                 <tr>

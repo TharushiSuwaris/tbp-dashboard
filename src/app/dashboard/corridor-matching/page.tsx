@@ -43,7 +43,7 @@ export default function CorridorMatchingPage() {
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             <button
               onClick={() => setSelectedCorridor("")}
-              style={{ padding: "6px 14px", borderRadius: 8, border: "1px solid rgba(27,42,61,0.1)", fontSize: 11, fontWeight: 600, cursor: "pointer", background: selectedCorridor === "" ? "#C4992A" : "rgba(27,42,61,0.06)", color: selectedCorridor === "" ? "#F7F4EC" : "#756E5D" }}
+              style={{ padding: "6px 14px", borderRadius: 8, border: "1px solid rgba(27,42,61,0.1)", fontSize: 11, fontWeight: 600, cursor: "pointer", background: selectedCorridor === "" ? "#3A9FC0" : "rgba(27,42,61,0.06)", color: selectedCorridor === "" ? "#D4EBF2" : "#756E5D" }}
             >
               All Corridors ({allMatches.length})
             </button>
@@ -54,8 +54,8 @@ export default function CorridorMatchingPage() {
                 style={{
                   padding: "6px 14px", borderRadius: 8, border: "1px solid rgba(27,42,61,0.1)",
                   fontSize: 11, fontWeight: 600, cursor: "pointer",
-                  background: selectedCorridor === corridor ? "#C4992A" : "rgba(27,42,61,0.06)",
-                  color: selectedCorridor === corridor ? "#F7F4EC" : "#756E5D",
+                  background: selectedCorridor === corridor ? "#3A9FC0" : "rgba(27,42,61,0.06)",
+                  color: selectedCorridor === corridor ? "#D4EBF2" : "#756E5D",
                 }}
               >
                 {corridor.replace("TBP ", "").replace("ASMOFP™ ", "")} ({count})
@@ -72,7 +72,7 @@ export default function CorridorMatchingPage() {
                   {corridor.replace("TBP ", "").replace("ASMOFP™ ", "")}
                 </div>
                 <div style={{ flex: 1, height: 22, background: "rgba(27,42,61,0.06)", borderRadius: 4, overflow: "hidden" }}>
-                  <div style={{ height: "100%", width: `${(count / allMatches.length) * 100}%`, background: "#C4992A", borderRadius: 4, minWidth: count > 0 ? 4 : 0, transition: "width 0.4s" }} />
+                  <div style={{ height: "100%", width: `${(count / allMatches.length) * 100}%`, background: "#3A9FC0", borderRadius: 4, minWidth: count > 0 ? 4 : 0, transition: "width 0.4s" }} />
                 </div>
                 <div style={{ fontSize: 13, fontWeight: 700, color: "#1B2A3D", width: 24, textAlign: "right" }}>{count}</div>
               </div>
@@ -126,7 +126,7 @@ export default function CorridorMatchingPage() {
                       .map((s) => s.corridorName.replace("TBP ", "").replace("ASMOFP™ ", "").split(" ").slice(0, 3).join(" "))
                       .join(", ")}
                   </td>
-                  <td style={{ padding: "10px 10px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 11, color: "#C4992A", fontWeight: 600, maxWidth: 200 }}>
+                  <td style={{ padding: "10px 10px 10px 0", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 11, color: "#3A9FC0", fontWeight: 600, maxWidth: 200 }}>
                     {result.bestEntryPoint.suggestedConversationAngle.slice(0, 80)}…
                   </td>
                 </tr>

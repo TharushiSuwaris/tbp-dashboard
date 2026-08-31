@@ -63,7 +63,7 @@ export function NotificationBell({ userId, role }: { userId: string; role: strin
               background: "#EF4444", borderRadius: 8,
               fontSize: 9, fontWeight: 800, color: "#fff",
               display: "flex", alignItems: "center", justifyContent: "center",
-              border: "2px solid #FBF8F1",
+              border: "2px solid #EAF6FA",
             }}
           >
             {total > 9 ? "9+" : total}
@@ -110,7 +110,7 @@ export function NotificationBell({ userId, role }: { userId: string; role: strin
                 onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
               >
                 <span>{item.label}</span>
-                <span style={{ color: "#C4992A", fontWeight: 700 }}>{item.count}</span>
+                <span style={{ color: "#3A9FC0", fontWeight: 700 }}>{item.count}</span>
               </div>
             ))
           )}

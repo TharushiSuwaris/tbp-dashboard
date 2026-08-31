@@ -38,13 +38,13 @@ export default function RegionalMappingPage() {
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: 12, marginBottom: 20 }}>
           {[
-            { label: "Total Prospects",  value: prospects.length, color: "#C4992A" },
+            { label: "Total Prospects",  value: prospects.length, color: "#3A9FC0" },
             { label: "Regions Covered",  value: REGIONS.filter(r => byRegion(r.key).length > 0).length, color: "#3B82F6" },
             { label: "Priority Prospects", value: prospects.filter(p => p.classification === "Priority Founding Steward Prospect").length, color: "#10B981" },
             { label: "Avg Suitability",  value: Math.round(prospects.reduce((a, b) => a + b.suitability_score, 0) / prospects.length), color: "#8B5CF6" },
             { label: "Joined Circle",    value: prospects.filter(p => p.pipeline_stage === "Joined Circle").length, color: "#059669" },
           ].map((c, i) => (
-            <div key={i} style={{ background: "#F1EDE1", border: "1px solid rgba(27,42,61,0.07)", borderRadius: 10, padding: "14px 16px", position: "relative", overflow: "hidden" }}>
+            <div key={i} style={{ background: "#FFFFFF", border: "1px solid rgba(27,42,61,0.07)", borderRadius: 10, padding: "14px 16px", position: "relative", overflow: "hidden" }}>
               <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: c.color }} />
               <div style={{ fontSize: 26, fontWeight: 900, color: "#1B2A3D" }}>{c.value}</div>
               <div style={{ fontSize: 11, color: "#756E5D" }}>{c.label}</div>

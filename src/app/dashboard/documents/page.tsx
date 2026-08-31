@@ -36,13 +36,13 @@ export default function DocumentsPage() {
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: 12, marginBottom: 20 }}>
           {[
-            { label: "Total Documents",   value: documents.length, color: "#C4992A" },
+            { label: "Total Documents",   value: documents.length, color: "#3A9FC0" },
             { label: "Approved Internal", value: documents.filter(d => d.approvedInternal).length, color: "#3B82F6" },
             { label: "Approved External", value: documents.filter(d => d.approvedExternal).length, color: "#10B981" },
             { label: "In Review",         value: documents.filter(d => d.status === "In Review").length, color: "#F59E0B" },
             { label: "Draft",             value: documents.filter(d => d.status === "Draft").length, color: "#8B5CF6" },
           ].map((c, i) => (
-            <div key={i} style={{ background: "#F1EDE1", border: "1px solid rgba(27,42,61,0.07)", borderRadius: 10, padding: "14px 16px", position: "relative", overflow: "hidden" }}>
+            <div key={i} style={{ background: "#FFFFFF", border: "1px solid rgba(27,42,61,0.07)", borderRadius: 10, padding: "14px 16px", position: "relative", overflow: "hidden" }}>
               <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: c.color }} />
               <div style={{ fontSize: 24, fontWeight: 900, color: "#1B2A3D" }}>{c.value}</div>
               <div style={{ fontSize: 11, color: "#756E5D" }}>{c.label}</div>

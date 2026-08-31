@@ -278,7 +278,7 @@ export default function InvitationsPage() {
       {lastCreated && (
         <div
           style={{
-            background: "rgba(196,153,42,0.06)",
+            background: "rgba(58,159,192,0.06)",
             border: `1px solid ${portalTheme.panelBorder}`,
             borderRadius: 12,
             padding: "20px 22px",

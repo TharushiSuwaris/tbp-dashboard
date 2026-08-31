@@ -55,7 +55,7 @@ export default function BriefingPacksPage() {
       case "whyFitsTBP": return <div style={{ lineHeight: 1.8, fontSize: 13, color: "#1B2A3D" }}>{s.whyFitsTBP}</div>;
       case "relevantTBPThemes": return <ul style={{ margin: 0, paddingLeft: 20 }}>{s.relevantTBPThemes.map((t, i) => <li key={i} style={{ fontSize: 13, color: "#1B2A3D", marginBottom: 8 }}>{t}</li>)}</ul>;
       case "suggestedConversationAngle": return <div style={{ lineHeight: 1.8, fontSize: 13, color: "#1B2A3D" }}>{s.suggestedConversationAngle}</div>;
-      case "potentialTBPEntryPoint": return <div style={{ padding: "12px 16px", background: "rgba(196,153,42,0.1)", border: "1px solid rgba(196,153,42,0.25)", borderRadius: 8, fontSize: 13, color: "#D4AA3A", fontWeight: 600 }}>{s.potentialTBPEntryPoint}</div>;
+      case "potentialTBPEntryPoint": return <div style={{ padding: "12px 16px", background: "rgba(58,159,192,0.1)", border: "1px solid rgba(58,159,192,0.25)", borderRadius: 8, fontSize: 13, color: "#D4AA3A", fontWeight: 600 }}>{s.potentialTBPEntryPoint}</div>;
       case "likelyQuestions": return <ol style={{ margin: 0, paddingLeft: 20 }}>{s.likelyQuestions.map((q, i) => <li key={i} style={{ fontSize: 13, color: "#1B2A3D", marginBottom: 8 }}>{q}</li>)}</ol>;
       case "recommendedContactRoute": return <div style={{ lineHeight: 1.8, fontSize: 13, color: "#1B2A3D" }}>{s.recommendedContactRoute}</div>;
       case "draftIntroEmail": return <pre style={{ whiteSpace: "pre-wrap", fontFamily: "inherit", fontSize: 12, color: "#1B2A3D", background: "rgba(27,42,61,0.04)", padding: 16, borderRadius: 8, lineHeight: 1.7, border: "1px solid rgba(27,42,61,0.06)" }}>{s.draftIntroEmail}</pre>;
@@ -97,8 +97,8 @@ export default function BriefingPacksPage() {
               onClick={handleGenerate}
               disabled={!selectedId || generating}
               style={{
-                background: selectedId && !generating ? "#C4992A" : "rgba(27,42,61,0.08)",
-                color: selectedId && !generating ? "#F7F4EC" : "#5C5648",
+                background: selectedId && !generating ? "#3A9FC0" : "rgba(27,42,61,0.08)",
+                color: selectedId && !generating ? "#D4EBF2" : "#5C5648",
                 fontWeight: 700, fontSize: 13, padding: "10px 24px",
                 borderRadius: 8, border: "none",
                 cursor: selectedId && !generating ? "pointer" : "not-allowed",
@@ -129,7 +129,7 @@ export default function BriefingPacksPage() {
 
         {pack && (
           <div style={{ display: "grid", gridTemplateColumns: "220px 1fr", gap: 14 }}>
-            <div style={{ background: "#F1EDE1", border: "1px solid rgba(27,42,61,0.07)", borderRadius: 12, overflow: "hidden", alignSelf: "start" }}>
+            <div style={{ background: "#FFFFFF", border: "1px solid rgba(27,42,61,0.07)", borderRadius: 12, overflow: "hidden", alignSelf: "start" }}>
               <div style={{ padding: "12px 16px", borderBottom: "1px solid rgba(27,42,61,0.06)", fontSize: 12, fontWeight: 700, color: "#1B2A3D" }}>Pack Sections</div>
               <div style={{ padding: 8 }}>
                 {sectionNav.map((s) => (
@@ -140,8 +140,8 @@ export default function BriefingPacksPage() {
                       display: "block", width: "100%", textAlign: "left",
                       padding: "8px 12px", borderRadius: 6, border: "none",
                       fontSize: 12, cursor: "pointer", marginBottom: 2,
-                      background: activeSection === s.key ? "rgba(196,153,42,0.14)" : "transparent",
-                      color: activeSection === s.key ? "#C4992A" : "#756E5D",
+                      background: activeSection === s.key ? "rgba(58,159,192,0.14)" : "transparent",
+                      color: activeSection === s.key ? "#3A9FC0" : "#756E5D",
                       fontWeight: activeSection === s.key ? 700 : 400,
                     }}
                   >

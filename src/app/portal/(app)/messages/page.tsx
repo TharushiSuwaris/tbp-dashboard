@@ -129,7 +129,7 @@ export default function MessagesPage() {
                   padding: "9px 10px",
                   borderRadius: 8,
                   border: "none",
-                  background: selectedMember === m.id ? "rgba(196,153,42,0.14)" : "transparent",
+                  background: selectedMember === m.id ? "rgba(58,159,192,0.14)" : "transparent",
                   color: selectedMember === m.id ? portalTheme.textPrimary : portalTheme.textSecondary,
                   fontSize: 12.5,
                   fontWeight: selectedMember === m.id ? 700 : 500,
@@ -175,7 +175,7 @@ export default function MessagesPage() {
                     borderLeft: `3px solid ${isMine ? portalTheme.gold : portalTheme.panelBorder}`,
                     borderRadius: 8,
                     padding: "12px 16px",
-                    background: isMine ? "rgba(196,153,42,0.04)" : "transparent",
+                    background: isMine ? "rgba(58,159,192,0.04)" : "transparent",
                   }}
                 >
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6, flexWrap: "wrap", gap: 6 }}>

@@ -74,7 +74,7 @@ export function Sidebar() {
       className="sidebar-scroll"
       style={{
         width: 200,
-        background: "#FBF8F1",
+        background: "#EAF6FA",
         display: "flex",
         flexDirection: "column",
         position: "fixed",
@@ -102,7 +102,7 @@ export function Sidebar() {
                 cursor: "pointer",
                 color: active ? "#1B2A3D" : "#6B6455",
                 background: active ? "rgba(27,42,61,0.06)" : "transparent",
-                borderLeft: active ? "3px solid #C4992A" : "3px solid transparent",
+                borderLeft: active ? "3px solid #3A9FC0" : "3px solid transparent",
                 fontSize: 12.5,
                 fontWeight: active ? 600 : 400,
                 textDecoration: "none",

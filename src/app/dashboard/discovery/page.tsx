@@ -185,7 +185,7 @@ export default function DiscoveryPage() {
               onClick={handleSearch}
               disabled={searching || scoringActive || !country.trim()}
               style={{
-                background: "#C4992A", color: "#1B2A3D",
+                background: "#3A9FC0", color: "#1B2A3D",
                 fontWeight: 700, fontSize: 13, padding: "10px 24px",
                 borderRadius: 8, border: "none", cursor: searching || scoringActive || !country.trim() ? "not-allowed" : "pointer",
                 opacity: searching || scoringActive || !country.trim() ? 0.7 : 1,

@@ -30,11 +30,11 @@ export default function AgentsPage() {
             <div
               key={agent.id}
               style={{
-                background: "#F1EDE1", border: "1px solid rgba(27,42,61,0.07)",
+                background: "#FFFFFF", border: "1px solid rgba(27,42,61,0.07)",
                 borderRadius: 12, padding: 20,
                 transition: "border-color 0.15s",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(196,153,42,0.35)")}
+              onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(58,159,192,0.35)")}
               onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(27,42,61,0.07)")}
             >
               <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 12 }}>
@@ -77,8 +77,8 @@ export default function AgentsPage() {
                     padding: "6px 14px", borderRadius: 7,
                     border: "1px solid rgba(27,42,61,0.1)",
                     fontSize: 11, fontWeight: 600, cursor: "pointer",
-                    background: agent.status === "Active" ? "#C4992A" : "rgba(27,42,61,0.06)",
-                    color: agent.status === "Active" ? "#F7F4EC" : "#756E5D",
+                    background: agent.status === "Active" ? "#3A9FC0" : "rgba(27,42,61,0.06)",
+                    color: agent.status === "Active" ? "#D4EBF2" : "#756E5D",
                   }}
                 >
                   {agent.status === "Active" ? "▶ Run" : agent.status === "Needs API" ? "🔌 Connect API" : "⚙ Configure"}

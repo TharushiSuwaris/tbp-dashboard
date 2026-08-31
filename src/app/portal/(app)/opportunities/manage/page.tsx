@@ -47,9 +47,9 @@ function CheckboxGroup({
                 display: "flex", alignItems: "center", gap: 5,
                 padding: "5px 10px", borderRadius: 20, cursor: "pointer",
                 fontSize: 12,
-                background: active ? "rgba(196,153,42,0.14)" : "rgba(27,42,61,0.05)",
+                background: active ? "rgba(58,159,192,0.14)" : "rgba(27,42,61,0.05)",
                 color: active ? portalTheme.gold : portalTheme.textMuted,
-                border: `1px solid ${active ? "rgba(196,153,42,0.3)" : "transparent"}`,
+                border: `1px solid ${active ? "rgba(58,159,192,0.3)" : "transparent"}`,
               }}
             >
               <input type="checkbox" checked={active} onChange={() => onToggle(opt)} style={{ display: "none" }} />

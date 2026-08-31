@@ -9,7 +9,7 @@ export function Topbar({ title, subtitle }: TopbarProps) {
   return (
     <header
       style={{
-        background: "#F7F4EC",
+        background: "#D4EBF2",
         borderBottom: "1px solid rgba(27,42,61,0.06)",
         padding: "14px 28px",
         position: "sticky",

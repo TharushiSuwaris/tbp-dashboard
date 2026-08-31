@@ -87,7 +87,7 @@ export function PortalSidebar({ role }: { role: string }) {
                     fontSize: 13,
                     fontWeight: active ? 700 : 500,
                     color: active ? portalTheme.textPrimary : portalTheme.textSecondary,
-                    background: active ? "rgba(196,153,42,0.14)" : "transparent",
+                    background: active ? "rgba(58,159,192,0.14)" : "transparent",
                     borderLeft: active ? `3px solid ${portalTheme.gold}` : "3px solid transparent",
                   }}
                 >

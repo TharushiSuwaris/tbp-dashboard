@@ -274,7 +274,7 @@ export default function OpportunitiesPage() {
                     justifyContent: "center",
                     borderRadius: 6,
                     border: "none",
-                    background: saved ? "rgba(196,153,42,0.14)" : "transparent",
+                    background: saved ? "rgba(58,159,192,0.14)" : "transparent",
                     color: saved ? portalTheme.gold : portalTheme.textMuted,
                     cursor: "pointer",
                   }}
@@ -284,7 +284,7 @@ export default function OpportunitiesPage() {
               )}
 
               <div style={{ display: "flex", gap: 8, marginBottom: 8, flexWrap: "wrap", paddingRight: user.role === "circle_member" ? 30 : 0 }}>
-                {opp.region && <span style={tagStyle("rgba(196,153,42,0.12)", portalTheme.gold)}>{opp.region}</span>}
+                {opp.region && <span style={tagStyle("rgba(58,159,192,0.12)", portalTheme.gold)}>{opp.region}</span>}
                 {(opp.sector ?? []).map((s) => (
                   <span key={s} style={tagStyle("rgba(27,42,61,0.06)", portalTheme.textMuted)}>{s}</span>
                 ))}

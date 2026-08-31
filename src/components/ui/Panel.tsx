@@ -13,7 +13,7 @@ export function Panel({ title, subtitle, action, children, style, bodyStyle }: P
   return (
     <div
       style={{
-        background: "#F1EDE1",
+        background: "#FFFFFF",
         border: "1px solid rgba(27,42,61,0.07)",
         borderRadius: 12,
         overflow: "hidden",

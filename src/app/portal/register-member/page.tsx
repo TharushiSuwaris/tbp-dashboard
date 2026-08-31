@@ -8,15 +8,9 @@ import { portalTheme } from "@/lib/portal/theme";
 
 const STEPS = ["Details", "Private Capital Profile", "Review & Submit"];
 
-// This registration form's own accent palette (Pacific Blue / Light Blue) -
-// deliberately scoped to just this page rather than changed in the shared
-// portalTheme, which every other portal page still uses its usual gold/navy
-// palette from.
-const FORM_ACCENT = "#3A9FC0";
-const FORM_ACCENT_TEXT = "#0B2333";
+// Alpha-tinted variants of portalTheme.gold with no shared-theme equivalent.
 const FORM_ACCENT_TINT = "rgba(58,159,192,0.08)";
 const FORM_ACCENT_TINT_SOFT = "rgba(58,159,192,0.06)";
-const FORM_BACKGROUND = "#D4EBF2";
 
 const COUNTRIES = [
   "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia",
@@ -46,6 +40,7 @@ const COUNTRIES = [
 ];
 
 const FAMILY_GROUP_CATEGORIES = [
+  "HNWI",
   "Single Family Office",
   "Multi-Family Office",
   "Private Investment Company",
@@ -269,7 +264,7 @@ function MultiChoice({
                     borderRadius: 6,
                     fontSize: 12.5,
                     cursor: "pointer",
-                    color: active ? FORM_ACCENT : portalTheme.textSecondary,
+                    color: active ? portalTheme.gold : portalTheme.textSecondary,
                     background: active ? FORM_ACCENT_TINT : "transparent",
                   }}
                 >
@@ -439,7 +434,7 @@ export default function RegisterMemberPage() {
     <main
       style={{
         minHeight: "100vh",
-        background: FORM_BACKGROUND,
+        background: portalTheme.background,
         fontFamily: "sans-serif",
         padding: "40px 24px",
       }}
@@ -467,8 +462,8 @@ export default function RegisterMemberPage() {
                     justifyContent: "center",
                     fontSize: 12,
                     fontWeight: 700,
-                    background: i <= step ? FORM_ACCENT : "rgba(27,42,61,0.08)",
-                    color: i <= step ? FORM_ACCENT_TEXT : portalTheme.textMuted,
+                    background: i <= step ? portalTheme.gold : "rgba(27,42,61,0.08)",
+                    color: i <= step ? portalTheme.goldText : portalTheme.textMuted,
                   }}
                 >
                   {i + 1}
@@ -498,7 +493,7 @@ export default function RegisterMemberPage() {
                 TBP will review your details and assign a Capital Advisor. You&apos;ll be able to log in with the
                 email and password you just set once approved.
               </p>
-              <a href="/portal/login" style={{ color: FORM_ACCENT, fontSize: 12.5, textDecoration: "none" }}>
+              <a href="/portal/login" style={{ color: portalTheme.gold, fontSize: 12.5, textDecoration: "none" }}>
                 &larr; Back to Log In
               </a>
             </div>
@@ -515,7 +510,7 @@ export default function RegisterMemberPage() {
                       marginBottom: 18,
                     }}
                   >
-                    <div style={{ fontSize: 11, fontWeight: 700, color: FORM_ACCENT, textTransform: "uppercase", letterSpacing: ".6px", marginBottom: 12 }}>
+                    <div style={{ fontSize: 11, fontWeight: 700, color: portalTheme.gold, textTransform: "uppercase", letterSpacing: ".6px", marginBottom: 12 }}>
                       Your Invitation
                     </div>
                     <label style={labelStyle}>Private Invitation Code *</label>
@@ -565,7 +560,7 @@ export default function RegisterMemberPage() {
                       marginBottom: 18,
                     }}
                   >
-                    <div style={{ fontSize: 11, fontWeight: 700, color: FORM_ACCENT, textTransform: "uppercase", letterSpacing: ".6px", marginBottom: 12 }}>
+                    <div style={{ fontSize: 11, fontWeight: 700, color: portalTheme.gold, textTransform: "uppercase", letterSpacing: ".6px", marginBottom: 12 }}>
                       Create Your Account
                     </div>
                     <div style={fieldRow}>
@@ -727,7 +722,7 @@ export default function RegisterMemberPage() {
                   <button
                     type="button"
                     onClick={handleNext}
-                    style={{ padding: "10px 22px", borderRadius: 8, border: "none", background: FORM_ACCENT, color: FORM_ACCENT_TEXT, fontWeight: 700, fontSize: 13, cursor: "pointer" }}
+                    style={{ padding: "10px 22px", borderRadius: 8, border: "none", background: portalTheme.gold, color: portalTheme.goldText, fontWeight: 700, fontSize: 13, cursor: "pointer" }}
                   >
                     Continue &rarr;
                   </button>
@@ -736,7 +731,7 @@ export default function RegisterMemberPage() {
                     type="button"
                     onClick={handleSubmit}
                     disabled={loading}
-                    style={{ padding: "10px 22px", borderRadius: 8, border: "none", background: FORM_ACCENT, color: FORM_ACCENT_TEXT, fontWeight: 700, fontSize: 13, cursor: loading ? "not-allowed" : "pointer", opacity: loading ? 0.7 : 1 }}
+                    style={{ padding: "10px 22px", borderRadius: 8, border: "none", background: portalTheme.gold, color: portalTheme.goldText, fontWeight: 700, fontSize: 13, cursor: loading ? "not-allowed" : "pointer", opacity: loading ? 0.7 : 1 }}
                   >
                     {loading ? "Submitting..." : "Submit Request"}
                   </button>

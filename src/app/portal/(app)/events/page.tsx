@@ -126,7 +126,7 @@ export default function EventsPage() {
                       fontSize: 10,
                       fontWeight: 700,
                       color: portalTheme.gold,
-                      background: "rgba(196,153,42,0.12)",
+                      background: "rgba(58,159,192,0.12)",
                       padding: "3px 9px",
                       borderRadius: 20,
                       marginBottom: 8,

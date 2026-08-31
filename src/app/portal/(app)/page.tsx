@@ -57,7 +57,7 @@ function StatCard({
             width: 38,
             height: 38,
             borderRadius: "50%",
-            background: "rgba(196,153,42,0.12)",
+            background: "rgba(58,159,192,0.12)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -219,7 +219,7 @@ export default function PortalOverviewPage() {
                   >
                     <div style={{ display: "flex", gap: 6, marginBottom: 10, flexWrap: "wrap" }}>
                       {opp.region && (
-                        <span style={{ fontSize: 10, fontWeight: 700, color: portalTheme.gold, background: "rgba(196,153,42,0.12)", padding: "2px 8px", borderRadius: 20 }}>
+                        <span style={{ fontSize: 10, fontWeight: 700, color: portalTheme.gold, background: "rgba(58,159,192,0.12)", padding: "2px 8px", borderRadius: 20 }}>
                           {opp.region}
                         </span>
                       )}
