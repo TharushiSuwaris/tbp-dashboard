@@ -879,6 +879,12 @@ export default function CapitalCirclesLandingPage() {
                 </div>
 
                 <div className="cc-hero-note">Membership is by invitation and subject to TBP review and approval.</div>
+                <div className="cc-hero-note" style={{ marginTop: 6 }}>
+                  Don&apos;t have an invitation?{" "}
+                  <Link href="/portal/request-invitation" style={{ color: "var(--cc-gold)", fontWeight: 700 }}>
+                    Request one →
+                  </Link>
+                </div>
               </div>
 
               <aside className="cc-hero-card" aria-label="Capital Circles overview">
