@@ -113,7 +113,7 @@ export function PortalSidebar({ role }: { role: string }) {
               border: `1px solid ${portalTheme.panelBorder}`,
             }}
           >
-            &larr; Internal Dashboard
+            Internal Dashboard
           </Link>
         </div>
       )}

@@ -139,6 +139,25 @@ export function Sidebar() {
         })}
       </nav>
 
+      {role && isStaffRole(role) && (
+        <div style={{ padding: "10px 10px 0" }}>
+          <Link
+            href="/portal"
+            style={{
+              display: "block",
+              padding: "9px 12px",
+              borderRadius: 8,
+              fontSize: 12.5,
+              color: "#6B6455",
+              textDecoration: "none",
+              border: "1px solid rgba(27,42,61,0.1)",
+            }}
+          >
+            Circle Portal
+          </Link>
+        </div>
+      )}
+
       {/* Mission section */}
       <div
         style={{
