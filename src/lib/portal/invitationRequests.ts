@@ -18,6 +18,7 @@ export type InvitationRequest = {
   reviewed_at: string | null;
   invitation_code: string | null;
   invitation_expires_at: string | null;
+  capital_circle: string | null;
 };
 
 export type RequestInvitationInput = {
@@ -47,7 +48,7 @@ export async function listInvitationRequests(): Promise<InvitationRequest[]> {
   const { data, error } = await supabase
     .from("invitation_requests")
     .select(
-      "id, name, organisation, email, country, family_group_category, primary_interest, message, status, requested_at, reviewed_by, reviewed_at, invitation_code, invitation_expires_at"
+      "id, name, organisation, email, country, family_group_category, primary_interest, message, status, requested_at, reviewed_by, reviewed_at, invitation_code, invitation_expires_at, capital_circle"
     )
     .order("requested_at", { ascending: false });
   if (error) throw new Error(friendlyDbError(error));

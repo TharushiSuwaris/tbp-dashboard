@@ -89,8 +89,8 @@ export const PORTAL_PAGES: PortalPageDef[] = [
   {
     path: "/portal/invitations",
     label: "Invitations",
-    description: "Generate private invitation codes for prospective members",
-    roles: ["super_admin"],
+    description: "Generate private invitation codes for prospective members, and review invitation requests",
+    roles: ["admin", "super_admin"],
   },
   {
     path: "/portal/admin-requests",

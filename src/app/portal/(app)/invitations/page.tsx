@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { getPortalSession, type PortalSessionUser } from "@/lib/portal/session";
 import { portalTheme } from "@/lib/portal/theme";
 import { CAPITAL_CIRCLES } from "@/lib/portal/content";
@@ -12,6 +13,12 @@ import {
   type CreatedInvitation,
   type Invitation,
 } from "@/lib/portal/invitations";
+import {
+  approveInvitationRequest,
+  listInvitationRequests,
+  rejectInvitationRequest,
+  type InvitationRequest,
+} from "@/lib/portal/invitationRequests";
 
 const inputStyle: React.CSSProperties = {
   width: "100%",
@@ -34,6 +41,8 @@ const labelStyle: React.CSSProperties = {
   letterSpacing: ".5px",
   marginBottom: 5,
 };
+
+const selectStyle: React.CSSProperties = { ...inputStyle, padding: "7px 10px", fontSize: 12 };
 
 function timeRemaining(expiresAt: string): { label: string; expired: boolean } {
   const diffMs = new Date(expiresAt).getTime() - Date.now();
@@ -72,8 +81,7 @@ TBP Capital Advisory & Coordination Office`;
   return { subject, body };
 }
 
-export default function InvitationsPage() {
-  const [user, setUser] = useState<PortalSessionUser | null>(null);
+function GenerateInvitationsTab({ user }: { user: PortalSessionUser }) {
   const [invitations, setInvitations] = useState<Invitation[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [confirmingId, setConfirmingId] = useState<string | null>(null);
@@ -101,12 +109,10 @@ export default function InvitationsPage() {
   }
 
   useEffect(() => {
-    setUser(getPortalSession());
     load();
   }, []);
 
   async function handleCreate() {
-    if (!user) return;
     if (!inviteeName.trim() || !inviteeEmail.trim() || !capitalCircle) {
       setError("Please fill in name, email and Capital Circle.");
       return;
@@ -136,7 +142,6 @@ export default function InvitationsPage() {
   }
 
   async function handleRevoke(id: string) {
-    if (!user) return;
     try {
       await revokeInvitation(id, user.id);
       setConfirmingId(null);
@@ -157,20 +162,13 @@ export default function InvitationsPage() {
     }
   }
 
-  if (!user) return null;
-
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12, marginBottom: 4 }}>
-        <div>
-          <h1 style={{ color: portalTheme.textPrimary, fontSize: 20, fontWeight: 700, margin: "0 0 4px" }}>
-            Invitations
-          </h1>
-          <p style={{ color: portalTheme.textMuted, fontSize: 13 }}>
-            Generate private invitation codes for prospective Capital Circle members. Codes are valid for 72 hours
-            and are removed automatically once used or expired.
-          </p>
-        </div>
+        <p style={{ color: portalTheme.textMuted, fontSize: 13, maxWidth: 560 }}>
+          Generate private invitation codes for prospective Capital Circle members. Codes are valid for 72 hours
+          and are removed automatically once used or expired.
+        </p>
         {!showCreateForm && (
           <button
             onClick={() => {
@@ -389,5 +387,262 @@ export default function InvitationsPage() {
         })}
       </div>
     </div>
+  );
+}
+
+function DetailRow({ label, value }: { label: string; value: string | null | undefined }) {
+  if (!value) return null;
+  return (
+    <div style={{ marginBottom: 8 }}>
+      <div style={{ fontSize: 10, fontWeight: 700, color: portalTheme.textMuted, textTransform: "uppercase", letterSpacing: ".5px", marginBottom: 2 }}>
+        {label}
+      </div>
+      <div style={{ fontSize: 12.5, color: portalTheme.textSecondary, lineHeight: 1.6 }}>{value}</div>
+    </div>
+  );
+}
+
+function buildRequestEmailContent(r: InvitationRequest, capitalCircle: string): { subject: string; body: string } {
+  const deadline = r.invitation_expires_at
+    ? new Date(r.invitation_expires_at).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" })
+    : "";
+  const subject = "Your Private Invitation to TBP Capital Circles™";
+  const body = `Dear ${r.name},
+
+Thank you for your interest in the TBP Capital Circles™. Following review of your request, you have been invited to apply for membership.
+
+You have been invited to the ${capitalCircle} Circle™.
+
+To begin your registration, visit the TBP Capital Circles registration page and enter your personal invitation code:
+
+Invitation Code: ${r.invitation_code}
+
+This code is personal to you, should not be shared, and is valid until ${deadline} (72 hours from issue). It can only be used once.
+
+If you have any questions, please contact TBP Capital Advisory.
+
+Warm regards,
+TBP Capital Advisory & Coordination Office`;
+  return { subject, body };
+}
+
+function InvitationRequestsTab({ user }: { user: PortalSessionUser }) {
+  const [requests, setRequests] = useState<InvitationRequest[]>([]);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [chosenCircle, setChosenCircle] = useState<Record<string, string>>({});
+  const [error, setError] = useState<string | null>(null);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  async function load() {
+    try {
+      setRequests(await listInvitationRequests());
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to load invitation requests");
+    }
+  }
+
+  useEffect(() => {
+    load();
+  }, []);
+
+  async function handleApprove(r: InvitationRequest) {
+    const capitalCircle = chosenCircle[r.id];
+    if (!capitalCircle) {
+      setError("Please select a Capital Circle before approving.");
+      return;
+    }
+    setError(null);
+    try {
+      await approveInvitationRequest(r.id, user.id, capitalCircle);
+      await load();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to approve request");
+    }
+  }
+
+  async function handleReject(id: string) {
+    try {
+      await rejectInvitationRequest(id, user.id);
+      await load();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to reject request");
+    }
+  }
+
+  async function handleCopy(r: InvitationRequest, capitalCircle: string) {
+    const { subject, body } = buildRequestEmailContent(r, capitalCircle);
+    try {
+      await navigator.clipboard.writeText(`Subject: ${subject}\n\n${body}`);
+      setCopiedId(r.id);
+    } catch {
+      setError("Could not copy to clipboard — please select and copy the text manually.");
+    }
+  }
+
+  return (
+    <div>
+      <p style={{ color: portalTheme.textMuted, fontSize: 13, marginBottom: 20, maxWidth: 560 }}>
+        Review requests from people who don&apos;t yet have an invitation code. Approving generates a real
+        invitation code you can copy and send.
+      </p>
+
+      {error && <div style={{ color: portalTheme.danger, fontSize: 13, marginBottom: 14 }}>{error}</div>}
+
+      {requests.length === 0 && <div style={{ color: portalTheme.textMuted, fontSize: 13 }}>No requests yet.</div>}
+
+      <div style={{ display: "grid", gap: 12 }}>
+        {requests.map((r) => {
+          const isExpanded = expandedId === r.id;
+          return (
+            <div
+              key={r.id}
+              style={{ background: portalTheme.panel, border: `1px solid ${portalTheme.panelBorder}`, borderRadius: 12, padding: "16px 20px" }}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, flexWrap: "wrap", cursor: "pointer" }} onClick={() => setExpandedId(isExpanded ? null : r.id)}>
+                <div>
+                  <div style={{ color: portalTheme.textPrimary, fontWeight: 700, fontSize: 14 }}>
+                    {r.name} <span style={{ color: portalTheme.textMuted, fontWeight: 400 }}>&middot; {r.organisation}</span>
+                  </div>
+                  <div style={{ color: portalTheme.textMuted, fontSize: 12 }}>
+                    {r.email} &middot; {r.country} &middot; requested {new Date(r.requested_at).toLocaleDateString()}
+                  </div>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                  <span
+                    style={{
+                      fontSize: 11,
+                      fontWeight: 700,
+                      textTransform: "capitalize",
+                      color: r.status === "approved" ? "#34D399" : r.status === "rejected" ? portalTheme.danger : "#FBBF24",
+                    }}
+                  >
+                    {r.status}
+                  </span>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setExpandedId(isExpanded ? null : r.id); }}
+                    style={{ padding: "6px 12px", borderRadius: 6, border: `1px solid ${portalTheme.panelBorder}`, background: "transparent", color: portalTheme.textMuted, fontSize: 12, cursor: "pointer" }}
+                  >
+                    {isExpanded ? "Hide Details" : "Review Details"}
+                  </button>
+                </div>
+              </div>
+
+              {isExpanded && (
+                <div style={{ marginTop: 16, paddingTop: 16, borderTop: `1px solid ${portalTheme.panelBorder}`, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+                  <div>
+                    <DetailRow label="Organisation / Family / Group Name" value={r.organisation} />
+                    <DetailRow label="Country / Region" value={r.country} />
+                    <DetailRow label="Family / Group Category" value={r.family_group_category} />
+                  </div>
+                  <div>
+                    <DetailRow label="Primary Interest" value={r.primary_interest} />
+                    <DetailRow label="Short Message" value={r.message} />
+                    {r.status === "approved" && <DetailRow label="Invited Capital Circle" value={r.capital_circle} />}
+                    {r.status === "approved" && <DetailRow label="Invitation Code" value={r.invitation_code} />}
+                  </div>
+                </div>
+              )}
+
+              {r.status === "pending" && (
+                <div style={{ marginTop: 14, paddingTop: 14, borderTop: `1px solid ${portalTheme.panelBorder}`, display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }} onClick={(e) => e.stopPropagation()}>
+                  <div>
+                    <label style={labelStyle}>Capital Circle *</label>
+                    <select
+                      style={selectStyle}
+                      value={chosenCircle[r.id] ?? ""}
+                      onChange={(e) => setChosenCircle((prev) => ({ ...prev, [r.id]: e.target.value }))}
+                    >
+                      <option value="" disabled>
+                        Select...
+                      </option>
+                      {CAPITAL_CIRCLES.map((c) => (
+                        <option key={c} value={c}>{c}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <button
+                    onClick={() => handleApprove(r)}
+                    style={{ padding: "7px 14px", borderRadius: 6, border: "none", background: portalTheme.gold, color: portalTheme.goldText, fontWeight: 700, fontSize: 12, cursor: "pointer", alignSelf: "flex-end" }}
+                  >
+                    Approve
+                  </button>
+                  <button
+                    onClick={() => handleReject(r.id)}
+                    style={{ padding: "7px 14px", borderRadius: 6, border: `1px solid ${portalTheme.panelBorder}`, background: "transparent", color: portalTheme.textMuted, fontSize: 12, cursor: "pointer", alignSelf: "flex-end" }}
+                  >
+                    Reject
+                  </button>
+                </div>
+              )}
+
+              {r.status === "approved" && r.invitation_code && r.capital_circle && (
+                <div style={{ marginTop: 14, paddingTop: 14, borderTop: `1px solid ${portalTheme.panelBorder}` }} onClick={(e) => e.stopPropagation()}>
+                  <div style={{ color: portalTheme.textPrimary, fontSize: 13, fontWeight: 700, marginBottom: 8, fontFamily: "monospace" }}>
+                    {r.invitation_code}
+                  </div>
+                  <button
+                    onClick={() => handleCopy(r, r.capital_circle as string)}
+                    style={{ padding: "6px 12px", borderRadius: 6, border: `1px solid ${portalTheme.panelBorder}`, background: "transparent", color: portalTheme.textPrimary, fontWeight: 700, fontSize: 12, cursor: "pointer" }}
+                  >
+                    {copiedId === r.id ? "Copied ✓" : "Copy Ready-to-Send Email"}
+                  </button>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function InvitationsPageInner() {
+  const searchParams = useSearchParams();
+  const [user, setUser] = useState<PortalSessionUser | null>(null);
+  const [tab, setTab] = useState<"generate" | "requests">(searchParams.get("tab") === "requests" ? "requests" : "generate");
+
+  useEffect(() => {
+    setUser(getPortalSession());
+  }, []);
+
+  if (!user) return null;
+
+  const tabStyle = (active: boolean): React.CSSProperties => ({
+    padding: "9px 4px",
+    marginRight: 24,
+    border: "none",
+    borderBottom: active ? `2px solid ${portalTheme.gold}` : "2px solid transparent",
+    background: "transparent",
+    color: active ? portalTheme.textPrimary : portalTheme.textMuted,
+    fontWeight: active ? 700 : 600,
+    fontSize: 13,
+    cursor: "pointer",
+  });
+
+  return (
+    <div>
+      <h1 style={{ color: portalTheme.textPrimary, fontSize: 20, fontWeight: 700, margin: "0 0 4px" }}>
+        Invitations
+      </h1>
+
+      <div style={{ display: "flex", borderBottom: `1px solid ${portalTheme.panelBorder}`, marginTop: 16, marginBottom: 20 }}>
+        <button style={tabStyle(tab === "generate")} onClick={() => setTab("generate")}>
+          Generate Invitations
+        </button>
+        <button style={tabStyle(tab === "requests")} onClick={() => setTab("requests")}>
+          Invitation Requests
+        </button>
+      </div>
+
+      {tab === "generate" ? <GenerateInvitationsTab user={user} /> : <InvitationRequestsTab user={user} />}
+    </div>
+  );
+}
+
+export default function InvitationsPage() {
+  return (
+    <Suspense fallback={null}>
+      <InvitationsPageInner />
+    </Suspense>
   );
 }

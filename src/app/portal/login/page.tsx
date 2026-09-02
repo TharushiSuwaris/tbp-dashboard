@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { loginPortalUser } from "@/lib/portal/auth";
-import { isStaffRole, savePortalSession } from "@/lib/portal/session";
+import { savePortalSession } from "@/lib/portal/session";
 import { portalTheme } from "@/lib/portal/theme";
 
 const labelStyle: React.CSSProperties = {
@@ -43,10 +43,11 @@ export default function PortalLoginPage() {
     try {
       const user = await loginPortalUser(email.trim(), password);
       savePortalSession(user);
-      // Admins already have the full internal toolset at /dashboard - no
-      // reason to duplicate it inside the portal shell. Circle Members land
-      // on their own Overview.
-      router.push(isStaffRole(user.role) ? "/dashboard" : "/portal");
+      // Everyone lands in the Circle Portal first - staff reach the
+      // internal FO tool via the "Internal Dashboard" link in the portal
+      // sidebar (see PortalSidebar.tsx) rather than being dropped straight
+      // into it on login.
+      router.push("/portal");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Login failed");
     } finally {

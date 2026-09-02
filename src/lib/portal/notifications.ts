@@ -44,6 +44,14 @@ export async function getStaffNotifications(userId: string, role: string): Promi
     if (memberReqCount && memberReqCount > 0) {
       items.push({ label: "Pending Circle Member Requests", count: memberReqCount, href: "/portal/member-requests" });
     }
+
+    const { count: invitationReqCount } = await supabase
+      .from("invitation_requests")
+      .select("id", { count: "exact", head: true })
+      .eq("status", "pending");
+    if (invitationReqCount && invitationReqCount > 0) {
+      items.push({ label: "Pending Invitation Requests", count: invitationReqCount, href: "/portal/invitations?tab=requests" });
+    }
   }
 
   const { count: profileCount } = await supabase
